@@ -1,0 +1,18 @@
+bdtr: bdtr, bdtrc, bdtri
+btdtr: btdtr
+chdtr: chdtr, chdtrc, chdtri
+expx2: expx2
+fdtr: fdtr, fdtrc, fdtri
+gamma: cephes_gamma, lgam
+gdtr: gdtr, gdtrc
+igam: igam, igamc
+igami: igami
+incbet: incbet
+incbi: incbi
+kolmogorov: smirnov, kolmogorov, smirnovi, kolmogi
+nbdtr: nbdtr, nbdtrc, nbdtri
+ndtr: ndtr, erf, erfc
+ndtri: ndtri
+pdtr: pdtr, pdtrc, pdtri
+stdtr: stdtr, stdtri
+unity: log1p, expm1, cosm1
