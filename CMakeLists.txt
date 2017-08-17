@@ -25,13 +25,30 @@ endif()
 file(STRINGS "VERSION" NCEPHES_VERSION)
 
 include_directories( include/ )
+include_directories( ncephes/ )
 include_directories(.)
 
 add_subdirectory(ncephes)
 
-add_library(ncephes SHARED ncephes/ncephes.c)
+file(GLOB CPROB_SRC
+    "ncephes/cprob/*.c"
+)
 
-add_library(ncephes_static STATIC ncephes/ncephes.c)
+file(GLOB ELLF_SRC
+    "ncephes/ellf/*.c"
+)
+
+file(GLOB MISC_SRC
+    "ncephes/misc/*.c"
+)
+
+file(GLOB POLYN_SRC
+    "ncephes/polyn/*.c"
+)
+
+add_library(ncephes SHARED ${CPROB_SRC} ncephes/const.c ncephes/mtherr.c)
+
+add_library(ncephes_static STATIC ${CPROB_SRC} ncephes/const.c ncephes/mtherr.c)
 
 set_target_properties(ncephes
   PROPERTIES
