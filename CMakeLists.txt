@@ -68,5 +68,5 @@ install(TARGETS ncephes_static
 
 add_subdirectory(test)
 
-# enable_testing()
-# add_test(test_ncephes test/test_ncephes)
+enable_testing()
+add_test(test_ncephes test/test_ncephes)
