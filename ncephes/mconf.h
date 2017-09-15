@@ -55,8 +55,12 @@
  * Copyright 1984, 1987, 1989, 1995 by Stephen L. Moshier
  */
 
-#ifndef CEPHES_MCONF_H
-#define CEPHES_MCONF_H
+#ifndef NCEPHES_MCONF_H
+#define NCEPHES_MCONF_H
+
+/* Define 1 for ANSI C atan2() function
+   See atan.c and clog.c. */
+#define ANSIC 1
 
 #define ANSIPROT 1
 
@@ -113,4 +117,4 @@ typedef struct {
 
 int ncephes_mtherr(char *name, int code);
 
-#endif /* CEPHES_MCONF_H */
+#endif /* NCEPHES_MCONF_H */
