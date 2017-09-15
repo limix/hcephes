@@ -95,7 +95,7 @@ int main() {
     assert_close(ncephes_ellpk(0.12), 2.492635323239716);
 
     assert_close(ncephes_lbeta(10, 3), -6.4922398350204711);
-    // ncephes_beta
+    assert_close(ncephes_beta(6.3, 2.9), 0.005947104834350);
 
     return SUCCESS;
 }

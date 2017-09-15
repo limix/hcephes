@@ -22,7 +22,7 @@ extern double floor(double);
 
 extern double MAXLOG, NCEPHES_MAXNUM;
 
-double beta(double a, double b) {
+double ncephes_beta(double a, double b) {
     double y;
     int sign;
 
