@@ -22,11 +22,11 @@ static const unsigned long __nan[2] = {0xffffffff, 0x7fffffff};
 #define FAIL EXIT_FAILURE
 
 #define assert_success(x)                                                      \
-    if (x != SUCCESS)                                                          \
+    if ((x) != SUCCESS)                                                        \
         return FAIL;
 
 #define assert_close(x, y)                                                     \
-    if (fabs(x - y) > 1e-7)                                                    \
+    if (fabs((x) - (y)) > 1e-7)                                                \
         return FAIL;
 
 int main() {
@@ -93,6 +93,9 @@ int main() {
     assert_close(ncephes_ellpe(0.12), 1.120741662164857);
 
     assert_close(ncephes_ellpk(0.12), 2.492635323239716);
+
+    assert_close(ncephes_lbeta(10, 3), -6.4922398350204711);
+    // ncephes_beta
 
     return SUCCESS;
 }

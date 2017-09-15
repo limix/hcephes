@@ -71,7 +71,7 @@ double beta(double a, double b) {
 
 /* Natural log of |beta|.  Return the sign of beta in sgngam.  */
 
-double lbeta(double a, double b) {
+double ncephes_lbeta(double a, double b) {
     double y;
     int sign;
 
