@@ -125,7 +125,7 @@ pt3 = (double * )malloc(psize); /* used by polmul */
 /* Report if failure */
 if( (pt1 == NULL) || (pt2 == NULL) || (pt3 == NULL) )
 	{
-	mtherr( "polini", ERANGE );
+	ncephes_mtherr( "polini", ERANGE );
 	exit(1);
 	}
 }
@@ -339,7 +339,7 @@ if( a[0] == 0.0 )
 		if( ta[i] != 0.0 )
 			goto nzero;
 		}
-	mtherr( "poldiv", SING );
+	ncephes_mtherr( "poldiv", SING );
 	goto done;
 
 nzero:

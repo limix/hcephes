@@ -1000,7 +1000,7 @@ ei (double x)
 
   if (x <= 0.0)
     {
-      mtherr("ei", DOMAIN);
+      ncephes_mtherr("ei", DOMAIN);
       return 0.0;
     }
   else if (x < 2.0)

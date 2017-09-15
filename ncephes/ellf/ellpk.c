@@ -211,7 +211,7 @@ ellpk (double x)
 
 if( (x < 0.0) || (x > 1.0) )
 	{
-	mtherr( "ellpk", DOMAIN );
+	ncephes_mtherr( "ellpk", DOMAIN );
 	return( 0.0 );
 	}
 
@@ -223,7 +223,7 @@ else
 	{
 	if( x == 0.0 )
 		{
-		mtherr( "ellpk", SING );
+		ncephes_mtherr( "ellpk", SING );
 		return( NCEPHES_MAXNUM );
 		}
 	else

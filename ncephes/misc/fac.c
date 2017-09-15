@@ -221,13 +221,13 @@ int j;
 
 if( i < 0 )
 	{
-	mtherr( "fac", SING );
+	ncephes_mtherr( "fac", SING );
 	return( NCEPHES_MAXNUM );
 	}
 
 if( i > MAXFAC )
 	{
-	mtherr( "fac", OVERFLOW );
+	ncephes_mtherr( "fac", OVERFLOW );
 	return( NCEPHES_MAXNUM );
 	}
 

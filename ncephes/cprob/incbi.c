@@ -140,14 +140,14 @@ ihalve:
             dir -= 1;
         }
     }
-    mtherr("incbi", PLOSS);
+    ncephes_mtherr("incbi", PLOSS);
     if (x0 >= 1.0) {
         x = 1.0 - MACHEP;
         goto done;
     }
     if (x <= 0.0) {
     under:
-        mtherr("incbi", UNDERFLOW);
+        ncephes_mtherr("incbi", UNDERFLOW);
         x = 0.0;
         goto done;
     }

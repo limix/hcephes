@@ -190,7 +190,7 @@ double ncephes_gamma(double x) {
             if (p == q) {
 #ifdef NCEPHES_NANS
             gamnan:
-                mtherr("gamma", DOMAIN);
+                ncephes_mtherr("gamma", DOMAIN);
                 return (NCEPHES_NAN);
 #else
                 goto goverf;
@@ -210,7 +210,7 @@ double ncephes_gamma(double x) {
                 return (sgngam * NCEPHES_INF);
 #else
             goverf:
-                mtherr("gamma", OVERFLOW);
+                ncephes_mtherr("gamma", OVERFLOW);
                 return (sgngam * NCEPHES_MAXNUM);
 #endif
             }
@@ -259,7 +259,7 @@ small:
         return (NCEPHES_INF);
 #endif
 #else
-        mtherr("gamma", SING);
+        ncephes_mtherr("gamma", SING);
         return (NCEPHES_MAXNUM);
 #endif
     } else
@@ -378,7 +378,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         if (p == q) {
         lgsing:
 #ifdef INFINITIES
-            mtherr("ncephes_lgam", SING);
+            ncephes_mtherr("ncephes_lgam", SING);
             return (NCEPHES_INF);
 #else
             goto loverf;
@@ -436,7 +436,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         return (*sign * NCEPHES_INF);
 #else
     loverf:
-        mtherr("ncephes_lgam", OVERFLOW);
+        ncephes_mtherr("ncephes_lgam", OVERFLOW);
         return (*sign * NCEPHES_MAXNUM);
 #endif
     }

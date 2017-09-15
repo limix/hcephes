@@ -208,7 +208,7 @@ if( isnan(x) )
 	return(x);
 if( !isfinite(x) )
 	{
-	mtherr( "tan", DOMAIN );
+	ncephes_mtherr( "tan", DOMAIN );
 	return(NCEPHES_NAN);
 	}
 #endif
@@ -222,7 +222,7 @@ cot (double x)
 
 if( x == 0.0 )
 	{
-	mtherr( "cot", SING );
+	ncephes_mtherr( "cot", SING );
 	return( NCEPHES_INF );
 	}
 return( tancot(x,1) );
@@ -250,9 +250,9 @@ else
 if( x > lossth )
 	{
 	if( cotflg )
-		mtherr( "cot", TLOSS );
+		ncephes_mtherr( "cot", TLOSS );
 	else
-		mtherr( "tan", TLOSS );
+		ncephes_mtherr( "tan", TLOSS );
 	return(0.0);
 	}
 

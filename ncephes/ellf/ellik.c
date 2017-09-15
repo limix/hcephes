@@ -82,7 +82,7 @@ if( a == 0.0 )
 	{
 	if( fabs(phi) >= NCEPHES_PIO2 )
 		{
-		mtherr( "ellik", SING );
+		ncephes_mtherr( "ellik", SING );
 		return( NCEPHES_MAXNUM );
 		}
 	return(  log(  tan( (NCEPHES_PIO2 + phi)/2.0 )  )   );

@@ -141,7 +141,7 @@ double a, z;
 
 if( x < 1.0 )
 	{
-	mtherr( "acosh", DOMAIN );
+	ncephes_mtherr( "acosh", DOMAIN );
 	return(NCEPHES_NAN);
 	}
 

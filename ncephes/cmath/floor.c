@@ -112,7 +112,7 @@ ceil (double x)
 double y;
 
 #ifdef UNK
-mtherr( "ceil", DOMAIN );
+ncephes_mtherr( "ceil", DOMAIN );
 return(0.0);
 #endif
 #ifdef NCEPHES_NANS
@@ -175,7 +175,7 @@ unsigned short *p;
 int e;
 
 #ifdef UNK
-mtherr( "floor", DOMAIN );
+ncephes_mtherr( "floor", DOMAIN );
 return(0.0);
 #endif
 #ifdef NCEPHES_NANS
@@ -266,7 +266,7 @@ short *q;
 u.y = x;
 
 #ifdef UNK
-mtherr( "frexp", DOMAIN );
+ncephes_mtherr( "frexp", DOMAIN );
 return(0.0);
 #endif
 
@@ -367,7 +367,7 @@ short *q;
 int e;
 
 #ifdef UNK
-mtherr( "ldexp", DOMAIN );
+ncephes_mtherr( "ldexp", DOMAIN );
 return(0.0);
 #endif
 

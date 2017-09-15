@@ -103,7 +103,7 @@ if( x == 1.0 )
 if( x < 1.0 )
 	{
 domerr:
-	mtherr( "zeta", DOMAIN );
+	ncephes_mtherr( "zeta", DOMAIN );
 	return(0.0);
 	}
 
@@ -111,7 +111,7 @@ if( q <= 0.0 )
 	{
 	if(q == floor(q))
 		{
-		mtherr( "zeta", SING );
+		ncephes_mtherr( "zeta", SING );
 retinf:
 		return( NCEPHES_MAXNUM );
 		}

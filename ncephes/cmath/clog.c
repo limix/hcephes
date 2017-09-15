@@ -313,7 +313,7 @@ if( fabs(d) < 0.25 )
 
 if( d == 0.0 )
 	{
-	mtherr( "ctan", OVERFLOW );
+	ncephes_mtherr( "ctan", OVERFLOW );
 	w->r = NCEPHES_MAXNUM;
 	w->i = NCEPHES_MAXNUM;
 	return;
@@ -374,7 +374,7 @@ if( fabs(d) < 0.25 )
 
 if( d == 0.0 )
 	{
-	mtherr( "ccot", OVERFLOW );
+	ncephes_mtherr( "ccot", OVERFLOW );
 	w->r = NCEPHES_MAXNUM;
 	w->i = NCEPHES_MAXNUM;
 	return;
@@ -536,7 +536,7 @@ if( y == 0.0 )
 		{
 		w->r = NCEPHES_PIO2;
 		w->i = 0.0;
-		mtherr( "casin", DOMAIN );
+		ncephes_mtherr( "casin", DOMAIN );
 		}
 	else
 		{
@@ -728,7 +728,7 @@ w->i = log(a)/4.0;
 return;
 
 ovrf:
-mtherr( "catan", OVERFLOW );
+ncephes_mtherr( "catan", OVERFLOW );
 w->r = NCEPHES_MAXNUM;
 w->i = NCEPHES_MAXNUM;
 }

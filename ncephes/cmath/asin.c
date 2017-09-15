@@ -271,7 +271,7 @@ else
 
 if( a > 1.0 )
 	{
-	mtherr( "asin", DOMAIN );
+	ncephes_mtherr( "asin", DOMAIN );
 	return( NCEPHES_NAN );
 	}
 
@@ -310,7 +310,7 @@ double z;
 
 if( (x < -1.0) || (x > 1.0) )
 	{
-	mtherr( "acos", DOMAIN );
+	ncephes_mtherr( "acos", DOMAIN );
 	return( NCEPHES_NAN );
 	}
 if( x > 0.5 )

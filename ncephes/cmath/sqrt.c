@@ -66,7 +66,7 @@ double z, w;
 if( x <= 0.0 )
 	{
 	if( x < 0.0 )
-		mtherr( "sqrt", DOMAIN );
+		ncephes_mtherr( "sqrt", DOMAIN );
 	return( 0.0 );
 	}
 w = x;

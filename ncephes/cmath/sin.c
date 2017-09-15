@@ -229,7 +229,7 @@ if( isnan(x) )
 	return(x);
 if( !isfinite(x) )
 	{
-	mtherr( "sin", DOMAIN );
+	ncephes_mtherr( "sin", DOMAIN );
 	return(NCEPHES_NAN);
 	}
 #endif
@@ -243,7 +243,7 @@ if( x < 0 )
 
 if( x > lossth )
 	{
-	mtherr( "sin", TLOSS );
+	ncephes_mtherr( "sin", TLOSS );
 	return(0.0);
 	}
 
@@ -306,7 +306,7 @@ if( isnan(x) )
 	return(x);
 if( !isfinite(x) )
 	{
-	mtherr( "cos", DOMAIN );
+	ncephes_mtherr( "cos", DOMAIN );
 	return(NCEPHES_NAN);
 	}
 #endif
@@ -318,7 +318,7 @@ if( x < 0 )
 
 if( x > lossth )
 	{
-	mtherr( "cos", TLOSS );
+	ncephes_mtherr( "cos", TLOSS );
 	return(0.0);
 	}
 

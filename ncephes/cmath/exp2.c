@@ -149,7 +149,7 @@ if( x > MAXL2)
 #ifdef INFINITIES
 	return( NCEPHES_INF );
 #else
-	mtherr( "exp2", OVERFLOW );
+	ncephes_mtherr( "exp2", OVERFLOW );
 	return( NCEPHES_MAXNUM );
 #endif
 	}
@@ -157,7 +157,7 @@ if( x > MAXL2)
 if( x < MINL2 )
 	{
 #ifndef INFINITIES
-	mtherr( "exp2", UNDERFLOW );
+	ncephes_mtherr( "exp2", UNDERFLOW );
 #endif
 	return(0.0);
 	}

@@ -183,7 +183,7 @@ double erfc(double a) {
 
     if (z < -MAXLOG) {
     under:
-        mtherr("erfc", UNDERFLOW);
+        ncephes_mtherr("erfc", UNDERFLOW);
         if (a < 0)
             return (2.0);
         else

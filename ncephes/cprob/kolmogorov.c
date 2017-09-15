@@ -68,7 +68,7 @@ double ncephes_smirnovi(int n, double p) {
     double e, t, dpde;
 
     if (p <= 0.0 || p > 1.0) {
-        mtherr("smirnovi", DOMAIN);
+        ncephes_mtherr("smirnovi", DOMAIN);
         return 0.0;
     }
     /* Start with approximation p = exp(-2 n e^2).  */
@@ -80,12 +80,12 @@ double ncephes_smirnovi(int n, double p) {
         if (fabs(dpde) > 0.0)
             t = (p - ncephes_smirnov(n, e)) / dpde;
         else {
-            mtherr("smirnovi", UNDERFLOW);
+            ncephes_mtherr("smirnovi", UNDERFLOW);
             return 0.0;
         }
         e = e + t;
         if (e >= 1.0 || e <= 0.0) {
-            mtherr("smirnovi", OVERFLOW);
+            ncephes_mtherr("smirnovi", OVERFLOW);
             return 0.0;
         }
     } while (fabs(t / e) > 1e-10);
@@ -100,7 +100,7 @@ double ncephes_kolmogi(double p) {
     double y, t, dpdy;
 
     if (p <= 0.0 || p > 1.0) {
-        mtherr("kolmogi", DOMAIN);
+        ncephes_mtherr("kolmogi", DOMAIN);
         return 0.0;
     }
     /* Start with approximation p = 2 exp(-2 y^2).  */
@@ -112,7 +112,7 @@ double ncephes_kolmogi(double p) {
         if (fabs(dpdy) > 0.0)
             t = (p - ncephes_kolmogorov(y)) / dpdy;
         else {
-            mtherr("kolmogi", UNDERFLOW);
+            ncephes_mtherr("kolmogi", UNDERFLOW);
             return 0.0;
         }
         y = y + t;

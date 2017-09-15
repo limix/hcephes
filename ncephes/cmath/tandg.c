@@ -196,7 +196,7 @@ else
 
 if( x > lossth )
 	{
-	mtherr( "tandg", TLOSS );
+	ncephes_mtherr( "tandg", TLOSS );
 	return(0.0);
 	}
 
@@ -240,7 +240,7 @@ if( j & 2 )
 			}
 		else
 			{
-			mtherr( "tandg", SING );
+			ncephes_mtherr( "tandg", SING );
 			y = NCEPHES_MAXNUM;
 			}
 		}
@@ -253,7 +253,7 @@ else
 			y = 1.0/y;
 		else
 			{
-			mtherr( "cotdg", SING );
+			ncephes_mtherr( "cotdg", SING );
 			y = NCEPHES_MAXNUM;
 			}
 		}

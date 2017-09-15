@@ -225,11 +225,11 @@ double ncephes_ndtri(double y0) {
     int code;
 
     if (y0 <= 0.0) {
-        mtherr("ndtri", DOMAIN);
+        ncephes_mtherr("ndtri", DOMAIN);
         return (-NCEPHES_MAXNUM);
     }
     if (y0 >= 1.0) {
-        mtherr("ndtri", DOMAIN);
+        ncephes_mtherr("ndtri", DOMAIN);
         return (NCEPHES_MAXNUM);
     }
     code = 1;

@@ -138,7 +138,7 @@ ff3->d = d1 * d2;
 /* Report overflow. */
 if( (fabs(ff3->n) >= BIG) || (fabs(ff3->d) >= BIG) )
 	{
-	mtherr( "rmul", OVERFLOW );
+	ncephes_mtherr( "rmul", OVERFLOW );
 	return;
 	}
 /* euclid( &ff3->n, &ff3->d );*/
@@ -176,7 +176,7 @@ ff3->d = d1 * d2;
 /* Report overflow. */
 if( (fabs(ff3->n) >= BIG) || (fabs(ff3->d) >= BIG) )
 	{
-	mtherr( "rdiv", OVERFLOW );
+	ncephes_mtherr( "rdiv", OVERFLOW );
 	return;
 	}
 /* euclid( &ff3->n, &ff3->d );*/
@@ -209,7 +209,7 @@ if( d < 0.0 )
 /* Abort if numbers are too big for integer arithmetic. */
 if( (n >= BIG) || (d >= BIG) )
 	{
-	mtherr( "euclid", OVERFLOW );
+	ncephes_mtherr( "euclid", OVERFLOW );
 	return(1.0);
 	}
 
@@ -242,7 +242,7 @@ while( d > 0.5 )
 	}
 
 if( n < 0.0 )
-	mtherr( "euclid", UNDERFLOW );
+	ncephes_mtherr( "euclid", UNDERFLOW );
 
 *num /= n;
 *den /= n;

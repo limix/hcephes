@@ -156,7 +156,7 @@ int flag;
 
 if( x < 0.0 )
 	{
-	mtherr( "spence", DOMAIN );
+	ncephes_mtherr( "spence", DOMAIN );
 	return(0.0);
 	}
 

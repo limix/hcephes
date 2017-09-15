@@ -89,7 +89,7 @@ double *yn, *yp, *ysum;
 int j;
 
 if( y[1] == 0.0 )
-	mtherr( "revers", DOMAIN );
+	ncephes_mtherr( "revers", DOMAIN );
 /*	printf( "revers: y[1] = 0\n" );*/
 j = (MAXPOL + 1) * sizeof(double);
 yn = (double *)malloc(j);

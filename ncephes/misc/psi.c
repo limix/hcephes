@@ -135,7 +135,7 @@ if( x <= 0.0 )
 	p = floor(q);
 	if( p == q )
 		{
-		mtherr( "psi", SING );
+		ncephes_mtherr( "psi", SING );
 		return( NCEPHES_MAXNUM );
 		}
 /* Remove the zeros of tan(NCEPHES_PI x)

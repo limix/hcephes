@@ -238,12 +238,12 @@ if( x <= 0.0 )
 	{
 	if( x == 0.0 )
 	        {
-		mtherr( fname, SING );
+		ncephes_mtherr( fname, SING );
 		return( -NCEPHES_INF );
 	        }
 	else
 	        {
-		mtherr( fname, DOMAIN );
+		ncephes_mtherr( fname, DOMAIN );
 		return( NCEPHES_NAN );
 	        }
 	}

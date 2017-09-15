@@ -156,7 +156,7 @@ int sign;
 
 if( x > 34.84425627277176174)
 	{
-	mtherr( name, UNDERFLOW );
+	ncephes_mtherr( name, UNDERFLOW );
 	return(1.0/NCEPHES_MAXNUM);
 	}
 if( x < -34.034 )
@@ -176,12 +176,12 @@ if( x < -34.034 )
 	y = log( w * z ) - log(NCEPHES_PI) + ncephes_lgam(w);
 	if( y < -MAXLOG )
 		{
-		mtherr( name, UNDERFLOW );
+		ncephes_mtherr( name, UNDERFLOW );
 		return( sign * 1.0 / NCEPHES_MAXNUM );
 		}
 	if( y > MAXLOG )
 		{
-		mtherr( name, OVERFLOW );
+		ncephes_mtherr( name, OVERFLOW );
 		return( sign * NCEPHES_MAXNUM );
 		}
 	return( sign * exp(y));

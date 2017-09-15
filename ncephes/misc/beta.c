@@ -109,7 +109,7 @@ if( fabs(y) > MAXGAM )
 	if( y > MAXLOG )
 		{
 over:
-		mtherr( "beta", OVERFLOW );
+		ncephes_mtherr( "beta", OVERFLOW );
 		return( sign * NCEPHES_MAXNUM );
 		}
 	return( sign * exp(y) );
@@ -175,7 +175,7 @@ y = cephes_gamma(y);
 if( y == 0.0 )
 	{
 over:
-	mtherr( "lbeta", OVERFLOW );
+	ncephes_mtherr( "lbeta", OVERFLOW );
 	return( sign * NCEPHES_MAXNUM );
 	}
 

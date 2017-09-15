@@ -123,7 +123,7 @@ else
 
 if( s > MAXLOG )
 	{
-	mtherr( "powi", OVERFLOW );
+	ncephes_mtherr( "powi", OVERFLOW );
 	y = NCEPHES_INF;
 	goto done;
 	}

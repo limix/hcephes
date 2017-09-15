@@ -6,7 +6,7 @@ double ncephes_fdtrc(int ia, int ib, double x) {
     double a, b, w;
 
     if ((ia < 1) || (ib < 1) || (x < 0.0)) {
-        mtherr("fdtrc", DOMAIN);
+        ncephes_mtherr("fdtrc", DOMAIN);
         return (0.0);
     }
     a = ia;
@@ -19,7 +19,7 @@ double ncephes_fdtr(int ia, int ib, double x) {
     double a, b, w;
 
     if ((ia < 1) || (ib < 1) || (x < 0.0)) {
-        mtherr("fdtr", DOMAIN);
+        ncephes_mtherr("fdtr", DOMAIN);
         return (0.0);
     }
     a = ia;
@@ -33,7 +33,7 @@ double ncephes_fdtri(int ia, int ib, double y) {
     double a, b, w, x;
 
     if ((ia < 1) || (ib < 1) || (y <= 0.0) || (y > 1.0)) {
-        mtherr("fdtri", DOMAIN);
+        ncephes_mtherr("fdtri", DOMAIN);
         return (0.0);
     }
     a = ia;

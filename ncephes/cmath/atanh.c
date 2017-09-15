@@ -138,7 +138,7 @@ if( z >= 1.0 )
 		return( NCEPHES_INF );
 	if( x == -1.0 )
 		return( -NCEPHES_INF );
-	mtherr( "atanh", DOMAIN );
+	ncephes_mtherr( "atanh", DOMAIN );
 	return( NCEPHES_NAN );
 	}
 

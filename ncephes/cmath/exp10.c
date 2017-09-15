@@ -185,7 +185,7 @@ if( x > MAXL10 )
 #ifdef INFINITIES
 	return( NCEPHES_INF );
 #else
-	mtherr( "exp10", OVERFLOW );
+	ncephes_mtherr( "exp10", OVERFLOW );
 	return( NCEPHES_MAXNUM );
 #endif
 	}
@@ -193,7 +193,7 @@ if( x > MAXL10 )
 if( x < -MAXL10 )	/* Would like to use MINLOG but can't */
 	{
 #ifndef INFINITIES
-	mtherr( "exp10", UNDERFLOW );
+	ncephes_mtherr( "exp10", UNDERFLOW );
 #endif
 	return(0.0);
 	}

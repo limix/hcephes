@@ -257,7 +257,7 @@ polylog (int n, double x)
      Not defined for x > 1.  Use cpolylog if you need that.  */
   if (x > 1.0 || n < -1)
     {
-      mtherr("polylog", DOMAIN);
+      ncephes_mtherr("polylog", DOMAIN);
       return 0.0;
     }
 

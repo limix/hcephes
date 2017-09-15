@@ -9,7 +9,7 @@ double ncephes_stdtr(int k, double t) {
     int j;
 
     if (k <= 0) {
-        mtherr("stdtr", DOMAIN);
+        ncephes_mtherr("stdtr", DOMAIN);
         return (0.0);
     }
 
@@ -84,7 +84,7 @@ double ncephes_stdtri(int k, double p) {
     int rflg;
 
     if (k <= 0 || p <= 0.0 || p >= 1.0) {
-        mtherr("stdtri", DOMAIN);
+        ncephes_mtherr("stdtri", DOMAIN);
         return (0.0);
     }
 

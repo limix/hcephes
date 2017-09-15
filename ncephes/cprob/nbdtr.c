@@ -9,7 +9,7 @@ double ncephes_nbdtrc(int k, int n, double p) {
         goto domerr;
     if (k < 0) {
     domerr:
-        mtherr("nbdtr", DOMAIN);
+        ncephes_mtherr("nbdtr", DOMAIN);
         return (0.0);
     }
 
@@ -25,7 +25,7 @@ double ncephes_nbdtr(int k, int n, double p) {
         goto domerr;
     if (k < 0) {
     domerr:
-        mtherr("nbdtr", DOMAIN);
+        ncephes_mtherr("nbdtr", DOMAIN);
         return (0.0);
     }
     dk = k + 1;
@@ -40,7 +40,7 @@ double ncephes_nbdtri(int k, int n, double p) {
         goto domerr;
     if (k < 0) {
     domerr:
-        mtherr("nbdtri", DOMAIN);
+        ncephes_mtherr("nbdtri", DOMAIN);
         return (0.0);
     }
     dk = k + 1;

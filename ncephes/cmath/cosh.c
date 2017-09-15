@@ -68,7 +68,7 @@ if( x < 0 )
 	x = -x;
 if( x > (MAXLOG + LOGE2) )
 	{
-	mtherr( "cosh", OVERFLOW );
+	ncephes_mtherr( "cosh", OVERFLOW );
 	return( NCEPHES_INF );
 	}	
 if( x >= (MAXLOG - LOGE2) )

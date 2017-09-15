@@ -76,7 +76,7 @@ if( n < 0 )
 
 if( x < 0 )
 	{
-domerr:	mtherr( "expn", DOMAIN );
+domerr:	ncephes_mtherr( "expn", DOMAIN );
 	return( NCEPHES_MAXNUM );
 	}
 
@@ -87,7 +87,7 @@ if( x == 0.0 )
 	{
 	if( n < 2 )
 		{
-		mtherr( "expn", SING );
+		ncephes_mtherr( "expn", SING );
 		return( NCEPHES_MAXNUM );
 		}
 	else

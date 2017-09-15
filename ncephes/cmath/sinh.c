@@ -120,7 +120,7 @@ if( x == 0.0 )
 a = fabs(x);
 if( (x > (MAXLOG + LOGE2)) || (x > -(MINLOG-LOGE2) ) )
 	{
-	mtherr( "sinh", DOMAIN );
+	ncephes_mtherr( "sinh", DOMAIN );
 	if( x > 0 )
 		return( NCEPHES_INF );
 	else

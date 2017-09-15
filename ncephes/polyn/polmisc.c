@@ -74,7 +74,7 @@ polatn (double num[], double den[], double ans[], int nn)
 
   if (nn > N)
     {
-      mtherr ("polatn", OVERFLOW);
+      ncephes_mtherr ("polatn", OVERFLOW);
       return;
     }
   /* arctan( a + b ) = arctan(a) + arctan( b/(1 + ab + a**2) ) */
@@ -129,7 +129,7 @@ polsqt (double pol[], double ans[], int nn)
 
   if (nn > N)
     {
-      mtherr ("polatn", OVERFLOW);
+      ncephes_mtherr ("polatn", OVERFLOW);
       return;
     }
   x = (double * )malloc( (MAXPOL+1) * sizeof (double) );
@@ -225,7 +225,7 @@ polsin (double x[], double y[], int nn)
 
   if (nn > N)
     {
-      mtherr ("polatn", OVERFLOW);
+      ncephes_mtherr ("polatn", OVERFLOW);
       return;
     }
   w = (double * )malloc( (MAXPOL+1) * sizeof (double) );
@@ -272,7 +272,7 @@ polcos (double x[], double y[], int nn)
 
   if (nn > N)
     {
-      mtherr ("polatn", OVERFLOW);
+      ncephes_mtherr ("polatn", OVERFLOW);
       return;
     }
   w = (double * )malloc( (MAXPOL+1) * sizeof (double) );

@@ -522,7 +522,7 @@ if( x < 0.0 )
 	if( x < -170.6243 )
 #endif
 		{
-		mtherr( "zetac", OVERFLOW );
+		ncephes_mtherr( "zetac", OVERFLOW );
 		return(0.0);
 		}
 	s = 1.0 - x;
@@ -559,7 +559,7 @@ if( x < 1.0 )
 
 if( x == 1.0 )
 	{
-	mtherr( "zetac", SING );
+	ncephes_mtherr( "zetac", SING );
 	return( NCEPHES_MAXNUM );
 	}
 

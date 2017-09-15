@@ -158,7 +158,7 @@ if( y < 1.0 )
 		{
 		c->r = NCEPHES_MAXNUM;
 		c->i = NCEPHES_MAXNUM;
-		mtherr( "cdiv", OVERFLOW );
+		ncephes_mtherr( "cdiv", OVERFLOW );
 		return;
 		}
 	}
@@ -325,7 +325,7 @@ ey = e + ey;
 /* Check it for overflow and underflow. */
 if( ey > MAXEXP )
 	{
-	mtherr( "ncephes_cabs", OVERFLOW );
+	ncephes_mtherr( "ncephes_cabs", OVERFLOW );
 	return( NCEPHES_INF );
 	}
 if( ey < MINEXP )

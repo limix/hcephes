@@ -92,7 +92,7 @@ int i;
 
 if( m < 0.0 || m > 1.0 )
 	{
-	mtherr( "ellpj", DOMAIN );
+	ncephes_mtherr( "ellpj", DOMAIN );
 	*sn = 0.0;
 	*cn = 0.0;
 	*ph = 0.0;
@@ -138,7 +138,7 @@ while( fabs(c[i]/a[i]) > MACHEP )
 	{
 	if( i > 7 )
 		{
-		mtherr( "ellpj", OVERFLOW );
+		ncephes_mtherr( "ellpj", OVERFLOW );
 		goto done;
 		}
 	ai = a[i];

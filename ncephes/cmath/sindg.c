@@ -199,7 +199,7 @@ if( x < 0 )
 
 if( x > lossth )
 	{
-	mtherr( "sindg", TLOSS );
+	ncephes_mtherr( "sindg", TLOSS );
 	return(0.0);
 	}
 
@@ -261,7 +261,7 @@ if( x < 0 )
 
 if( x > lossth )
 	{
-	mtherr( "cosdg", TLOSS );
+	ncephes_mtherr( "cosdg", TLOSS );
 	return(0.0);
 	}
 

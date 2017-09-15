@@ -386,7 +386,7 @@ if( y == 1.0 )
 #ifdef INFINITIES
 if( !isfinite(y) && (x == 1.0 || x == -1.0) )
 	{
-	mtherr( "pow", DOMAIN );
+	ncephes_mtherr( "pow", DOMAIN );
 #ifdef NCEPHES_NANS
 	return( NCEPHES_NAN );
 #else
@@ -524,7 +524,7 @@ if( x <= 0.0 )
 		{
 		if( iyflg == 0 )
 			{ /* noninteger power of negative number */
-			mtherr( fname, DOMAIN );
+			ncephes_mtherr( fname, DOMAIN );
 #ifdef NCEPHES_NANS
 			return(NCEPHES_NAN);
 #else
@@ -673,7 +673,7 @@ w = ldexp( Ga+Ha, 4 );
 if( w > MEXP )
 	{
 #ifndef INFINITIES
-	mtherr( fname, OVERFLOW );
+	ncephes_mtherr( fname, OVERFLOW );
 #endif
 #ifdef INFINITIES
 	if( nflg && yoddint )
@@ -689,7 +689,7 @@ if( w > MEXP )
 if( w < (MNEXP - 1) )
 	{
 #ifndef DENORMAL
-	mtherr( fname, UNDERFLOW );
+	ncephes_mtherr( fname, UNDERFLOW );
 #endif
 #ifdef MINUSZERO
 	if( nflg && yoddint )
