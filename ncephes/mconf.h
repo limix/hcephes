@@ -63,38 +63,32 @@
 /* Constant definitions for math error conditions
  */
 
-
-#define DOMAIN		1	/* argument domain error */
-#define OVERFLOW	3	/* overflow range error */
-#define UNDERFLOW	4	/* underflow range error */
-#define SING		2	/* argument singularity */
-#define TLOSS		5	/* total loss of precision */
-#define PLOSS		6	/* partial loss of precision */
+#define DOMAIN 1    /* argument domain error */
+#define OVERFLOW 3  /* overflow range error */
+#define UNDERFLOW 4 /* underflow range error */
+#define SING 2      /* argument singularity */
+#define TLOSS 5     /* total loss of precision */
+#define PLOSS 6     /* partial loss of precision */
 /* #ifndef _MSC_VER
 #endif */
 
-#define TOOMANY         7	/* too many iterations */
-#define MAXITER        500
+#define TOOMANY 7 /* too many iterations */
+#define MAXITER 500
 
-#define EDOM		33
-#define ERANGE		34
+#define EDOM 33
+#define ERANGE 34
 
-
-typedef struct
-{
+typedef struct {
     long double r;
     long double i;
 } cmplxl;
 
-
-typedef struct
-{
+typedef struct {
     float r;
     float i;
 } cmplxf;
 
-typedef struct
-{
+typedef struct {
     double r;
     double i;
 } cmplx;
@@ -117,8 +111,6 @@ typedef struct
 /* Define to support tiny denormal numbers, else undefine. */
 #define DENORMAL 1
 
-int
-mtherr(char *name, int code);
+int ncephes_mtherr(char *name, int code);
 
-
-#endif				/* CEPHES_MCONF_H */
+#endif /* CEPHES_MCONF_H */

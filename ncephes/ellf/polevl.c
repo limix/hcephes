@@ -1,4 +1,3 @@
-
 double ncephes_polevl(double x, double coef[], int N) {
     double ans;
     int i;
