@@ -3,7 +3,7 @@ btdtr: btdtr
 chdtr: chdtr, chdtrc, chdtri
 expx2: expx2
 fdtr: fdtr, fdtrc, fdtri
-gamma: cephes_gamma, lgam
+gamma: cephes_gamma, ncephes_lgam
 gdtr: gdtr, gdtrc
 igam: igam, igamc
 igami: igami

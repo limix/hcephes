@@ -1,9 +1,9 @@
 #include "mconf.h"
 
-extern double incbet(double, double, double);
-extern double incbi(double, double, double);
+extern double ncephes_incbet(double, double, double);
+extern double ncephes_incbi(double, double, double);
 
-double nbdtrc(int k, int n, double p) {
+double ncephes_nbdtrc(int k, int n, double p) {
   double dk, dn;
 
   if ((p < 0.0) || (p > 1.0))
@@ -16,10 +16,10 @@ double nbdtrc(int k, int n, double p) {
 
   dk = k + 1;
   dn = n;
-  return (incbet(dk, dn, 1.0 - p));
+  return (ncephes_incbet(dk, dn, 1.0 - p));
 }
 
-double nbdtr(int k, int n, double p) {
+double ncephes_nbdtr(int k, int n, double p) {
   double dk, dn;
 
   if ((p < 0.0) || (p > 1.0))
@@ -31,10 +31,10 @@ double nbdtr(int k, int n, double p) {
   }
   dk = k + 1;
   dn = n;
-  return (incbet(dn, dk, p));
+  return (ncephes_incbet(dn, dk, p));
 }
 
-double nbdtri(int k, int n, double p) {
+double ncephes_nbdtri(int k, int n, double p) {
   double dk, dn, w;
 
   if ((p < 0.0) || (p > 1.0))
@@ -46,6 +46,6 @@ double nbdtri(int k, int n, double p) {
   }
   dk = k + 1;
   dn = n;
-  w = incbi(dn, dk, p);
+  w = ncephes_incbi(dn, dk, p);
   return (w);
 }

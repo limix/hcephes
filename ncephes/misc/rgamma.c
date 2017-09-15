@@ -141,9 +141,9 @@ extern double chbevl ( double, void *, int );
 extern double exp ( double );
 extern double log ( double );
 extern double sin ( double );
-extern double lgam ( double );
+extern double ncephes_lgam ( double );
 #else
-double chbevl(), exp(), log(), sin(), lgam();
+double chbevl(), exp(), log(), sin(), ncephes_lgam();
 #endif
 extern double NCEPHES_PI, MAXLOG, NCEPHES_MAXNUM;
 
@@ -173,7 +173,7 @@ if( x < -34.034 )
 	else
 		sign = -1;
 
-	y = log( w * z ) - log(NCEPHES_PI) + lgam(w);
+	y = log( w * z ) - log(NCEPHES_PI) + ncephes_lgam(w);
 	if( y < -MAXLOG )
 		{
 		mtherr( name, UNDERFLOW );

@@ -3,8 +3,8 @@
 extern int isnan(double);
 extern int isfinite(double);
 extern double log(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 extern double exp(double);
 extern double cos(double);
 
@@ -39,7 +39,7 @@ double ncephes_log1p(double x) {
   if ((z < SQRTH) || (z > SQRT2))
     return (log(z));
   z = x * x;
-  z = -0.5 * z + x * (z * polevl(x, LP, 6) / p1evl(x, LQ, 6));
+  z = -0.5 * z + x * (z * ncephes_polevl(x, LP, 6) / ncephes_p1evl(x, LQ, 6));
   return (x + z);
 }
 
@@ -77,8 +77,8 @@ double ncephes_expm1(double x) {
   if ((x < -0.5) || (x > 0.5))
     return (exp(x) - 1.0);
   xx = x * x;
-  r = x * polevl(xx, EP, 2);
-  r = r / (polevl(xx, EQ, 3) - r);
+  r = x * ncephes_polevl(xx, EP, 2);
+  r = r / (ncephes_polevl(xx, EQ, 3) - r);
   return (r + r);
 }
 
@@ -99,6 +99,6 @@ double ncephes_cosm1(double x) {
   if ((x < -NCEPHES_PIO4) || (x > NCEPHES_PIO4))
     return (cos(x) - 1.0);
   xx = x * x;
-  xx = -0.5 * xx + xx * xx * polevl(xx, coscof, 6);
+  xx = -0.5 * xx + xx * xx * ncephes_polevl(xx, coscof, 6);
   return xx;
 }

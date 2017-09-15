@@ -138,15 +138,15 @@ extern double pow(double, double);
 extern double log(double);
 extern double exp(double);
 extern double sin(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 extern double floor(double);
 extern double fabs(double);
 extern int isnan(double);
 extern int isfinite(double);
 static double ncephes_stirf(double);
-double lgam(double);
-double lgam_sgn(double, int *);
+double ncephes_lgam(double);
+double ncephes_lgam_sgn(double, int *);
 
 #ifdef INFINITIES
 extern double NCEPHES_INF;
@@ -162,7 +162,7 @@ static double ncephes_stirf(double x) {
   double y, w, v;
 
   w = 1.0 / x;
-  w = 1.0 + w * polevl(w, STIR, 4);
+  w = 1.0 + w * ncephes_polevl(w, STIR, 4);
   y = exp(x);
   if (x > MAXSTIR) { /* Avoid overflow in pow() */
     v = pow(x, 0.5 * x - 0.25);
@@ -174,7 +174,7 @@ static double ncephes_stirf(double x) {
   return (y);
 }
 
-double cephes_gamma(double x) {
+double ncephes_gamma(double x) {
   double p, q, z;
   int i;
 
@@ -258,8 +258,8 @@ double cephes_gamma(double x) {
     return (z);
 
   x -= 2.0;
-  p = polevl(x, P, 6);
-  q = polevl(x, Q, 7);
+  p = ncephes_polevl(x, P, 6);
+  q = ncephes_polevl(x, Q, 7);
   return (z * p / q);
 
 small:
@@ -363,12 +363,12 @@ static unsigned short LS2P[] = {0x3fed, 0x67f1, 0xc864, 0xbeb5};
 #endif
 
 /* Logarithm of gamma function */
-double lgam(double x) {
+double ncephes_lgam(double x) {
   int sign;
-  return lgam_sgn(x, &sign);
+  return ncephes_lgam_sgn(x, &sign);
 }
 
-double lgam_sgn(double x, int *sign) {
+double ncephes_lgam_sgn(double x, int *sign) {
   double p, q, u, w, z;
   int i;
   *sign = 1;
@@ -385,12 +385,12 @@ double lgam_sgn(double x, int *sign) {
 
   if (x < -34.0) {
     q = -x;
-    w = lgam_sgn(q, sign); /* note this modifies sgngam! */
+    w = ncephes_lgam_sgn(q, sign); /* note this modifies sgngam! */
     p = floor(q);
     if (p == q) {
     lgsing:
 #ifdef INFINITIES
-      mtherr("lgam", SING);
+      mtherr("ncephes_lgam", SING);
       return (NCEPHES_INF);
 #else
       goto loverf;
@@ -439,7 +439,7 @@ double lgam_sgn(double x, int *sign) {
       return (log(z));
     p -= 2.0;
     x = x + p;
-    p = x * polevl(x, B, 5) / p1evl(x, C, 6);
+    p = x * ncephes_polevl(x, B, 5) / ncephes_p1evl(x, C, 6);
     return (log(z) + p);
   }
 
@@ -448,7 +448,7 @@ double lgam_sgn(double x, int *sign) {
     return (*sign * NCEPHES_INF);
 #else
   loverf:
-    mtherr("lgam", OVERFLOW);
+    mtherr("ncephes_lgam", OVERFLOW);
     return (*sign * NCEPHES_MAXNUM);
 #endif
   }
@@ -463,6 +463,6 @@ double lgam_sgn(double x, int *sign) {
           0.0833333333333333333333) /
          x;
   else
-    q += polevl(p, A, 4) / x;
+    q += ncephes_polevl(p, A, 4) / x;
   return (q);
 }

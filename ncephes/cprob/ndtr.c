@@ -4,7 +4,7 @@ extern double SQRTH;
 extern double MAXLOG;
 
 /* Define this macro to suppress error propagation in exp(x^2)
-   by using the expx2 function.  The tradeoff is that doing so
+   by using the ncephes_expx2 function.  The tradeoff is that doing so
    generates two calls to the exponential function instead of one.  */
 #define USE_EXPXSQ 1
 
@@ -137,18 +137,18 @@ static unsigned short U[] = {0x4040, 0xc7e6, 0x3fef, 0xa6ba, 0x4080,
 #define UTHRESH 37.519379347
 #endif
 
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 extern double exp(double);
 extern double log(double);
 extern double fabs(double);
 extern double sqrt(double);
-extern double expx2(double, int);
+extern double ncephes_expx2(double, int);
 double erf(double);
 double erfc(double);
 static double erfce(double);
 
-double ndtr(double a) {
+double ncephes_ndtr(double a) {
   double x, y, z;
 
   x = a * SQRTH;
@@ -163,7 +163,7 @@ double ndtr(double a) {
     /* See below for erfce. */
     y = 0.5 * erfce(z);
     /* Multiply by exp(-x^2 / 2)  */
-    z = expx2(a, -1);
+    z = ncephes_expx2(a, -1);
     y = y * sqrt(z);
 #else
     y = 0.5 * erfc(z);
@@ -199,16 +199,16 @@ double erfc(double a) {
 
 #ifdef USE_EXPXSQ
   /* Compute z = exp(z).  */
-  z = expx2(a, -1);
+  z = ncephes_expx2(a, -1);
 #else
   z = exp(z);
 #endif
   if (x < 8.0) {
-    p = polevl(x, P, 8);
-    q = p1evl(x, Q, 8);
+    p = ncephes_polevl(x, P, 8);
+    q = ncephes_p1evl(x, Q, 8);
   } else {
-    p = polevl(x, R, 5);
-    q = p1evl(x, S, 6);
+    p = ncephes_polevl(x, R, 5);
+    q = ncephes_p1evl(x, S, 6);
   }
   y = (z * p) / q;
 
@@ -224,16 +224,16 @@ double erfc(double a) {
 /* Exponentially scaled erfc function
    exp(x^2) erfc(x)
    valid for x > 1.
-   Use with ndtr and expx2.  */
+   Use with ndtr and ncephes_expx2.  */
 static double erfce(double x) {
   double p, q;
 
   if (x < 8.0) {
-    p = polevl(x, P, 8);
-    q = p1evl(x, Q, 8);
+    p = ncephes_polevl(x, P, 8);
+    q = ncephes_p1evl(x, Q, 8);
   } else {
-    p = polevl(x, R, 5);
-    q = p1evl(x, S, 6);
+    p = ncephes_polevl(x, R, 5);
+    q = ncephes_p1evl(x, S, 6);
   }
   return (p / q);
 }
@@ -244,6 +244,6 @@ double erf(double x) {
   if (fabs(x) > 1.0)
     return (1.0 - erfc(x));
   z = x * x;
-  y = x * polevl(z, T, 4) / p1evl(z, U, 5);
+  y = x * ncephes_polevl(z, T, 4) / ncephes_p1evl(z, U, 5);
   return (y);
 }

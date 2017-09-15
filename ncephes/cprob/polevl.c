@@ -1,4 +1,4 @@
-double polevl(double x, double coef[], int N) {
+double ncephes_polevl(double x, double coef[], int N) {
   double ans;
   int i;
   double *p;
@@ -17,10 +17,10 @@ double polevl(double x, double coef[], int N) {
 /*							p1evl()	*/
 /*                                          N
  * Evaluate polynomial when coefficient of x  is 1.0.
- * Otherwise same as polevl.
+ * Otherwise same as ncephes_polevl.
  */
 
-double p1evl(double x, double coef[], int N) {
+double ncephes_p1evl(double x, double coef[], int N) {
   double ans;
   double *p;
   int i;

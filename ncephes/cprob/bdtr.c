@@ -1,7 +1,7 @@
 #include "mconf.h"
 
-extern double incbet(double, double, double);
-extern double incbi(double, double, double);
+extern double ncephes_incbet(double, double, double);
+extern double ncephes_incbi(double, double, double);
 extern double pow(double, double);
 extern double ncephes_log1p(double);
 extern double ncephes_expm1(double);
@@ -30,7 +30,7 @@ double ncephes_bdtrc(int k, int n, double p) {
       dk = 1.0 - pow(1.0 - p, dn);
   } else {
     dk = k + 1;
-    dk = incbet(dk, dn, p);
+    dk = ncephes_incbet(dk, dn, p);
   }
   return (dk);
 }
@@ -54,7 +54,7 @@ double ncephes_bdtr(int k, int n, double p) {
     dk = pow(1.0 - p, dn);
   } else {
     dk = k + 1;
-    dk = incbet(dn, dk, 1.0 - p);
+    dk = ncephes_incbet(dn, dk, 1.0 - p);
   }
   return (dk);
 }
@@ -78,11 +78,11 @@ double ncephes_bdtri(int k, int n, double y) {
       p = 1.0 - pow(y, 1.0 / dn);
   } else {
     dk = k + 1;
-    p = incbet(dn, dk, 0.5);
+    p = ncephes_incbet(dn, dk, 0.5);
     if (p > 0.5)
-      p = incbi(dk, dn, 1.0 - y);
+      p = ncephes_incbi(dk, dn, 1.0 - y);
     else
-      p = 1.0 - incbi(dn, dk, y);
+      p = 1.0 - ncephes_incbi(dn, dk, y);
   }
   return (p);
 }

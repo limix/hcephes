@@ -4,11 +4,11 @@ extern double NCEPHES_PI, MACHEP, NCEPHES_MAXNUM;
 
 extern double sqrt(double);
 extern double atan(double);
-extern double incbet(double, double, double);
-extern double incbi(double, double, double);
+extern double ncephes_incbet(double, double, double);
+extern double ncephes_incbi(double, double, double);
 extern double fabs(double);
 
-double stdtr(int k, double t) {
+double ncephes_stdtr(int k, double t) {
   double x, rk, z, f, tz, p, xsqk;
   int j;
 
@@ -23,7 +23,7 @@ double stdtr(int k, double t) {
   if (t < -2.0) {
     rk = k;
     z = rk / (rk + t * t);
-    p = 0.5 * incbet(0.5 * rk, 0.5, z);
+    p = 0.5 * ncephes_incbet(0.5 * rk, 0.5, z);
     return (p);
   }
 
@@ -83,7 +83,7 @@ double stdtr(int k, double t) {
   return (p);
 }
 
-double stdtri(int k, double p) {
+double ncephes_stdtri(int k, double p) {
   double t, rk, z;
   int rflg;
 
@@ -98,7 +98,7 @@ double stdtri(int k, double p) {
     if (p == 0.5)
       return (0.0);
     z = 1.0 - 2.0 * p;
-    z = incbi(0.5, 0.5 * rk, fabs(z));
+    z = ncephes_incbi(0.5, 0.5 * rk, fabs(z));
     t = sqrt(rk * z / (1.0 - z));
     if (p < 0.5)
       t = -t;
@@ -109,7 +109,7 @@ double stdtri(int k, double p) {
     p = 1.0 - p;
     rflg = 1;
   }
-  z = incbi(0.5 * rk, 0.5, 2.0 * p);
+  z = ncephes_incbi(0.5 * rk, 0.5, 2.0 * p);
 
   if (NCEPHES_MAXNUM * z < rk)
     return (rflg * NCEPHES_MAXNUM);

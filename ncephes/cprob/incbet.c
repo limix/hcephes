@@ -8,20 +8,20 @@
 
 extern double MACHEP, MINLOG, MAXLOG;
 
-extern double cephes_gamma(double);
-extern double lgam(double);
+extern double ncephes_gamma(double);
+extern double ncephes_lgam(double);
 extern double exp(double);
 extern double log(double);
 extern double pow(double, double);
 extern double fabs(double);
-static double incbcf(double, double, double);
-static double incbd(double, double, double);
-static double pseries(double, double, double);
+static double ncephes_incbcf(double, double, double);
+static double ncephes_incbd(double, double, double);
+static double ncephes_pseries(double, double, double);
 
 static double big = 4.503599627370496e15;
 static double biginv = 2.22044604925031308085e-16;
 
-double incbet(double aa, double bb, double xx) {
+double ncephes_incbet(double aa, double bb, double xx) {
   double a, b, t, x, xc, w, y;
   int flag;
 
@@ -40,7 +40,7 @@ double incbet(double aa, double bb, double xx) {
 
   flag = 0;
   if ((bb * xx) <= 1.0 && xx <= 0.95) {
-    t = pseries(aa, bb, xx);
+    t = ncephes_pseries(aa, bb, xx);
     goto done;
   }
 
@@ -61,16 +61,16 @@ double incbet(double aa, double bb, double xx) {
   }
 
   if (flag == 1 && (b * x) <= 1.0 && x <= 0.95) {
-    t = pseries(a, b, x);
+    t = ncephes_pseries(a, b, x);
     goto done;
   }
 
   /* Choose expansion for better convergence. */
   y = x * (a + b - 2.0) - (a - 1.0);
   if (y < 0.0)
-    w = incbcf(a, b, x);
+    w = ncephes_incbcf(a, b, x);
   else
-    w = incbd(a, b, x) / xc;
+    w = ncephes_incbd(a, b, x) / xc;
 
   /* Multiply w by the factor
        a      b   _             _     _
@@ -83,11 +83,11 @@ double incbet(double aa, double bb, double xx) {
     t *= pow(x, a);
     t /= a;
     t *= w;
-    t *= cephes_gamma(a + b) / (cephes_gamma(a) * cephes_gamma(b));
+    t *= ncephes_gamma(a + b) / (ncephes_gamma(a) * ncephes_gamma(b));
     goto done;
   }
   /* Resort to logarithms.  */
-  y += t + lgam(a + b) - lgam(a) - lgam(b);
+  y += t + ncephes_lgam(a + b) - ncephes_lgam(a) - ncephes_lgam(b);
   y += log(w / a);
   if (y < MINLOG)
     t = 0.0;
@@ -109,7 +109,7 @@ done:
  * for incomplete beta integral
  */
 
-static double incbcf(double a, double b, double x) {
+static double ncephes_incbcf(double a, double b, double x) {
   double xk, pk, pkm1, pkm2, qk, qkm1, qkm2;
   double k1, k2, k3, k4, k5, k6, k7, k8;
   double r, t, ans, thresh;
@@ -192,7 +192,7 @@ cdone:
  * for incomplete beta integral
  */
 
-static double incbd(double a, double b, double x) {
+static double ncephes_incbd(double a, double b, double x) {
   double xk, pk, pkm1, pkm2, qk, qkm1, qkm2;
   double k1, k2, k3, k4, k5, k6, k7, k8;
   double r, t, ans, z, thresh;
@@ -275,7 +275,7 @@ cdone:
 /* Power series for incomplete beta integral.
    Use when b*x is small and x not too close to 1.  */
 
-static double pseries(double a, double b, double x) {
+static double ncephes_pseries(double a, double b, double x) {
   double s, t, u, v, n, t1, z, ai;
 
   ai = 1.0 / a;
@@ -298,10 +298,10 @@ static double pseries(double a, double b, double x) {
 
   u = a * log(x);
   if ((a + b) < MAXGAM && fabs(u) < MAXLOG) {
-    t = cephes_gamma(a + b) / (cephes_gamma(a) * cephes_gamma(b));
+    t = ncephes_gamma(a + b) / (ncephes_gamma(a) * ncephes_gamma(b));
     s = s * t * pow(x, a);
   } else {
-    t = lgam(a + b) - lgam(a) - lgam(b) + u + log(s);
+    t = ncephes_lgam(a + b) - ncephes_lgam(a) - ncephes_lgam(b) + u + log(s);
     if (t < MINLOG)
       s = 0.0;
     else

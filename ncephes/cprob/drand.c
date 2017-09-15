@@ -1,6 +1,6 @@
 #include "mconf.h"
 
-static int ranwh(void);
+static int ncephes_ranwh(void);
 
 static int sx = 1;
 static int sy = 10000;
@@ -15,7 +15,7 @@ static union {
  * congruential generators.
  */
 
-static int ranwh(void) {
+static int ncephes_ranwh(void) {
   int r, s;
 
   /*  sx = sx * 171 mod 30269 */
@@ -59,7 +59,7 @@ int drand(double *a) {
   /* This algorithm of Wichmann and Hill computes a floating point
    * result:
    */
-  ranwh();
+  ncephes_ranwh();
   unkans.d = sx / 30269.0 + sy / 30307.0 + sz / 30323.0;
   r = unkans.d;
   unkans.d -= r;
@@ -73,7 +73,7 @@ int drand(double *a) {
 #ifdef UNK
 /* do nothing */
 #else
-  ranwh();
+  ncephes_ranwh();
   r = sx * sy + sz;
 #endif
 

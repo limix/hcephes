@@ -1,7 +1,7 @@
 #include "mconf.h"
 
-extern double igam(double, double);
-extern double igamc(double, double);
+extern double ncephes_igam(double, double);
+extern double ncephes_igamc(double, double);
 
 double ncephes_gdtr(double a, double b, double x) {
 
@@ -9,7 +9,7 @@ double ncephes_gdtr(double a, double b, double x) {
     mtherr("gdtr", DOMAIN);
     return (0.0);
   }
-  return (igam(b, a * x));
+  return (ncephes_igam(b, a * x));
 }
 
 double ncephes_gdtrc(double a, double b, double x) {
@@ -18,5 +18,5 @@ double ncephes_gdtrc(double a, double b, double x) {
     mtherr("gdtrc", DOMAIN);
     return (0.0);
   }
-  return (igamc(b, a * x));
+  return (ncephes_igamc(b, a * x));
 }

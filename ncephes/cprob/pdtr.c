@@ -1,10 +1,10 @@
 #include "mconf.h"
 
-extern double igam(double, double);
-extern double igamc(double, double);
-extern double igami(double, double);
+extern double ncephes_igam(double, double);
+extern double ncephes_igamc(double, double);
+extern double ncephes_igami(double, double);
 
-double pdtrc(int k, double m) {
+double ncephes_pdtrc(int k, double m) {
   double v;
 
   if ((k < 0) || (m <= 0.0)) {
@@ -12,10 +12,10 @@ double pdtrc(int k, double m) {
     return (0.0);
   }
   v = k + 1;
-  return (igam(v, m));
+  return (ncephes_igam(v, m));
 }
 
-double pdtr(int k, double m) {
+double ncephes_pdtr(int k, double m) {
   double v;
 
   if ((k < 0) || (m <= 0.0)) {
@@ -23,10 +23,10 @@ double pdtr(int k, double m) {
     return (0.0);
   }
   v = k + 1;
-  return (igamc(v, m));
+  return (ncephes_igamc(v, m));
 }
 
-double pdtri(int k, double y) {
+double ncephes_pdtri(int k, double y) {
   double v;
 
   if ((k < 0) || (y < 0.0) || (y >= 1.0)) {
@@ -34,6 +34,6 @@ double pdtri(int k, double y) {
     return (0.0);
   }
   v = k + 1;
-  v = igami(v, y);
+  v = ncephes_igami(v, y);
   return (v);
 }

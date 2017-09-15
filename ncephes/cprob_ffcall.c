@@ -12,7 +12,7 @@ double fdtrc(int ia, int ib, double x);
 double fdtr(int ia, int ib, double x);
 double fdtri(int ia, int ib, double y);
 double cephes_gamma(double x);
-double lgam(double x);
+double ncephes_lgam(double x);
 double gdtr(double a, double b, double x);
 double gdtrc(double a, double b, double x);
 double igamc(double a, double x);
@@ -52,14 +52,18 @@ double ncephes_fdtrc(int ia, int ib, double x) { return fdtrc(ia, ib, x); }
 double ncephes_fdtr(int ia, int ib, double x) { return fdtr(ia, ib, x); }
 double ncephes_fdtri(int ia, int ib, double y) { return fdtri(ia, ib, y); }
 double ncephes_gamma(double x) { return cephes_gamma(x); }
-double ncephes_lgam(double x) { return lgam(x); }
+double ncephes_ncephes_lgam(double x) { return ncephes_lgam(x); }
 double ncephes_gdtr(double a, double b, double x) { return gdtr(a, b, x); }
 double ncephes_gdtrc(double a, double b, double x) { return gdtrc(a, b, x); }
 double ncephes_igamc(double a, double x) { return igamc(a, x); }
 double ncephes_igam(double a, double x) { return igam(a, x); }
 double ncephes_igami(double a, double y0) { return igami(a, y0); }
-double ncephes_incbet(double aa, double bb, double xx) { return incbet(aa, bb, xx); }
-double ncephes_incbi(double aa, double bb, double yy0) { return incbi(aa, bb, yy0); }
+double ncephes_incbet(double aa, double bb, double xx) {
+  return incbet(aa, bb, xx);
+}
+double ncephes_incbi(double aa, double bb, double yy0) {
+  return incbi(aa, bb, yy0);
+}
 double ncephes_smirnov(int n, double e) { return smirnov(n, e); }
 double ncephes_kolmogorov(double y) { return kolmogorov(y); }
 double ncephes_smirnovi(int n, double p) { return smirnovi(n, p); }

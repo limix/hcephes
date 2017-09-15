@@ -21,7 +21,7 @@
  *                    | (a+b)
  *
  * For large arguments the logarithm of the function is
- * evaluated using lgam(), then exponentiated.
+ * evaluated using ncephes_lgam(), then exponentiated.
  *
  *
  *
@@ -67,12 +67,12 @@ Direct inquiries to 30 Frost Street, Cambridge, MA 02140
 #ifdef ANSIPROT
 extern double fabs ( double );
 extern double cephes_gamma ( double );
-extern double lgam_sgn ( double, int * );
+extern double ncephes_lgam_sgn ( double, int * );
 extern double exp ( double );
 extern double log ( double );
 extern double floor ( double );
 #else
-double fabs(), cephes_gamma(), lgam(), exp(), log(), floor();
+double fabs(), cephes_gamma(), ncephes_lgam(), exp(), log(), floor();
 #endif
 extern double MAXLOG, NCEPHES_MAXNUM;
 
@@ -100,11 +100,11 @@ y = a + b;
 if( fabs(y) > MAXGAM )
 	{
     int sgngam;
-	y = lgam_sgn(y, &sgngam);
+	y = ncephes_lgam_sgn(y, &sgngam);
 	sign *= sgngam; /* keep track of the sign */
-	y = lgam_sgn(b, &sgngam) - y;
+	y = ncephes_lgam_sgn(b, &sgngam) - y;
 	sign *= sgngam;
-	y = lgam_sgn(a, &sgngam) + y;
+	y = ncephes_lgam_sgn(a, &sgngam) + y;
 	sign *= sgngam;
 	if( y > MAXLOG )
 		{
@@ -161,11 +161,11 @@ y = a + b;
 if( fabs(y) > MAXGAM )
 	{
     int sgngam;
-	y = lgam_sgn(y, &sgngam);
+	y = ncephes_lgam_sgn(y, &sgngam);
 	sign *= sgngam; /* keep track of the sign */
-	y = lgam_sgn(b, &sgngam) - y;
+	y = ncephes_lgam_sgn(b, &sgngam) - y;
 	sign *= sgngam;
-	y = lgam_sgn(a, &sgngam) + y;
+	y = ncephes_lgam_sgn(a, &sgngam) + y;
 	sign *= sgngam;
 	sgngam = sign;
 	return( y );

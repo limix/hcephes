@@ -2,15 +2,15 @@
 
 extern double MACHEP, NCEPHES_MAXNUM, MAXLOG, MINLOG;
 
-extern double ndtri(double);
+extern double ncephes_ndtri(double);
 extern double exp(double);
 extern double fabs(double);
 extern double log(double);
 extern double sqrt(double);
-extern double lgam(double);
-extern double incbet(double, double, double);
+extern double ncephes_lgam(double);
+extern double ncephes_incbet(double, double, double);
 
-double incbi(double aa, double bb, double yy0) {
+double ncephes_incbi(double aa, double bb, double yy0) {
   double a, b, y0, d, y, x, x0, x1, lgm, yp, di, dithresh, yl, yh, xt;
   int i, rflg, dir, nflg;
 
@@ -32,14 +32,14 @@ double incbi(double aa, double bb, double yy0) {
     b = bb;
     y0 = yy0;
     x = a / (a + b);
-    y = incbet(a, b, x);
+    y = ncephes_incbet(a, b, x);
     goto ihalve;
   } else {
     dithresh = 1.0e-4;
   }
   /* approximation to inverse function */
 
-  yp = -ndtri(yy0);
+  yp = -ncephes_ndtri(yy0);
 
   if (yy0 > 0.5) {
     rflg = 1;
@@ -64,7 +64,7 @@ double incbi(double aa, double bb, double yy0) {
     goto under;
   }
   x = a / (a + b * exp(d));
-  y = incbet(a, b, x);
+  y = ncephes_incbet(a, b, x);
   yp = (y - y0) / y0;
   if (fabs(yp) < 0.2)
     goto newt;
@@ -85,7 +85,7 @@ ihalve:
         if (x == 0.0)
           goto under;
       }
-      y = incbet(a, b, x);
+      y = ncephes_incbet(a, b, x);
       yp = (x1 - x0) / (x1 + x0);
       if (fabs(yp) < dithresh)
         goto newt;
@@ -119,7 +119,7 @@ ihalve:
           y0 = 1.0 - yy0;
         }
         x = 1.0 - x;
-        y = incbet(a, b, x);
+        y = ncephes_incbet(a, b, x);
         x0 = 0.0;
         yl = 0.0;
         x1 = 1.0;
@@ -162,12 +162,12 @@ newt:
   if (nflg)
     goto done;
   nflg = 1;
-  lgm = lgam(a + b) - lgam(a) - lgam(b);
+  lgm = ncephes_lgam(a + b) - ncephes_lgam(a) - ncephes_lgam(b);
 
   for (i = 0; i < 8; i++) {
     /* Compute the function at this point. */
     if (i != 0)
-      y = incbet(a, b, x);
+      y = ncephes_incbet(a, b, x);
     if (y < yl) {
       x = x0;
       y = yl;
