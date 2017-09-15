@@ -1,6 +1,4 @@
-#ifndef POLYN_H
-#define POLYN_H
-
-
+#ifndef NCEPHES_POLYN_H
+#define NCEPHES_POLYN_H
 
 #endif

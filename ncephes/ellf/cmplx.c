@@ -5,7 +5,6 @@
 extern double atan2(double, double);
 extern double frexp(double, int *);
 extern double ldexp(double, int);
-int isnan(double);
 void cdiv(cmplx *, cmplx *, cmplx *);
 void cadd(cmplx *, cmplx *, cmplx *);
 

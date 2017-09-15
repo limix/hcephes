@@ -46,9 +46,9 @@ file(GLOB POLYN_SRC
     "ncephes/polyn/*.c"
 )
 
-add_library(ncephes SHARED ${CPROB_SRC} ncephes/const.c ncephes/mtherr.c)
+add_library(ncephes SHARED ${CPROB_SRC} ${ELLF_SRC} ncephes/const.c ncephes/mtherr.c ncephes/polevl.c)
 
-add_library(ncephes_static STATIC ${CPROB_SRC} ncephes/const.c ncephes/mtherr.c)
+add_library(ncephes_static STATIC ${CPROB_SRC} ${ELLF_SRC} ncephes/const.c ncephes/mtherr.c ncephes/polevl.c)
 
 set_target_properties(ncephes
   PROPERTIES

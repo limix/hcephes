@@ -1,5 +1,5 @@
-#ifndef CPROB_H
-#define CPROB_H
+#ifndef NCEPHES_CPROB_H
+#define NCEPHES_CPROB_H
 
 double ncephes_bdtr(int k, int n, double p);
 double ncephes_bdtrc(int k, int n, double p);

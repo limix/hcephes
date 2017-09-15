@@ -86,5 +86,13 @@ int main() {
     assert_close(ncephes_expm1(0.5), 0.6487212707);
     assert_close(ncephes_cosm1(0.9), -0.378390031729);
 
+    assert_close(ncephes_ellie(-5.3, 0.12), -5.12290521194);
+
+    assert_close(ncephes_ellik(-5.3, 0.12), -5.48607395126);
+
+    assert_close(ncephes_ellpe(0.12), 1.120741662164857);
+
+    assert_close(ncephes_ellpk(0.12), 2.492635323239716);
+
     return SUCCESS;
 }

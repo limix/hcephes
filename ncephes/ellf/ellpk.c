@@ -1,5 +1,6 @@
 #include "mconf.h"
 #include "ncephes/ellf.h"
+#include "polevl.h"
 #include <math.h>
 
 #ifdef DEC
