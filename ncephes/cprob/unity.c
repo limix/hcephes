@@ -1,12 +1,6 @@
 #include "mconf.h"
-
-extern int isnan(double);
-extern int isfinite(double);
-extern double log(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
-extern double exp(double);
-extern double cos(double);
+#include "ncephes/cprob.h"
+#include <math.h>
 
 extern double NCEPHES_INF;
 
@@ -33,14 +27,14 @@ static double LQ[] = {
 #define SQRT2 1.41421356237309504880
 
 double ncephes_log1p(double x) {
-  double z;
+    double z;
 
-  z = 1.0 + x;
-  if ((z < SQRTH) || (z > SQRT2))
-    return (log(z));
-  z = x * x;
-  z = -0.5 * z + x * (z * ncephes_polevl(x, LP, 6) / ncephes_p1evl(x, LQ, 6));
-  return (x + z);
+    z = 1.0 + x;
+    if ((z < SQRTH) || (z > SQRT2))
+        return (log(z));
+    z = x * x;
+    z = -0.5 * z + x * (z * ncephes_polevl(x, LP, 6) / ncephes_p1evl(x, LQ, 6));
+    return (x + z);
 }
 
 /* expm1(x) = exp(x) - 1  */
@@ -62,24 +56,24 @@ static double EQ[4] = {
 };
 
 double ncephes_expm1(double x) {
-  double r, xx;
+    double r, xx;
 
 #ifdef NCEPHES_NANS
-  if (isnan(x))
-    return (x);
+    if (isnan(x))
+        return (x);
 #endif
 #ifdef INFINITIES
-  if (x == NCEPHES_INF)
-    return (NCEPHES_INF);
-  if (x == -NCEPHES_INF)
-    return (-1.0);
+    if (x == NCEPHES_INF)
+        return (NCEPHES_INF);
+    if (x == -NCEPHES_INF)
+        return (-1.0);
 #endif
-  if ((x < -0.5) || (x > 0.5))
-    return (exp(x) - 1.0);
-  xx = x * x;
-  r = x * ncephes_polevl(xx, EP, 2);
-  r = r / (ncephes_polevl(xx, EQ, 3) - r);
-  return (r + r);
+    if ((x < -0.5) || (x > 0.5))
+        return (exp(x) - 1.0);
+    xx = x * x;
+    r = x * ncephes_polevl(xx, EP, 2);
+    r = r / (ncephes_polevl(xx, EQ, 3) - r);
+    return (r + r);
 }
 
 /* cosm1(x) = cos(x) - 1  */
@@ -94,11 +88,11 @@ static double coscof[7] = {
 extern double NCEPHES_PIO4;
 
 double ncephes_cosm1(double x) {
-  double xx;
+    double xx;
 
-  if ((x < -NCEPHES_PIO4) || (x > NCEPHES_PIO4))
-    return (cos(x) - 1.0);
-  xx = x * x;
-  xx = -0.5 * xx + xx * xx * ncephes_polevl(xx, coscof, 6);
-  return xx;
+    if ((x < -NCEPHES_PIO4) || (x > NCEPHES_PIO4))
+        return (cos(x) - 1.0);
+    xx = x * x;
+    xx = -0.5 * xx + xx * xx * ncephes_polevl(xx, coscof, 6);
+    return xx;
 }

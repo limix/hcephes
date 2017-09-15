@@ -1,4 +1,6 @@
 #include "mconf.h"
+#include "ncephes/cprob.h"
+#include <math.h>
 
 #ifdef UNK
 static double P[] = {1.60119522476751861407E-4, 1.19135147006586384913E-3,
@@ -134,20 +136,6 @@ static unsigned short SQT[4] = {
 
 extern double MAXLOG, NCEPHES_MAXNUM, NCEPHES_PI;
 
-extern double pow(double, double);
-extern double log(double);
-extern double exp(double);
-extern double sin(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
-extern double floor(double);
-extern double fabs(double);
-extern int isnan(double);
-extern int isfinite(double);
-static double ncephes_stirf(double);
-double ncephes_lgam(double);
-double ncephes_lgam_sgn(double, int *);
-
 #ifdef INFINITIES
 extern double NCEPHES_INF;
 #endif
@@ -159,123 +147,123 @@ extern double NCEPHES_NAN;
  * The polynomial STIR is valid for 33 <= x <= 172.
  */
 static double ncephes_stirf(double x) {
-  double y, w, v;
+    double y, w, v;
 
-  w = 1.0 / x;
-  w = 1.0 + w * ncephes_polevl(w, STIR, 4);
-  y = exp(x);
-  if (x > MAXSTIR) { /* Avoid overflow in pow() */
-    v = pow(x, 0.5 * x - 0.25);
-    y = v * (v / y);
-  } else {
-    y = pow(x, x - 0.5) / y;
-  }
-  y = SQTNCEPHES_PI * y * w;
-  return (y);
+    w = 1.0 / x;
+    w = 1.0 + w * ncephes_polevl(w, STIR, 4);
+    y = exp(x);
+    if (x > MAXSTIR) { /* Avoid overflow in pow() */
+        v = pow(x, 0.5 * x - 0.25);
+        y = v * (v / y);
+    } else {
+        y = pow(x, x - 0.5) / y;
+    }
+    y = SQTNCEPHES_PI * y * w;
+    return (y);
 }
 
 double ncephes_gamma(double x) {
-  double p, q, z;
-  int i;
+    double p, q, z;
+    int i;
 
-  int sgngam = 1;
+    int sgngam = 1;
 #ifdef NCEPHES_NANS
-  if (isnan(x))
-    return (x);
+    if (isnan(x))
+        return (x);
 #endif
 #ifdef INFINITIES
 #ifdef NCEPHES_NANS
-  if (x == NCEPHES_INF)
-    return (x);
-  if (x == -NCEPHES_INF)
-    return (NCEPHES_NAN);
-#else
-  if (!isfinite(x))
-    return (x);
-#endif
-#endif
-  q = fabs(x);
-
-  if (q > 33.0) {
-    if (x < 0.0) {
-      p = floor(q);
-      if (p == q) {
-#ifdef NCEPHES_NANS
-      gamnan:
-        mtherr("gamma", DOMAIN);
+    if (x == NCEPHES_INF)
+        return (x);
+    if (x == -NCEPHES_INF)
         return (NCEPHES_NAN);
 #else
-        goto goverf;
+    if (!isfinite(x))
+        return (x);
 #endif
-      }
-      i = p;
-      if ((i & 1) == 0)
-        sgngam = -1;
-      z = q - p;
-      if (z > 0.5) {
-        p += 1.0;
-        z = q - p;
-      }
-      z = q * sin(NCEPHES_PI * z);
-      if (z == 0.0) {
-#ifdef INFINITIES
-        return (sgngam * NCEPHES_INF);
+#endif
+    q = fabs(x);
+
+    if (q > 33.0) {
+        if (x < 0.0) {
+            p = floor(q);
+            if (p == q) {
+#ifdef NCEPHES_NANS
+            gamnan:
+                mtherr("gamma", DOMAIN);
+                return (NCEPHES_NAN);
 #else
-      goverf:
-        mtherr("gamma", OVERFLOW);
-        return (sgngam * NCEPHES_MAXNUM);
+                goto goverf;
 #endif
-      }
-      z = fabs(z);
-      z = NCEPHES_PI / (z * ncephes_stirf(q));
-    } else {
-      z = ncephes_stirf(x);
+            }
+            i = p;
+            if ((i & 1) == 0)
+                sgngam = -1;
+            z = q - p;
+            if (z > 0.5) {
+                p += 1.0;
+                z = q - p;
+            }
+            z = q * sin(NCEPHES_PI * z);
+            if (z == 0.0) {
+#ifdef INFINITIES
+                return (sgngam * NCEPHES_INF);
+#else
+            goverf:
+                mtherr("gamma", OVERFLOW);
+                return (sgngam * NCEPHES_MAXNUM);
+#endif
+            }
+            z = fabs(z);
+            z = NCEPHES_PI / (z * ncephes_stirf(q));
+        } else {
+            z = ncephes_stirf(x);
+        }
+        return (sgngam * z);
     }
-    return (sgngam * z);
-  }
 
-  z = 1.0;
-  while (x >= 3.0) {
-    x -= 1.0;
-    z *= x;
-  }
+    z = 1.0;
+    while (x >= 3.0) {
+        x -= 1.0;
+        z *= x;
+    }
 
-  while (x < 0.0) {
-    if (x > -1.E-9)
-      goto small;
-    z /= x;
-    x += 1.0;
-  }
+    while (x < 0.0) {
+        if (x > -1.E-9)
+            goto small;
+        z /= x;
+        x += 1.0;
+    }
 
-  while (x < 2.0) {
-    if (x < 1.e-9)
-      goto small;
-    z /= x;
-    x += 1.0;
-  }
+    while (x < 2.0) {
+        if (x < 1.e-9)
+            goto small;
+        z /= x;
+        x += 1.0;
+    }
 
-  if (x == 2.0)
-    return (z);
+    if (x == 2.0)
+        return (z);
 
-  x -= 2.0;
-  p = ncephes_polevl(x, P, 6);
-  q = ncephes_polevl(x, Q, 7);
-  return (z * p / q);
+    x -= 2.0;
+    p = ncephes_polevl(x, P, 6);
+    q = ncephes_polevl(x, Q, 7);
+    return (z * p / q);
 
 small:
-  if (x == 0.0) {
+    if (x == 0.0) {
 #ifdef INFINITIES
 #ifdef NCEPHES_NANS
-    goto gamnan;
+        goto gamnan;
 #else
-    return (NCEPHES_INF);
+        return (NCEPHES_INF);
 #endif
 #else
-    mtherr("gamma", SING);
-    return (NCEPHES_MAXNUM);
+        mtherr("gamma", SING);
+        return (NCEPHES_MAXNUM);
 #endif
-  } else
-    return (z / ((1.0 + 0.5772156649015329 * x) * x));
+    } else
+        return (z / ((1.0 + 0.5772156649015329 * x) * x));
 }
 
 /* A[]: Stirling's formula expansion of log gamma
@@ -364,105 +352,106 @@ static unsigned short LS2P[] = {0x3fed, 0x67f1, 0xc864, 0xbeb5};
 
 /* Logarithm of gamma function */
 double ncephes_lgam(double x) {
-  int sign;
-  return ncephes_lgam_sgn(x, &sign);
+    int sign;
+    return ncephes_lgam_sgn(x, &sign);
 }
 
 double ncephes_lgam_sgn(double x, int *sign) {
-  double p, q, u, w, z;
-  int i;
-  *sign = 1;
+    double p, q, u, w, z;
+    int i;
+    *sign = 1;
 
 #ifdef NCEPHES_NANS
-  if (isnan(x))
-    return (x);
+    if (isnan(x))
+        return (x);
 #endif
 
 #ifdef INFINITIES
-  if (!isfinite(x))
-    return (NCEPHES_INF);
+    if (!isfinite(x))
+        return (NCEPHES_INF);
 #endif
 
-  if (x < -34.0) {
-    q = -x;
-    w = ncephes_lgam_sgn(q, sign); /* note this modifies sgngam! */
-    p = floor(q);
-    if (p == q) {
-    lgsing:
+    if (x < -34.0) {
+        q = -x;
+        w = ncephes_lgam_sgn(q, sign); /* note this modifies sgngam! */
+        p = floor(q);
+        if (p == q) {
+        lgsing:
 #ifdef INFINITIES
-      mtherr("ncephes_lgam", SING);
-      return (NCEPHES_INF);
+            mtherr("ncephes_lgam", SING);
+            return (NCEPHES_INF);
 #else
-      goto loverf;
+            goto loverf;
+#endif
+        }
+        i = p;
+        if ((i & 1) == 0)
+            *sign = -1;
+        else
+            *sign = 1;
+        z = q - p;
+        if (z > 0.5) {
+            p += 1.0;
+            z = p - q;
+        }
+        z = q * sin(NCEPHES_PI * z);
+        if (z == 0.0)
+            goto lgsing;
+        /*	z = log(NCEPHES_PI) - log( z ) - w;*/
+        z = LOGNCEPHES_PI - log(z) - w;
+        return (z);
+    }
+
+    if (x < 13.0) {
+        z = 1.0;
+        p = 0.0;
+        u = x;
+        while (u >= 3.0) {
+            p -= 1.0;
+            u = x + p;
+            z *= u;
+        }
+        while (u < 2.0) {
+            if (u == 0.0)
+                goto lgsing;
+            z /= u;
+            p += 1.0;
+            u = x + p;
+        }
+        if (z < 0.0) {
+            *sign = -1;
+            z = -z;
+        } else
+            *sign = 1;
+        if (u == 2.0)
+            return (log(z));
+        p -= 2.0;
+        x = x + p;
+        p = x * ncephes_polevl(x, B, 5) / ncephes_p1evl(x, C, 6);
+        return (log(z) + p);
+    }
+
+    if (x > MAXLGM) {
+#ifdef INFINITIES
+        return (*sign * NCEPHES_INF);
+#else
+    loverf:
+        mtherr("ncephes_lgam", OVERFLOW);
+        return (*sign * NCEPHES_MAXNUM);
 #endif
     }
-    i = p;
-    if ((i & 1) == 0)
-      *sign = -1;
+
+    q = (x - 0.5) * log(x) - x + LS2NCEPHES_PI;
+    if (x > 1.0e8)
+        return (q);
+
+    p = 1.0 / (x * x);
+    if (x >= 1000.0)
+        q += ((7.9365079365079365079365e-4 * p - 2.7777777777777777777778e-3) *
+                  p +
+              0.0833333333333333333333) /
+             x;
     else
-      *sign = 1;
-    z = q - p;
-    if (z > 0.5) {
-      p += 1.0;
-      z = p - q;
-    }
-    z = q * sin(NCEPHES_PI * z);
-    if (z == 0.0)
-      goto lgsing;
-    /*	z = log(NCEPHES_PI) - log( z ) - w;*/
-    z = LOGNCEPHES_PI - log(z) - w;
-    return (z);
-  }
-
-  if (x < 13.0) {
-    z = 1.0;
-    p = 0.0;
-    u = x;
-    while (u >= 3.0) {
-      p -= 1.0;
-      u = x + p;
-      z *= u;
-    }
-    while (u < 2.0) {
-      if (u == 0.0)
-        goto lgsing;
-      z /= u;
-      p += 1.0;
-      u = x + p;
-    }
-    if (z < 0.0) {
-      *sign = -1;
-      z = -z;
-    } else
-      *sign = 1;
-    if (u == 2.0)
-      return (log(z));
-    p -= 2.0;
-    x = x + p;
-    p = x * ncephes_polevl(x, B, 5) / ncephes_p1evl(x, C, 6);
-    return (log(z) + p);
-  }
-
-  if (x > MAXLGM) {
-#ifdef INFINITIES
-    return (*sign * NCEPHES_INF);
-#else
-  loverf:
-    mtherr("ncephes_lgam", OVERFLOW);
-    return (*sign * NCEPHES_MAXNUM);
-#endif
-  }
-
-  q = (x - 0.5) * log(x) - x + LS2NCEPHES_PI;
-  if (x > 1.0e8)
+        q += ncephes_polevl(p, A, 4) / x;
     return (q);
-
-  p = 1.0 / (x * x);
-  if (x >= 1000.0)
-    q += ((7.9365079365079365079365e-4 * p - 2.7777777777777777777778e-3) * p +
-          0.0833333333333333333333) /
-         x;
-  else
-    q += ncephes_polevl(p, A, 4) / x;
-  return (q);
 }

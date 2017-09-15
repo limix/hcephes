@@ -1,4 +1,8 @@
 #include "mconf.h"
+#include "ncephes/cprob.h"
+#include <math.h>
+
+static double ncephes_erfce(double x);
 
 extern double SQRTH;
 extern double MAXLOG;
@@ -137,113 +141,102 @@ static unsigned short U[] = {0x4040, 0xc7e6, 0x3fef, 0xa6ba, 0x4080,
 #define UTHRESH 37.519379347
 #endif
 
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
-extern double exp(double);
-extern double log(double);
-extern double fabs(double);
-extern double sqrt(double);
-extern double ncephes_expx2(double, int);
-double erf(double);
-double erfc(double);
-static double erfce(double);
-
 double ncephes_ndtr(double a) {
-  double x, y, z;
+    double x, y, z;
 
-  x = a * SQRTH;
-  z = fabs(x);
+    x = a * SQRTH;
+    z = fabs(x);
 
-  /* if( z < SQRTH ) */
-  if (z < 1.0)
-    y = 0.5 + 0.5 * erf(x);
+    /* if( z < SQRTH ) */
+    if (z < 1.0)
+        y = 0.5 + 0.5 * erf(x);
 
-  else {
+    else {
 #ifdef USE_EXPXSQ
-    /* See below for erfce. */
-    y = 0.5 * erfce(z);
-    /* Multiply by exp(-x^2 / 2)  */
-    z = ncephes_expx2(a, -1);
-    y = y * sqrt(z);
+        /* See below for erfce. */
+        y = 0.5 * ncephes_erfce(z);
+        /* Multiply by exp(-x^2 / 2)  */
+        z = ncephes_expx2(a, -1);
+        y = y * sqrt(z);
 #else
-    y = 0.5 * erfc(z);
+        y = 0.5 * erfc(z);
 #endif
-    if (x > 0)
-      y = 1.0 - y;
-  }
+        if (x > 0)
+            y = 1.0 - y;
+    }
 
-  return (y);
+    return (y);
 }
 
 double erfc(double a) {
-  double p, q, x, y, z;
+    double p, q, x, y, z;
 
-  if (a < 0.0)
-    x = -a;
-  else
-    x = a;
-
-  if (x < 1.0)
-    return (1.0 - erf(a));
-
-  z = -a * a;
-
-  if (z < -MAXLOG) {
-  under:
-    mtherr("erfc", UNDERFLOW);
-    if (a < 0)
-      return (2.0);
+    if (a < 0.0)
+        x = -a;
     else
-      return (0.0);
-  }
+        x = a;
+
+    if (x < 1.0)
+        return (1.0 - erf(a));
+
+    z = -a * a;
+
+    if (z < -MAXLOG) {
+    under:
+        mtherr("erfc", UNDERFLOW);
+        if (a < 0)
+            return (2.0);
+        else
+            return (0.0);
+    }
 
 #ifdef USE_EXPXSQ
-  /* Compute z = exp(z).  */
-  z = ncephes_expx2(a, -1);
+    /* Compute z = exp(z).  */
+    z = ncephes_expx2(a, -1);
 #else
-  z = exp(z);
+    z = exp(z);
 #endif
-  if (x < 8.0) {
-    p = ncephes_polevl(x, P, 8);
-    q = ncephes_p1evl(x, Q, 8);
-  } else {
-    p = ncephes_polevl(x, R, 5);
-    q = ncephes_p1evl(x, S, 6);
-  }
-  y = (z * p) / q;
+    if (x < 8.0) {
+        p = ncephes_polevl(x, P, 8);
+        q = ncephes_p1evl(x, Q, 8);
+    } else {
+        p = ncephes_polevl(x, R, 5);
+        q = ncephes_p1evl(x, S, 6);
+    }
+    y = (z * p) / q;
 
-  if (a < 0)
-    y = 2.0 - y;
+    if (a < 0)
+        y = 2.0 - y;
 
-  if (y == 0.0)
-    goto under;
+    if (y == 0.0)
+        goto under;
 
-  return (y);
+    return (y);
 }
 
 /* Exponentially scaled erfc function
    exp(x^2) erfc(x)
    valid for x > 1.
    Use with ndtr and ncephes_expx2.  */
-static double erfce(double x) {
-  double p, q;
+static double ncephes_erfce(double x) {
+    double p, q;
 
-  if (x < 8.0) {
-    p = ncephes_polevl(x, P, 8);
-    q = ncephes_p1evl(x, Q, 8);
-  } else {
-    p = ncephes_polevl(x, R, 5);
-    q = ncephes_p1evl(x, S, 6);
-  }
-  return (p / q);
+    if (x < 8.0) {
+        p = ncephes_polevl(x, P, 8);
+        q = ncephes_p1evl(x, Q, 8);
+    } else {
+        p = ncephes_polevl(x, R, 5);
+        q = ncephes_p1evl(x, S, 6);
+    }
+    return (p / q);
 }
 
 double erf(double x) {
-  double y, z;
+    double y, z;
 
-  if (fabs(x) > 1.0)
-    return (1.0 - erfc(x));
-  z = x * x;
-  y = x * ncephes_polevl(z, T, 4) / ncephes_p1evl(z, U, 5);
-  return (y);
+    if (fabs(x) > 1.0)
+        return (1.0 - erfc(x));
+    z = x * x;
+    y = x * ncephes_polevl(z, T, 4) / ncephes_p1evl(z, U, 5);
+    return (y);
 }

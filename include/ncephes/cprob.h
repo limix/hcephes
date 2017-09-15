@@ -14,6 +14,7 @@ double ncephes_fdtr(int ia, int ib, double x);
 double ncephes_fdtri(int ia, int ib, double y);
 double ncephes_gamma(double x);
 double ncephes_lgam(double x);
+double ncephes_lgam_sgn(double x, int *sign);
 double ncephes_gdtr(double a, double b, double x);
 double ncephes_gdtrc(double a, double b, double x);
 double ncephes_igamc(double a, double x);
@@ -40,5 +41,8 @@ double ncephes_stdtri(int k, double p);
 double ncephes_log1p(double x);
 double ncephes_expm1(double x);
 double ncephes_cosm1(double x);
+
+double ncephes_polevl(double, void *, int);
+double ncephes_p1evl(double, void *, int);
 
 #endif
