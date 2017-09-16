@@ -1,6 +1,6 @@
 #include "mconf.h"
 /* Dawson's integral, interval 0 to 3.25 */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double AN[10] = {
     1.13681498971755972054E-11, 8.49262267667473811108E-10,
     1.94434204175553054283E-8,  9.53151741254484363489E-7,
@@ -68,7 +68,7 @@ static unsigned short AD[44] = {
 #endif
 
 /* interval 3.25 to 6.25 */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double BN[11] = {
     5.08955156417900903354E-1,  -2.44754418142697847934E-1,
     9.41512335303534411857E-2,  -2.18711255142039025206E-2,
@@ -140,7 +140,7 @@ static unsigned short BD[40] = {
 #endif
 
 /* 6.25 to infinity */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double CN[5] = {
     -5.90592860534773254987E-1, 6.29235242724368800674E-1,
     -1.72858975380388136411E-1, 1.64837047825189632310E-2,

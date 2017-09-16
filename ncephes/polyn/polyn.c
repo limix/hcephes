@@ -47,7 +47,7 @@ void ncephes_polini(int maxdeg) {
 
     /* Report if failure */
     if ((pt1 == NULL) || (pt2 == NULL) || (pt3 == NULL)) {
-        ncephes_mtherr("polini", ERANGE);
+        ncephes_mtherr("polini", NCEPHES_ERANGE);
         exit(1);
     }
 }
@@ -223,7 +223,7 @@ int ncephes_poldiv(double a[], int na, double b[], int nb, double c[]) {
             if (ta[i] != 0.0)
                 goto nzero;
         }
-        ncephes_mtherr("poldiv", SING);
+        ncephes_mtherr("poldiv", NCEPHES_SING);
         goto done;
 
     nzero:

@@ -83,7 +83,7 @@ void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3) {
     ff3->d = d1 * d2;
     /* Report overflow. */
     if ((fabs(ff3->n) >= BIG) || (fabs(ff3->d) >= BIG)) {
-        ncephes_mtherr("rmul", OVERFLOW);
+        ncephes_mtherr("rmul", NCEPHES_OVERFLOW);
         return;
     }
     /* ncephes_euclid( &ff3->n, &ff3->d );*/
@@ -114,7 +114,7 @@ void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3) {
     ff3->d = d1 * d2;
     /* Report overflow. */
     if ((fabs(ff3->n) >= BIG) || (fabs(ff3->d) >= BIG)) {
-        ncephes_mtherr("rdiv", OVERFLOW);
+        ncephes_mtherr("rdiv", NCEPHES_OVERFLOW);
         return;
     }
     /* ncephes_euclid( &ff3->n, &ff3->d );*/
@@ -139,7 +139,7 @@ double ncephes_euclid(double *num, double *den) {
 
     /* Abort if numbers are too big for integer arithmetic. */
     if ((n >= BIG) || (d >= BIG)) {
-        ncephes_mtherr("euclid", OVERFLOW);
+        ncephes_mtherr("euclid", NCEPHES_OVERFLOW);
         return (1.0);
     }
 
@@ -170,7 +170,7 @@ double ncephes_euclid(double *num, double *den) {
     }
 
     if (n < 0.0)
-        ncephes_mtherr("euclid", UNDERFLOW);
+        ncephes_mtherr("euclid", NCEPHES_UNDERFLOW);
 
     *num /= n;
     *den /= n;

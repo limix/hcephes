@@ -22,7 +22,7 @@ double expn(int n, double x) {
 
     if (x < 0) {
     domerr:
-        ncephes_mtherr("expn", DOMAIN);
+        ncephes_mtherr("expn", NCEPHES_DOMAIN);
         return (NCEPHES_MAXNUM);
     }
 
@@ -31,7 +31,7 @@ double expn(int n, double x) {
 
     if (x == 0.0) {
         if (n < 2) {
-            ncephes_mtherr("expn", SING);
+            ncephes_mtherr("expn", NCEPHES_SING);
             return (NCEPHES_MAXNUM);
         } else
             return (1.0 / (n - 1.0));

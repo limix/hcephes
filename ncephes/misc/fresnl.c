@@ -1,7 +1,7 @@
 #include "mconf.h"
 
 /* S(x) for small x */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double sn[6] = {
     -2.99181919401019853726E3,  7.08840045257738576863E5,
     -6.29741486205862506537E7,  2.54890880573376359104E9,
@@ -55,7 +55,7 @@ static unsigned short sd[24] = {
 #endif
 
 /* C(x) for small x */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double cn[6] = {
     -4.98843114573573548651E-8, 9.50428062829859605134E-6,
     -6.45191435683965050962E-4, 1.88843319396703850064E-2,
@@ -109,7 +109,7 @@ static unsigned short cd[28] = {
 #endif
 
 /* Auxiliary function f(x) */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double fn[10] = {
     4.21543555043677546506E-1,  1.43407919780758885261E-1,
     1.15220955073585758835E-2,  3.45017939782574027900E-4,
@@ -179,7 +179,7 @@ static unsigned short fd[40] = {
 #endif
 
 /* Auxiliary function g(x) */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double gn[11] = {
     5.04442073643383265887E-1,  1.97102833525523411709E-1,
     1.87648584092575249293E-2,  6.84079380915393090172E-4,

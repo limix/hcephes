@@ -30,7 +30,7 @@ double ncephes_incbet(double aa, double bb, double xx) {
         if (xx == 1.0)
             return (1.0);
     domerr:
-        ncephes_mtherr("incbet", DOMAIN);
+        ncephes_mtherr("incbet", NCEPHES_DOMAIN);
         return (0.0);
     }
 

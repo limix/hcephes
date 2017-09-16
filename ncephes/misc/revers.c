@@ -10,7 +10,7 @@ void ncephes_revers(double y[], double x[], int n) {
     int j;
 
     if (y[1] == 0.0)
-        ncephes_mtherr("revers", DOMAIN);
+        ncephes_mtherr("revers", NCEPHES_DOMAIN);
 
     j = (MAXPOL + 1) * sizeof(double);
     yn = (double *)malloc(j);

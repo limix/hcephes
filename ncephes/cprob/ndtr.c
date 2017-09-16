@@ -12,7 +12,7 @@ extern double MAXLOG;
    generates two calls to the exponential function instead of one.  */
 #define USE_EXPXSQ 1
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P[] = {2.46196981473530512524E-10, 5.64189564831068821977E-1,
                      7.46321056442269912687E0,   4.86371970985681366614E1,
                      1.96520832956077098242E2,   5.26445194995477358631E2,
@@ -183,7 +183,7 @@ double erfc(double a) {
 
     if (z < -MAXLOG) {
     under:
-        ncephes_mtherr("erfc", UNDERFLOW);
+        ncephes_mtherr("erfc", NCEPHES_UNDERFLOW);
         if (a < 0)
             return (2.0);
         else

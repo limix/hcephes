@@ -50,10 +50,10 @@
 
 #include "mconf.h"
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 double MACHEP = 1.11022302462515654042E-16;	/* 2**-53 */
 
-#ifdef DENORMAL
+#ifdef NCEPHES_DENORMAL
 double MAXLOG = 7.09782712893383996732E2;	/* log(DBL_MAX) */
 
 												      /* double MINLOG = -7.44440071921381262314E2; *//* log(2**-1074) */
@@ -92,7 +92,7 @@ double NEGZERO = -0.0;
 			/* 2**-53 =  1.11022302462515654042E-16 */
 unsigned short MACHEP[4] = { 0x0000, 0x0000, 0x0000, 0x3ca0 };
 
-#ifdef DENORMAL
+#ifdef NCEPHES_DENORMAL
 			/* log(DBL_MAX) =  7.09782712893383996732224E2 */
 unsigned short MAXLOG[4] = { 0x39ef, 0xfefa, 0x2e42, 0x4086 };
 
@@ -117,7 +117,7 @@ unsigned short THPIO4[4] = { 0x21d2, 0x7f33, 0xd97c, 0x4002 };
 			/* 2**-53 =  1.11022302462515654042E-16 */
 unsigned short MACHEP[4] = { 0x3ca0, 0x0000, 0x0000, 0x0000 };
 
-#ifdef DENORMAL
+#ifdef NCEPHES_DENORMAL
 			/* log(2**1024) =   7.09782712893383996843E2 */
 unsigned short MAXLOG[4] = { 0x4086, 0x2e42, 0xfefa, 0x39ef };
 
@@ -138,7 +138,7 @@ unsigned short THPIO4[4] = { 0x4002, 0xd97c, 0x7f33, 0x21d2 };
 
 #endif
 
-#ifndef UNK
+#ifndef NCEPHES_UNK
 extern unsigned short MACHEP[];
 extern unsigned short MAXLOG[];
 extern unsigned short UNDLOG[];

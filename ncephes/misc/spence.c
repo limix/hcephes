@@ -1,6 +1,6 @@
 #include "mconf.h"
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double A[8] = {
     4.65128586073990045278E-5, 7.31589045238094711071E-3,
     1.33847639578309018650E-1, 8.79691311754530315341E-1,
@@ -68,7 +68,7 @@ double spence(double x) {
     int flag;
 
     if (x < 0.0) {
-        ncephes_mtherr("spence", DOMAIN);
+        ncephes_mtherr("spence", NCEPHES_DOMAIN);
         return (0.0);
     }
 

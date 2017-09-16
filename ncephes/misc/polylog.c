@@ -4,7 +4,7 @@ extern double NCEPHES_PI;
 /* polylog(4, 1-x) = zeta(4) - x zeta(3) + x^2 A4(x)/B4(x)
    0 <= x <= 0.125
    Theoretical peak absolute error 4.5e-18  */
-#if UNK
+#if NCEPHES_UNK
 static double A4[13] = {
     3.056144922089490701751E-2,  3.243086484162581557457E-1,
     2.877847281461875922565E-1,  7.091267785886180663385E-2,
@@ -123,7 +123,7 @@ double polylog(int n, double x) {
     /* Not implemented for n < -1.
        Not defined for x > 1.  Use cpolylog if you need that.  */
     if (x > 1.0 || n < -1) {
-        ncephes_mtherr("polylog", DOMAIN);
+        ncephes_mtherr("polylog", NCEPHES_DOMAIN);
         return 0.0;
     }
 

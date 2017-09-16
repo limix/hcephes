@@ -1,7 +1,7 @@
 #include "mconf.h"
 
 /* Factorials of integers from 0 through 33 */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double factbl[] = {
     1.00000000000000000000E0,          1.00000000000000000000E0,
     2.00000000000000000000E0,          6.00000000000000000000E0,
@@ -96,18 +96,18 @@ double fac(int i) {
     int j;
 
     if (i < 0) {
-        ncephes_mtherr("fac", SING);
+        ncephes_mtherr("fac", NCEPHES_SING);
         return (NCEPHES_MAXNUM);
     }
 
     if (i > MAXFAC) {
-        ncephes_mtherr("fac", OVERFLOW);
+        ncephes_mtherr("fac", NCEPHES_OVERFLOW);
         return (NCEPHES_MAXNUM);
     }
 
     /* Get answer from table for small i. */
     if (i < 34) {
-#ifdef UNK
+#ifdef NCEPHES_UNK
         return (factbl[i]);
 #else
         return (*(double *)(&factbl[4 * i]));
@@ -125,7 +125,7 @@ double fac(int i) {
         n += 1.0;
         f *= n;
     }
-#ifdef UNK
+#ifdef NCEPHES_UNK
     f *= factbl[33];
 #else
     f *= *(double *)(&factbl[4 * 33]);

@@ -13,7 +13,7 @@ int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
     /* Check for special cases */
 
     if (m < 0.0 || m > 1.0) {
-        ncephes_mtherr("ellpj", DOMAIN);
+        ncephes_mtherr("ellpj", NCEPHES_DOMAIN);
         *sn = 0.0;
         *cn = 0.0;
         *ph = 0.0;
@@ -54,7 +54,7 @@ int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
 
     while (fabs(c[i] / a[i]) > MACHEP) {
         if (i > 7) {
-            ncephes_mtherr("ellpj", OVERFLOW);
+            ncephes_mtherr("ellpj", NCEPHES_OVERFLOW);
             goto done;
         }
         ai = a[i];

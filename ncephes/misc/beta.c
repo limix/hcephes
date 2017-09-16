@@ -1,6 +1,6 @@
 #include "mconf.h"
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 #define MAXGAM 34.84425627277176174
 #endif
 #ifdef DEC
@@ -48,7 +48,7 @@ double ncephes_beta(double a, double b) {
         sign *= sgngam;
         if (y > MAXLOG) {
         over:
-            ncephes_mtherr("beta", OVERFLOW);
+            ncephes_mtherr("beta", NCEPHES_OVERFLOW);
             return (sign * NCEPHES_MAXNUM);
         }
         return (sign * exp(y));
@@ -102,7 +102,7 @@ double ncephes_lbeta(double a, double b) {
     y = ncephes_gamma(y);
     if (y == 0.0) {
     over:
-        ncephes_mtherr("lbeta", OVERFLOW);
+        ncephes_mtherr("lbeta", NCEPHES_OVERFLOW);
         return (sign * NCEPHES_MAXNUM);
     }
 

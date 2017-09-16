@@ -10,7 +10,7 @@ extern double p1evl(double, void *, int);
 /* 0 < x <= 2
    Ei(x) - EUL - ln(x) = x A(x)/B(x)
    Theoretical peak relative error 9.73e-18  */
-#if UNK
+#if NCEPHES_UNK
 static double A[6] = {
     -5.350447357812542947283E0, 2.185049168816613393830E2,
     -4.176572384826693777058E3, 5.541176756393557601232E4,
@@ -67,7 +67,7 @@ static short B[24] = {
 /* 0 < x <= 4
    Ei(x) - EUL - ln(x) = x A(x)/B(x)
    Theoretical peak relative error 4.75e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A[7] = {
 -6.831869820732773831942E0,
  2.920190530726774500309E2,
@@ -158,7 +158,7 @@ static short B[28] = {
    Ei(x) - EUL - ln(x) = x A(x)/B(x)
    Theoretical peak relative error 2.14e-17  */
 
-#if UNK
+#if NCEPHES_UNK
 static double A[9] = {
 -1.111230942210860450145E1,
  3.688203982071386319616E2,
@@ -263,7 +263,7 @@ static short B[36] = {
 /* 8 <= x <= 20
    x exp(-x) Ei(x) - 1 = 1/x R(1/x)
    Theoretical peak absolute error = 1.07e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A2[10] = {
     -2.106934601691916512584E0,  1.732733869664688041885E0,
     -2.423619178935841904839E-1, 2.322724180937565842585E-2,
@@ -333,7 +333,7 @@ static short B2[36] = {
 /* x > 20
    x exp(-x) Ei(x) - 1  =  1/x A3(1/x)/B3(1/x)
    Theoretical absolute error = 6.15e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A3[9] = {
     -7.657847078286127362028E-1, 6.886192415566705051750E-1,
     -2.132598113545206124553E-1, 3.346107552384193813594E-2,
@@ -401,7 +401,7 @@ static short B3[36] = {
 /* 16 <= x <= 32
    x exp(-x) Ei(x) - 1  =  1/x A4(1/x) / B4(1/x)
    Theoretical absolute error = 1.22e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A4[8] = {
     -2.458119367674020323359E-1, -1.483382253322077687183E-1,
     7.248291795735551591813E-2,  -1.348315687380940523823E-2,
@@ -466,7 +466,7 @@ static short B4[32] = {
 /* 20 <= x <= 40
    x exp(-x) Ei(x) - 1  =  1/x A4(1/x) / B4(1/x)
    Theoretical absolute error = 1.78e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A4[8] = {
  2.067245813525780707978E-1,
 -5.153749551345223645670E-1,
@@ -559,7 +559,7 @@ static short B4[28] = {
 /* 4 <= x <= 8
    x exp(-x) Ei(x) - 1  =  1/x A5(1/x) / B5(1/x)
    Theoretical absolute error = 2.20e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A5[8] = {
     -1.373215375871208729803E0, -7.084559133740838761406E-1,
     1.580806855547941010501E0,  -2.601500427425622944234E-1,
@@ -622,7 +622,7 @@ static short B5[32] = {
 /* 2 <= x <= 4
    x exp(-x) Ei(x) - 1  =  1/x A6(1/x) / B6(1/x)
    Theoretical absolute error = 4.89e-17  */
-#if UNK
+#if NCEPHES_UNK
 static double A6[8] = {
     1.981808503259689673238E-2,  -1.271645625984917501326E0,
     -2.088160335681228318920E0,  2.755544509187936721172E0,
@@ -685,7 +685,7 @@ static short B6[28] = {
 /* 32 <= x <= 64
    x exp(-x) Ei(x) - 1  =  1/x A7(1/x) / B7(1/x)
    Theoretical absolute error = 7.71e-18  */
-#if UNK
+#if NCEPHES_UNK
 static double A7[6] = {
     1.212561118105456670844E-1, -5.823133179043894485122E-1,
     2.348887314557016779211E-1, -3.040034318113248237280E-2,
@@ -742,7 +742,7 @@ double ei(double x) {
     double f, w;
 
     if (x <= 0.0) {
-        ncephes_mtherr("ei", DOMAIN);
+        ncephes_mtherr("ei", NCEPHES_DOMAIN);
         return 0.0;
     } else if (x < 2.0) {
         /* Power series.

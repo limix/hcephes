@@ -18,7 +18,7 @@ double ncephes_igamc(double a, double x) {
 
     ax = a * log(x) - x - ncephes_lgam(a);
     if (ax < -MAXLOG) {
-        ncephes_mtherr("igamc", UNDERFLOW);
+        ncephes_mtherr("igamc", NCEPHES_UNDERFLOW);
         return (0.0);
     }
     ax = exp(ax);
@@ -83,7 +83,7 @@ double ncephes_igam(double a, double x) {
     /* Compute  x**a * exp(-x) / cephes_gamma(a)  */
     ax = a * log(x) - x - ncephes_lgam(a);
     if (ax < -MAXLOG) {
-        ncephes_mtherr("igam", UNDERFLOW);
+        ncephes_mtherr("igam", NCEPHES_UNDERFLOW);
         return (0.0);
     }
     ax = exp(ax);

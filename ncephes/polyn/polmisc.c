@@ -86,7 +86,7 @@ void ncephes_polatn(double num[], double den[], double ans[], int nn) {
     int i;
 
     if (nn > N) {
-        ncephes_mtherr("polatn", OVERFLOW);
+        ncephes_mtherr("polatn", NCEPHES_OVERFLOW);
         return;
     }
     /* arctan( a + b ) = arctan(a) + arctan( b/(1 + ab + a**2) ) */
@@ -135,7 +135,7 @@ void ncephes_polsqt(double pol[], double ans[], int nn) {
 #endif
 
     if (nn > N) {
-        ncephes_mtherr("polatn", OVERFLOW);
+        ncephes_mtherr("polatn", NCEPHES_OVERFLOW);
         return;
     }
     x = (double *)malloc((MAXPOL + 1) * sizeof(double));
@@ -222,7 +222,7 @@ void ncephes_polsin(double x[], double y[], int nn) {
     int i;
 
     if (nn > N) {
-        ncephes_mtherr("polatn", OVERFLOW);
+        ncephes_mtherr("polatn", NCEPHES_OVERFLOW);
         return;
     }
     w = (double *)malloc((MAXPOL + 1) * sizeof(double));
@@ -265,7 +265,7 @@ void ncephes_polcos(double x[], double y[], int nn) {
     double sin(), cos();
 
     if (nn > N) {
-        ncephes_mtherr("polatn", OVERFLOW);
+        ncephes_mtherr("polatn", NCEPHES_OVERFLOW);
         return;
     }
     w = (double *)malloc((MAXPOL + 1) * sizeof(double));

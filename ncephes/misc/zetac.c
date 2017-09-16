@@ -5,7 +5,7 @@ extern double NCEPHES_MAXNUM, NCEPHES_PI;
 /* Riemann zeta(x) - 1
  * for integer arguments between 0 and 30.
  */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double azetac[] = {
     -1.50000000000000000000E0, 1.70141183460469231730E38, /* infinity. */
     6.44934066848226436472E-1, 2.02056903159594285400E-1,
@@ -82,7 +82,7 @@ static unsigned short azetac[] = {
 #endif
 
 /* 2**x (1 - 1/x) (zeta(x) - 1) = P(1/x)/Q(1/x), 1 <= x <= 10 */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P[9] = {
     5.85746514569725319540E11, 2.57534127756102572888E11,
     4.87781159567948256438E10, 5.15399538023885770696E9,
@@ -146,7 +146,7 @@ static unsigned short Q[32] = {
 #endif
 
 /* log(zeta(x) - 1 - 2**-x), 10 <= x <= 50 */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double A[11] = {
     8.70728567484590192539E6,   1.76506865670346462757E8,
     2.60889506707483264896E10,  5.29806374009894791647E11,
@@ -219,7 +219,7 @@ static unsigned short B[40] = {
 
 /* (1-x) (zeta(x) - 1), 0 <= x <= 1 */
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double R[6] = {
     -3.28717474506562731748E-1, 1.55162528742623950834E1,
     -2.48762831680821954401E2,  1.01050368053237678329E3,
@@ -298,7 +298,7 @@ double zetac(double x) {
         if (x < -170.6243)
 #endif
         {
-            ncephes_mtherr("zetac", OVERFLOW);
+            ncephes_mtherr("zetac", NCEPHES_OVERFLOW);
             return (0.0);
         }
         s = 1.0 - x;
@@ -316,7 +316,7 @@ double zetac(double x) {
     if (w == x) {
         i = x;
         if (i < 31) {
-#ifdef UNK
+#ifdef NCEPHES_UNK
             return (azetac[i]);
 #else
             return (*(double *)&azetac[4 * i]);
@@ -331,7 +331,7 @@ double zetac(double x) {
     }
 
     if (x == 1.0) {
-        ncephes_mtherr("zetac", SING);
+        ncephes_mtherr("zetac", NCEPHES_SING);
         return (NCEPHES_MAXNUM);
     }
 

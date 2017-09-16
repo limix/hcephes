@@ -62,7 +62,7 @@ void cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
         if ((fabs(p) > w) || (fabs(q) > w) || (y == 0.0)) {
             c->r = NCEPHES_MAXNUM;
             c->i = NCEPHES_MAXNUM;
-            ncephes_mtherr("cdiv", OVERFLOW);
+            ncephes_mtherr("cdiv", NCEPHES_OVERFLOW);
             return;
         }
     }
@@ -143,7 +143,7 @@ void cneg(register cmplx *a) {
             }cmplx;
     */
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 #define PREC 27
 #define MAXEXP 1024
 #define MINEXP -1077
@@ -217,7 +217,7 @@ double ncephes_cabs(register cmplx *z) {
 
     /* Check it for overflow and underflow. */
     if (ey > MAXEXP) {
-        ncephes_mtherr("ncephes_cabs", OVERFLOW);
+        ncephes_mtherr("ncephes_cabs", NCEPHES_OVERFLOW);
         return (NCEPHES_INF);
     }
     if (ey < MINEXP)

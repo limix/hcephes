@@ -4,7 +4,7 @@
 
 extern double NCEPHES_MAXNUM;
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 /* sqrt(2pi) */
 static double s2pi = 2.50662827463100050242E0;
 #endif
@@ -25,7 +25,7 @@ static unsigned short s2p[] = {0x4004, 0x0d93, 0x1ff6, 0x2706};
 #endif
 
 /* approximation for 0 <= |y - 0.5| <= 3/8 */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P0[5] = {
     -5.99633501014107895267E1, 9.80010754185999661536E1,
     -5.66762857469070293439E1, 1.39312609387279679503E1,
@@ -85,7 +85,7 @@ static unsigned short Q0[32] = {
 /* Approximation for interval z = sqrt(-2 log y ) between 2 and 8
  * i.e., y between exp(-2) = .135 and exp(-32) = 1.27e-14.
  */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P1[9] = {
     4.05544892305962419923E0,   3.15251094599893866154E1,
     5.71628192246421288162E1,   4.40805073893200834700E1,
@@ -152,7 +152,7 @@ static unsigned short Q1[32] = {
  * i.e., y between exp(-32) = 1.27e-14 and exp(-2048) = 3.67e-890.
  */
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P2[9] = {
     3.23774891776946035970E0,  6.91522889068984211695E0,
     3.93881025292474443415E0,  1.33303460815807542389E0,
@@ -225,11 +225,11 @@ double ncephes_ndtri(double y0) {
     int code;
 
     if (y0 <= 0.0) {
-        ncephes_mtherr("ndtri", DOMAIN);
+        ncephes_mtherr("ndtri", NCEPHES_DOMAIN);
         return (-NCEPHES_MAXNUM);
     }
     if (y0 >= 1.0) {
-        ncephes_mtherr("ndtri", DOMAIN);
+        ncephes_mtherr("ndtri", NCEPHES_DOMAIN);
         return (NCEPHES_MAXNUM);
     }
     code = 1;

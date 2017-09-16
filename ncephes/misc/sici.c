@@ -1,6 +1,6 @@
 #include "mconf.h"
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double SN[] = {
     -8.39167827910303881427E-11, 4.62591714427012837309E-8,
     -9.75759303843632795789E-6,  9.76945438170435310816E-4,
@@ -48,7 +48,7 @@ static unsigned short SD[] = {
     0x3f8d, 0x195b, 0xcceb, 0x8cd2, 0x3ff0, 0x0000, 0x0000, 0x0000,
 };
 #endif
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double CN[] = {
     2.02524002389102268789E-11, -1.35249504915790756375E-8,
     3.59325051419993077021E-6,  -4.74007206873407909465E-4,
@@ -97,7 +97,7 @@ static unsigned short CD[] = {
 };
 #endif
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double FN4[] = {
     4.23612862892216586994E0,  5.45937717161812843388E0,
     1.62083287701538329132E0,  1.67006611831323023771E-1,
@@ -158,7 +158,7 @@ static unsigned short FD4[] = {
 };
 #endif
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double FN8[] = {
     4.55880873470465315206E-1,  7.13715274100146711374E-1,
     1.60300158222319456320E-1,  1.16064229408124407915E-2,
@@ -221,7 +221,7 @@ static unsigned short FD8[] = {
 };
 #endif
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double GN4[] = {
     8.71001698973114191777E-2, 6.11379109952219284151E-1,
     3.97180296392337498885E-1, 7.48527737628469092119E-2,
@@ -282,7 +282,7 @@ static unsigned short GD4[] = {
 };
 #endif
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double GN8[] = {
     6.97359953443276214934E-1,  3.30410979305632063225E-1,
     3.84878767649974295920E-2,  1.71718239052347903558E-3,

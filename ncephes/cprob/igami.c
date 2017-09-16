@@ -104,7 +104,7 @@ ihalve:
         }
     }
     if (x == 0.0)
-        ncephes_mtherr("igami", UNDERFLOW);
+        ncephes_mtherr("igami", NCEPHES_UNDERFLOW);
 
 done:
     return (x);

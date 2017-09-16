@@ -4,7 +4,7 @@
  * in interval 0 to 1.  Function is 1/(x cephes_gamma(x)) - 1
  */
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double R[] = {3.13173458231230000000E-17,  -6.70718606477908000000E-16,
                      2.20039078172259550000E-15,  2.47691630348254132600E-13,
                      -6.60074100411295197440E-12, 5.13850186324226978840E-11,
@@ -66,7 +66,7 @@ double rcephes_gamma(double x) {
     int sign;
 
     if (x > 34.84425627277176174) {
-        ncephes_mtherr(name, UNDERFLOW);
+        ncephes_mtherr(name, NCEPHES_UNDERFLOW);
         return (1.0 / NCEPHES_MAXNUM);
     }
     if (x < -34.034) {
@@ -82,11 +82,11 @@ double rcephes_gamma(double x) {
 
         y = log(w * z) - log(NCEPHES_PI) + ncephes_lgam(w);
         if (y < -MAXLOG) {
-            ncephes_mtherr(name, UNDERFLOW);
+            ncephes_mtherr(name, NCEPHES_UNDERFLOW);
             return (sign * 1.0 / NCEPHES_MAXNUM);
         }
         if (y > MAXLOG) {
-            ncephes_mtherr(name, OVERFLOW);
+            ncephes_mtherr(name, NCEPHES_OVERFLOW);
             return (sign * NCEPHES_MAXNUM);
         }
         return (sign * exp(y));

@@ -36,13 +36,13 @@ double zeta(double x, double q) {
 
     if (x < 1.0) {
     domerr:
-        ncephes_mtherr("zeta", DOMAIN);
+        ncephes_mtherr("zeta", NCEPHES_DOMAIN);
         return (0.0);
     }
 
     if (q <= 0.0) {
         if (q == floor(q)) {
-            ncephes_mtherr("zeta", SING);
+            ncephes_mtherr("zeta", NCEPHES_SING);
         retinf:
             return (NCEPHES_MAXNUM);
         }

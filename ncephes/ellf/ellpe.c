@@ -3,7 +3,7 @@
 #include "polevl.h"
 #include <math.h>
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P[] = {1.53552577301013293365E-4, 2.50888492163602060990E-3,
                      8.68786816565889628429E-3, 1.07350949056076193403E-2,
                      7.77395492516787092951E-3, 7.58395289413514708519E-3,
@@ -68,7 +68,7 @@ double ncephes_ellpe(double x) {
     if ((x <= 0.0) || (x > 1.0)) {
         if (x == 0.0)
             return (1.0);
-        ncephes_mtherr("ellpe", DOMAIN);
+        ncephes_mtherr("ellpe", NCEPHES_DOMAIN);
         return (0.0);
     }
     return (ncephes_polevl(x, P, 10) - log(x) * (x * ncephes_polevl(x, Q, 9)));

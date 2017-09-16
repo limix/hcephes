@@ -1,6 +1,6 @@
 #include "mconf.h"
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,
                      7.57575757575757575758E-3, -4.16666666666666666667E-3,
                      3.96825396825396825397E-3, -8.33333333333333333333E-3,
@@ -52,7 +52,7 @@ double psi(double x) {
         q = x;
         p = floor(q);
         if (p == q) {
-            ncephes_mtherr("psi", SING);
+            ncephes_mtherr("psi", NCEPHES_SING);
             return (NCEPHES_MAXNUM);
         }
         /* Remove the zeros of tan(NCEPHES_PI x)

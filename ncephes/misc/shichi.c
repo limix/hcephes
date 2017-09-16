@@ -1,6 +1,6 @@
 #include "mconf.h"
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 /* x exp(-x) shi(x), inverted interval 8 to 18 */
 static double S1[] = {1.83889230173399459482E-17,  -9.55485532279655569575E-17,
                       2.04326105980879882648E-16,  1.09896949074905343022E-15,
@@ -112,7 +112,7 @@ static unsigned short S2[] = {
     0xe325, 0x9d96};
 #endif
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 /* x exp(-x) chin(x), inverted interval 8 to 18 */
 static double C1[] = {-8.12435385225864036372E-18, 2.17586413290339214377E-17,
                       5.22624394924072204667E-17,  -9.48812110591690559363E-16,

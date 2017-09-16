@@ -2,7 +2,7 @@
 #include "ncephes/cprob.h"
 #include <math.h>
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P[] = {1.60119522476751861407E-4, 1.19135147006586384913E-3,
                      1.04213797561761569935E-2, 4.76367800457137231464E-2,
                      2.07448227648435975150E-1, 4.94214826801497100753E-1,
@@ -79,7 +79,7 @@ static unsigned short LNCEPHES_PI[4] = {
 #endif
 
 /* Stirling's formula for the gamma function */
-#if UNK
+#if NCEPHES_UNK
 static double STIR[5] = {
     7.87311395793093628397E-4,  -2.29549961613378126380E-4,
     -2.68132617805781232825E-3, 3.47222221605458667310E-3,
@@ -190,7 +190,7 @@ double ncephes_gamma(double x) {
             if (p == q) {
 #ifdef NCEPHES_NANS
             gamnan:
-                ncephes_mtherr("gamma", DOMAIN);
+                ncephes_mtherr("gamma", NCEPHES_DOMAIN);
                 return (NCEPHES_NAN);
 #else
                 goto goverf;
@@ -210,7 +210,7 @@ double ncephes_gamma(double x) {
                 return (sgngam * NCEPHES_INF);
 #else
             goverf:
-                ncephes_mtherr("gamma", OVERFLOW);
+                ncephes_mtherr("gamma", NCEPHES_OVERFLOW);
                 return (sgngam * NCEPHES_MAXNUM);
 #endif
             }
@@ -259,7 +259,7 @@ small:
         return (NCEPHES_INF);
 #endif
 #else
-        ncephes_mtherr("gamma", SING);
+        ncephes_mtherr("gamma", NCEPHES_SING);
         return (NCEPHES_MAXNUM);
 #endif
     } else
@@ -269,7 +269,7 @@ small:
 /* A[]: Stirling's formula expansion of log gamma
  * B[], C[]: log gamma function between 2 and 3
  */
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double A[] = {8.11614167470508450300E-4, -5.95061904284301438324E-4,
                      7.93650340457716943945E-4, -2.77777777730099687205E-3,
                      8.33333333333331927722E-2};
@@ -378,7 +378,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         if (p == q) {
         lgsing:
 #ifdef NCEPHES_INFINITIES
-            ncephes_mtherr("ncephes_lgam", SING);
+            ncephes_mtherr("ncephes_lgam", NCEPHES_SING);
             return (NCEPHES_INF);
 #else
             goto loverf;
@@ -436,7 +436,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         return (*sign * NCEPHES_INF);
 #else
     loverf:
-        ncephes_mtherr("ncephes_lgam", OVERFLOW);
+        ncephes_mtherr("ncephes_lgam", NCEPHES_OVERFLOW);
         return (*sign * NCEPHES_MAXNUM);
 #endif
     }

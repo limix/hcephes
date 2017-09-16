@@ -61,7 +61,7 @@ double ncephes_powi(double x, int nn) {
     }
 
     if (s > MAXLOG) {
-        ncephes_mtherr("powi", OVERFLOW);
+        ncephes_mtherr("powi", NCEPHES_OVERFLOW);
         y = NCEPHES_INF;
         goto done;
     }

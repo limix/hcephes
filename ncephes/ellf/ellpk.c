@@ -56,7 +56,7 @@ static unsigned short ac1[] = {0x3ff6, 0x2e42, 0xfefa, 0x39ef};
 #define C1 (*(double *)ac1)
 #endif
 
-#ifdef UNK
+#ifdef NCEPHES_UNK
 static double P[] = {1.37982864606273237150E-4, 2.28025724005875567385E-3,
                      7.97404013220415179367E-3, 9.85821379021226008714E-3,
                      6.87489687449949877925E-3, 6.18901033637687613229E-3,
@@ -78,7 +78,7 @@ extern double MACHEP, NCEPHES_MAXNUM;
 double ncephes_ellpk(double x) {
 
     if ((x < 0.0) || (x > 1.0)) {
-        ncephes_mtherr("ellpk", DOMAIN);
+        ncephes_mtherr("ellpk", NCEPHES_DOMAIN);
         return (0.0);
     }
 
@@ -86,7 +86,7 @@ double ncephes_ellpk(double x) {
         return (ncephes_polevl(x, P, 10) - log(x) * ncephes_polevl(x, Q, 10));
     } else {
         if (x == 0.0) {
-            ncephes_mtherr("ellpk", SING);
+            ncephes_mtherr("ellpk", NCEPHES_SING);
             return (NCEPHES_MAXNUM);
         } else {
             return (C1 - 0.5 * log(x));
