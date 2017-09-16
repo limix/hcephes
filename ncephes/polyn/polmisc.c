@@ -3,29 +3,11 @@
  * See polyn.c for data structures and discussion.
  */
 
+#include "mconf.h"
+#include "ncephes/polyn.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "mconf.h"
-#ifdef ANSIPROT
-extern double atan2 ( double, double );
-extern double sqrt ( double );
-extern double fabs ( double );
-extern double sin ( double );
-extern double cos ( double );
-extern void polclr ( double *a, int n );
-extern void polmov ( double *a, int na, double *b );
-extern void polmul ( double a[], int na, double b[], int nb, double c[] );
-extern void poladd ( double a[], int na, double b[], int nb, double c[] );
-extern void polsub ( double a[], int na, double b[], int nb, double c[] );
-extern int poldiv ( double a[], int na, double b[], int nb, double c[] );
-extern void polsbt ( double a[], int na, double b[], int nb, double c[] );
-extern void free ( void * );
-#else
-double atan2(), sqrt(), fabs(), sin(), cos();
-void polclr(), polmov(), polsbt(), poladd(), polsub(), polmul();
-int poldiv();
-void free ();
-#endif
 
 /* Highest degree of polynomial to be handled
    by the polyn.c subroutine package.  */
@@ -35,150 +17,170 @@ extern int MAXPOL;
 
 /* Taylor series coefficients for various functions
  */
-double patan[N+1] = {
-  0.0,     1.0,      0.0, -1.0/3.0,     0.0,
-  1.0/5.0, 0.0, -1.0/7.0,      0.0, 1.0/9.0, 0.0, -1.0/11.0,
-  0.0, 1.0/13.0, 0.0, -1.0/15.0, 0.0 };
+double patan[N + 1] = {0.0, 1.0,        0.0, -1.0 / 3.0,  0.0, 1.0 / 5.0,
+                       0.0, -1.0 / 7.0, 0.0, 1.0 / 9.0,   0.0, -1.0 / 11.0,
+                       0.0, 1.0 / 13.0, 0.0, -1.0 / 15.0, 0.0};
 
-double psin[N+1] = {
-  0.0, 1.0, 0.0,   -1.0/6.0,  0.0, 1.0/120.0,  0.0,
-  -1.0/5040.0, 0.0, 1.0/362880.0, 0.0, -1.0/39916800.0,
-  0.0, 1.0/6227020800.0, 0.0, -1.0/1.307674368e12, 0.0};
+double psin[N + 1] = {0.0, 1.0,
+                      0.0, -1.0 / 6.0,
+                      0.0, 1.0 / 120.0,
+                      0.0, -1.0 / 5040.0,
+                      0.0, 1.0 / 362880.0,
+                      0.0, -1.0 / 39916800.0,
+                      0.0, 1.0 / 6227020800.0,
+                      0.0, -1.0 / 1.307674368e12,
+                      0.0};
 
-double pcos[N+1] = {
-  1.0, 0.0,   -1.0/2.0,  0.0, 1.0/24.0,  0.0,
-  -1.0/720.0, 0.0, 1.0/40320.0, 0.0, -1.0/3628800.0, 0.0,
-  1.0/479001600.0, 0.0, -1.0/8.7179291e10, 0.0, 1.0/2.0922789888e13};
+double pcos[N + 1] = {1.0,
+                      0.0,
+                      -1.0 / 2.0,
+                      0.0,
+                      1.0 / 24.0,
+                      0.0,
+                      -1.0 / 720.0,
+                      0.0,
+                      1.0 / 40320.0,
+                      0.0,
+                      -1.0 / 3628800.0,
+                      0.0,
+                      1.0 / 479001600.0,
+                      0.0,
+                      -1.0 / 8.7179291e10,
+                      0.0,
+                      1.0 / 2.0922789888e13};
 
-double pasin[N+1] = {
-  0.0,     1.0,  0.0, 1.0/6.0,  0.0,
-  3.0/40.0, 0.0, 15.0/336.0, 0.0, 105.0/3456.0, 0.0, 945.0/42240.0,
-  0.0, 10395.0/599040.0 , 0.0, 135135.0/9676800.0 , 0.0
-};
+double pasin[N + 1] = {0.0, 1.0,
+                       0.0, 1.0 / 6.0,
+                       0.0, 3.0 / 40.0,
+                       0.0, 15.0 / 336.0,
+                       0.0, 105.0 / 3456.0,
+                       0.0, 945.0 / 42240.0,
+                       0.0, 10395.0 / 599040.0,
+                       0.0, 135135.0 / 9676800.0,
+                       0.0};
 
 /* Square root of 1 + x.  */
-double psqrt[N+1] = {
-  1.0, 1./2., -1./8., 1./16., -5./128., 7./256., -21./1024., 33./2048.,
-  -429./32768., 715./65536., -2431./262144., 4199./524288., -29393./4194304.,
-  52003./8388608., -185725./33554432., 334305./67108864.,
-  -9694845./2147483648.};
+double psqrt[N + 1] = {1.0,
+                       1. / 2.,
+                       -1. / 8.,
+                       1. / 16.,
+                       -5. / 128.,
+                       7. / 256.,
+                       -21. / 1024.,
+                       33. / 2048.,
+                       -429. / 32768.,
+                       715. / 65536.,
+                       -2431. / 262144.,
+                       4199. / 524288.,
+                       -29393. / 4194304.,
+                       52003. / 8388608.,
+                       -185725. / 33554432.,
+                       334305. / 67108864.,
+                       -9694845. / 2147483648.};
 
 /* Arctangent of the ratio num/den of two polynomials.
  */
-void 
-polatn (double num[], double den[], double ans[], int nn)
-{
-  double a, t;
-  double *polq, *polu, *polt;
-  int i;
+void ncephes_polatn(double num[], double den[], double ans[], int nn) {
+    double a, t;
+    double *polq, *polu, *polt;
+    int i;
 
-  if (nn > N)
-    {
-      ncephes_mtherr ("polatn", OVERFLOW);
-      return;
+    if (nn > N) {
+        ncephes_mtherr("polatn", OVERFLOW);
+        return;
     }
-  /* arctan( a + b ) = arctan(a) + arctan( b/(1 + ab + a**2) ) */
-  t = num[0];
-  a = den[0];
-  if( (t == 0.0) && (a == 0.0 ) )
-    {
-      t = num[1];
-      a = den[1];
+    /* arctan( a + b ) = arctan(a) + arctan( b/(1 + ab + a**2) ) */
+    t = num[0];
+    a = den[0];
+    if ((t == 0.0) && (a == 0.0)) {
+        t = num[1];
+        a = den[1];
     }
-  t = atan2( t, a );  /* arctan(num/den), the ANSI argument order */
-  polq = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  polu = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  polt = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  polclr( polq, MAXPOL );
-  i = poldiv( den, nn, num, nn, polq );
-  a = polq[0]; /* a */
-  polq[0] = 0.0; /* b */
-  polmov( polq, nn, polu ); /* b */
-  /* Form the polynomial
-     1 + ab + a**2
-     where a is a scalar.  */
-  for( i=0; i<=nn; i++ )
-    polu[i] *= a;
-  polu[0] += 1.0 + a * a;
-  poldiv( polu, nn, polq, nn, polt ); /* divide into b */
-  polsbt( polt, nn, patan, nn, polu ); /* arctan(b)  */
-  polu[0] += t; /* plus arctan(a) */
-  polmov( polu, nn, ans );
-  free( polt );
-  free( polu );
-  free( polq );
+    t = atan2(t, a); /* arctan(num/den), the ANSI argument order */
+    polq = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    polu = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    polt = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    ncephes_polclr(polq, MAXPOL);
+    i = ncephes_poldiv(den, nn, num, nn, polq);
+    a = polq[0];                    /* a */
+    polq[0] = 0.0;                  /* b */
+    ncephes_polmov(polq, nn, polu); /* b */
+    /* Form the polynomial
+       1 + ab + a**2
+       where a is a scalar.  */
+    for (i = 0; i <= nn; i++)
+        polu[i] *= a;
+    polu[0] += 1.0 + a * a;
+    ncephes_poldiv(polu, nn, polq, nn, polt);  /* divide into b */
+    ncephes_polsbt(polt, nn, patan, nn, polu); /* arctan(b)  */
+    polu[0] += t;                              /* plus arctan(a) */
+    ncephes_polmov(polu, nn, ans);
+    free(polt);
+    free(polu);
+    free(polq);
 }
-
-
 
 /* Square root of a polynomial.
  * Assumes the lowest degree nonzero term is dominant
  * and of even degree.  An error message is given
  * if the Newton iteration does not converge.
  */
-void 
-polsqt (double pol[], double ans[], int nn)
-{
-  double t;
-  double *x, *y;
-  int i, n;
+void ncephes_polsqt(double pol[], double ans[], int nn) {
+    double t;
+    double *x, *y;
+    int i, n;
 #if 0
   double z[N+1];
   double u;
 #endif
 
-  if (nn > N)
-    {
-      ncephes_mtherr ("polatn", OVERFLOW);
-      return;
+    if (nn > N) {
+        ncephes_mtherr("polatn", OVERFLOW);
+        return;
     }
-  x = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  y = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  polmov( pol, nn, x );
-  polclr( y, MAXPOL );
+    x = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    y = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    ncephes_polmov(pol, nn, x);
+    ncephes_polclr(y, MAXPOL);
 
-  /* Find lowest degree nonzero term.  */
-  t = 0.0;
-  for( n=0; n<nn; n++ )
-    {
-      if( x[n] != 0.0 )
-	goto nzero;
+    /* Find lowest degree nonzero term.  */
+    t = 0.0;
+    for (n = 0; n < nn; n++) {
+        if (x[n] != 0.0)
+            goto nzero;
     }
-  polmov( y, nn, ans );
-  return;
+    ncephes_polmov(y, nn, ans);
+    return;
 
 nzero:
 
-  if( n > 0 )
-    {
-      if (n & 1)
-        {
-	  printf("error, sqrt of odd polynomial\n");
-	  return;
-	}
-      /* Divide by x^n.  */
-      y[n] = x[n];
-      poldiv (y, nn, pol, N, x);
+    if (n > 0) {
+        if (n & 1) {
+            printf("error, sqrt of odd polynomial\n");
+            return;
+        }
+        /* Divide by x^n.  */
+        y[n] = x[n];
+        ncephes_poldiv(y, nn, pol, N, x);
     }
 
-  t = x[0];
-  for( i=1; i<=nn; i++ )
-    x[i] /= t;
-  x[0] = 0.0;
-  /* series development sqrt(1+x) = 1  +  x / 2  -  x**2 / 8  +  x**3 / 16
-     hopes that first (constant) term is greater than what follows   */
-  polsbt( x, nn, psqrt, nn, y);
-  t = sqrt( t );
-  for( i=0; i<=nn; i++ )
-    y[i] *= t;
+    t = x[0];
+    for (i = 1; i <= nn; i++)
+        x[i] /= t;
+    x[0] = 0.0;
+    /* series development sqrt(1+x) = 1  +  x / 2  -  x**2 / 8  +  x**3 / 16
+       hopes that first (constant) term is greater than what follows   */
+    ncephes_polsbt(x, nn, psqrt, nn, y);
+    t = sqrt(t);
+    for (i = 0; i <= nn; i++)
+        y[i] *= t;
 
-  /* If first nonzero coefficient was at degree n > 0, multiply by
-     x^(n/2).  */
-  if (n > 0)
-    {
-      polclr (x, MAXPOL);
-      x[n/2] = 1.0;
-      polmul (x, nn, y, nn, y);
+    /* If first nonzero coefficient was at degree n > 0, multiply by
+       x^(n/2).  */
+    if (n > 0) {
+        ncephes_polclr(x, MAXPOL);
+        x[n / 2] = 1.0;
+        ncephes_polmul(x, nn, y, nn, y);
     }
 #if 0
 /* Newton iterations */
@@ -201,12 +203,10 @@ printf( "square root did not converge\n" );
 done:
 #endif /* 0 */
 
-polmov( y, nn, ans );
-free( y );
-free( x );
+    ncephes_polmov(y, nn, ans);
+    free(y);
+    free(x);
 }
-
-
 
 /* Sine of a polynomial.
  * The computation uses
@@ -216,43 +216,39 @@ free( x );
  * Since sin(b) and cos(b) are computed by series expansions,
  * the value of b should be small.
  */
-void 
-polsin (double x[], double y[], int nn)
-{
-  double a, sc;
-  double *w, *c;
-  int i;
+void ncephes_polsin(double x[], double y[], int nn) {
+    double a, sc;
+    double *w, *c;
+    int i;
 
-  if (nn > N)
-    {
-      ncephes_mtherr ("polatn", OVERFLOW);
-      return;
+    if (nn > N) {
+        ncephes_mtherr("polatn", OVERFLOW);
+        return;
     }
-  w = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  c = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  polmov( x, nn, w );
-  polclr( c, MAXPOL );
-  polclr( y, nn );
-  /* a, in the description, is x[0].  b is the polynomial x - x[0].  */
-  a = w[0];
-  /* c = cos (b) */
-  w[0] = 0.0;
-  polsbt( w, nn, pcos, nn, c );
-  sc = sin(a);
-  /* sin(a) cos (b) */
-  for( i=0; i<=nn; i++ )
-    c[i] *= sc;
-  /* y = sin (b)  */
-  polsbt( w, nn, psin, nn, y );
-  sc = cos(a);
-  /* cos(a) sin(b) */
-  for( i=0; i<=nn; i++ )
-    y[i] *= sc;
-  poladd( c, nn, y, nn, y );
-  free( c );
-  free( w );
+    w = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    c = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    ncephes_polmov(x, nn, w);
+    ncephes_polclr(c, MAXPOL);
+    ncephes_polclr(y, nn);
+    /* a, in the description, is x[0].  b is the polynomial x - x[0].  */
+    a = w[0];
+    /* c = cos (b) */
+    w[0] = 0.0;
+    ncephes_polsbt(w, nn, pcos, nn, c);
+    sc = sin(a);
+    /* sin(a) cos (b) */
+    for (i = 0; i <= nn; i++)
+        c[i] *= sc;
+    /* y = sin (b)  */
+    ncephes_polsbt(w, nn, psin, nn, y);
+    sc = cos(a);
+    /* cos(a) sin(b) */
+    for (i = 0; i <= nn; i++)
+        y[i] *= sc;
+    ncephes_poladd(c, nn, y, nn, y);
+    free(c);
+    free(w);
 }
-
 
 /* Cosine of a polynomial.
  * The computation uses
@@ -262,39 +258,36 @@ polsin (double x[], double y[], int nn)
  * Since sin(b) and cos(b) are computed by series expansions,
  * the value of b should be small.
  */
-void 
-polcos (double x[], double y[], int nn)
-{
-  double a, sc;
-  double *w, *c;
-  int i;
-  double sin(), cos();
+void ncephes_polcos(double x[], double y[], int nn) {
+    double a, sc;
+    double *w, *c;
+    int i;
+    double sin(), cos();
 
-  if (nn > N)
-    {
-      ncephes_mtherr ("polatn", OVERFLOW);
-      return;
+    if (nn > N) {
+        ncephes_mtherr("polatn", OVERFLOW);
+        return;
     }
-  w = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  c = (double * )malloc( (MAXPOL+1) * sizeof (double) );
-  polmov( x, nn, w );
-  polclr( c, MAXPOL );
-  polclr( y, nn );
-  a = w[0];
-  w[0] = 0.0;
-  /* c = cos(b)  */
-  polsbt( w, nn, pcos, nn, c );
-  sc = cos(a);
-  /* cos(a) cos(b)  */
-  for( i=0; i<=nn; i++ )
-    c[i] *= sc;
-  /* y = sin(b) */
-  polsbt( w, nn, psin, nn, y );
-  sc = sin(a);
-  /* sin(a) sin(b) */
-  for( i=0; i<=nn; i++ )
-    y[i] *= sc;
-  polsub( y, nn, c, nn, y );
-  free( c );
-  free( w );
+    w = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    c = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    ncephes_polmov(x, nn, w);
+    ncephes_polclr(c, MAXPOL);
+    ncephes_polclr(y, nn);
+    a = w[0];
+    w[0] = 0.0;
+    /* c = cos(b)  */
+    ncephes_polsbt(w, nn, pcos, nn, c);
+    sc = cos(a);
+    /* cos(a) cos(b)  */
+    for (i = 0; i <= nn; i++)
+        c[i] *= sc;
+    /* y = sin(b) */
+    ncephes_polsbt(w, nn, psin, nn, y);
+    sc = sin(a);
+    /* sin(a) sin(b) */
+    for (i = 0; i <= nn; i++)
+        y[i] *= sc;
+    ncephes_polsub(y, nn, c, nn, y);
+    free(c);
+    free(w);
 }

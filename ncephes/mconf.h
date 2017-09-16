@@ -82,21 +82,6 @@
 #define EDOM 33
 #define ERANGE 34
 
-typedef struct {
-    long double r;
-    long double i;
-} cmplxl;
-
-typedef struct {
-    float r;
-    float i;
-} cmplxf;
-
-typedef struct {
-    double r;
-    double i;
-} cmplx;
-
 /* Type of computer arithmetic */
 
 /* UNKnown arithmetic, invokes coefficients given in
