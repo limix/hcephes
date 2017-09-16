@@ -84,8 +84,8 @@ static short B4[48] = {
 #endif
 
 extern double ncephes_spence(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 extern double zetac(double);
 extern double pow(double, double);
 extern double ncephes_powi(double, int);
@@ -232,7 +232,7 @@ double ncephes_polylog(int n, double x) {
     if (n == 4) {
         if (x >= 0.875) {
             u = 1.0 - x;
-            s = polevl(u, A4, 12) / p1evl(u, B4, 12);
+            s = ncephes_polevl(u, A4, 12) / ncephes_p1evl(u, B4, 12);
             s = s * u * u - 1.202056903159594285400 * u;
             s += 1.0823232337111381915160;
             return s;

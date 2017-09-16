@@ -4,6 +4,8 @@
 #include "ncephes/type.h"
 
 double ncephes_euclid(double *num, double *den);
+double ncephes_p1evl(double x, double coef[], int N);
+double ncephes_polevl(double x, double coef[], int N);
 int ncephes_poldiv(double *, int, double *, int, double *);
 int ncephes_polrt(double xcof[], double cof[], int m, cmplx root[]);
 void ncephes_poladd(double a[], int na, double b[], int nb, double c[]);

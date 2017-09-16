@@ -1,4 +1,4 @@
-double polevl(double x, double coef[], int N) {
+double ncephes_polevl(double x, double coef[], int N) {
     double ans;
     int i;
     double *p;
@@ -20,7 +20,7 @@ double polevl(double x, double coef[], int N) {
  * Otherwise same as polevl.
  */
 
-double p1evl(double x, double coef[], int N) {
+double ncephes_p1evl(double x, double coef[], int N) {
     double ans;
     double *p;
     int i;

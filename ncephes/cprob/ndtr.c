@@ -1,5 +1,6 @@
 #include "mconf.h"
 #include "ncephes/cprob.h"
+#include "ncephes/polyn.h"
 #include <math.h>
 
 static double ncephes_erfce(double x);

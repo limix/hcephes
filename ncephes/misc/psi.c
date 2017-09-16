@@ -36,7 +36,7 @@ static unsigned short A[] = {0x3fb5, 0x5555, 0x5555, 0x5555, 0xbf95, 0x9959,
 extern double floor(double);
 extern double log(double);
 extern double tan(double);
-extern double polevl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
 
 extern double NCEPHES_PI, NCEPHES_MAXNUM;
 
@@ -92,7 +92,7 @@ double psi(double x) {
 
     if (s < 1.0e17) {
         z = 1.0 / (s * s);
-        y = z * polevl(z, A, 6);
+        y = z * ncephes_polevl(z, A, 6);
     } else
         y = 0.0;
 

@@ -196,8 +196,8 @@ static unsigned short CD[20] = {
 extern double chbevl(double, void *, int);
 extern double sqrt(double);
 extern double fabs(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 
 extern double NCEPHES_PI, MACHEP;
 
@@ -213,14 +213,15 @@ double dawsn(double xx) {
 
     if (xx < 3.25) {
         x = xx * xx;
-        y = xx * polevl(x, AN, 9) / polevl(x, AD, 10);
+        y = xx * ncephes_polevl(x, AN, 9) / ncephes_polevl(x, AD, 10);
         return (sign * y);
     }
 
     x = 1.0 / (xx * xx);
 
     if (xx < 6.25) {
-        y = 1.0 / xx + x * polevl(x, BN, 10) / (p1evl(x, BD, 10) * xx);
+        y = 1.0 / xx +
+            x * ncephes_polevl(x, BN, 10) / (ncephes_p1evl(x, BD, 10) * xx);
         return (sign * 0.5 * y);
     }
 
@@ -228,6 +229,7 @@ double dawsn(double xx) {
         return ((sign * 0.5) / xx);
 
     /* 6.25 to infinity */
-    y = 1.0 / xx + x * polevl(x, CN, 4) / (p1evl(x, CD, 5) * xx);
+    y = 1.0 / xx +
+        x * ncephes_polevl(x, CN, 4) / (ncephes_p1evl(x, CD, 5) * xx);
     return (sign * 0.5 * y);
 }

@@ -282,8 +282,8 @@ extern double floor(double);
 extern double ncephes_gamma(double);
 extern double pow(double, double);
 extern double exp(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 
 extern double MACHEP;
 
@@ -326,7 +326,7 @@ double zetac(double x) {
 
     if (x < 1.0) {
         w = 1.0 - x;
-        a = polevl(x, R, 5) / (w * p1evl(x, S, 5));
+        a = ncephes_polevl(x, R, 5) / (w * ncephes_p1evl(x, S, 5));
         return (a);
     }
 
@@ -338,13 +338,13 @@ double zetac(double x) {
     if (x <= 10.0) {
         b = pow(2.0, x) * (x - 1.0);
         w = 1.0 / x;
-        s = (x * polevl(w, P, 8)) / (b * p1evl(w, Q, 8));
+        s = (x * ncephes_polevl(w, P, 8)) / (b * ncephes_p1evl(w, Q, 8));
         return (s);
     }
 
     if (x <= 50.0) {
         b = pow(2.0, -x);
-        w = polevl(x, A, 10) / p1evl(x, B, 10);
+        w = ncephes_polevl(x, A, 10) / ncephes_p1evl(x, B, 10);
         w = exp(w) + b;
         return (w);
     }

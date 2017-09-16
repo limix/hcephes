@@ -1,6 +1,6 @@
 #include "mconf.h"
 #include "ncephes/ellf.h"
-#include "polevl.h"
+#include "ncephes/polyn.h"
 #include <math.h>
 
 #ifdef NCEPHES_UNK

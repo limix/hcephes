@@ -2,8 +2,8 @@
 
 extern double log(double);
 extern double exp(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 
 #define EUL 5.772156649015328606065e-1
 
@@ -752,9 +752,9 @@ double ei(double x) {
                                    -   n n!
                                   n=1
         */
-        f = polevl(x, A, 5) / p1evl(x, B, 6);
-        /*      f = polevl(x,A,6) / p1evl(x,B,7); */
-        /*      f = polevl(x,A,8) / p1evl(x,B,9); */
+        f = ncephes_polevl(x, A, 5) / ncephes_p1evl(x, B, 6);
+        /*      f = ncephes_polevl(x,A,6) / ncephes_p1evl(x,B,7); */
+        /*      f = ncephes_polevl(x,A,8) / ncephes_p1evl(x,B,9); */
         return (EUL + log(x) + x * f);
     } else if (x < 4.0) {
         /* Asymptotic expansion.
@@ -764,27 +764,27 @@ double ei(double x) {
                                           x       x
         */
         w = 1.0 / x;
-        f = polevl(w, A6, 7) / p1evl(w, B6, 7);
+        f = ncephes_polevl(w, A6, 7) / ncephes_p1evl(w, B6, 7);
         return (exp(x) * w * (1.0 + w * f));
     } else if (x < 8.0) {
         w = 1.0 / x;
-        f = polevl(w, A5, 7) / p1evl(w, B5, 8);
+        f = ncephes_polevl(w, A5, 7) / ncephes_p1evl(w, B5, 8);
         return (exp(x) * w * (1.0 + w * f));
     } else if (x < 16.0) {
         w = 1.0 / x;
-        f = polevl(w, A2, 9) / p1evl(w, B2, 9);
+        f = ncephes_polevl(w, A2, 9) / ncephes_p1evl(w, B2, 9);
         return (exp(x) * w * (1.0 + w * f));
     } else if (x < 32.0) {
         w = 1.0 / x;
-        f = polevl(w, A4, 7) / p1evl(w, B4, 8);
+        f = ncephes_polevl(w, A4, 7) / ncephes_p1evl(w, B4, 8);
         return (exp(x) * w * (1.0 + w * f));
     } else if (x < 64.0) {
         w = 1.0 / x;
-        f = polevl(w, A7, 5) / p1evl(w, B7, 5);
+        f = ncephes_polevl(w, A7, 5) / ncephes_p1evl(w, B7, 5);
         return (exp(x) * w * (1.0 + w * f));
     } else {
         w = 1.0 / x;
-        f = polevl(w, A3, 8) / p1evl(w, B3, 9);
+        f = ncephes_polevl(w, A3, 8) / ncephes_p1evl(w, B3, 9);
         return (exp(x) * w * (1.0 + w * f));
     }
 }

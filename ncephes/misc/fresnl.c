@@ -255,8 +255,8 @@ static unsigned short gd[44] = {
 extern double fabs(double);
 extern double cos(double);
 extern double sin(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 
 extern double NCEPHES_PI, NCEPHES_PIO2, MACHEP;
 
@@ -268,8 +268,8 @@ int fresnl(double xxa, double *ssa, double *cca) {
     x2 = x * x;
     if (x2 < 2.5625) {
         t = x2 * x2;
-        ss = x * x2 * polevl(t, sn, 5) / p1evl(t, sd, 6);
-        cc = x * polevl(t, cn, 5) / polevl(t, cd, 6);
+        ss = x * x2 * ncephes_polevl(t, sn, 5) / ncephes_p1evl(t, sd, 6);
+        cc = x * ncephes_polevl(t, cn, 5) / ncephes_polevl(t, cd, 6);
         goto done;
     }
 
@@ -286,8 +286,8 @@ int fresnl(double xxa, double *ssa, double *cca) {
     t = NCEPHES_PI * x2;
     u = 1.0 / (t * t);
     t = 1.0 / t;
-    f = 1.0 - u * polevl(u, fn, 9) / p1evl(u, fd, 10);
-    g = t * polevl(u, gn, 10) / p1evl(u, gd, 11);
+    f = 1.0 - u * ncephes_polevl(u, fn, 9) / ncephes_p1evl(u, fd, 10);
+    g = t * ncephes_polevl(u, gn, 10) / ncephes_p1evl(u, gd, 11);
 
     t = NCEPHES_PIO2 * x2;
     c = cos(t);

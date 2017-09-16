@@ -350,8 +350,8 @@ static unsigned short GD8[] = {
 extern double log(double);
 extern double sin(double);
 extern double cos(double);
-extern double polevl(double, void *, int);
-extern double p1evl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
+extern double ncephes_p1evl(double, void *, int);
 
 #define EUL 0.57721566490153286061
 extern double NCEPHES_MAXNUM, NCEPHES_PIO2, MACHEP;
@@ -382,8 +382,8 @@ int sici(double x, double *si, double *ci) {
         goto asympt;
 
     z = x * x;
-    s = x * polevl(z, SN, 5) / polevl(z, SD, 5);
-    c = z * polevl(z, CN, 5) / polevl(z, CD, 5);
+    s = x * ncephes_polevl(z, SN, 5) / ncephes_polevl(z, SD, 5);
+    c = z * ncephes_polevl(z, CN, 5) / ncephes_polevl(z, CD, 5);
 
     if (sign)
         s = -s;
@@ -411,11 +411,11 @@ asympt:
     c = cos(x);
     z = 1.0 / (x * x);
     if (x < 8.0) {
-        f = polevl(z, FN4, 6) / (x * p1evl(z, FD4, 7));
-        g = z * polevl(z, GN4, 7) / p1evl(z, GD4, 7);
+        f = ncephes_polevl(z, FN4, 6) / (x * ncephes_p1evl(z, FD4, 7));
+        g = z * ncephes_polevl(z, GN4, 7) / ncephes_p1evl(z, GD4, 7);
     } else {
-        f = polevl(z, FN8, 8) / (x * p1evl(z, FD8, 8));
-        g = z * polevl(z, GN8, 8) / p1evl(z, GD8, 9);
+        f = ncephes_polevl(z, FN8, 8) / (x * ncephes_p1evl(z, FD8, 8));
+        g = z * ncephes_polevl(z, GN8, 8) / ncephes_p1evl(z, GD8, 9);
     }
     *si = NCEPHES_PIO2 - f * c - g * s;
     if (sign)
