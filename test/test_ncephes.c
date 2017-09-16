@@ -1,29 +1,10 @@
 #include "ncephes/ncephes.h"
 
 #include <math.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-#ifdef WIN32
-#ifndef NAN
-static const unsigned long __nan[2] = {0xffffffff, 0x7fffffff};
-#define NAN (*(const float *)__nan)
-#endif
-#endif
-
-#ifdef _MSC_VER
-#if (_MSC_VER <= 1500)
-#define isnan(x) _isnan(x)
-#endif
-#endif
 
 #define SUCCESS EXIT_SUCCESS
 #define FAIL EXIT_FAILURE
-
-#define assert_success(x)                                                      \
-    if ((x) != SUCCESS)                                                        \
-        return FAIL;
 
 #define assert_close(x, y)                                                     \
     if (fabs((x) - (y)) > 1e-7)                                                \

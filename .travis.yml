@@ -1,0 +1,24 @@
+dist: trusty
+sudo: required
+language: c
+compiler:
+- clang
+- gcc
+before_script:
+- mkdir build && pushd build && cmake .. && make && make test && popd
+- rm -rf build
+script:
+- mkdir dist && pushd dist && cmake .. && popd
+- mv dist ncephes-`cat VERSION`
+- tar czf ncephes-`cat VERSION`.tar.gz ncephes-`cat VERSION`
+- rm -rf dist
+after_failure:
+- rm -rf * && cmake .. && make && make test ARGS="-V"
+notifications:
+  email: false
+deploy:
+  provider: releases
+  on:
+    tags: true
+    repo: limix/ncephes
+    branch: master
