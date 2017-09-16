@@ -57,13 +57,10 @@ static unsigned short B[32] = {
 };
 #endif
 
-#ifdef ANSIPROT
 extern double fabs(double);
 extern double log(double);
 extern double polevl(double, void *, int);
-#else
-double fabs(), log(), polevl();
-#endif
+
 extern double NCEPHES_PI, MACHEP;
 
 double spence(double x) {

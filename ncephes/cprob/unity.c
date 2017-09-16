@@ -62,7 +62,7 @@ double ncephes_expm1(double x) {
     if (isnan(x))
         return (x);
 #endif
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
     if (x == NCEPHES_INF)
         return (NCEPHES_INF);
     if (x == -NCEPHES_INF)

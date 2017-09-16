@@ -136,7 +136,7 @@ static unsigned short SQT[4] = {
 
 extern double MAXLOG, NCEPHES_MAXNUM, NCEPHES_PI;
 
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
 extern double NCEPHES_INF;
 #endif
 #ifdef NCEPHES_NANS
@@ -171,7 +171,7 @@ double ncephes_gamma(double x) {
     if (isnan(x))
         return (x);
 #endif
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
 #ifdef NCEPHES_NANS
     if (x == NCEPHES_INF)
         return (x);
@@ -206,7 +206,7 @@ double ncephes_gamma(double x) {
             }
             z = q * sin(NCEPHES_PI * z);
             if (z == 0.0) {
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
                 return (sgngam * NCEPHES_INF);
 #else
             goverf:
@@ -252,7 +252,7 @@ double ncephes_gamma(double x) {
 
 small:
     if (x == 0.0) {
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
 #ifdef NCEPHES_NANS
         goto gamnan;
 #else
@@ -366,7 +366,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         return (x);
 #endif
 
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
     if (!isfinite(x))
         return (NCEPHES_INF);
 #endif
@@ -377,7 +377,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         p = floor(q);
         if (p == q) {
         lgsing:
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
             ncephes_mtherr("ncephes_lgam", SING);
             return (NCEPHES_INF);
 #else
@@ -432,7 +432,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
     }
 
     if (x > MAXLGM) {
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
         return (*sign * NCEPHES_INF);
 #else
     loverf:

@@ -58,12 +58,6 @@
 #ifndef NCEPHES_MCONF_H
 #define NCEPHES_MCONF_H
 
-/* Define 1 for ANSI C atan2() function
-   See atan.c and clog.c. */
-#define ANSIC 1
-
-#define ANSIPROT 1
-
 /* Constant definitions for math error conditions
  */
 
@@ -99,6 +93,13 @@
 
 /* Define to support tiny denormal numbers, else undefine. */
 #define DENORMAL 1
+
+/* Define to ask for infinity support, else undefine. */
+#define NCEPHES_INFINITIES 1
+
+/* Define to ask for support of numbers that are Not-a-Number,
+   else undefine.  This may automatically define INFINITIES in some files. */
+#define NCEPHES_NANS 1
 
 int ncephes_mtherr(char *name, int code);
 

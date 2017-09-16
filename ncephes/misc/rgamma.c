@@ -53,15 +53,12 @@ static unsigned short R[] = {
 
 static char name[] = "rcephes_gamma";
 
-#ifdef ANSIPROT
 extern double chbevl(double, void *, int);
 extern double exp(double);
 extern double log(double);
 extern double sin(double);
 extern double ncephes_lgam(double);
-#else
-double chbevl(), exp(), log(), sin(), ncephes_lgam();
-#endif
+
 extern double NCEPHES_PI, MAXLOG, NCEPHES_MAXNUM;
 
 double rcephes_gamma(double x) {

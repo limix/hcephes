@@ -230,14 +230,11 @@ static unsigned short C2[] = {
 
 /* Sine and cosine integrals */
 
-#ifdef ANSIPROT
 extern double log(double);
 extern double exp(double);
 extern double fabs(double);
 extern double chbevl(double, void *, int);
-#else
-double log(), exp(), fabs(), chbevl();
-#endif
+
 #define EUL 0.57721566490153286061
 extern double MACHEP, NCEPHES_MAXNUM, NCEPHES_PIO2;
 

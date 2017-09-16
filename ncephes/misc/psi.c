@@ -33,14 +33,11 @@ static unsigned short A[] = {0x3fb5, 0x5555, 0x5555, 0x5555, 0xbf95, 0x9959,
 
 #define EUL 0.57721566490153286061
 
-#ifdef ANSIPROT
 extern double floor(double);
 extern double log(double);
 extern double tan(double);
 extern double polevl(double, void *, int);
-#else
-double floor(), log(), tan(), polevl();
-#endif
+
 extern double NCEPHES_PI, NCEPHES_MAXNUM;
 
 double psi(double x) {

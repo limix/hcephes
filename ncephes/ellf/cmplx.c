@@ -168,7 +168,7 @@ double ncephes_cabs(register cmplx *z) {
     double x, y, b, re, im;
     int ex, ey, e;
 
-#ifdef INFINITIES
+#ifdef NCEPHES_INFINITIES
     /* Note, ncephes_cabs(NCEPHES_INF,NCEPHES_NAN) = NCEPHES_INF. */
     if (z->r == NCEPHES_INF || z->i == NCEPHES_INF || z->r == -NCEPHES_INF ||
         z->i == -NCEPHES_INF)

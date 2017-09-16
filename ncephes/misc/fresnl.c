@@ -252,15 +252,12 @@ static unsigned short gd[44] = {
 };
 #endif
 
-#ifdef ANSIPROT
 extern double fabs(double);
 extern double cos(double);
 extern double sin(double);
 extern double polevl(double, void *, int);
 extern double p1evl(double, void *, int);
-#else
-double fabs(), cos(), sin(), polevl(), p1evl();
-#endif
+
 extern double NCEPHES_PI, NCEPHES_PIO2, MACHEP;
 
 int fresnl(double xxa, double *ssa, double *cca) {

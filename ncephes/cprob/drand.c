@@ -52,9 +52,6 @@ static int ncephes_ranwh(void) {
 
 int drand(double *a) {
     unsigned short r;
-#ifdef DEC
-    unsigned short s, t;
-#endif
 
     /* This algorithm of Wichmann and Hill computes a floating point
      * result:
@@ -64,34 +61,6 @@ int drand(double *a) {
     r = unkans.d;
     unkans.d -= r;
     unkans.d += 1.0;
-
-/* if UNK option, do nothing further.
- * Otherwise, make a random 16 bit integer
- * to overwrite the least significant word
- * of unkans.
- */
-#ifdef UNK
-/* do nothing */
-#else
-    ncephes_ranwh();
-    r = sx * sy + sz;
-#endif
-
-#ifdef DEC
-    /* To make the numbers as similar as possible
-     * in all arithmetics, the random integer has
-     * to be inserted 3 bits higher up in a DEC number.
-     * An alternative would be put it 3 bits lower down
-     * in all the other number types.
-     */
-    s = unkans.s[2];
-    t = s & 07; /* save these bits to put in at the bottom */
-    s &= 0177770;
-    s |= (r >> 13) & 07;
-    unkans.s[2] = s;
-    t |= r << 3;
-    unkans.s[3] = t;
-#endif
 
 #ifdef IBMPC
     unkans.s[0] = r;
