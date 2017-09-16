@@ -5,14 +5,9 @@
 extern double MACHEP;
 #define BIG (1.0 / MACHEP)
 
-typedef struct {
-    double n; /* numerator */
-    double d; /* denominator */
-} fract;
-
 /* Add fractions. */
 
-void radd(fract *f1, fract *f2, fract *f3) {
+void ncephes_radd(fract *f1, fract *f2, fract *f3) {
     double gcd, d1, d2, gcn, n1, n2;
 
     n1 = f1->n;
@@ -42,7 +37,7 @@ void radd(fract *f1, fract *f2, fract *f3) {
 
 /* Subtract fractions. */
 
-void rsub(fract *f1, fract *f2, fract *f3) {
+void ncephes_rsub(fract *f1, fract *f2, fract *f3) {
     double gcd, d1, d2, gcn, n1, n2;
 
     n1 = f1->n;
@@ -69,7 +64,7 @@ void rsub(fract *f1, fract *f2, fract *f3) {
 
 /* Multiply fractions. */
 
-void rmul(fract *ff1, fract *ff2, fract *ff3) {
+void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3) {
     double d1, d2, n1, n2;
 
     n1 = ff1->n;
@@ -96,7 +91,7 @@ void rmul(fract *ff1, fract *ff2, fract *ff3) {
 
 /* Divide fractions. */
 
-void rdiv(fract *ff1, fract *ff2, fract *ff3) {
+void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3) {
     double d1, d2, n1, n2;
 
     n1 = ff1->d; /* Invert ff1, then multiply */

@@ -12,5 +12,9 @@ void ncephes_polmov(double *, int, double *);
 void ncephes_polmul(double *, int, double *, int, double *);
 void ncephes_polsbt(double a[], int na, double b[], int nb, double c[]);
 void ncephes_polsub(double a[], int na, double b[], int nb, double c[]);
+void ncephes_radd(fract *f1, fract *f2, fract *f3);
+void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3);
+void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3);
+void ncephes_rsub(fract *f1, fract *f2, fract *f3);
 
 #endif

@@ -2,6 +2,11 @@
 #define TYPE_H
 
 typedef struct {
+    double n; /* numerator */
+    double d; /* denominator */
+} fract;
+
+typedef struct {
     long double r;
     long double i;
 } cmplxl;
