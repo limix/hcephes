@@ -83,7 +83,7 @@ static short B4[48] = {
 };
 #endif
 
-extern double spence(double);
+extern double ncephes_spence(double);
 extern double polevl(double, void *, int);
 extern double p1evl(double, void *, int);
 extern double zetac(double);
@@ -92,11 +92,10 @@ extern double ncephes_powi(double, int);
 extern double log(double);
 extern double fac(int i);
 extern double fabs(double);
-double polylog(int, double);
 
 extern double MACHEP;
 
-double polylog(int n, double x) {
+double ncephes_polylog(int n, double x) {
     double h, k, p, s, t, u, xc, z;
     int i, j;
 
@@ -165,7 +164,7 @@ double polylog(int n, double x) {
         s = 0.0;
         for (r = 1; r <= n / 2; r++) {
             j = 2 * r;
-            p = polylog(j, -1.0);
+            p = ncephes_polylog(j, -1.0);
             j = n - j;
             if (j == 0) {
                 s = s + p;
@@ -176,7 +175,7 @@ double polylog(int n, double x) {
             s = s + q;
         }
         s = 2.0 * s;
-        q = polylog(n, 1.0 / x);
+        q = ncephes_polylog(n, 1.0 / x);
         if (n & 1)
             q = -q;
         s = s - q;
@@ -186,7 +185,7 @@ double polylog(int n, double x) {
 
     if (n == 2) {
         if (x < 0.0 || x > 1.0)
-            return (spence(1.0 - x));
+            return (ncephes_spence(1.0 - x));
     }
 
     /*  The power series converges slowly when x is near 1.  For n = 3, this
@@ -208,8 +207,8 @@ double polylog(int n, double x) {
             xc = 1.0 - x;
             s = s - 0.5 * u * u * log(xc);
             s = s + NCEPHES_PI * NCEPHES_PI * u / 6.0;
-            s = s - polylog(3, -xc / x);
-            s = s - polylog(3, xc);
+            s = s - ncephes_polylog(3, -xc / x);
+            s = s - ncephes_polylog(3, xc);
             s = s + zetac(3.0);
             s = s + 1.0;
             return s;

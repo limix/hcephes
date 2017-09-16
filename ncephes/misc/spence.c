@@ -59,11 +59,11 @@ static unsigned short B[32] = {
 
 extern double fabs(double);
 extern double log(double);
-extern double polevl(double, void *, int);
+extern double ncephes_polevl(double, void *, int);
 
 extern double NCEPHES_PI, MACHEP;
 
-double spence(double x) {
+double ncephes_spence(double x) {
     double w, y, z;
     int flag;
 
@@ -98,7 +98,7 @@ double spence(double x) {
     else
         w = x - 1.0;
 
-    y = -w * polevl(w, A, 7) / polevl(w, B, 7);
+    y = -w * ncephes_polevl(w, A, 7) / ncephes_polevl(w, B, 7);
 
     if (flag & 1)
         y = (NCEPHES_PI * NCEPHES_PI) / 6.0 - log(x) * log(1.0 - x) - y;

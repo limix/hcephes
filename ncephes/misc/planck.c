@@ -1,18 +1,18 @@
 #include "mconf.h"
 
-extern double polylog(int, double);
+extern double ncephes_polylog(int, double);
 extern double exp(double);
 extern double ncephes_log1p(double); /* log(1+x) */
 extern double ncephes_expm1(double); /* exp(x) - 1 */
-double planckc(double, double);
-double plancki(double, double);
+double ncephes_planckc(double, double);
+double ncephes_plancki(double, double);
 
 /*  NIST value (1999): 2 pi h c^2 = 3.741 7749(22) �� 10-16 W m2  */
 double planck_c1 = 3.7417749e-16;
 /*  NIST value (1999):  h c / k  = 0.014 387 69 m K */
 double planck_c2 = 0.01438769;
 
-double plancki(double w, double T) {
+double ncephes_plancki(double w, double T) {
     double b, h, y, bw;
 
     b = T / planck_c2;
@@ -22,16 +22,16 @@ double plancki(double w, double T) {
         y = b * b;
         h = y * y;
         /* Right tail.  */
-        y = planckc(w, T);
+        y = ncephes_planckc(w, T);
         /* pi^4 / 15  */
         y = 6.493939402266829149096 * planck_c1 * h - y;
         return y;
     }
 
     h = exp(-planck_c2 / (w * T));
-    y = 6. * polylog(4, h) * bw;
-    y = (y + 6. * polylog(3, h)) * bw;
-    y = (y + 3. * polylog(2, h)) * bw;
+    y = 6. * ncephes_polylog(4, h) * bw;
+    y = (y + 6. * ncephes_polylog(3, h)) * bw;
+    y = (y + 3. * ncephes_polylog(2, h)) * bw;
     y = (y - ncephes_log1p(-h)) * bw;
     h = w * w;
     h = h * h;
@@ -39,7 +39,7 @@ double plancki(double w, double T) {
     return y;
 }
 
-/*							planckc
+/*							ncephes_planckc
  *
  *	Complemented Planck radiation integral
  *
@@ -47,9 +47,9 @@ double plancki(double w, double T) {
  *
  * SYNOPSIS:
  *
- * double lambda, T, y, planckc();
+ * double lambda, T, y, ncephes_planckc();
  *
- * y = planckc( lambda, T );
+ * y = ncephes_planckc( lambda, T );
  *
  *
  *
@@ -70,14 +70,14 @@ double plancki(double w, double T) {
  *
  */
 
-double planckc(double w, double T) {
+double ncephes_planckc(double w, double T) {
     double b, d, p, u, y;
 
     b = T / planck_c2;
     d = b * w;
     if (d <= 0.59375) {
         y = 6.493939402266829149096 * planck_c1 * b * b * b * b;
-        return (y - plancki(w, T));
+        return (y - ncephes_plancki(w, T));
     }
     u = 1.0 / d;
     p = u * u;
@@ -107,7 +107,7 @@ double planckc(double w, double T) {
     return y;
 }
 
-/*							planckd
+/*							ncephes_planckd
  *
  *	Planck's black body radiation formula
  *
@@ -115,9 +115,9 @@ double planckc(double w, double T) {
  *
  * SYNOPSIS:
  *
- * double lambda, T, y, planckd();
+ * double lambda, T, y, ncephes_planckd();
  *
- * y = planckd( lambda, T );
+ * y = ncephes_planckd( lambda, T );
  *
  *
  *
@@ -132,7 +132,7 @@ double planckc(double w, double T) {
  *
  */
 
-double planckd(double w, double T) {
+double ncephes_planckd(double w, double T) {
     return (planck_c2 /
             ((w * w * w * w * w) * (exp(planck_c2 / (w * T)) - 1.0)));
 }
@@ -141,4 +141,6 @@ double planckd(double w, double T) {
    c2/wT = constant
    Wein displacement law.
   */
-double planckw(double T) { return (planck_c2 / (4.96511423174427630 * T)); }
+double ncephes_planckw(double T) {
+    return (planck_c2 / (4.96511423174427630 * T));
+}
