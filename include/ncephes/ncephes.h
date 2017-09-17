@@ -62,10 +62,10 @@ double ncephes_ndtri(double y0);                        // ok
 double ncephes_pdtr(int k, double m);                   // ok
 double ncephes_pdtrc(int k, double m);                  // ok
 double ncephes_pdtri(int k, double y);                  // ok
-double ncephes_smirnov(int n, double e);
-double ncephes_smirnovi(int n, double p);
-double ncephes_stdtr(int k, double t);
-double ncephes_stdtri(int k, double p);
+double ncephes_smirnov(int n, double e);                // ok
+double ncephes_smirnovi(int n, double p);               // ok
+double ncephes_stdtr(int k, double t);                  // ok
+double ncephes_stdtri(int k, double p);                 // ok
 int ncephes_poldiv(double *, int, double *, int, double *);
 int ncephes_polrt(double xcof[], double cof[], int m, cmplx root[]);
 void ncephes_poladd(double a[], int na, double b[], int nb, double c[]);

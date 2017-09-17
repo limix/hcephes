@@ -52,17 +52,15 @@ int main() {
     assert_close(ncephes_nbdtr(1, 3, 0.5), 0.3125);
     assert_close(ncephes_nbdtrc(1, 3, 0.5), 0.6875);
     assert_close(ncephes_nbdtri(1, 3, 0.5), 0.61427243186761038);
-
     assert_close(ncephes_ndtr(0.3), 0.61791142218895256);
     assert_close(ncephes_ndtri(0.6), 0.25334710313579972);
-
     assert_close(ncephes_pdtr(2, 0.15), 0.99949713762359838);
     assert_close(ncephes_pdtrc(2, 0.15), 0.00050286237640162121);
     assert_close(ncephes_pdtri(2, 0.15), 4.7230515633946668);
-    // assert_close(ncephes_smirnov(2, 0.3), 0.61);
-    // assert_close(ncephes_smirnovi(2, 0.3), 0.474679434488);
-    // assert_close(ncephes_stdtr(2, 3), 0.952267016867);
-    // assert_close(ncephes_stdtri(5, 0.1), -1.47588404882);
+    assert_close(ncephes_smirnov(2, 0.3), 0.60999999999999999);
+    assert_close(ncephes_smirnovi(2, 0.3), 0.4746794344877307);
+    assert_close(ncephes_stdtr(2, 3), 0.95226701686664539);
+    assert_close(ncephes_stdtri(5, 0.1), -1.4758840487820271);
 
     return SUCCESS;
 }
