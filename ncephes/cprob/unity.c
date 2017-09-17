@@ -1,6 +1,6 @@
 #include "mconf.h"
-#include "ncephes/cprob.h"
-#include "ncephes/polyn.h"
+#include "ncephes/ncephes.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 extern double NCEPHES_INF;

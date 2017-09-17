@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "ncephes/polyn.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

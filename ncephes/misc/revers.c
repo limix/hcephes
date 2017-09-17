@@ -1,6 +1,6 @@
 #include "mconf.h"
-#include "ncephes/misc.h"
-#include "ncephes/polyn.h"
+#include "ncephes/ncephes.h"
+#include "ncephes/ncephes.h"
 #include <stdlib.h>
 
 extern int MAXPOL; /* initialized by polini() */

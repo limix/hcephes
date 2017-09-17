@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "ncephes/ellf.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 extern double atan2(double, double);

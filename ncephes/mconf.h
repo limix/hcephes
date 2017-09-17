@@ -25,6 +25,13 @@
  */
 #define NCEPHES_UNK 1
 
+/* If you define UNK, then be sure to set BIGENDIAN properly. */
+#ifdef FLOAT_WORDS_BIGENDIAN
+#define BIGENDIAN 1
+#else
+#define BIGENDIAN 0
+#endif
+
 /* Define to support tiny denormal numbers, else undefine. */
 #define NCEPHES_DENORMAL 1
 

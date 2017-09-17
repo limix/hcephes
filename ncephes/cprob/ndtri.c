@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "ncephes/cprob.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 extern double NCEPHES_MAXNUM;
@@ -214,11 +214,6 @@ static unsigned short Q2[32] = {
     0x3ec8, 0x438c, 0xf3f6, 0xccf7, 0x3e3d, 0x29e5, 0xb876, 0x6b3d,
 };
 #endif
-
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
-extern double log(double);
-extern double sqrt(double);
 
 double ncephes_ndtri(double y0) {
     double x, y, z, y2, x0, x1;

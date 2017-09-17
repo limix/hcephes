@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "ncephes/cprob.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 double ncephes_nbdtrc(int k, int n, double p) {

@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "ncephes/cprob.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 #ifdef DEC

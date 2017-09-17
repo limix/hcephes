@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "ncephes/cprob.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 extern double NCEPHES_PI, MACHEP, NCEPHES_MAXNUM;
