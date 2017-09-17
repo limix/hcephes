@@ -1,4 +1,6 @@
 #include "mconf.h"
+#include "polevl.h"
+
 extern double NCEPHES_PI;
 
 /* polylog(4, 1-x) = zeta(4) - x zeta(3) + x^2 A4(x)/B4(x)
@@ -84,8 +86,6 @@ static short B4[48] = {
 #endif
 
 extern double ncephes_spence(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
 extern double zetac(double);
 extern double pow(double, double);
 extern double ncephes_powi(double, int);

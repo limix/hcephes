@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "polevl.h"
 
 extern double NCEPHES_MAXNUM, NCEPHES_PI;
 
@@ -282,8 +283,6 @@ extern double floor(double);
 extern double ncephes_gamma(double);
 extern double pow(double, double);
 extern double exp(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
 
 extern double MACHEP;
 

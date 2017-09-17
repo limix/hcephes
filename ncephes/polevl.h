@@ -1,4 +1,7 @@
-double ncephes_polevl(double x, double coef[], int N) {
+#ifndef NCEPHES_POLELV_H
+#define NCEPHES_POLELV_H
+
+static inline double ncephes_polevl(double x, double coef[], int N) {
     double ans;
     int i;
     double *p;
@@ -20,7 +23,7 @@ double ncephes_polevl(double x, double coef[], int N) {
  * Otherwise same as polevl.
  */
 
-double ncephes_p1evl(double x, double coef[], int N) {
+static inline double ncephes_p1evl(double x, double coef[], int N) {
     double ans;
     double *p;
     int i;
@@ -35,3 +38,5 @@ double ncephes_p1evl(double x, double coef[], int N) {
 
     return ans;
 }
+
+#endif

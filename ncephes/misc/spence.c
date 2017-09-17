@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "polevl.h"
 
 #ifdef NCEPHES_UNK
 static double A[8] = {
@@ -59,7 +60,6 @@ static unsigned short B[32] = {
 
 extern double fabs(double);
 extern double log(double);
-extern double ncephes_polevl(double, void *, int);
 
 extern double NCEPHES_PI, MACHEP;
 

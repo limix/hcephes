@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "polevl.h"
 
 /* S(x) for small x */
 #ifdef NCEPHES_UNK
@@ -255,8 +256,6 @@ static unsigned short gd[44] = {
 extern double fabs(double);
 extern double cos(double);
 extern double sin(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
 
 extern double NCEPHES_PI, NCEPHES_PIO2, MACHEP;
 

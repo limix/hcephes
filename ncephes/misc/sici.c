@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "polevl.h"
 
 #ifdef NCEPHES_UNK
 static double SN[] = {
@@ -350,8 +351,6 @@ static unsigned short GD8[] = {
 extern double log(double);
 extern double sin(double);
 extern double cos(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
 
 #define EUL 0.57721566490153286061
 extern double NCEPHES_MAXNUM, NCEPHES_PIO2, MACHEP;

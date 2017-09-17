@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "polevl.h"
 
 #ifdef NCEPHES_UNK
 static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,
@@ -36,7 +37,6 @@ static unsigned short A[] = {0x3fb5, 0x5555, 0x5555, 0x5555, 0xbf95, 0x9959,
 extern double floor(double);
 extern double log(double);
 extern double tan(double);
-extern double ncephes_polevl(double, void *, int);
 
 extern double NCEPHES_PI, NCEPHES_MAXNUM;
 

@@ -21,49 +21,47 @@ typedef struct {
     double i;
 } cmplx;
 
-double ncephes_bdtr(int k, int n, double p);        // ok
-double ncephes_bdtrc(int k, int n, double p);       // ok
-double ncephes_bdtri(int k, int n, double y);       // ok
-double ncephes_beta(double a, double b);            // ok
-double ncephes_btdtr(double a, double b, double x); // ok
-double ncephes_chdtr(double df, double x);          // ok
-double ncephes_chdtrc(double df, double x);         // ok
-double ncephes_chdtri(double df, double y);         // ok
-double ncephes_cosm1(double x);                     // ok
-double ncephes_ellie(double phi, double m);         // ok
-double ncephes_ellik(double phi, double m);         // ok
-double ncephes_ellpe(double x);                     // ok
-double ncephes_ellpk(double x);                     // ok
-double ncephes_euclid(double *num, double *den);    // ok
-double ncephes_expm1(double x);                     // ok
-double ncephes_expx2(double x, int sign);           // ok
-double ncephes_fdtr(int ia, int ib, double x);      // ok
-double ncephes_fdtrc(int ia, int ib, double x);     // ok
-double ncephes_fdtri(int ia, int ib, double y);     // ok
-double ncephes_gamma(double x);                     // ok
-double ncephes_gdtr(double a, double b, double x);
-double ncephes_gdtrc(double a, double b, double x);
-double ncephes_igam(double a, double x);
-double ncephes_igamc(double a, double x);
-double ncephes_igami(double a, double y0);
-double ncephes_incbet(double aa, double bb, double xx);
-double ncephes_incbi(double aa, double bb, double yy0);
-double ncephes_kolmogi(double p);
-double ncephes_kolmogorov(double y);
-double ncephes_lbeta(double a, double b);
-double ncephes_lgam_sgn(double x, int *sign);
-double ncephes_lgam(double x);
-double ncephes_log1p(double x);
-double ncephes_nbdtr(int k, int n, double p);
-double ncephes_nbdtrc(int k, int n, double p);
-double ncephes_nbdtri(int k, int n, double p);
-double ncephes_ndtr(double a);
-double ncephes_ndtri(double y0);
-double ncephes_p1evl(double x, double coef[], int N);
-double ncephes_pdtr(int k, double m);
-double ncephes_pdtrc(int k, double m);
-double ncephes_pdtri(int k, double y);
-double ncephes_polevl(double x, double coef[], int N);
+double ncephes_bdtr(int k, int n, double p);            // ok
+double ncephes_bdtrc(int k, int n, double p);           // ok
+double ncephes_bdtri(int k, int n, double y);           // ok
+double ncephes_beta(double a, double b);                // ok
+double ncephes_btdtr(double a, double b, double x);     // ok
+double ncephes_chdtr(double df, double x);              // ok
+double ncephes_chdtrc(double df, double x);             // ok
+double ncephes_chdtri(double df, double y);             // ok
+double ncephes_cosm1(double x);                         // ok
+double ncephes_ellie(double phi, double m);             // ok
+double ncephes_ellik(double phi, double m);             // ok
+double ncephes_ellpe(double x);                         // ok
+double ncephes_ellpk(double x);                         // ok
+double ncephes_euclid(double *num, double *den);        // ok
+double ncephes_expm1(double x);                         // ok
+double ncephes_expx2(double x, int sign);               // ok
+double ncephes_fdtr(int ia, int ib, double x);          // ok
+double ncephes_fdtrc(int ia, int ib, double x);         // ok
+double ncephes_fdtri(int ia, int ib, double y);         // ok
+double ncephes_gamma(double x);                         // ok
+double ncephes_gdtr(double a, double b, double x);      // ok
+double ncephes_gdtrc(double a, double b, double x);     // ok
+double ncephes_igam(double a, double x);                // ok
+double ncephes_igamc(double a, double x);               // ok
+double ncephes_igami(double a, double y0);              // ok
+double ncephes_incbet(double aa, double bb, double xx); // ok
+double ncephes_incbi(double aa, double bb, double yy0); // ok
+double ncephes_kolmogi(double p);                       // ok
+double ncephes_kolmogorov(double y);                    // ok
+double ncephes_lbeta(double a, double b);               // ok
+double ncephes_lgam_sgn(double x, int *sign);           // ok
+double ncephes_lgam(double x);                          // ok
+double ncephes_log1p(double x);                         // ok
+double ncephes_nbdtr(int k, int n, double p);           // ok
+double ncephes_nbdtrc(int k, int n, double p);          // ok
+double ncephes_nbdtri(int k, int n, double p);          // ok
+double ncephes_ndtr(double a);                          // ok
+double ncephes_ndtri(double y0);                        // ok
+double ncephes_pdtr(int k, double m);                   // ok
+double ncephes_pdtrc(int k, double m);                  // ok
+double ncephes_pdtri(int k, double y);                  // ok
 double ncephes_smirnov(int n, double e);
 double ncephes_smirnovi(int n, double p);
 double ncephes_stdtr(int k, double t);

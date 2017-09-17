@@ -1,9 +1,8 @@
 #include "mconf.h"
+#include "polevl.h"
 
 extern double log(double);
 extern double exp(double);
-extern double ncephes_polevl(double, void *, int);
-extern double ncephes_p1evl(double, void *, int);
 
 #define EUL 5.772156649015328606065e-1
 
