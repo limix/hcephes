@@ -21,18 +21,18 @@ typedef struct {
     double i;
 } cmplx;
 
-double ncephes_bdtr(int k, int n, double p);
-double ncephes_bdtrc(int k, int n, double p);
-double ncephes_bdtri(int k, int n, double y);
-double ncephes_beta(double a, double b);
-double ncephes_btdtr(double a, double b, double x);
-double ncephes_chdtr(double df, double x);
-double ncephes_chdtrc(double df, double x);
-double ncephes_chdtri(double df, double y);
-double ncephes_cosm1(double x);
-double ncephes_ellie(double phi, double m);
-double ncephes_ellik(double phi, double m);
-double ncephes_ellpe(double x);
+double ncephes_bdtr(int k, int n, double p);        // ok
+double ncephes_bdtrc(int k, int n, double p);       // ok
+double ncephes_bdtri(int k, int n, double y);       // ok
+double ncephes_beta(double a, double b);            // ok
+double ncephes_btdtr(double a, double b, double x); // ok
+double ncephes_chdtr(double df, double x);          // ok
+double ncephes_chdtrc(double df, double x);         // ok
+double ncephes_chdtri(double df, double y);         // ok
+double ncephes_cosm1(double x);                     // ok
+double ncephes_ellie(double phi, double m);         // ok
+double ncephes_ellik(double phi, double m);         // ok
+double ncephes_ellpe(double x);                     // ok
 double ncephes_ellpk(double x);
 double ncephes_erf(double x);
 double ncephes_erfc(double a);

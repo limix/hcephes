@@ -23,7 +23,7 @@ double ncephes_ellie(double phi, double m) {
         sign = 1;
     }
     a = 1.0 - m;
-    E = ncephes_ellpe(a);
+    E = ncephes_ellpe(m);
     if (a == 0.0) {
         temp = sin(lphi);
         goto done;

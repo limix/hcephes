@@ -11,7 +11,7 @@ double ncephes_polevl(double x, double coef[], int N) {
         ans = ans * x + *p++;
     while (--i);
 
-    return (ans);
+    return ans;
 }
 
 /*							p1evl()	*/
@@ -33,5 +33,5 @@ double ncephes_p1evl(double x, double coef[], int N) {
         ans = ans * x + *p++;
     while (--i);
 
-    return (ans);
+    return ans;
 }
