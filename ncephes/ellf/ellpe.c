@@ -15,6 +15,7 @@ static double Q[] = {3.27954898576485872656E-5, 1.00962792679356715133E-3,
                      9.37499997197644278445E-2, 2.49999999999888314361E-1};
 
 double ncephes_ellpe(double x) {
+    // line added by danilo
     x = 1.0 - x;
     if ((x <= 0.0) || (x > 1.0)) {
         if (x == 0.0)

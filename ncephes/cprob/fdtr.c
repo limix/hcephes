@@ -32,6 +32,9 @@ double ncephes_fdtr(int ia, int ib, double x) {
 double ncephes_fdtri(int ia, int ib, double y) {
     double a, b, w, x;
 
+    // added by danilo
+    y = 1.0 - y;
+
     if ((ia < 1) || (ib < 1) || (y <= 0.0) || (y > 1.0)) {
         ncephes_mtherr("fdtri", NCEPHES_DOMAIN);
         return (0.0);

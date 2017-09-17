@@ -33,16 +33,14 @@ double ncephes_cosm1(double x);                     // ok
 double ncephes_ellie(double phi, double m);         // ok
 double ncephes_ellik(double phi, double m);         // ok
 double ncephes_ellpe(double x);                     // ok
-double ncephes_ellpk(double x);
-double ncephes_erf(double x);
-double ncephes_erfc(double a);
-double ncephes_euclid(double *num, double *den);
-double ncephes_expm1(double x);
-double ncephes_expx2(double x, int sign);
-double ncephes_fdtr(int ia, int ib, double x);
-double ncephes_fdtrc(int ia, int ib, double x);
-double ncephes_fdtri(int ia, int ib, double y);
-double ncephes_gamma(double x);
+double ncephes_ellpk(double x);                     // ok
+double ncephes_euclid(double *num, double *den);    // ok
+double ncephes_expm1(double x);                     // ok
+double ncephes_expx2(double x, int sign);           // ok
+double ncephes_fdtr(int ia, int ib, double x);      // ok
+double ncephes_fdtrc(int ia, int ib, double x);     // ok
+double ncephes_fdtri(int ia, int ib, double y);     // ok
+double ncephes_gamma(double x);                     // ok
 double ncephes_gdtr(double a, double b, double x);
 double ncephes_gdtrc(double a, double b, double x);
 double ncephes_igam(double a, double x);
