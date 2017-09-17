@@ -1,7 +1,6 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
 #include <math.h>
-#include <stdio.h>
 
 static double P[] = {1.53552577301013293365E-4, 2.50888492163602060990E-3,
                      8.68786816565889628429E-3, 1.07350949056076193403E-2,
@@ -23,8 +22,5 @@ double ncephes_ellpe(double x) {
         ncephes_mtherr("ellpe", NCEPHES_DOMAIN);
         return 0.0;
     }
-    printf("First: %.10f\n", ncephes_polevl(x, P, 10));
-    printf("Secon: %.10f\n", log(x));
-    printf("Third: %.10f\n", ncephes_polevl(x, Q, 9));
     return ncephes_polevl(x, P, 10) - log(x) * (x * ncephes_polevl(x, Q, 9));
 }

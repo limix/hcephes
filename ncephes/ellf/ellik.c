@@ -22,7 +22,7 @@ double ncephes_ellik(double phi, double m) {
     if (npio2 & 1)
         npio2 += 1;
     if (npio2) {
-        K = ncephes_ellpk(a);
+        K = ncephes_ellpk(m);
         phi = phi - npio2 * NCEPHES_PIO2;
     } else
         K = 0.0;
@@ -40,7 +40,7 @@ double ncephes_ellik(double phi, double m) {
         if (fabs(e) < 10.0) {
             e = atan(e);
             if (npio2 == 0)
-                K = ncephes_ellpk(a);
+                K = ncephes_ellpk(m);
             temp = K - ncephes_ellik(e, m);
             goto done;
         }

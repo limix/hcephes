@@ -22,9 +22,9 @@ int main() {
     assert_close(ncephes_cosm1(0.9), -0.378390031729);
     assert_close(ncephes_ellie(-5.3, 0.12), -5.12290521194);
     assert_close(ncephes_ellik(-5.3, 0.12), -5.48607395126);
-    assert_close(ncephes_ellpe(0.12), 1.522555369217904);
 
-    // assert_close(ncephes_ellpk(0.12), 2.492635323239716);
+    assert_close(ncephes_ellpe(0.12), 1.522555369217904); // modificado
+    assert_close(ncephes_ellpk(0.12), 1.621393137980658); // modificado
 
     // assert_close(ncephes_erf(1.3), 0.9340079449406524);
     // assert_close(ncephes_erfc(0.3), 0.671373240541);

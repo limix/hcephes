@@ -1,6 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include "ncephes/ncephes.h"
 #include <math.h>
 
 #ifdef DEC
@@ -76,7 +75,7 @@ static double C1 = 1.3862943611198906188E0; /* log(4) */
 extern double MACHEP, NCEPHES_MAXNUM;
 
 double ncephes_ellpk(double x) {
-
+    x = 1 - x;
     if ((x < 0.0) || (x > 1.0)) {
         ncephes_mtherr("ellpk", NCEPHES_DOMAIN);
         return (0.0);

@@ -61,7 +61,7 @@ double ncephes_ellie(double phi, double m) {
         e += c * sin(lphi);
     }
 
-    temp = E / ncephes_ellpk(1.0 - m);
+    temp = E / ncephes_ellpk(m);
     temp *= (atan(t) + mod * NCEPHES_PI) / (d * a);
     temp += e;
 
