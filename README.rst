@@ -20,15 +20,7 @@ On Linux or macOS systems it can be as simple as
 
 .. code:: bash
 
-    wget https://github.com/limix/hcephes/archive/0.1.4.tar.gz
-    tar xzf 0.1.4.tar.gz
-    cd hcephes-0.1.4
-    mkdir build
-    cd build
-    cmake ..
-    make
-    make test
-    sudo make install
+    source <(curl -s https://raw.githubusercontent.com/limix/hcephes/master/install)
 
 assuming that you have both zlib (often the case) and Zstandard (usually not
 the case) libraries installed and that ``cmake`` managed to find them without
