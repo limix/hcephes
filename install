@@ -2,25 +2,61 @@
 
 VERSION=0.1.6
 
-rm hcephes-$VERSION.tar.gz || true
-rm -rf hcephes-$VERSION || true
+rm hcephes-$VERSION.tar.gz >/dev/null 2>&1 || true
+rm -rf hcephes-$VERSION >/dev/null 2>&1 /dev/null || true
 
+FILE=$VERSION.tar.gz
+
+echo -n "Downloading hcephes-$FILE..."
 curl -o hcephes-$VERSION.tar.gz \
-     -L https://github.com/limix/hcephes/archive/$VERSION.tar.gz
-tar xzf hcephes-$VERSION.tar.gz
+     -L https://github.com/limix/hcephes/archive/$FILE \
+     >/dev/null 2>&1
+if [[ "$?" == "0" ]]; then
+    echo " done."
+else
+    echo " FAILED."
+    exit 1
+fi
 
+tar xzf hcephes-$FILE
 cd hcephes-$VERSION
 
 mkdir build
 cd build
 
-cmake ..
-make
-make test
-sudo make install
+echo -n "Compiling..."
+cmake .. >/dev/null 2>&1
+make >/dev/null 2>&1
+if [[ "$?" == "0" ]]; then
+    echo " done."
+else
+    echo " FAILED."
+    exit 1
+fi
+
+echo -n "Testing..."
+make test >/dev/null 2>&1
+if [[ "$?" == "0" ]]; then
+    echo " done."
+else
+    echo " FAILED."
+    exit 1
+fi
+
+echo -n "Installing..."
+make install >/dev/null 2>&1
+if [[ "$?" != "0" ]]; then
+    sudo make install >/dev/null 2>&1
+fi
+if [[ "$?" == "0" ]]; then
+    echo " done."
+else
+    echo " FAILED."
+    exit 1
+fi
 
 cd ..
 cd ..
 
-rm hcephes-$VERSION.tar.gz || true
-rm -rf hcephes-$VERSION || true
+rm hcephes-$VERSION.tar.gz >/dev/null 2>&1 || true
+rm -rf hcephes-$VERSION >/dev/null 2>&1 || true
