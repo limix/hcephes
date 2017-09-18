@@ -53,7 +53,7 @@ for details.
 .. |Build-Status| image:: https://travis-ci.org/limix/hcephes.svg?branch=master
     :target: https://travis-ci.org/limix/hcephes
 
-.. |Win-Build-Status| image:: https://ci.appveyor.com/api/projects/status/xryjgvyt2vbq56qj/branch/master?svg=true
+.. |Win-Build-Status| image:: https://ci.appveyor.com/api/projects/status/enlpm6cfltjy7h3m/branch/master?svg=true
     :target: https://ci.appveyor.com/project/Horta/hcephes/branch/master
 
 .. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/83c5d8cd22cb46b3bc5eaa16fd18fa69
