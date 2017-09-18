@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 double ncephes_fdtrc(int ia, int ib, double x) {
     double a, b, w;

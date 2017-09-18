@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 static double RP[4] = {

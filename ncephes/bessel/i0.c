@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 /* Chebyshev coefficients for exp(-x) I0(x)
  * in the interval [0,8].

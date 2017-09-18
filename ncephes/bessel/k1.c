@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 /* Chebyshev coefficients for x(K1(x) - log(x/2) I1(x))

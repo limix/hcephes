@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 #define MAXGAM 171.624376956302725
 

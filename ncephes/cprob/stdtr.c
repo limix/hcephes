@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 double ncephes_stdtr(int k, double t) {
     double x, rk, z, f, tz, p, xsqk;

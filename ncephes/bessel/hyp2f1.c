@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 #define EPS 1.0e-13

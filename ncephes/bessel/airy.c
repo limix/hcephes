@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 static double c1 = 0.35502805388781723926;

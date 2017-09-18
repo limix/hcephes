@@ -1,7 +1,3 @@
-/* Note: all coefficients satisfy the relative error criterion
- * except YP, YQ which are designed for absolute error. */
-
-
 #include "ncephes/ncephes.h"
 
 static double PP[7] = {

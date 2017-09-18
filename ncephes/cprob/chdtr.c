@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 double ncephes_chdtrc(double df, double x) {
 

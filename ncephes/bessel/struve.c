@@ -180,19 +180,3 @@ double ncephes_yv(double v, double x) {
     y = (cos(t) * ncephes_jv(v, x) - ncephes_jv(-v, x)) / sin(t);
     return (y);
 }
-
-/* Crossover points between ascending series and asymptotic series
- * for Struve function
- *
- *	 v	 x
- *
- *	 0	19.2
- *	 1	18.95
- *	 2	19.15
- *	 3	19.3
- *	 5	19.7
- *	10	21.35
- *	20	26.35
- *	30	32.31
- *	40	40.0
- */

@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 double ncephes_jn(int n, double x) {
     double pkm2, pkm1, pk, xk, r, ans;

@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 #define EUL 5.772156649015328606065e-1
