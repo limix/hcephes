@@ -1,7 +1,6 @@
 
 #include "ncephes/ncephes.h"
 
-
 /* log1p(x) = log(1 + x)  */
 
 /* Coefficients for log(1+x) = x - x**2/2 + x**3 P(x)/Q(x)
@@ -63,7 +62,7 @@ double ncephes_expm1(double x) {
     if (x == -HUGE_VAL)
         return (-1.0);
     if ((x < -0.5) || (x > 0.5))
-        return (exp(x) - 1.0);
+        return expm1(x);
     xx = x * x;
     r = x * ncephes_polevl(xx, EP, 2);
     r = r / (ncephes_polevl(xx, EQ, 3) - r);
