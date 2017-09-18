@@ -61,6 +61,7 @@ double ncephes_bdtrc(int k, int n, double p);       // ok
 double ncephes_bdtri(int k, int n, double y);       // ok
 double ncephes_beta(double a, double b);            // ok
 double ncephes_btdtr(double a, double b, double x); // ok
+double ncephes_cabs(cmplx *z);
 double ncephes_chbevl(double x, double array[], int n);
 double ncephes_chdtr(double df, double x);  // ok
 double ncephes_chdtrc(double df, double x); // ok
@@ -86,6 +87,7 @@ double ncephes_gdtrc(double a, double b, double x); // ok
 double ncephes_hyp2f0(double a, double b, double x, int type, double *err);
 double ncephes_hyp2f1(double a, double b, double c, double x);
 double ncephes_hyperg(double a, double b, double x);
+double ncephes_hypot(double x, double y);
 double ncephes_i0(double x);
 double ncephes_i0e(double x);
 double ncephes_i1(double x);
@@ -144,6 +146,14 @@ int ncephes_poldiv(double *, int, double *, int, double *);
 int ncephes_polrt(double xcof[], double cof[], int m, cmplx root[]);
 int ncephes_shichi(double x, double *si, double *ci);
 int ncephes_sici(double x, double *si, double *ci);
+void ncephes_cadd(cmplx *, cmplx *, cmplx *);
+void ncephes_cadd(cmplx *a, cmplx *b, cmplx *c);
+void ncephes_cdiv(cmplx *, cmplx *, cmplx *);
+void ncephes_cmov(void *a, void *b);
+void ncephes_cmul(cmplx *a, cmplx *b, cmplx *c);
+void ncephes_cneg(cmplx *a);
+void ncephes_csqrt(cmplx *z, cmplx *w);
+void ncephes_csub(cmplx *a, cmplx *b, cmplx *c);
 void ncephes_poladd(double a[], int na, double b[], int nb, double c[]);
 void ncephes_polclr(double *, int);
 void ncephes_polmov(double *, int, double *);
@@ -155,5 +165,10 @@ void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_revers(double y[], double x[], int n);
 void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_rsub(fract *f1, fract *f2, fract *f3);
+double ncephes_simpsn(double f[], double delta);
+double ncephes_planckc(double w, double T);
+double ncephes_plancki(double w, double T);
+double ncephes_planckd(double w, double T);
+double ncephes_planckw(double T);
 
 #endif

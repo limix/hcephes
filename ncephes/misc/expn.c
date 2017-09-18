@@ -1,7 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
-extern double ncephes_gamma(double);
 
 #define EUL 0.57721566490153286060
 #define BIG 1.44115188075855872E+17

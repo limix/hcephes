@@ -1,7 +1,4 @@
-
 #include "ncephes/ncephes.h"
-#include "ncephes/ncephes.h"
-
 
 static double P[] = {1.53552577301013293365E-4, 2.50888492163602060990E-3,
                      8.68786816565889628429E-3, 1.07350949056076193403E-2,

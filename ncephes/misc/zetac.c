@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 /* Riemann zeta(x) - 1

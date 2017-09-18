@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 double ncephes_ellie(double phi, double m) {
     double a, b, c, e, temp;

@@ -1,9 +1,3 @@
-
-/* Square root, sine, cosine, and arctangent of polynomial.
- * See polyn.c for data structures and discussion.
- */
-
-
 #include "ncephes/ncephes.h"
 
 #include <stdio.h>
@@ -129,10 +123,6 @@ void ncephes_polsqt(double pol[], double ans[], int nn) {
     double t;
     double *x, *y;
     int i, n;
-#if 0
-  double z[N+1];
-  double u;
-#endif
 
     if (nn > N) {
         ncephes_mtherr("polatn", NCEPHES_OVERFLOW);
@@ -182,26 +172,6 @@ nzero:
         x[n / 2] = 1.0;
         ncephes_polmul(x, nn, y, nn, y);
     }
-#if 0
-/* Newton iterations */
-for( n=0; n<10; n++ )
-	{
-	poldiv( y, nn, pol, nn, z );
-	poladd( y, nn, z, nn, y );
-	for( i=0; i<=nn; i++ )
-		y[i] *= 0.5;
-	for( i=0; i<=nn; i++ )
-		{
-		u = fabs( y[i] - z[i] );
-		if( u > 1.0e-15 )
-			goto more;
-		}
-	goto done;
-more:	;
-	}
-printf( "square root did not converge\n" );
-done:
-#endif /* 0 */
 
     ncephes_polmov(y, nn, ans);
     free(y);

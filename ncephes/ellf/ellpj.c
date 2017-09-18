@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
                   double *ph) {

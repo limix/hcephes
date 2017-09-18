@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 /* Chebyshev coefficients for reciprocal cephes_gamma function
  * in interval 0 to 1.  Function is 1/(x cephes_gamma(x)) - 1

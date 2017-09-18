@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 #define BIG (1.0 / NCEPHES_MACHEP)
 

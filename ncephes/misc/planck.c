@@ -1,11 +1,4 @@
-
-
-extern double ncephes_polylog(int, double);
-extern double exp(double);
-extern double ncephes_log1p(double); /* log(1+x) */
-extern double ncephes_expm1(double); /* exp(x) - 1 */
-double ncephes_planckc(double, double);
-double ncephes_plancki(double, double);
+#include "ncephes/ncephes.h"
 
 /*  NIST value (1999): 2 pi h c^2 = 3.741 7749(22) �� 10-16 W m2  */
 double planck_c1 = 3.7417749e-16;
@@ -39,37 +32,6 @@ double ncephes_plancki(double w, double T) {
     return y;
 }
 
-/*							ncephes_planckc
- *
- *	Complemented Planck radiation integral
- *
- *
- *
- * SYNOPSIS:
- *
- * double lambda, T, y, ncephes_planckc();
- *
- * y = ncephes_planckc( lambda, T );
- *
- *
- *
- * DESCRIPTION:
- *
- *  Integral from w to infinity (area under right hand tail)
- *  of Planck's radiation formula.
- *
- *  The program for large lambda uses an asymptotic series in inverse
- *  powers of the wavelength.
- *
- * ACCURACY:
- *
- *                      Relative error.
- *   The domain refers to lambda T / c2.
- * arithmetic   domain     # trials      peak         rms
- *    IEEE      0.6, 10      50000      1.1e-15     2.2e-16
- *
- */
-
 double ncephes_planckc(double w, double T) {
     double b, d, p, u, y;
 
@@ -81,17 +43,7 @@ double ncephes_planckc(double w, double T) {
     }
     u = 1.0 / d;
     p = u * u;
-#if 0
-  y = 236364091.*p/365866013534056632601804800000.;
-  y = (y - 15458917./475677107995483570176000000.)*p;
-  y = (y + 174611./123104841613737984000000.)*p;
-  y = (y - 43867./643745871363538944000.)*p;
-  y = ((y + 3617./1081289781411840000.)*p - 1./5928123801600.)*p;
-  y = ((y + 691./78460462080000.)*p - 1./2075673600.)*p;
-  y = ((((y + 1./35481600.)*p - 1.0/544320.)*p + 1.0/6720.)*p -  1./40.)*p;
-  y = y + log(d * ncephes_expm1(u));
-  y = y - 5.*u/8. + 1./3.;
-#else
+
     y = -236364091. * p / 45733251691757079075225600000.;
     y = (y + 77683. / 352527500984795136000000.) * p;
     y = (y - 174611. / 18465726242060697600000.) * p;
@@ -102,35 +54,9 @@ double ncephes_planckc(double w, double T) {
          1. / 60.) *
         p;
     y = y - 0.125 * u + 1. / 3.;
-#endif
     y = y * planck_c1 * b / (w * w * w);
     return y;
 }
-
-/*							ncephes_planckd
- *
- *	Planck's black body radiation formula
- *
- *
- *
- * SYNOPSIS:
- *
- * double lambda, T, y, ncephes_planckd();
- *
- * y = ncephes_planckd( lambda, T );
- *
- *
- *
- * DESCRIPTION:
- *
- *  Evaluates Planck's radiation formula
- *                      -5
- *            c1  lambda
- *     E =  ------------------
- *            c2/(lambda T)
- *           e             - 1
- *
- */
 
 double ncephes_planckd(double w, double T) {
     return (planck_c2 /

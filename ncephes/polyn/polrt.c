@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 int ncephes_polrt(double xcof[], double cof[], int m, cmplx root[]) {
     register double *p, *q;

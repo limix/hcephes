@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 /* Factorials of integers from 0 through 33 */

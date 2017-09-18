@@ -1,8 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
-extern double log(double);
-extern double exp(double);
 
 #define EUL 5.772156649015328606065e-1
 

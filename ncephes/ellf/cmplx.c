@@ -1,20 +1,5 @@
-
 #include "ncephes/ncephes.h"
 
-
-extern double atan2(double, double);
-extern double frexp(double, int *);
-extern double ldexp(double, int);
-void cdiv(cmplx *, cmplx *, cmplx *);
-void cadd(cmplx *, cmplx *, cmplx *);
-
-/*
-typedef struct
-        {
-        double r;
-        double i;
-        }cmplx;
-*/
 cmplx czero = {0.0, 0.0};
 extern cmplx czero;
 cmplx cone = {1.0, 0.0};
@@ -22,7 +7,7 @@ extern cmplx cone;
 
 /*	c = b + a	*/
 
-void cadd(register cmplx *a, register cmplx *b, cmplx *c) {
+void ncephes_cadd(register cmplx *a, register cmplx *b, cmplx *c) {
 
     c->r = b->r + a->r;
     c->i = b->i + a->i;
@@ -30,7 +15,7 @@ void cadd(register cmplx *a, register cmplx *b, cmplx *c) {
 
 /*	c = b - a	*/
 
-void csub(register cmplx *a, register cmplx *b, cmplx *c) {
+void ncephes_csub(register cmplx *a, register cmplx *b, cmplx *c) {
 
     c->r = b->r - a->r;
     c->i = b->i - a->i;
@@ -38,7 +23,7 @@ void csub(register cmplx *a, register cmplx *b, cmplx *c) {
 
 /*	c = b * a */
 
-void cmul(register cmplx *a, register cmplx *b, cmplx *c) {
+void ncephes_cmul(register cmplx *a, register cmplx *b, cmplx *c) {
     double y;
 
     y = b->r * a->r - b->i * a->i;
@@ -48,7 +33,7 @@ void cmul(register cmplx *a, register cmplx *b, cmplx *c) {
 
 /*	c = b / a */
 
-void cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
+void ncephes_cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
     double y, p, q, w;
 
     y = a->r * a->r + a->i * a->i;
@@ -71,7 +56,7 @@ void cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
 /*	b = a
    Caution, a `short' is assumed to be 16 bits wide.  */
 
-void cmov(void *a, void *b) {
+void ncephes_cmov(void *a, void *b) {
     register short *pa, *pb;
     int i;
 
@@ -83,63 +68,11 @@ void cmov(void *a, void *b) {
     while (--i);
 }
 
-void cneg(register cmplx *a) {
+void ncephes_cneg(register cmplx *a) {
 
     a->r = -a->r;
     a->i = -a->i;
 }
-
-    /*							ncephes_cabs()
-     *
-     *	Complex absolute value
-     *
-     *
-     *
-     * SYNOPSIS:
-     *
-     * double ncephes_cabs();
-     * cmplx z;
-     * double a;
-     *
-     * a = ncephes_cabs( &z );
-     *
-     *
-     *
-     * DESCRIPTION:
-     *
-     *
-     * If z = x + iy
-     *
-     * then
-     *
-     *       a = sqrt( x**2 + y**2 ).
-     *
-     * Overflow and underflow are avoided by testing the magnitudes
-     * of x and y before squaring.  If either is outside half of
-     * the floating point full scale range, both are rescaled.
-     *
-     *
-     * ACCURACY:
-     *
-     *                      Relative error:
-     * arithmetic   domain     # trials      peak         rms
-     *    DEC       -30,+30     30000       3.2e-17     9.2e-18
-     *    IEEE      -10,+10    100000       2.7e-16     6.9e-17
-     */
-
-    /*
-    Cephes Math Library Release 2.1:  January, 1989
-    Copyright 1984, 1987, 1989 by Stephen L. Moshier
-    Direct inquiries to 30 Frost Street, Cambridge, MA 02140
-    */
-
-    /*
-    typedef struct
-            {
-            double r;
-            double i;
-            }cmplx;
-    */
 
 #define PREC 27
 #define MAXEXP 1024
@@ -204,52 +137,6 @@ double ncephes_cabs(register cmplx *z) {
     b = ldexp(b, e);
     return (b);
 }
-/*							ncephes_csqrt()
- *
- *	Complex square root
- *
- *
- *
- * SYNOPSIS:
- *
- * void ncephes_csqrt();
- * cmplx z, w;
- *
- * ncephes_csqrt( &z, &w );
- *
- *
- *
- * DESCRIPTION:
- *
- *
- * If z = x + iy,  r = |z|, then
- *
- *                       1/2
- * Im w  =  [ (r - x)/2 ]   ,
- *
- * Re w  =  y / 2 Im w.
- *
- *
- * Note that -w is also a square root of z.  The root chosen
- * is always in the upper half plane.
- *
- * Because of the potential for cancellation error in r - x,
- * the result is sharpened by doing a Heron iteration
- * (see sqrt.c) in complex arithmetic.
- *
- *
- *
- * ACCURACY:
- *
- *                      Relative error:
- * arithmetic   domain     # trials      peak         rms
- *    DEC       -10,+10     25000       3.2e-17     9.6e-18
- *    IEEE      -10,+10    100000       3.2e-16     7.7e-17
- *
- *                        2
- * Also tested by ncephes_csqrt( z ) = z, and tested by arguments
- * close to the real axis.
- */
 
 void ncephes_csqrt(cmplx *z, cmplx *w) {
     cmplx q, s;
@@ -295,13 +182,13 @@ void ncephes_csqrt(cmplx *z, cmplx *w) {
     q.i = r;
     q.r = y / (2.0 * r);
     /* Heron iteration in complex arithmetic */
-    cdiv(&q, z, &s);
-    cadd(&q, &s, w);
+    ncephes_cdiv(&q, z, &s);
+    ncephes_cadd(&q, &s, w);
     w->r *= 0.5;
     w->i *= 0.5;
 }
 
-double hypot(double x, double y) {
+double ncephes_hypot(double x, double y) {
     cmplx z;
 
     z.r = x;

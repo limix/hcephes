@@ -1,6 +1,4 @@
-
 #include "ncephes/ncephes.h"
-
 
 double ncephes_ellik(double phi, double m) {
     double a, b, c, e, temp, t, K;

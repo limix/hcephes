@@ -1,3 +1,5 @@
+#include "ncephes/ncephes.h"
+
 double ncephes_chbevl(double x, double array[], int n) {
     double b0, b1, b2, *p;
     int i;

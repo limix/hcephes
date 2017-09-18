@@ -1,4 +1,3 @@
-
 #include "ncephes/ncephes.h"
 
 static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,
