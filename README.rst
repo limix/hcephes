@@ -20,6 +20,9 @@ for details.
 .. |Build-Status| image:: https://travis-ci.org/limix/ncephes.svg?branch=master
     :target: https://travis-ci.org/limix/ncephes
 
+.. |Win-Build-Status| image:: https://ci.appveyor.com/api/projects/status/xryjgvyt2vbq56qj/branch/develop?svg=true
+    :target: https://ci.appveyor.com/project/Horta/ncephes/branch/develop
+
 .. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/83c5d8cd22cb46b3bc5eaa16fd18fa69
     :target: https://www.codacy.com/app/danilo.horta/ncephes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/ncephes&amp;utm_campaign=Badge_Grade
 
