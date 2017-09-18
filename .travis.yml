@@ -20,8 +20,6 @@ notifications:
     on_failure: always
 deploy:
   provider: releases
-  api_key:
-    secure: BgTTcO03U1gWJ1Fm8/zWPaEyirc8Chzabbe9E0TGfx0nWscE6YxTxX4WVeOxQdJmVoMAb5kQwd3IuYvXeksdL7neTEBYxkB4IHfNAGBCGROk4Ygt0EmDWm/Z0JqpyU5qWyGuluw6q6FOn+9hzUqrf1ZaVyjItrTijSZtUybM3NJy1wKveYSSY83Hw3nl0SAL0ebfVkMoNoVDs/Y30SEoZu2YG9Gb3WoYSa+ALBG4fHctnmQbv49qVuNHchQh6U/Hs/q0abLV79iE3B4mbH8LoGpu/4/MYnfJPOAP3rKKY5f9EXNmb6yQvPNRvd1ZLhBjDx41mzxMdjeygVJcvkSVdbV04j+zeYiFn517KJ9N2u++YGtKNkfJTyDdw3zWqVxCe9KhMfgRABuCKcrX75cpYjM9lNVkH/HNtXBV0aMGTD+j1QpmruMpQCE0j6Jbhit+bcJPj/U7jmdByFS7yPHxurAw+cR41zehSlE0QbxiGIIqRwNZtHduYZnPIu5ORaKmXcmnglu5njx40a4lPGL9VLNRSj/FlNmEda7k+HuK/u4B6Ql6DZqp69mPEqr/sr8qEMtIsQYaJRgsV201MIOVpoen1dBQmsi62exmzUXg8ZKuz6CGDkPcojAcpo9kr1Cn8S8zOVmr8vFen4/ITIq9auhch97Q0Uw8j8BBllNkVHY=
   on:
     repo: limix/hcephes
     branch: master
