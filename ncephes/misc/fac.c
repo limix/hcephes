@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "ncephes/ncephes.h"
 
 /* Factorials of integers from 0 through 33 */
 #ifdef NCEPHES_UNK
@@ -89,20 +90,18 @@ static unsigned short factbl[] = {
 
 double ncephes_gamma(double);
 
-extern double NCEPHES_MAXNUM;
-
-double fac(int i) {
+double ncephes_fac(int i) {
     double x, f, n;
     int j;
 
     if (i < 0) {
         ncephes_mtherr("fac", NCEPHES_SING);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     if (i > MAXFAC) {
         ncephes_mtherr("fac", NCEPHES_OVERFLOW);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     /* Get answer from table for small i. */

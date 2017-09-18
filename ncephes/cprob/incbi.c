@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP, NCEPHES_MAXNUM, MAXLOG, MINLOG;
-
 double ncephes_incbi(double aa, double bb, double yy0) {
     double a, b, y0, d, y, x, x0, x1, lgm, yp, di, dithresh, yl, yh, xt;
     int i, rflg, dir, nflg;
@@ -54,7 +52,7 @@ double ncephes_incbi(double aa, double bb, double yy0) {
         (1.0 / (2.0 * b - 1.0) - 1.0 / (2.0 * a - 1.0)) *
             (lgm + 5.0 / 6.0 - 2.0 / (3.0 * x));
     d = 2.0 * d;
-    if (d < MINLOG) {
+    if (d < NCEPHES_MINLOG) {
         x = 1.0;
         goto under;
     }
@@ -73,7 +71,7 @@ ihalve:
         if (i != 0) {
             x = x0 + di * (x1 - x0);
             if (x == 1.0)
-                x = 1.0 - MACHEP;
+                x = 1.0 - NCEPHES_MACHEP;
             if (x == 0.0) {
                 di = 0.5;
                 x = x0 + di * (x1 - x0);
@@ -123,7 +121,7 @@ ihalve:
             }
         } else {
             x1 = x;
-            if (rflg == 1 && x1 < MACHEP) {
+            if (rflg == 1 && x1 < NCEPHES_MACHEP) {
                 x = 0.0;
                 goto done;
             }
@@ -142,7 +140,7 @@ ihalve:
     }
     ncephes_mtherr("incbi", NCEPHES_PLOSS);
     if (x0 >= 1.0) {
-        x = 1.0 - MACHEP;
+        x = 1.0 - NCEPHES_MACHEP;
         goto done;
     }
     if (x <= 0.0) {
@@ -180,9 +178,9 @@ newt:
             break;
         /* Compute the derivative of the function at this point. */
         d = (a - 1.0) * log(x) + (b - 1.0) * log(1.0 - x) + lgm;
-        if (d < MINLOG)
+        if (d < NCEPHES_MINLOG)
             goto done;
-        if (d > MAXLOG)
+        if (d > NCEPHES_MAXLOG)
             break;
         d = exp(d);
         /* Compute the step to the next approximation of x. */
@@ -201,18 +199,18 @@ newt:
                 break;
         }
         x = xt;
-        if (fabs(d / x) < 128.0 * MACHEP)
+        if (fabs(d / x) < 128.0 * NCEPHES_MACHEP)
             goto done;
     }
     /* Did not converge.  */
-    dithresh = 256.0 * MACHEP;
+    dithresh = 256.0 * NCEPHES_MACHEP;
     goto ihalve;
 
 done:
 
     if (rflg) {
-        if (x <= MACHEP)
-            x = 1.0 - MACHEP;
+        if (x <= NCEPHES_MACHEP)
+            x = 1.0 - NCEPHES_MACHEP;
         else
             x = 1.0 - x;
     }

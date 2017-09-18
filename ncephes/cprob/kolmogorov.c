@@ -1,8 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include <math.h>
-
-extern double MAXLOG;
 
 /* Exact Smirnov statistic, for one-sided test.  */
 double ncephes_smirnov(int n, double e) {
@@ -31,7 +28,7 @@ double ncephes_smirnov(int n, double e) {
                 t = ncephes_lgamnp1 - ncephes_lgam((double)(v + 1)) -
                     ncephes_lgam((double)(n - v + 1)) + (v - 1) * log(evn) +
                     (n - v) * log(omevn);
-                if (t > -MAXLOG)
+                if (t > -NCEPHES_MAXLOG)
                     p += exp(t);
             }
         }

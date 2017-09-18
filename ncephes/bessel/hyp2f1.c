@@ -7,8 +7,6 @@
 
 #define ETHRESH 1.0e-12
 
-extern double NCEPHES_MAXNUM, MACHEP;
-
 static double ncephes_hyt2f1(double a, double b, double c, double x,
                              double *loss);
 static double ncephes_hys2f1(double a, double b, double c, double x,
@@ -156,7 +154,7 @@ hypf:
 /* The alarm exit */
 hypdiv:
     ncephes_mtherr("hyp2f1", OVERFLOW);
-    return (NCEPHES_MAXNUM);
+    return (HUGE_VAL);
 }
 
 /* Apply transformations for |x| near 1
@@ -202,7 +200,7 @@ static double ncephes_hyt2f1(double a, double b, double c, double x,
             r = fabs(r);
             if (q > r)
                 r = q;
-            err += err1 + (MACHEP * r) / y;
+            err += err1 + (NCEPHES_MACHEP * r) / y;
 
             y *= ncephes_gamma(c);
             goto done;
@@ -306,7 +304,7 @@ static double ncephes_hys2f1(double a, double b, double c, double x,
     do {
         if (fabs(h) < EPS) {
             *loss = 1.0;
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         }
         m = k + 1.0;
         u = u * ((f + k) * (g + k) * x / ((h + k) * m));
@@ -320,10 +318,10 @@ static double ncephes_hys2f1(double a, double b, double c, double x,
             *loss = 1.0;
             return (s);
         }
-    } while (fabs(u / s) > MACHEP);
+    } while (fabs(u / s) > NCEPHES_MACHEP);
 
     /* return estimated relative error */
-    *loss = (MACHEP * umax) / fabs(s) + (MACHEP * i);
+    *loss = (NCEPHES_MACHEP * umax) / fabs(s) + (NCEPHES_MACHEP * i);
 
     return (s);
 }

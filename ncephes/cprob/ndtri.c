@@ -3,7 +3,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_MAXNUM;
+extern double HUGE_VAL;
 
 #ifdef NCEPHES_UNK
 /* sqrt(2pi) */
@@ -222,11 +222,11 @@ double ncephes_ndtri(double y0) {
 
     if (y0 <= 0.0) {
         ncephes_mtherr("ndtri", NCEPHES_DOMAIN);
-        return (-NCEPHES_MAXNUM);
+        return (-HUGE_VAL);
     }
     if (y0 >= 1.0) {
         ncephes_mtherr("ndtri", NCEPHES_DOMAIN);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
     code = 1;
     y = y0;

@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_MAXNUM, MAXLOG;
-
 double ncephes_yn(int n, double x) {
     double an, anm1, anm2, r;
     int k, sign;
@@ -25,7 +23,7 @@ double ncephes_yn(int n, double x) {
     /* test for overflow */
     if (x <= 0.0) {
         ncephes_mtherr("yn", SING);
-        return (-NCEPHES_MAXNUM);
+        return (-HUGE_VAL);
     }
 
     /* forward recurrence on n */

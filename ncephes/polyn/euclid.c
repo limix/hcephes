@@ -2,8 +2,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP;
-#define BIG (1.0 / MACHEP)
+#define BIG (1.0 / NCEPHES_MACHEP)
 
 /* Add fractions. */
 

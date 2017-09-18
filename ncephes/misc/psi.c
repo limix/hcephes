@@ -38,7 +38,7 @@ extern double floor(double);
 extern double log(double);
 extern double tan(double);
 
-extern double NCEPHES_MAXNUM;
+extern double HUGE_VAL;
 
 double psi(double x) {
     double p, q, nz, s, w, y, z;
@@ -53,7 +53,7 @@ double psi(double x) {
         p = floor(q);
         if (p == q) {
             ncephes_mtherr("psi", NCEPHES_SING);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         }
         /* Remove the zeros of tan(NCEPHES_PI x)
          * by subtracting the nearest integer from x

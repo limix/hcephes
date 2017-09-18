@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP;
-
 double ncephes_jn(int n, double x) {
     double pkm2, pkm1, pk, xk, r, ans;
     int k, sign;
@@ -30,7 +28,7 @@ double ncephes_jn(int n, double x) {
     if (n == 2)
         return (sign * (2.0 * ncephes_j1(x) / x - ncephes_j0(x)));
 
-    if (x < MACHEP)
+    if (x < NCEPHES_MACHEP)
         return (0.0);
 
 /* continued fraction */

@@ -56,11 +56,11 @@ file(GLOB CMATH_SRC
 
 add_library(ncephes
     SHARED ${BESSEL_SRC} ${CMATH_SRC} ${CPROB_SRC} ${ELLF_SRC} ${MISC_SRC} ${POLYN_SRC}
-           ncephes/const.c ncephes/mtherr.c)
+           ncephes/mtherr.c)
 
 add_library(ncephes_static
     STATIC ${BESSEL_SRC} ${CMATH_SRC} ${CPROB_SRC} ${ELLF_SRC} ${MISC_SRC} ${POLYN_SRC}
-           ncephes/const.c ncephes/mtherr.c)
+           ncephes/mtherr.c)
 
 set_target_properties(ncephes
   PROPERTIES

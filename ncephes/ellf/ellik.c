@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP, NCEPHES_MAXNUM;
-
 double ncephes_ellik(double phi, double m) {
     double a, b, c, e, temp, t, K;
     int d, mod, sign, npio2;
@@ -14,7 +12,7 @@ double ncephes_ellik(double phi, double m) {
     if (a == 0.0) {
         if (fabs(phi) >= NCEPHES_PIO2) {
             ncephes_mtherr("ellik", NCEPHES_SING);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         }
         return (log(tan((NCEPHES_PIO2 + phi) / 2.0)));
     }
@@ -50,7 +48,7 @@ double ncephes_ellik(double phi, double m) {
     d = 1;
     mod = 0;
 
-    while (fabs(c / a) > MACHEP) {
+    while (fabs(c / a) > NCEPHES_MACHEP) {
         temp = b / a;
         phi = phi + atan(t * temp) + mod * NCEPHES_PI;
         mod = (phi + NCEPHES_PIO2) / NCEPHES_PI;

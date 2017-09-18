@@ -10,9 +10,6 @@
 #define MINV .0078125
 #endif
 
-extern double MAXLOG;
-extern double NCEPHES_INF;
-
 double ncephes_expx2(double x, int sign) {
     double u, u1, m, f;
 
@@ -35,8 +32,8 @@ double ncephes_expx2(double x, int sign) {
         u1 = -u1;
     }
 
-    if ((u + u1) > MAXLOG)
-        return (NCEPHES_INF);
+    if ((u + u1) > NCEPHES_MAXLOG)
+        return (HUGE_VAL);
 
     /* u is exact, u1 is small.  */
     u = exp(u) * exp(u1);

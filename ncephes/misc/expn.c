@@ -1,16 +1,12 @@
 #include "mconf.h"
+#include "ncephes/ncephes.h"
 
-extern double pow(double, double);
 extern double ncephes_gamma(double);
-extern double log(double);
-extern double exp(double);
-extern double fabs(double);
 
 #define EUL 0.57721566490153286060
 #define BIG 1.44115188075855872E+17
-extern double NCEPHES_MAXNUM, MACHEP, MAXLOG;
 
-double expn(int n, double x) {
+double ncephes_expn(int n, double x) {
     double ans, r, t, yk, xk;
     double pk, pkm1, pkm2, qk, qkm1, qkm2;
     double psi, z;
@@ -23,16 +19,16 @@ double expn(int n, double x) {
     if (x < 0) {
     domerr:
         ncephes_mtherr("expn", NCEPHES_DOMAIN);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
-    if (x > MAXLOG)
+    if (x > NCEPHES_MAXLOG)
         return (0.0);
 
     if (x == 0.0) {
         if (n < 2) {
             ncephes_mtherr("expn", NCEPHES_SING);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         } else
             return (1.0 / (n - 1.0));
     }
@@ -84,7 +80,7 @@ double expn(int n, double x) {
             t = fabs(yk / ans);
         else
             t = 1.0;
-    } while (t > MACHEP);
+    } while (t > NCEPHES_MACHEP);
     k = xk;
     t = n;
     r = n - 1;
@@ -128,7 +124,7 @@ cfrac:
             qkm2 /= big;
             qkm1 /= big;
         }
-    } while (t > MACHEP);
+    } while (t > NCEPHES_MACHEP);
 
     ans *= exp(-x);
 

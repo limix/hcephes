@@ -4,8 +4,6 @@
 
 static double ncephes_erfce(double x);
 
-extern double MAXLOG;
-
 /* Define this macro to suppress error propagation in exp(x^2)
    by using the ncephes_expx2 function.  The tradeoff is that doing so
    generates two calls to the exponential function instead of one.  */
@@ -180,7 +178,7 @@ double erfc(double a) {
 
     z = -a * a;
 
-    if (z < -MAXLOG) {
+    if (z < -NCEPHES_MAXLOG) {
     under:
         ncephes_mtherr("erfc", NCEPHES_UNDERFLOW);
         if (a < 0)

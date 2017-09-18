@@ -8,8 +8,6 @@
 #define MAXGAM 171.624376956302725
 #endif
 
-extern double MACHEP, MINLOG, MAXLOG;
-
 static double big = 4.503599627370496e15;
 static double biginv = 2.22044604925031308085e-16;
 
@@ -74,7 +72,8 @@ double ncephes_incbet(double aa, double bb, double xx) {
 
     y = a * log(x);
     t = b * log(xc);
-    if ((a + b) < MAXGAM && fabs(y) < MAXLOG && fabs(t) < MAXLOG) {
+    if ((a + b) < MAXGAM && fabs(y) < NCEPHES_MAXLOG &&
+        fabs(t) < NCEPHES_MAXLOG) {
         t = pow(xc, b);
         t *= pow(x, a);
         t /= a;
@@ -85,7 +84,7 @@ double ncephes_incbet(double aa, double bb, double xx) {
     /* Resort to logarithms.  */
     y += t + ncephes_lgam(a + b) - ncephes_lgam(a) - ncephes_lgam(b);
     y += log(w / a);
-    if (y < MINLOG)
+    if (y < NCEPHES_MINLOG)
         t = 0.0;
     else
         t = exp(y);
@@ -93,8 +92,8 @@ double ncephes_incbet(double aa, double bb, double xx) {
 done:
 
     if (flag == 1) {
-        if (t <= MACHEP)
-            t = 1.0 - MACHEP;
+        if (t <= NCEPHES_MACHEP)
+            t = 1.0 - NCEPHES_MACHEP;
         else
             t = 1.0 - t;
     }
@@ -127,7 +126,7 @@ static double ncephes_incbcf(double a, double b, double x) {
     ans = 1.0;
     r = 1.0;
     n = 0;
-    thresh = 3.0 * MACHEP;
+    thresh = 3.0 * NCEPHES_MACHEP;
     do {
 
         xk = -(x * k1 * k2) / (k3 * k4);
@@ -212,7 +211,7 @@ static double ncephes_incbd(double a, double b, double x) {
     ans = 1.0;
     r = 1.0;
     n = 0;
-    thresh = 3.0 * MACHEP;
+    thresh = 3.0 * NCEPHES_MACHEP;
     do {
 
         xk = -(z * k1 * k2) / (k3 * k4);
@@ -281,7 +280,7 @@ static double ncephes_pseries(double a, double b, double x) {
     t = u;
     n = 2.0;
     s = 0.0;
-    z = MACHEP * ai;
+    z = NCEPHES_MACHEP * ai;
     while (fabs(v) > z) {
         u = (n - b) * x / n;
         t *= u;
@@ -293,13 +292,13 @@ static double ncephes_pseries(double a, double b, double x) {
     s += ai;
 
     u = a * log(x);
-    if ((a + b) < MAXGAM && fabs(u) < MAXLOG) {
+    if ((a + b) < MAXGAM && fabs(u) < NCEPHES_MAXLOG) {
         t = ncephes_gamma(a + b) / (ncephes_gamma(a) * ncephes_gamma(b));
         s = s * t * pow(x, a);
     } else {
         t = ncephes_lgam(a + b) - ncephes_lgam(a) - ncephes_lgam(b) + u +
             log(s);
-        if (t < MINLOG)
+        if (t < NCEPHES_MINLOG)
             s = 0.0;
         else
             s = exp(t);

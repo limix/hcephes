@@ -82,7 +82,7 @@ double ncephes_j1(double x) {
     return (p * NCEPHES_SQ2OPI / sqrt(x));
 }
 
-extern double NCEPHES_MAXNUM;
+extern double HUGE_VAL;
 
 double ncephes_y1(double x) {
     double w, z, p, q, xn;
@@ -90,7 +90,7 @@ double ncephes_y1(double x) {
     if (x <= 5.0) {
         if (x <= 0.0) {
             ncephes_mtherr("y1", DOMAIN);
-            return (-NCEPHES_MAXNUM);
+            return (-HUGE_VAL);
         }
         z = x * x;
         w = x * (ncephes_polevl(z, YP, 5) / ncephes_p1evl(z, YQ, 8));

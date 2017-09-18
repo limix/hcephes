@@ -17,15 +17,13 @@ static double R[] = {3.13173458231230000000E-17,  -6.70718606477908000000E-16,
 
 static char name[] = "rcephes_gamma";
 
-extern double MAXLOG, NCEPHES_MAXNUM;
-
 double rcephes_gamma(double x) {
     double w, y, z;
     int sign;
 
     if (x > 34.84425627277176174) {
         ncephes_mtherr(name, NCEPHES_UNDERFLOW);
-        return (1.0 / NCEPHES_MAXNUM);
+        return (1.0 / HUGE_VAL);
     }
     if (x < -34.034) {
         w = -x;
@@ -39,13 +37,13 @@ double rcephes_gamma(double x) {
             sign = -1;
 
         y = log(w * z) - log(NCEPHES_PI) + ncephes_lgam(w);
-        if (y < -MAXLOG) {
+        if (y < -NCEPHES_MAXLOG) {
             ncephes_mtherr(name, NCEPHES_UNDERFLOW);
-            return (sign * 1.0 / NCEPHES_MAXNUM);
+            return (sign * 1.0 / HUGE_VAL);
         }
-        if (y > MAXLOG) {
+        if (y > NCEPHES_MAXLOG) {
             ncephes_mtherr(name, NCEPHES_OVERFLOW);
-            return (sign * NCEPHES_MAXNUM);
+            return (sign * HUGE_VAL);
         }
         return (sign * exp(y));
     }

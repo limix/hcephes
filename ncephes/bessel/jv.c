@@ -8,7 +8,6 @@
 #define MAXGAM 171.624376956302725
 #endif
 
-extern double NCEPHES_MAXNUM, MACHEP, MINLOG, MAXLOG;
 #define BIG 1.44115188075855872E+17
 
 static double ncephes_hankel(double n, double x);
@@ -52,7 +51,7 @@ double ncephes_jv(double n, double x) {
 
     y = fabs(x);
 
-    if (y < MACHEP)
+    if (y < NCEPHES_MACHEP)
         goto underf;
 
     k = 3.6 * sqrt(y);
@@ -219,7 +218,7 @@ fstart:
             ncephes_mtherr("jv", UNDERFLOW);
             goto done;
         }
-        if (t < MACHEP)
+        if (t < NCEPHES_MACHEP)
             goto done;
 
         if (fabs(pk) > big) {
@@ -228,7 +227,7 @@ fstart:
             qkm2 /= big;
             qkm1 /= big;
         }
-    } while (t > MACHEP);
+    } while (t > NCEPHES_MACHEP);
 
 done:
 
@@ -307,7 +306,7 @@ static double ncephes_jvs(double n, double x) {
     k = 1.0;
     t = 1.0;
 
-    while (t > MACHEP) {
+    while (t > NCEPHES_MACHEP) {
         u *= z / (k * (n + k));
         y += u;
         k += 1.0;
@@ -329,12 +328,12 @@ static double ncephes_jvs(double n, double x) {
         }
         t += log(y);
 
-        if (t < -MAXLOG) {
+        if (t < -NCEPHES_MAXLOG) {
             return (0.0);
         }
-        if (t > MAXLOG) {
+        if (t > NCEPHES_MAXLOG) {
             ncephes_mtherr("Jv", OVERFLOW);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         }
         y = sgngam * exp(t);
     }
@@ -365,7 +364,7 @@ static double ncephes_hankel(double n, double x) {
     pp = 1.0e38;
     qq = 1.0e38;
 
-    while (t > MACHEP) {
+    while (t > NCEPHES_MACHEP) {
         k += 2.0;
         j += 1.0;
         sign = -sign;
@@ -507,8 +506,8 @@ static double ncephes_jnx(double n, double x) {
     /* flags to stop when terms get larger */
     doa = 1;
     dob = 1;
-    akl = NCEPHES_MAXNUM;
-    bkl = NCEPHES_MAXNUM;
+    akl = HUGE_VAL;
+    bkl = HUGE_VAL;
 
     for (k = 0; k <= 3; k++) {
         tk = 2 * k;
@@ -557,7 +556,7 @@ static double ncephes_jnx(double n, double x) {
                 dob = 0;
         }
 
-        if (np < MACHEP)
+        if (np < NCEPHES_MACHEP)
             break;
         np /= n * n;
     }

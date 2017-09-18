@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP;
-
 int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
                   double *ph) {
     double ai, b, phi, t, twon;
@@ -52,7 +50,7 @@ int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
     twon = 1.0;
     i = 0;
 
-    while (fabs(c[i] / a[i]) > MACHEP) {
+    while (fabs(c[i] / a[i]) > NCEPHES_MACHEP) {
         if (i > 7) {
             ncephes_mtherr("ellpj", NCEPHES_OVERFLOW);
             goto done;

@@ -2,18 +2,16 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP, NCEPHES_MAXNUM, MAXLOG, MINLOG;
-
 double ncephes_igami(double a, double y0) {
     double x0, x1, x, yl, yh, y, d, lgm, dithresh;
     int i, dir;
 
     /* bound the solution */
-    x0 = NCEPHES_MAXNUM;
+    x0 = HUGE_VAL;
     yl = 0;
     x1 = 0;
     yh = 1.0;
-    dithresh = 5.0 * MACHEP;
+    dithresh = 5.0 * NCEPHES_MACHEP;
 
     /* approximation to inverse function */
     d = 1.0 / (9.0 * a);
@@ -37,12 +35,12 @@ double ncephes_igami(double a, double y0) {
         }
         /* compute the derivative of the function at this point */
         d = (a - 1.0) * log(x) - x - lgm;
-        if (d < -MAXLOG)
+        if (d < -NCEPHES_MAXLOG)
             goto ihalve;
         d = -exp(d);
         /* compute the step to the next approximation of x */
         d = (y - y0) / d;
-        if (fabs(d / x) < MACHEP)
+        if (fabs(d / x) < NCEPHES_MACHEP)
             goto done;
         x = x - d;
     }
@@ -51,10 +49,10 @@ double ncephes_igami(double a, double y0) {
 ihalve:
 
     d = 0.0625;
-    if (x0 == NCEPHES_MAXNUM) {
+    if (x0 == HUGE_VAL) {
         if (x <= 0.0)
             x = 1.0;
-        while (x0 == NCEPHES_MAXNUM) {
+        while (x0 == HUGE_VAL) {
             x = (1.0 + d) * x;
             y = ncephes_igamc(a, x);
             if (y < y0) {

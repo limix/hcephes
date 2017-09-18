@@ -99,7 +99,7 @@ double ncephes_j0(double x) {
  * = 0.073804295108687225.
  */
 
-extern double NCEPHES_MAXNUM;
+extern double HUGE_VAL;
 
 double ncephes_y0(double x) {
     double w, z, p, q, xn;
@@ -107,7 +107,7 @@ double ncephes_y0(double x) {
     if (x <= 5.0) {
         if (x <= 0.0) {
             ncephes_mtherr("y0", DOMAIN);
-            return (-NCEPHES_MAXNUM);
+            return (-HUGE_VAL);
         }
         z = x * x;
         w = ncephes_polevl(z, YP, 7) / ncephes_p1evl(z, YQ, 7);

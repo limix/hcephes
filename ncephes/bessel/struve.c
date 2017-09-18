@@ -3,7 +3,6 @@
 #include <math.h>
 
 static double stop = 1.37e-17;
-extern double MACHEP;
 
 double ncephes_onef2(double a, double b, double c, double x, double *err) {
     double n, a0, sum, t;
@@ -44,7 +43,7 @@ double ncephes_onef2(double a, double b, double c, double x, double *err) {
 
 done:
 
-    *err = fabs(MACHEP * max / sum);
+    *err = fabs(NCEPHES_MACHEP * max / sum);
 
     goto xit;
 
@@ -103,7 +102,7 @@ double ncephes_threef0(double a, double b, double c, double x, double *err) {
 
 done:
 
-    t = fabs(MACHEP * max / sum);
+    t = fabs(NCEPHES_MACHEP * max / sum);
 
     max = fabs(conv / sum);
     if (max > t)

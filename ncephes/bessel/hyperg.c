@@ -2,7 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_MAXNUM, MACHEP;
 static double ncephes_hy1f1p(double a, double b, double x, double *err);
 static double ncephes_hy1f1a(double a, double b, double x, double *err);
 
@@ -51,11 +50,11 @@ static double ncephes_hy1f1p(double a, double b, double x, double *err) {
     t = 1.0;
     maxt = 0.0;
 
-    while (t > MACHEP) {
+    while (t > NCEPHES_MACHEP) {
         if (bn == 0) /* check bn first since if both	*/
         {
             ncephes_mtherr("hyperg", SING);
-            return (NCEPHES_MAXNUM); /* an and bn are zero it is	*/
+            return (HUGE_VAL); /* an and bn are zero it is	*/
         }
         if (an == 0) /* a singularity		*/
             return (sum);
@@ -65,7 +64,7 @@ static double ncephes_hy1f1p(double a, double b, double x, double *err) {
 
         /* check for blowup */
         temp = fabs(u);
-        if ((temp > 1.0) && (maxt > (NCEPHES_MAXNUM / temp))) {
+        if ((temp > 1.0) && (maxt > (HUGE_VAL / temp))) {
             pcanc = 1.0; /* estimate 100% error */
             goto blowup;
         }
@@ -92,8 +91,8 @@ pdone:
     /* estimate error due to roundoff and cancellation */
     if (sum != 0.0)
         maxt /= fabs(sum);
-    maxt *= MACHEP; /* this way avoids multiply overflow */
-    pcanc = fabs(MACHEP * n + maxt);
+    maxt *= NCEPHES_MACHEP; /* this way avoids multiply overflow */
+    pcanc = fabs(NCEPHES_MACHEP * n + maxt);
 
 blowup:
 
@@ -125,7 +124,7 @@ static double ncephes_hy1f1a(double a, double b, double x, double *err) {
 
     if (x == 0) {
         acanc = 1.0;
-        asum = NCEPHES_MAXNUM;
+        asum = HUGE_VAL;
         goto adone;
     }
     temp = log(fabs(x));
@@ -206,7 +205,7 @@ double ncephes_hyp2f0(double a, double b, double x, int type, double *err) {
 
         /* check for blowup */
         temp = fabs(u);
-        if ((temp > 1.0) && (maxt > (NCEPHES_MAXNUM / temp)))
+        if ((temp > 1.0) && (maxt > (HUGE_VAL / temp)))
             goto error;
 
         a0 *= u;
@@ -228,12 +227,12 @@ double ncephes_hyp2f0(double a, double b, double x, int type, double *err) {
         n += 1.0e0;
         if (t > maxt)
             maxt = t;
-    } while (t > MACHEP);
+    } while (t > NCEPHES_MACHEP);
 
 pdone: /* series converged! */
 
     /* estimate error due to roundoff and cancellation */
-    *err = fabs(MACHEP * (n + maxt));
+    *err = fabs(NCEPHES_MACHEP * (n + maxt));
 
     alast = a0;
     goto done;
@@ -260,7 +259,7 @@ ndone: /* series did not converge */
     }
 
     /* estimate error due to roundoff, cancellation, and nonconvergence */
-    *err = MACHEP * (n + maxt) + fabs(a0);
+    *err = NCEPHES_MACHEP * (n + maxt) + fabs(a0);
 
 done:
     sum += alast;
@@ -268,7 +267,7 @@ done:
 
 /* series blew up: */
 error:
-    *err = NCEPHES_MAXNUM;
+    *err = HUGE_VAL;
     ncephes_mtherr("hyperg", TLOSS);
     return (sum);
 }

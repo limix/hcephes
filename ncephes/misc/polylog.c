@@ -83,16 +83,6 @@ static short B4[48] = {
 };
 #endif
 
-extern double ncephes_spence(double);
-extern double zetac(double);
-extern double pow(double, double);
-extern double ncephes_powi(double, int);
-extern double log(double);
-extern double fac(int i);
-extern double fabs(double);
-
-extern double MACHEP;
-
 double ncephes_polylog(int n, double x) {
     double h, k, p, s, t, u, xc, z;
     int i, j;
@@ -131,7 +121,7 @@ double ncephes_polylog(int n, double x) {
 
     /* Argument +1 */
     if (x == 1.0 && n > 1) {
-        s = zetac((double)n) + 1.0;
+        s = ncephes_zetac((double)n) + 1.0;
         return s;
     }
 
@@ -142,7 +132,7 @@ double ncephes_polylog(int n, double x) {
      */
     if (x == -1.0 && n > 1) {
         /* Li_n(1) = zeta(n) */
-        s = zetac((double)n) + 1.0;
+        s = ncephes_zetac((double)n) + 1.0;
         s = s * (ncephes_powi(2.0, 1 - n) - 1.0);
         return s;
     }
@@ -169,7 +159,7 @@ double ncephes_polylog(int n, double x) {
                 break;
             }
             q = (double)j;
-            q = pow(w, q) * p / fac(j);
+            q = pow(w, q) * p / ncephes_fac(j);
             s = s + q;
         }
         s = 2.0 * s;
@@ -177,7 +167,7 @@ double ncephes_polylog(int n, double x) {
         if (n & 1)
             q = -q;
         s = s - q;
-        s = s - pow(w, (double)n) / fac(n);
+        s = s - pow(w, (double)n) / ncephes_fac(n);
         return s;
     }
 
@@ -207,7 +197,7 @@ double ncephes_polylog(int n, double x) {
             s = s + NCEPHES_PI * NCEPHES_PI * u / 6.0;
             s = s - ncephes_polylog(3, -xc / x);
             s = s - ncephes_polylog(3, xc);
-            s = s + zetac(3.0);
+            s = s + ncephes_zetac(3.0);
             s = s + 1.0;
             return s;
         }
@@ -268,22 +258,22 @@ double ncephes_polylog(int n, double x) {
     for (i = 1; i < n; i++)
         h = h + 1.0 / i;
     p = 1.0;
-    s = zetac((double)n) + 1.0;
+    s = ncephes_zetac((double)n) + 1.0;
     for (j = 1; j <= n + 1; j++) {
         p = p * z / j;
         if (j == n - 1)
             s = s + h * p;
         else
-            s = s + (zetac((double)(n - j)) + 1.0) * p;
+            s = s + (ncephes_zetac((double)(n - j)) + 1.0) * p;
     }
     j = n + 3;
     z = z * z;
     for (;;) {
         p = p * z / ((j - 1) * j);
-        h = (zetac((double)(n - j)) + 1.0);
+        h = (ncephes_zetac((double)(n - j)) + 1.0);
         h = h * p;
         s = s + h;
-        if (fabs(h / s) < MACHEP)
+        if (fabs(h / s) < NCEPHES_MACHEP)
             break;
         j += 2;
     }
@@ -299,7 +289,7 @@ pseries:
         k += 1.0;
         h = p / ncephes_powi(k, n);
         s = s + h;
-    } while (fabs(h / s) > MACHEP);
+    } while (fabs(h / s) > NCEPHES_MACHEP);
     s += x * x * x / ncephes_powi(3.0, n);
     s += x * x / ncephes_powi(2.0, n);
     s += x;

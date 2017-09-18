@@ -7,7 +7,6 @@ static double c2 = 0.258819403792806798405;
 static double sqrt3 = 1.732050807568877293527;
 static double sqpii = 5.64189583547756286948E-1;
 
-extern double NCEPHES_MAXNUM, MACHEP;
 #define MAXAIRY 25.77
 
 static double AN[8] = {
@@ -134,8 +133,8 @@ int ncephes_airy(double x, double *ai, double *aip, double *bi, double *bip) {
     if (x > MAXAIRY) {
         *ai = 0;
         *aip = 0;
-        *bi = NCEPHES_MAXNUM;
-        *bip = NCEPHES_MAXNUM;
+        *bi = HUGE_VAL;
+        *bip = HUGE_VAL;
         return (-1);
     }
 
@@ -196,7 +195,7 @@ int ncephes_airy(double x, double *ai, double *aip, double *bi, double *bip) {
     ug = x;
     k = 1.0;
     z = x * x * x;
-    while (t > MACHEP) {
+    while (t > NCEPHES_MACHEP) {
         uf *= z;
         k += 1.0;
         uf /= k;
@@ -226,7 +225,7 @@ int ncephes_airy(double x, double *ai, double *aip, double *bi, double *bip) {
     uf /= 3.0;
     t = 1.0;
 
-    while (t > MACHEP) {
+    while (t > NCEPHES_MACHEP) {
         uf *= z;
         ug /= k;
         k += 1.0;

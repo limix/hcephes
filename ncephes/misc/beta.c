@@ -1,4 +1,5 @@
 #include "mconf.h"
+#include "ncephes/ncephes.h"
 
 #ifdef NCEPHES_UNK
 #define MAXGAM 34.84425627277176174
@@ -19,8 +20,6 @@ extern double ncephes_lgam_sgn(double, int *);
 extern double exp(double);
 extern double log(double);
 extern double floor(double);
-
-extern double MAXLOG, NCEPHES_MAXNUM;
 
 double ncephes_beta(double a, double b) {
     double y;
@@ -46,10 +45,10 @@ double ncephes_beta(double a, double b) {
         sign *= sgngam;
         y = ncephes_lgam_sgn(a, &sgngam) + y;
         sign *= sgngam;
-        if (y > MAXLOG) {
+        if (y > NCEPHES_MAXLOG) {
         over:
             ncephes_mtherr("beta", NCEPHES_OVERFLOW);
-            return (sign * NCEPHES_MAXNUM);
+            return (sign * HUGE_VAL);
         }
         return (sign * exp(y));
     }
@@ -103,7 +102,7 @@ double ncephes_lbeta(double a, double b) {
     if (y == 0.0) {
     over:
         ncephes_mtherr("lbeta", NCEPHES_OVERFLOW);
-        return (sign * NCEPHES_MAXNUM);
+        return (sign * HUGE_VAL);
     }
 
     if (a > b) {

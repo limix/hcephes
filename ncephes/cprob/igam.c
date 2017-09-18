@@ -2,7 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP, MAXLOG;
 static double big = 4.503599627370496e15;
 static double biginv = 2.22044604925031308085e-16;
 
@@ -17,7 +16,7 @@ double ncephes_igamc(double a, double x) {
         return (1.0 - ncephes_igam(a, x));
 
     ax = a * log(x) - x - ncephes_lgam(a);
-    if (ax < -MAXLOG) {
+    if (ax < -NCEPHES_MAXLOG) {
         ncephes_mtherr("igamc", NCEPHES_UNDERFLOW);
         return (0.0);
     }
@@ -56,7 +55,7 @@ double ncephes_igamc(double a, double x) {
             qkm2 *= biginv;
             qkm1 *= biginv;
         }
-    } while (t > MACHEP);
+    } while (t > NCEPHES_MACHEP);
 
     return (ans * ax);
 }
@@ -82,7 +81,7 @@ double ncephes_igam(double a, double x) {
 
     /* Compute  x**a * exp(-x) / cephes_gamma(a)  */
     ax = a * log(x) - x - ncephes_lgam(a);
-    if (ax < -MAXLOG) {
+    if (ax < -NCEPHES_MAXLOG) {
         ncephes_mtherr("igam", NCEPHES_UNDERFLOW);
         return (0.0);
     }
@@ -97,7 +96,7 @@ double ncephes_igam(double a, double x) {
         r += 1.0;
         c *= x / r;
         ans += c;
-    } while (c / ans > MACHEP);
+    } while (c / ans > NCEPHES_MACHEP);
 
     return (ans * ax / a);
 }

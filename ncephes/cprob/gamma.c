@@ -137,15 +137,6 @@ static unsigned short SQT[4] = {
 int sgngam = 0;
 extern int sgngam;
 
-extern double MAXLOG, NCEPHES_MAXNUM;
-
-#ifdef NCEPHES_INFINITIES
-extern double NCEPHES_INF;
-#endif
-#ifdef NCEPHES_NANS
-extern double NCEPHES_NAN;
-#endif
-
 /* Gamma function computed by Stirling's formula.
  * The polynomial STIR is valid for 33 <= x <= 172.
  */
@@ -170,34 +161,21 @@ double ncephes_gamma(double x) {
     int i;
 
     sgngam = 1;
-#ifdef NCEPHES_NANS
     if (isnan(x))
         return (x);
-#endif
-#ifdef NCEPHES_INFINITIES
-#ifdef NCEPHES_NANS
-    if (x == NCEPHES_INF)
+    if (x == HUGE_VAL)
         return (x);
-    if (x == -NCEPHES_INF)
-        return (NCEPHES_NAN);
-#else
-    if (!isfinite(x))
-        return (x);
-#endif
-#endif
+    if (x == -HUGE_VAL)
+        return (NAN);
     q = fabs(x);
 
     if (q > 33.0) {
         if (x < 0.0) {
             p = floor(q);
             if (p == q) {
-#ifdef NCEPHES_NANS
             gamnan:
                 ncephes_mtherr("gamma", NCEPHES_DOMAIN);
-                return (NCEPHES_NAN);
-#else
-                goto goverf;
-#endif
+                return (NAN);
             }
             i = p;
             if ((i & 1) == 0)
@@ -209,13 +187,7 @@ double ncephes_gamma(double x) {
             }
             z = q * sin(NCEPHES_PI * z);
             if (z == 0.0) {
-#ifdef NCEPHES_INFINITIES
-                return (sgngam * NCEPHES_INF);
-#else
-            goverf:
-                ncephes_mtherr("gamma", NCEPHES_OVERFLOW);
-                return (sgngam * NCEPHES_MAXNUM);
-#endif
+                return (sgngam * HUGE_VAL);
             }
             z = fabs(z);
             z = NCEPHES_PI / (z * ncephes_stirf(q));
@@ -255,16 +227,9 @@ double ncephes_gamma(double x) {
 
 small:
     if (x == 0.0) {
-#ifdef NCEPHES_INFINITIES
-#ifdef NCEPHES_NANS
         goto gamnan;
-#else
-        return (NCEPHES_INF);
-#endif
-#else
         ncephes_mtherr("gamma", NCEPHES_SING);
-        return (NCEPHES_MAXNUM);
-#endif
+        return (HUGE_VAL);
     } else
         return (z / ((1.0 + 0.5772156649015329 * x) * x));
 }
@@ -272,7 +237,6 @@ small:
 /* A[]: Stirling's formula expansion of log gamma
  * B[], C[]: log gamma function between 2 and 3
  */
-#ifdef NCEPHES_UNK
 static double A[] = {8.11614167470508450300E-4, -5.95061904284301438324E-4,
                      7.93650340457716943945E-4, -2.77777777730099687205E-3,
                      8.33333333333331927722E-2};
@@ -287,71 +251,6 @@ static double C[] = {
 /* log( sqrt( 2*pi ) ) */
 static double LS2NCEPHES_PI = 0.91893853320467274178;
 #define MAXLGM 2.556348e305
-#endif
-
-#ifdef DEC
-static unsigned short A[] = {0035524, 0141201, 0034633, 0031405, 0135433,
-                             0176755, 0126007, 0045030, 0035520, 0006371,
-                             0003342, 0172730, 0136066, 0005540, 0132605,
-                             0026407, 0037252, 0125252, 0125252, 0125132};
-static unsigned short B[] = {
-    0142654, 0044014, 0077633, 0035410, 0144027, 0110641, 0125335, 0144760,
-    0144641, 0165637, 0142204, 0047447, 0145215, 0162027, 0146246, 0155211,
-    0145322, 0026110, 0010317, 0110130, 0145120, 0061472, 0120300, 0025363};
-static unsigned short C[] = {
-    /*0040200,0000000,0000000,0000000*/
-    0142257, 0164150, 0163630, 0112622, 0143605, 0050153, 0156116, 0135272,
-    0144527, 0056045, 0145642, 0062332, 0145213, 0012063, 0106250, 0001025,
-    0145432, 0111254, 0044577, 0115142, 0145366, 0071133, 0050217, 0005122};
-/* log( sqrt( 2*pi ) ) */
-static unsigned short LS2P[] = {
-    040153,
-    037616,
-    041445,
-    0172645,
-};
-#define LS2NCEPHES_PI *(double *)LS2P
-#define MAXLGM 2.035093e36
-#endif
-
-#ifdef IBMPC
-static unsigned short A[] = {0x6661, 0x2733, 0x9850, 0x3f4a, 0xe943,
-                             0xb580, 0x7fbd, 0xbf43, 0x5ebb, 0x20dc,
-                             0x019f, 0x3f4a, 0xa5a1, 0x16b0, 0xc16c,
-                             0xbf66, 0x554b, 0x5555, 0x5555, 0x3fb5};
-static unsigned short B[] = {0x6761, 0x8ff3, 0x8901, 0xc095, 0xb93e, 0x355b,
-                             0xf234, 0xc0e2, 0x89e5, 0xf890, 0x3d73, 0xc114,
-                             0xdb51, 0xf994, 0xbc82, 0xc131, 0xf20b, 0x0219,
-                             0x4589, 0xc13a, 0x055e, 0x5418, 0x0c67, 0xc12a};
-static unsigned short C[] = {
-    /*0x0000,0x0000,0x0000,0x3ff0,*/
-    0x12b2, 0x1cf3, 0xfd0d, 0xc075, 0xd757, 0x7b89, 0xaa0d, 0xc0d0,
-    0x4c9b, 0xb974, 0xeb84, 0xc10a, 0x0043, 0x7195, 0x6286, 0xc131,
-    0xf34c, 0x892f, 0x5255, 0xc143, 0xe14a, 0x6a11, 0xce4b, 0xc13e};
-/* log( sqrt( 2*pi ) ) */
-static unsigned short LS2P[] = {0xbeb5, 0xc864, 0x67f1, 0x3fed};
-#define LS2NCEPHES_PI *(double *)LS2P
-#define MAXLGM 2.556348e305
-#endif
-
-#ifdef MIEEE
-static unsigned short A[] = {0x3f4a, 0x9850, 0x2733, 0x6661, 0xbf43,
-                             0x7fbd, 0xb580, 0xe943, 0x3f4a, 0x019f,
-                             0x20dc, 0x5ebb, 0xbf66, 0xc16c, 0x16b0,
-                             0xa5a1, 0x3fb5, 0x5555, 0x5555, 0x554b};
-static unsigned short B[] = {0xc095, 0x8901, 0x8ff3, 0x6761, 0xc0e2, 0xf234,
-                             0x355b, 0xb93e, 0xc114, 0x3d73, 0xf890, 0x89e5,
-                             0xc131, 0xbc82, 0xf994, 0xdb51, 0xc13a, 0x4589,
-                             0x0219, 0xf20b, 0xc12a, 0x0c67, 0x5418, 0x055e};
-static unsigned short C[] = {0xc075, 0xfd0d, 0x1cf3, 0x12b2, 0xc0d0, 0xaa0d,
-                             0x7b89, 0xd757, 0xc10a, 0xeb84, 0xb974, 0x4c9b,
-                             0xc131, 0x6286, 0x7195, 0x0043, 0xc143, 0x5255,
-                             0x892f, 0xf34c, 0xc13e, 0xce4b, 0x6a11, 0xe14a};
-/* log( sqrt( 2*pi ) ) */
-static unsigned short LS2P[] = {0x3fed, 0x67f1, 0xc864, 0xbeb5};
-#define LS2NCEPHES_PI *(double *)LS2P
-#define MAXLGM 2.556348e305
-#endif
 
 /* Logarithm of gamma function */
 double ncephes_lgam(double x) {
@@ -364,15 +263,11 @@ double ncephes_lgam_sgn(double x, int *sign) {
     int i;
     *sign = 1;
 
-#ifdef NCEPHES_NANS
     if (isnan(x))
         return (x);
-#endif
 
-#ifdef NCEPHES_INFINITIES
     if (!isfinite(x))
-        return (NCEPHES_INF);
-#endif
+        return (HUGE_VAL);
 
     if (x < -34.0) {
         q = -x;
@@ -380,12 +275,8 @@ double ncephes_lgam_sgn(double x, int *sign) {
         p = floor(q);
         if (p == q) {
         lgsing:
-#ifdef NCEPHES_INFINITIES
             ncephes_mtherr("ncephes_lgam", NCEPHES_SING);
-            return (NCEPHES_INF);
-#else
-            goto loverf;
-#endif
+            return (HUGE_VAL);
         }
         i = p;
         if ((i & 1) == 0)
@@ -435,13 +326,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
     }
 
     if (x > MAXLGM) {
-#ifdef NCEPHES_INFINITIES
-        return (*sign * NCEPHES_INF);
-#else
-    loverf:
-        ncephes_mtherr("ncephes_lgam", NCEPHES_OVERFLOW);
-        return (*sign * NCEPHES_MAXNUM);
-#endif
+        return (*sign * HUGE_VAL);
     }
 
     q = (x - 0.5) * log(x) - x + LS2NCEPHES_PI;

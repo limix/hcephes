@@ -8,7 +8,6 @@ extern double ldexp(double, int);
 void cdiv(cmplx *, cmplx *, cmplx *);
 void cadd(cmplx *, cmplx *, cmplx *);
 
-extern double NCEPHES_MAXNUM, MACHEP, NCEPHES_INF, NCEPHES_NAN;
 /*
 typedef struct
         {
@@ -57,10 +56,10 @@ void cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
     q = b->i * a->r - b->r * a->i;
 
     if (y < 1.0) {
-        w = NCEPHES_MAXNUM * y;
+        w = HUGE_VAL * y;
         if ((fabs(p) > w) || (fabs(q) > w) || (y == 0.0)) {
-            c->r = NCEPHES_MAXNUM;
-            c->i = NCEPHES_MAXNUM;
+            c->r = HUGE_VAL;
+            c->i = HUGE_VAL;
             ncephes_mtherr("cdiv", NCEPHES_OVERFLOW);
             return;
         }
@@ -168,10 +167,10 @@ double ncephes_cabs(register cmplx *z) {
     int ex, ey, e;
 
 #ifdef NCEPHES_INFINITIES
-    /* Note, ncephes_cabs(NCEPHES_INF,NCEPHES_NAN) = NCEPHES_INF. */
-    if (z->r == NCEPHES_INF || z->i == NCEPHES_INF || z->r == -NCEPHES_INF ||
-        z->i == -NCEPHES_INF)
-        return (NCEPHES_INF);
+    /* Note, ncephes_cabs(HUGE_VAL,NCEPHES_NAN) = HUGE_VAL. */
+    if (z->r == HUGE_VAL || z->i == HUGE_VAL || z->r == -HUGE_VAL ||
+        z->i == -HUGE_VAL)
+        return (HUGE_VAL);
 #endif
 
 #ifdef NCEPHES_NANS
@@ -217,7 +216,7 @@ double ncephes_cabs(register cmplx *z) {
     /* Check it for overflow and underflow. */
     if (ey > MAXEXP) {
         ncephes_mtherr("ncephes_cabs", NCEPHES_OVERFLOW);
-        return (NCEPHES_INF);
+        return (HUGE_VAL);
     }
     if (ey < MINEXP)
         return (0.0);

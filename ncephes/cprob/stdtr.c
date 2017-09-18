@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP, NCEPHES_MAXNUM;
-
 double ncephes_stdtr(int k, double t) {
     double x, rk, z, f, tz, p, xsqk;
     int j;
@@ -44,7 +42,7 @@ double ncephes_stdtr(int k, double t) {
             f = 1.0;
             tz = 1.0;
             j = 3;
-            while ((j <= (k - 2)) && ((tz / f) > MACHEP)) {
+            while ((j <= (k - 2)) && ((tz / f) > NCEPHES_MACHEP)) {
                 tz *= (j - 1) / (z * j);
                 f += tz;
                 j += 2;
@@ -62,7 +60,7 @@ double ncephes_stdtr(int k, double t) {
         tz = 1.0;
         j = 2;
 
-        while ((j <= (k - 2)) && ((tz / f) > MACHEP)) {
+        while ((j <= (k - 2)) && ((tz / f) > NCEPHES_MACHEP)) {
             tz *= (j - 1) / (z * j);
             f += tz;
             j += 2;
@@ -107,8 +105,8 @@ double ncephes_stdtri(int k, double p) {
     }
     z = ncephes_incbi(0.5 * rk, 0.5, 2.0 * p);
 
-    if (NCEPHES_MAXNUM * z < rk)
-        return (rflg * NCEPHES_MAXNUM);
+    if (HUGE_VAL * z < rk)
+        return (rflg * HUGE_VAL);
     t = sqrt(rk / z - rk);
     return (rflg * t);
 }

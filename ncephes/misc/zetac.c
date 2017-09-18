@@ -1,7 +1,7 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
 
-extern double NCEPHES_MAXNUM;
+extern double HUGE_VAL;
 
 /* Riemann zeta(x) - 1
  * for integer arguments between 0 and 30.
@@ -284,9 +284,7 @@ extern double ncephes_gamma(double);
 extern double pow(double, double);
 extern double exp(double);
 
-extern double MACHEP;
-
-double zetac(double x) {
+double ncephes_zetac(double x) {
     int i;
     double a, b, s, w;
 
@@ -301,7 +299,7 @@ double zetac(double x) {
             return (0.0);
         }
         s = 1.0 - x;
-        w = zetac(s);
+        w = ncephes_zetac(s);
         b = sin(0.5 * NCEPHES_PI * x) * pow(2.0 * NCEPHES_PI, x) *
             ncephes_gamma(s) * (1.0 + w) / NCEPHES_PI;
         return (b - 1.0);
@@ -331,7 +329,7 @@ double zetac(double x) {
 
     if (x == 1.0) {
         ncephes_mtherr("zetac", NCEPHES_SING);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     if (x <= 10.0) {
@@ -356,7 +354,7 @@ double zetac(double x) {
         a += 2.0;
         b = pow(a, -x);
         s += b;
-    } while (b / s > MACHEP);
+    } while (b / s > NCEPHES_MACHEP);
 
     b = pow(2.0, -x);
     s = (s + b) / (1.0 - b);

@@ -35,7 +35,7 @@ static double B[] = {-5.75674448366501715755E-18, 1.79405087314755922667E-17,
                      -2.85781685962277938680E-3,  1.03923736576817238437E-1,
                      2.72062619048444266945E0};
 
-extern double MINLOG, NCEPHES_MAXNUM;
+extern double MINLOG, HUGE_VAL;
 
 double ncephes_k1(double x) {
     double y, z;
@@ -43,7 +43,7 @@ double ncephes_k1(double x) {
     z = 0.5 * x;
     if (z <= 0.0) {
         ncephes_mtherr("k1", DOMAIN);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     if (x <= 2.0) {
@@ -60,7 +60,7 @@ double ncephes_k1e(double x) {
 
     if (x <= 0.0) {
         ncephes_mtherr("k1e", DOMAIN);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     if (x <= 2.0) {

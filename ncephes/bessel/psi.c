@@ -9,7 +9,7 @@ static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,
 
 #define EUL 0.57721566490153286061
 
-extern double NCEPHES_MAXNUM;
+extern double HUGE_VAL;
 
 double ncephes_psi(double x) {
     double p, q, nz, s, w, y, z;
@@ -24,7 +24,7 @@ double ncephes_psi(double x) {
         p = floor(q);
         if (p == q) {
             ncephes_mtherr("psi", SING);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         }
         /* Remove the zeros of tan(NCEPHES_PI x)
          * by subtracting the nearest integer from x

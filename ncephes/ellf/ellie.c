@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP;
-
 double ncephes_ellie(double phi, double m) {
     double a, b, c, e, temp;
     double lphi, t, E;
@@ -48,7 +46,7 @@ double ncephes_ellie(double phi, double m) {
     e = 0.0;
     mod = 0;
 
-    while (fabs(c / a) > MACHEP) {
+    while (fabs(c / a) > NCEPHES_MACHEP) {
         temp = b / a;
         lphi = lphi + atan(t * temp) + mod * NCEPHES_PI;
         mod = (lphi + NCEPHES_PIO2) / NCEPHES_PI;

@@ -1,11 +1,5 @@
 #include "mconf.h"
-
-extern double log(double);
-extern double frexp(double, int *);
-extern int signbit(double);
-
-extern double NCEPHES_NEGZERO, NCEPHES_INF, NCEPHES_MAXNUM, MAXLOG, MINLOG,
-    NCEPHES_LOGE2;
+#include "ncephes/ncephes.h"
 
 double ncephes_powi(double x, int nn) {
     int n, e, sign, asign, lx;
@@ -16,7 +10,7 @@ double ncephes_powi(double x, int nn) {
         if (nn == 0)
             return (1.0);
         else if (nn < 0)
-            return (NCEPHES_INF);
+            return (HUGE_VAL);
         else {
             if (nn & 1)
                 return (x);
@@ -61,9 +55,9 @@ double ncephes_powi(double x, int nn) {
         s = NCEPHES_LOGE2 * e;
     }
 
-    if (s > MAXLOG) {
+    if (s > NCEPHES_MAXLOG) {
         ncephes_mtherr("powi", NCEPHES_OVERFLOW);
-        y = NCEPHES_INF;
+        y = HUGE_VAL;
         goto done;
     }
 
@@ -77,13 +71,13 @@ double ncephes_powi(double x, int nn) {
      * since roundoff error in 1.0/x will be amplified.
      * The precise demarcation should be the gradual underflow threshold.
      */
-    if ((s < (-MAXLOG + 2.0)) && (sign < 0)) {
+    if ((s < (-NCEPHES_MAXLOG + 2.0)) && (sign < 0)) {
         x = 1.0 / x;
         sign = -sign;
     }
 #else
     /* do not produce denormal answer */
-    if (s < -MAXLOG)
+    if (s < -NCEPHES_MAXLOG)
         return (0.0);
 #endif
 

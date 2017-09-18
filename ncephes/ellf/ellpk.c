@@ -1,6 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include "ncephes/ncephes.h"
 #include <math.h>
 
 #ifdef NCEPHES_UNK
@@ -20,8 +19,6 @@ static double Q[] = {2.94078955048598507511E-5, 9.14184723865917226571E-4,
 static double C1 = 1.3862943611198906188E0; /* log(4) */
 #endif
 
-extern double MACHEP, NCEPHES_MAXNUM;
-
 double ncephes_ellpk(double x) {
     // line added by danilo
     x = 1 - x;
@@ -30,12 +27,12 @@ double ncephes_ellpk(double x) {
         return (0.0);
     }
 
-    if (x > MACHEP) {
+    if (x > NCEPHES_MACHEP) {
         return (ncephes_polevl(x, P, 10) - log(x) * ncephes_polevl(x, Q, 10));
     } else {
         if (x == 0.0) {
             ncephes_mtherr("ellpk", NCEPHES_SING);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         } else {
             return (C1 - 0.5 * log(x));
         }

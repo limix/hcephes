@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_INF;
-
 /* log1p(x) = log(1 + x)  */
 
 /* Coefficients for log(1+x) = x - x**2/2 + x**3 P(x)/Q(x)
@@ -63,9 +61,9 @@ double ncephes_expm1(double x) {
         return (x);
 #endif
 #ifdef NCEPHES_INFINITIES
-    if (x == NCEPHES_INF)
-        return (NCEPHES_INF);
-    if (x == -NCEPHES_INF)
+    if (x == HUGE_VAL)
+        return (HUGE_VAL);
+    if (x == -HUGE_VAL)
         return (-1.0);
 #endif
     if ((x < -0.5) || (x > 0.5))

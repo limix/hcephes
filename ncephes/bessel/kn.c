@@ -5,8 +5,6 @@
 #define EUL 5.772156649015328606065e-1
 #define MAXFAC 31
 
-extern double MACHEP, NCEPHES_MAXNUM, MAXLOG;
-
 double ncephes_kn(int nn, double x) {
     double k, kf, nk1f, nkf, zn, t, s, z0, z;
     double ans, fn, pn, pk, zmn, tlg, tox;
@@ -20,7 +18,7 @@ double ncephes_kn(int nn, double x) {
     if (n > MAXFAC) {
     overf:
         ncephes_mtherr("kn", OVERFLOW);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     if (x <= 0.0) {
@@ -28,7 +26,7 @@ double ncephes_kn(int nn, double x) {
             ncephes_mtherr("kn", DOMAIN);
         else
             ncephes_mtherr("kn", SING);
-        return (NCEPHES_MAXNUM);
+        return (HUGE_VAL);
     }
 
     if (x > 9.55)
@@ -67,17 +65,17 @@ double ncephes_kn(int nn, double x) {
                 zn *= z;
                 t = nk1f * zn / kf;
                 s += t;
-                if ((NCEPHES_MAXNUM - fabs(t)) < fabs(s))
+                if ((HUGE_VAL - fabs(t)) < fabs(s))
                     goto overf;
-                if ((tox > 1.0) && ((NCEPHES_MAXNUM / tox) < zmn))
+                if ((tox > 1.0) && ((HUGE_VAL / tox) < zmn))
                     goto overf;
                 zmn *= tox;
             }
             s *= 0.5;
             t = fabs(s);
-            if ((zmn > 1.0) && ((NCEPHES_MAXNUM / zmn) < t))
+            if ((zmn > 1.0) && ((HUGE_VAL / zmn) < t))
                 goto overf;
-            if ((t > 1.0) && ((NCEPHES_MAXNUM / t) < zmn))
+            if ((t > 1.0) && ((HUGE_VAL / t) < zmn))
                 goto overf;
             ans = s * zmn;
         }
@@ -100,7 +98,7 @@ double ncephes_kn(int nn, double x) {
         pn += 1.0 / (k + n);
         s += (pk + pn - tlg) * t;
         k += 1.0;
-    } while (fabs(t / s) > MACHEP);
+    } while (fabs(t / s) > NCEPHES_MACHEP);
 
     s = 0.5 * s / zmn;
     if (n & 1)
@@ -114,7 +112,7 @@ double ncephes_kn(int nn, double x) {
 
 asymp:
 
-    if (x > MAXLOG) {
+    if (x > NCEPHES_MAXLOG) {
         ncephes_mtherr("kn", UNDERFLOW);
         return (0.0);
     }
@@ -125,7 +123,7 @@ asymp:
     fn = 1.0;
     t = 1.0;
     s = t;
-    nkf = NCEPHES_MAXNUM;
+    nkf = HUGE_VAL;
     i = 0;
     do {
         z = pn - pk * pk;
@@ -139,7 +137,7 @@ asymp:
         fn += 1.0;
         pk += 2.0;
         i += 1;
-    } while (fabs(t / s) > MACHEP);
+    } while (fabs(t / s) > NCEPHES_MACHEP);
 
 adone:
     ans = exp(-x) * sqrt(NCEPHES_PI / (2.0 * x)) * s;

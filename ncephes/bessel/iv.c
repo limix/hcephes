@@ -2,8 +2,6 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MACHEP, NCEPHES_MAXNUM;
-
 double ncephes_iv(double v, double x) {
     int sign;
     double t, ax;
@@ -33,7 +31,7 @@ double ncephes_iv(double v, double x) {
             return (1.0);
         if (v < 0.0) {
             ncephes_mtherr("iv", OVERFLOW);
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         } else
             return (0.0);
     }

@@ -1,10 +1,5 @@
 #include "mconf.h"
-
-extern double fabs(double);
-extern double pow(double, double);
-extern double floor(double);
-
-extern double NCEPHES_MAXNUM, MACHEP;
+#include "ncephes/ncephes.h"
 
 /* Expansion coefficients
  * for Euler-Maclaurin summation formula
@@ -27,7 +22,7 @@ static double A[] = {
 };
 /* 30 Nov 86 -- error in third coefficient fixed */
 
-double zeta(double x, double q) {
+double ncephes_zeta(double x, double q) {
     int i;
     double a, b, k, s, t, w;
 
@@ -44,7 +39,7 @@ double zeta(double x, double q) {
         if (q == floor(q)) {
             ncephes_mtherr("zeta", NCEPHES_SING);
         retinf:
-            return (NCEPHES_MAXNUM);
+            return (HUGE_VAL);
         }
         if (x != floor(x))
             goto domerr; /* because q^-x not defined */
@@ -69,7 +64,7 @@ double zeta(double x, double q) {
             a += 1.0;
             b = pow(a, -x);
             s += b;
-            if (fabs(b / s) < MACHEP)
+            if (fabs(b / s) < NCEPHES_MACHEP)
                 goto done;
         }
 
@@ -84,7 +79,7 @@ double zeta(double x, double q) {
             t = a * b / A[i];
             s = s + t;
             t = fabs(t / s);
-            if (t < MACHEP)
+            if (t < NCEPHES_MACHEP)
                 goto done;
             k += 1.0;
             a *= x + k;
@@ -107,7 +102,7 @@ double zeta(double x, double q) {
             b = pow( a, -x );
             s += b;
             }
-    while( b/s > MACHEP );
+    while( b/s > NCEPHES_MACHEP );
 
     b = pow( 2.0, -x );
     s = (s + b)/(1.0-b);
