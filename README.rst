@@ -20,9 +20,9 @@ On Linux or macOS systems it can be as simple as
 
 .. code:: bash
 
-    wget https://github.com/limix/hcephes/archive/0.1.3.tar.gz
-    tar xzf 0.1.3.tar.gz
-    cd hcephes-0.1.3
+    wget https://github.com/limix/hcephes/archive/0.1.4.tar.gz
+    tar xzf 0.1.4.tar.gz
+    cd hcephes-0.1.4
     mkdir build
     cd build
     cmake ..
