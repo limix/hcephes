@@ -1,0 +1,26 @@
+#!/bin/bash
+
+VERSION=0.1.4
+
+rm hcephes-$VERSION.tar.gz || true
+rm -rf hcephes-$VERSION || true
+
+curl -o hcephes-$VERSION.tar.gz \
+     -L https://github.com/limix/hcephes/archive/$VERSION.tar.gz
+tar xzf hcephes-$VERSION.tar.gz
+
+cd hcephes-$VERSION
+
+mkdir build
+cd build
+
+cmake ..
+make
+make test
+sudo make install
+
+cd ..
+cd ..
+
+rm hcephes-$VERSION.tar.gz || true
+rm -rf hcephes-$VERSION || true
