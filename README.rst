@@ -17,6 +17,7 @@ The recommended way of installing it is via conda_
 A second installation option would be to download the latest source and to
 build it by yourself.
 On Linux or macOS systems it can be as simple as
+
 .. code:: bash
 
     wget https://github.com/limix/ncephes/archive/0.1.0.tar.gz
@@ -36,6 +37,7 @@ If you do have those libraries installed but ``cmake`` did not manage to find
 them, you can specify their location to ``cmake`` as
 
 .. code:: bash
+
     cmake ..
 
 On Windows systems you might want to have a look at the
@@ -44,6 +46,7 @@ as a replacement for ``make``.
 Assuming you are at folder ``C:\projects\ncephes`` and that you have installed
 zlib and Zstandard libraries into ``C:\projects\ncephes\deps``, you might want
 to try
+
 .. code:: dos
 
     mkdir build
