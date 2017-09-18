@@ -47,6 +47,7 @@ typedef struct {
     double i;
 } cmplx;
 
+int ncephes_drand(double *a);
 double ncephes_bdtr(int k, int n, double p);        // ok
 double ncephes_bdtrc(int k, int n, double p);       // ok
 double ncephes_bdtri(int k, int n, double y);       // ok
@@ -140,5 +141,9 @@ void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_revers(double y[], double x[], int n);
 void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_rsub(fract *f1, fract *f2, fract *f3);
+double ncephes_ei(double x);
+int ncephes_shichi(double x, double *si, double *ci);
+int ncephes_fresnl(double xxa, double *ssa, double *cca);
+int ncephes_sici(double x, double *si, double *ci);
 
 #endif

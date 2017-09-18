@@ -1,25 +1,7 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
 
-#ifdef NCEPHES_UNK
 #define MAXGAM 34.84425627277176174
-#endif
-#ifdef DEC
-#define MAXGAM 34.84425627277176174
-#endif
-#ifdef IBMPC
-#define MAXGAM 171.624376956302725
-#endif
-#ifdef MIEEE
-#define MAXGAM 171.624376956302725
-#endif
-
-extern double fabs(double);
-extern double ncephes_gamma(double);
-extern double ncephes_lgam_sgn(double, int *);
-extern double exp(double);
-extern double log(double);
-extern double floor(double);
 
 double ncephes_beta(double a, double b) {
     double y;

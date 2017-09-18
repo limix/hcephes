@@ -1,6 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 double ncephes_yn(int n, double x) {
     double an, anm1, anm2, r;

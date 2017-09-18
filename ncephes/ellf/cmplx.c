@@ -141,26 +141,9 @@ void cneg(register cmplx *a) {
             }cmplx;
     */
 
-#ifdef NCEPHES_UNK
 #define PREC 27
 #define MAXEXP 1024
 #define MINEXP -1077
-#endif
-#ifdef DEC
-#define PREC 29
-#define MAXEXP 128
-#define MINEXP -128
-#endif
-#ifdef IBMPC
-#define PREC 27
-#define MAXEXP 1024
-#define MINEXP -1077
-#endif
-#ifdef MIEEE
-#define PREC 27
-#define MAXEXP 1024
-#define MINEXP -1077
-#endif
 
 double ncephes_cabs(register cmplx *z) {
     double x, y, b, re, im;

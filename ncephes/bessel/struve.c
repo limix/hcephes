@@ -1,6 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 static double stop = 1.37e-17;
 

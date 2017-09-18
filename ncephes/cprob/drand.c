@@ -42,15 +42,7 @@ static int ncephes_ranwh(void) {
     return 0;
 }
 
-/*	drand.c
- *
- * Random double precision floating point number between 1 and 2.
- *
- * C callable:
- *	drand( &x );
- */
-
-int drand(double *a) {
+int ncephes_drand(double *a) {
     unsigned short r;
 
     /* This algorithm of Wichmann and Hill computes a floating point
@@ -61,15 +53,6 @@ int drand(double *a) {
     r = unkans.d;
     unkans.d -= r;
     unkans.d += 1.0;
-
-#ifdef IBMPC
-    unkans.s[0] = r;
-#endif
-
-#ifdef MIEEE
-    unkans.s[3] = r;
-#endif
-
     *a = unkans.d;
     return 0;
 }

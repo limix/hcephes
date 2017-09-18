@@ -61,8 +61,7 @@ double ncephes_powi(double x, int nn) {
         goto done;
     }
 
-#if DENORMAL
-    if (s < MINLOG) {
+    if (s < NCEPHES_MINLOG) {
         y = 0.0;
         goto done;
     }
@@ -75,11 +74,6 @@ double ncephes_powi(double x, int nn) {
         x = 1.0 / x;
         sign = -sign;
     }
-#else
-    /* do not produce denormal answer */
-    if (s < -NCEPHES_MAXLOG)
-        return (0.0);
-#endif
 
     /* First bit of the power */
     if (n & 1)
