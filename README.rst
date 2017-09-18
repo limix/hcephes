@@ -1,4 +1,4 @@
-ncephes
+hcephes
 =======
 
 |Build-Status| |Win-Build-Status| |Codacy-Grade| |License-Badge|
@@ -12,7 +12,7 @@ The recommended way of installing it is via conda_
 
 .. code:: bash
 
-    conda install -c conda-forge ncephes
+    conda install -c conda-forge hcephes
 
 A second installation option would be to download the latest source and to
 build it by yourself.
@@ -20,9 +20,9 @@ On Linux or macOS systems it can be as simple as
 
 .. code:: bash
 
-    wget https://github.com/limix/ncephes/archive/0.1.2.tar.gz
-    tar xzf 0.1.2.tar.gz
-    cd ncephes-0.1.2
+    wget https://github.com/limix/hcephes/archive/0.1.3.tar.gz
+    tar xzf 0.1.3.tar.gz
+    cd hcephes-0.1.3
     mkdir build
     cd build
     cmake ..
@@ -42,8 +42,8 @@ them, you can specify their location to ``cmake`` as
 
 On Windows systems you might want to have a look at the nmake_ command
 as a replacement for ``make``.
-Assuming you are at folder ``C:\projects\ncephes`` and that you have installed
-zlib and Zstandard libraries into ``C:\projects\ncephes\deps``, you might want
+Assuming you are at folder ``C:\projects\hcephes`` and that you have installed
+zlib and Zstandard libraries into ``C:\projects\hcephes\deps``, you might want
 to try
 
 .. code:: dos
@@ -68,21 +68,21 @@ This project is licensed under the MIT License - see the `License file`_ file
 for details.
 
 
-.. |Build-Status| image:: https://travis-ci.org/limix/ncephes.svg?branch=master
-    :target: https://travis-ci.org/limix/ncephes
+.. |Build-Status| image:: https://travis-ci.org/limix/hcephes.svg?branch=master
+    :target: https://travis-ci.org/limix/hcephes
 
 .. |Win-Build-Status| image:: https://ci.appveyor.com/api/projects/status/xryjgvyt2vbq56qj/branch/master?svg=true
-    :target: https://ci.appveyor.com/project/Horta/ncephes/branch/master
+    :target: https://ci.appveyor.com/project/Horta/hcephes/branch/master
 
 .. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/83c5d8cd22cb46b3bc5eaa16fd18fa69
-    :target: https://www.codacy.com/app/danilo.horta/ncephes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/ncephes&amp;utm_campaign=Badge_Grade
+    :target: https://www.codacy.com/app/danilo.horta/hcephes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/hcephes&amp;utm_campaign=Badge_Grade
 
-.. |License-Badge| image:: https://img.shields.io/pypi/l/ncephes.svg
-    :target: https://raw.githubusercontent.com/limix/ncephes/master/LICENSE.txt
+.. |License-Badge| image:: https://img.shields.io/pypi/l/hcephes.svg
+    :target: https://raw.githubusercontent.com/limix/hcephes/master/LICENSE.txt
 
 .. _conda: http://conda.pydata.org/docs/index.html
 
-.. _License file: https://raw.githubusercontent.com/limix/ncephes/master/LICENSE.txt
+.. _License file: https://raw.githubusercontent.com/limix/hcephes/master/LICENSE.txt
 
 .. _Danilo Horta: https://github.com/horta
 

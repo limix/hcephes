@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.6.4)
 
-project(ncephes C)
+project(hcephes C)
 
 if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
   execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpversion
@@ -22,63 +22,63 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   add_definitions(-Dinline=__inline)
 endif()
 
-file(STRINGS "VERSION" NCEPHES_VERSION)
+file(STRINGS "VERSION" HCEPHES_VERSION)
 
 include_directories( include/ )
-include_directories( ncephes/ )
+include_directories( hcephes/ )
 include_directories(.)
 
-add_subdirectory(ncephes)
+add_subdirectory(hcephes)
 
 file(GLOB CPROB_SRC
-    "ncephes/cprob/*.c"
+    "hcephes/cprob/*.c"
 )
 
 file(GLOB BESSEL_SRC
-    "ncephes/bessel/*.c"
+    "hcephes/bessel/*.c"
 )
 
 file(GLOB ELLF_SRC
-    "ncephes/ellf/*.c"
+    "hcephes/ellf/*.c"
 )
 
 file(GLOB MISC_SRC
-    "ncephes/misc/*.c"
+    "hcephes/misc/*.c"
 )
 
 file(GLOB POLYN_SRC
-    "ncephes/polyn/*.c"
+    "hcephes/polyn/*.c"
 )
 
 file(GLOB CMATH_SRC
-    "ncephes/cmath/powi.c"
+    "hcephes/cmath/powi.c"
 )
 
-add_library(ncephes
+add_library(hcephes
     SHARED ${BESSEL_SRC} ${CMATH_SRC} ${CPROB_SRC} ${ELLF_SRC} ${MISC_SRC} ${POLYN_SRC}
-           ncephes/mtherr.c)
+           hcephes/mtherr.c)
 
-add_library(ncephes_static
+add_library(hcephes_static
     STATIC ${BESSEL_SRC} ${CMATH_SRC} ${CPROB_SRC} ${ELLF_SRC} ${MISC_SRC} ${POLYN_SRC}
-           ncephes/mtherr.c)
+           hcephes/mtherr.c)
 
-set_target_properties(ncephes
+set_target_properties(hcephes
   PROPERTIES
-    VERSION ${NCEPHES_VERSION}
-    PUBLIC_HEADER include/ncephes/ncephes.h)
+    VERSION ${HCEPHES_VERSION}
+    PUBLIC_HEADER include/hcephes/hcephes.h)
 
-install(TARGETS ncephes
+install(TARGETS hcephes
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
         RUNTIME DESTINATION lib
-    PUBLIC_HEADER DESTINATION include/ncephes)
+    PUBLIC_HEADER DESTINATION include/hcephes)
 
-install(TARGETS ncephes_static
+install(TARGETS hcephes_static
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
-    PUBLIC_HEADER DESTINATION include/ncephes)
+    PUBLIC_HEADER DESTINATION include/hcephes)
 
 add_subdirectory(test)
 
 enable_testing()
-add_test(test_ncephes test/test_ncephes)
+add_test(test_hcephes test/test_hcephes)
