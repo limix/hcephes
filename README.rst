@@ -1,7 +1,7 @@
 ncephes
 =======
 
-|Build-Status| |Codacy-Grade| |License-Badge|
+|Build-Status| |Win-Build-Status| |Codacy-Grade| |License-Badge|
 
 Cephes library.
 
