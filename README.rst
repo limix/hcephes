@@ -22,16 +22,6 @@ On Linux or macOS systems it can be as simple as
 
     source <(curl -s https://raw.githubusercontent.com/limix/hcephes/master/install)
 
-assuming that you have both zlib (often the case) and Zstandard (usually not
-the case) libraries installed and that ``cmake`` managed to find them without
-any hint.
-If you do have those libraries installed but ``cmake`` did not manage to find
-them, you can specify their location to ``cmake`` as
-
-.. code:: bash
-
-    cmake ..
-
 On Windows systems you might want to have a look at the nmake_ command
 as a replacement for ``make``.
 Assuming you are at folder ``C:\projects\hcephes`` and that you have installed
