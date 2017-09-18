@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "polevl.h"
+#include "ncephes/ncephes.h"
 
 extern double log(double);
 extern double exp(double);

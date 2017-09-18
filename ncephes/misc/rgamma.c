@@ -1,4 +1,6 @@
 #include "mconf.h"
+#include "ncephes/ncephes.h"
+#include <math.h>
 
 /* Chebyshev coefficients for reciprocal cephes_gamma function
  * in interval 0 to 1.  Function is 1/(x cephes_gamma(x)) - 1
@@ -53,12 +55,6 @@ static unsigned short R[] = {
 
 static char name[] = "rcephes_gamma";
 
-extern double chbevl(double, void *, int);
-extern double exp(double);
-extern double log(double);
-extern double sin(double);
-extern double ncephes_lgam(double);
-
 extern double NCEPHES_PI, MAXLOG, NCEPHES_MAXNUM;
 
 double rcephes_gamma(double x) {
@@ -109,6 +105,6 @@ double rcephes_gamma(double x) {
     if (w == 1.0) /* Other integer */
         return (1.0 / z);
 
-    y = w * (1.0 + chbevl(4.0 * w - 2.0, R, 16)) / z;
+    y = w * (1.0 + ncephes_chbevl(4.0 * w - 2.0, R, 16)) / z;
     return (y);
 }

@@ -1,6 +1,6 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include "polevl.h"
+#include "ncephes/ncephes.h"
 #include <math.h>
 
 extern double NCEPHES_MAXNUM;

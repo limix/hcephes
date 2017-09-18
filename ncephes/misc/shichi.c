@@ -1,4 +1,6 @@
 #include "mconf.h"
+#include "ncephes/ncephes.h"
+#include <math.h>
 
 #ifdef NCEPHES_UNK
 /* x exp(-x) shi(x), inverted interval 8 to 18 */
@@ -230,11 +232,6 @@ static unsigned short C2[] = {
 
 /* Sine and cosine integrals */
 
-extern double log(double);
-extern double exp(double);
-extern double fabs(double);
-extern double chbevl(double, void *, int);
-
 #define EUL 0.57721566490153286061
 extern double MACHEP, NCEPHES_MAXNUM, NCEPHES_PIO2;
 
@@ -283,16 +280,16 @@ chb:
     if (x < 18.0) {
         a = (576.0 / x - 52.0) / 10.0;
         k = exp(x) / x;
-        s = k * chbevl(a, S1, 22);
-        c = k * chbevl(a, C1, 23);
+        s = k * ncephes_chbevl(a, S1, 22);
+        c = k * ncephes_chbevl(a, C1, 23);
         goto done;
     }
 
     if (x <= 88.0) {
         a = (6336.0 / x - 212.0) / 70.0;
         k = exp(x) / x;
-        s = k * chbevl(a, S2, 23);
-        c = k * chbevl(a, C2, 24);
+        s = k * ncephes_chbevl(a, S2, 23);
+        c = k * ncephes_chbevl(a, C2, 24);
         goto done;
     } else {
         if (sign)

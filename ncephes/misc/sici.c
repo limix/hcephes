@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "polevl.h"
+#include "ncephes/ncephes.h"
 
 #ifdef NCEPHES_UNK
 static double SN[] = {

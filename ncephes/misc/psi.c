@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "polevl.h"
+#include "ncephes/ncephes.h"
 
 #ifdef NCEPHES_UNK
 static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,

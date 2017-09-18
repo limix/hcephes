@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "polevl.h"
+#include "ncephes/ncephes.h"
 
 extern double NCEPHES_MAXNUM, NCEPHES_PI;
 

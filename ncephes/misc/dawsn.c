@@ -1,5 +1,5 @@
 #include "mconf.h"
-#include "polevl.h"
+#include "ncephes/ncephes.h"
 
 /* Dawson's integral, interval 0 to 3.25 */
 #ifdef NCEPHES_UNK
@@ -194,8 +194,6 @@ static unsigned short CD[20] = {
     0x5fe4, 0x4f2d, 0xbf4f, 0xe79c, 0xad3d, 0x0a8d,
 };
 #endif
-
-extern double chbevl(double, void *, int);
 
 extern double NCEPHES_PI, MACHEP;
 
