@@ -1,2 +1,0 @@
-# ncephes
- Cephes library.
