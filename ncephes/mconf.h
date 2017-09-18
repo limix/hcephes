@@ -32,16 +32,6 @@
 #define BIGENDIAN 0
 #endif
 
-/* Define to support tiny denormal numbers, else undefine. */
-#define NCEPHES_DENORMAL 1
-
-/* Define to ask for infinity support, else undefine. */
-#define NCEPHES_INFINITIES 1
-
-/* Define to ask for support of numbers that are Not-a-Number,
-   else undefine.  This may automatically define INFINITIES in some files. */
-#define NCEPHES_NANS 1
-
 int ncephes_mtherr(char *name, int code);
 
 #endif /* NCEPHES_MCONF_H */

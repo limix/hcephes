@@ -56,16 +56,12 @@ static double EQ[4] = {
 double ncephes_expm1(double x) {
     double r, xx;
 
-#ifdef NCEPHES_NANS
     if (isnan(x))
         return (x);
-#endif
-#ifdef NCEPHES_INFINITIES
     if (x == HUGE_VAL)
         return (HUGE_VAL);
     if (x == -HUGE_VAL)
         return (-1.0);
-#endif
     if ((x < -0.5) || (x > 0.5))
         return (exp(x) - 1.0);
     xx = x * x;

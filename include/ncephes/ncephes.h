@@ -47,23 +47,26 @@ typedef struct {
     double i;
 } cmplx;
 
-double ncephes_chbevl(double x, double array[], int n);
 double ncephes_bdtr(int k, int n, double p);        // ok
 double ncephes_bdtrc(int k, int n, double p);       // ok
 double ncephes_bdtri(int k, int n, double y);       // ok
 double ncephes_beta(double a, double b);            // ok
 double ncephes_btdtr(double a, double b, double x); // ok
-double ncephes_chdtr(double df, double x);          // ok
-double ncephes_chdtrc(double df, double x);         // ok
-double ncephes_chdtri(double df, double y);         // ok
-double ncephes_cosm1(double x);                     // ok
-double ncephes_ellie(double phi, double m);         // ok
-double ncephes_ellik(double phi, double m);         // ok
-double ncephes_ellpe(double x);                     // ok
-double ncephes_ellpk(double x);                     // ok
-double ncephes_euclid(double *num, double *den);    // ok
-double ncephes_expm1(double x);                     // ok
-double ncephes_expx2(double x, int sign);           // ok
+double ncephes_chbevl(double x, double array[], int n);
+double ncephes_chdtr(double df, double x);  // ok
+double ncephes_chdtrc(double df, double x); // ok
+double ncephes_chdtri(double df, double y); // ok
+double ncephes_cosm1(double x);             // ok
+double ncephes_dawsn(double xx);
+double ncephes_ellie(double phi, double m);      // ok
+double ncephes_ellik(double phi, double m);      // ok
+double ncephes_ellpe(double x);                  // ok
+double ncephes_ellpk(double x);                  // ok
+double ncephes_euclid(double *num, double *den); // ok
+double ncephes_expm1(double x);                  // ok
+double ncephes_expn(int n, double x);
+double ncephes_expx2(double x, int sign); // ok
+double ncephes_fac(int i);
 double ncephes_fdtr(int ia, int ib, double x);      // ok
 double ncephes_fdtrc(int ia, int ib, double x);     // ok
 double ncephes_fdtri(int ia, int ib, double y);     // ok
@@ -104,20 +107,25 @@ double ncephes_nbdtri(int k, int n, double p); // ok
 double ncephes_ndtr(double a);                 // ok
 double ncephes_ndtri(double y0);               // ok
 double ncephes_onef2(double a, double b, double c, double x, double *err);
+double ncephes_p1evl(double x, double coef[], int N);
 double ncephes_pdtr(int k, double m);  // ok
 double ncephes_pdtrc(int k, double m); // ok
 double ncephes_pdtri(int k, double y); // ok
+double ncephes_polevl(double x, double coef[], int N);
+double ncephes_powi(double x, int nn);
 double ncephes_psi(double x);
 double ncephes_smirnov(int n, double e);  // ok
 double ncephes_smirnovi(int n, double p); // ok
-double ncephes_stdtr(int k, double t);    // ok
-double ncephes_stdtri(int k, double p);   // ok
+double ncephes_spence(double x);
+double ncephes_stdtr(int k, double t);  // ok
+double ncephes_stdtri(int k, double p); // ok
 double ncephes_struve(double v, double x);
 double ncephes_threef0(double a, double b, double c, double x, double *err);
 double ncephes_y0(double x);
 double ncephes_y1(double x);
 double ncephes_yn(int n, double x);
 double ncephes_yv(double v, double x);
+double ncephes_zetac(double x);
 int ncephes_airy(double x, double *ai, double *aip, double *bi, double *bip);
 int ncephes_poldiv(double *, int, double *, int, double *);
 int ncephes_polrt(double xcof[], double cof[], int m, cmplx root[]);
@@ -132,13 +140,5 @@ void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_revers(double y[], double x[], int n);
 void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_rsub(fract *f1, fract *f2, fract *f3);
-double ncephes_polevl(double x, double coef[], int N);
-double ncephes_p1evl(double x, double coef[], int N);
-double ncephes_dawsn(double xx);
-double ncephes_expn(int n, double x);
-double ncephes_powi(double x, int nn);
-double ncephes_spence(double x);
-double ncephes_fac(int i);
-double ncephes_zetac(double x);
 
 #endif

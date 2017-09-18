@@ -166,19 +166,15 @@ double ncephes_cabs(register cmplx *z) {
     double x, y, b, re, im;
     int ex, ey, e;
 
-#ifdef NCEPHES_INFINITIES
     /* Note, ncephes_cabs(HUGE_VAL,NCEPHES_NAN) = HUGE_VAL. */
     if (z->r == HUGE_VAL || z->i == HUGE_VAL || z->r == -HUGE_VAL ||
         z->i == -HUGE_VAL)
         return (HUGE_VAL);
-#endif
 
-#ifdef NCEPHES_NANS
     if (isnan(z->r))
         return (z->r);
     if (isnan(z->i))
         return (z->i);
-#endif
 
     re = fabs(z->r);
     im = fabs(z->i);
