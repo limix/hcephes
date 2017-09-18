@@ -353,7 +353,7 @@ extern double sin(double);
 extern double cos(double);
 
 #define EUL 0.57721566490153286061
-extern double NCEPHES_MAXNUM, NCEPHES_PIO2, MACHEP;
+extern double NCEPHES_MAXNUM, MACHEP;
 
 int sici(double x, double *si, double *ci) {
     double z, c, s, f, g;

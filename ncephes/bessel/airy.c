@@ -6,7 +6,6 @@ static double c1 = 0.35502805388781723926;
 static double c2 = 0.258819403792806798405;
 static double sqrt3 = 1.732050807568877293527;
 static double sqpii = 5.64189583547756286948E-1;
-extern double NCEPHES_PI;
 
 extern double NCEPHES_MAXNUM, MACHEP;
 #define MAXAIRY 25.77

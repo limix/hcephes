@@ -2,7 +2,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_PI, MACHEP, NCEPHES_MAXNUM;
+extern double MACHEP, NCEPHES_MAXNUM;
 
 double ncephes_stdtr(int k, double t) {
     double x, rk, z, f, tz, p, xsqk;

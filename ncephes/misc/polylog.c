@@ -1,8 +1,6 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
 
-extern double NCEPHES_PI;
-
 /* polylog(4, 1-x) = zeta(4) - x zeta(3) + x^2 A4(x)/B4(x)
    0 <= x <= 0.125
    Theoretical peak absolute error 4.5e-18  */

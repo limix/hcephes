@@ -195,7 +195,7 @@ static unsigned short CD[20] = {
 };
 #endif
 
-extern double NCEPHES_PI, MACHEP;
+extern double MACHEP;
 
 double dawsn(double xx) {
     double x, y;

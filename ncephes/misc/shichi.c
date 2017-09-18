@@ -233,7 +233,7 @@ static unsigned short C2[] = {
 /* Sine and cosine integrals */
 
 #define EUL 0.57721566490153286061
-extern double MACHEP, NCEPHES_MAXNUM, NCEPHES_PIO2;
+extern double MACHEP, NCEPHES_MAXNUM;
 
 int shichi(double x, double *si, double *ci) {
     double k, z, c, s, a;

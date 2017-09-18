@@ -65,8 +65,6 @@ static double RQ[8] = {
     3.18121955943204943306E16, 1.71086294081043136091E18,
 };
 
-extern double NCEPHES_TWOOPI, NCEPHES_SQ2OPI, NCEPHES_PIO4;
-
 double ncephes_j0(double x) {
     double w, z, p, q, xn;
 
@@ -101,10 +99,6 @@ double ncephes_j0(double x) {
  * = 0.073804295108687225.
  */
 
-/*
-#define NCEPHES_PIO4 .78539816339744830962
-#define NCEPHES_SQ2OPI .79788456080286535588
-*/
 extern double NCEPHES_MAXNUM;
 
 double ncephes_y0(double x) {

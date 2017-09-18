@@ -1,6 +1,15 @@
 #ifndef NCEPHES_H
 #define NCEPHES_H
 
+#define NCEPHES_SQ2OPI 7.9788456080286535587989E-1  /* sqrt( 2/pi ) */
+#define NCEPHES_LOGSQ2 3.46573590279972654709E-1    /* log(2)/2 */
+#define NCEPHES_THPIO4 2.35619449019234492885       /* 3*pi/4 */
+#define NCEPHES_TWOOPI 6.36619772367581343075535E-1 /* 2/pi */
+#define NCEPHES_PI 3.14159265358979323846
+#define NCEPHES_PIO2 (3.14159265358979323846 / 2)
+#define NCEPHES_PIO4 (3.14159265358979323846 / 4)
+#define NCEPHES_SQRTH 7.07106781186547524401E-1 /* sqrt(2)/2 */
+
 typedef struct {
     double n; /* numerator */
     double d; /* denominator */

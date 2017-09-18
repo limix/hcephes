@@ -4,7 +4,6 @@
 
 static double ncephes_erfce(double x);
 
-extern double NCEPHES_SQRTH;
 extern double MAXLOG;
 
 /* Define this macro to suppress error propagation in exp(x^2)

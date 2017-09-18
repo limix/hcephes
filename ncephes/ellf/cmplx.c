@@ -8,8 +8,7 @@ extern double ldexp(double, int);
 void cdiv(cmplx *, cmplx *, cmplx *);
 void cadd(cmplx *, cmplx *, cmplx *);
 
-extern double NCEPHES_MAXNUM, MACHEP, NCEPHES_PI, NCEPHES_PIO2, NCEPHES_INF,
-    NCEPHES_NAN;
+extern double NCEPHES_MAXNUM, MACHEP, NCEPHES_INF, NCEPHES_NAN;
 /*
 typedef struct
         {

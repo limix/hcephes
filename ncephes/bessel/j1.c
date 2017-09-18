@@ -59,8 +59,6 @@ static double YQ[8] = {
 static double Z1 = 1.46819706421238932572E1;
 static double Z2 = 4.92184563216946036703E1;
 
-extern double NCEPHES_TWOOPI, NCEPHES_THPIO4, NCEPHES_SQ2OPI;
-
 double ncephes_j1(double x) {
     double w, z, p, q, xn;
 

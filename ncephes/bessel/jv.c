@@ -295,7 +295,6 @@ done:
  * AMS55 #9.1.10.
  */
 
-extern double NCEPHES_PI;
 extern int sgngam;
 
 static double ncephes_jvs(double n, double x) {

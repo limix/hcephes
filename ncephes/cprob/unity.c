@@ -1,6 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include "ncephes/ncephes.h"
 #include <math.h>
 
 extern double NCEPHES_INF;
@@ -85,8 +84,6 @@ static double coscof[7] = {
     2.4801587301570552304991E-5,  -1.3888888888888872993737E-3,
     4.1666666666666666609054E-2,
 };
-
-extern double NCEPHES_PIO4;
 
 double ncephes_cosm1(double x) {
     double xx;

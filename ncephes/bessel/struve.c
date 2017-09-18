@@ -120,8 +120,6 @@ xit:
     return (sum);
 }
 
-extern double NCEPHES_PI;
-
 double ncephes_struve(double v, double x) {
     double y, ya, f, g, h, t;
     double onef2err, threef0err;

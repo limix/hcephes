@@ -2,7 +2,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_PIO2, MACHEP;
+extern double MACHEP;
 
 int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
                   double *ph) {

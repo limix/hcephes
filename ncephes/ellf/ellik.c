@@ -2,7 +2,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_PI, NCEPHES_PIO2, MACHEP, NCEPHES_MAXNUM;
+extern double MACHEP, NCEPHES_MAXNUM;
 
 double ncephes_ellik(double phi, double m) {
     double a, b, c, e, temp, t, K;

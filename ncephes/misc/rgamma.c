@@ -17,7 +17,7 @@ static double R[] = {3.13173458231230000000E-17,  -6.70718606477908000000E-16,
 
 static char name[] = "rcephes_gamma";
 
-extern double NCEPHES_PI, MAXLOG, NCEPHES_MAXNUM;
+extern double MAXLOG, NCEPHES_MAXNUM;
 
 double rcephes_gamma(double x) {
     double w, y, z;

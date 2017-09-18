@@ -2,7 +2,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double NCEPHES_PI, NCEPHES_PIO2, MACHEP;
+extern double MACHEP;
 
 double ncephes_ellie(double phi, double m) {
     double a, b, c, e, temp;

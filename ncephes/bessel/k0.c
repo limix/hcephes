@@ -35,7 +35,6 @@ static double B[] = {5.30043377268626276149E-18, -1.64758043015242134646E-17,
                      1.56988388573005337491E-3,  -3.14481013119645005427E-2,
                      2.44030308206595545468E0};
 
-extern double NCEPHES_PI;
 extern double NCEPHES_MAXNUM;
 
 double ncephes_k0(double x) {

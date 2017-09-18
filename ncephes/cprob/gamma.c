@@ -137,7 +137,7 @@ static unsigned short SQT[4] = {
 int sgngam = 0;
 extern int sgngam;
 
-extern double MAXLOG, NCEPHES_MAXNUM, NCEPHES_PI;
+extern double MAXLOG, NCEPHES_MAXNUM;
 
 #ifdef NCEPHES_INFINITIES
 extern double NCEPHES_INF;

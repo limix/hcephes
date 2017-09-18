@@ -61,7 +61,7 @@ static unsigned short B[32] = {
 extern double fabs(double);
 extern double log(double);
 
-extern double NCEPHES_PI, MACHEP;
+extern double MACHEP;
 
 double ncephes_spence(double x) {
     double w, y, z;

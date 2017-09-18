@@ -257,7 +257,7 @@ extern double fabs(double);
 extern double cos(double);
 extern double sin(double);
 
-extern double NCEPHES_PI, NCEPHES_PIO2, MACHEP;
+extern double MACHEP;
 
 int fresnl(double xxa, double *ssa, double *cca) {
     double f, g, cc, ss, c, s, t, u;

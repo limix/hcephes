@@ -5,7 +5,7 @@
 #define EUL 5.772156649015328606065e-1
 #define MAXFAC 31
 
-extern double MACHEP, NCEPHES_MAXNUM, MAXLOG, NCEPHES_PI;
+extern double MACHEP, NCEPHES_MAXNUM, MAXLOG;
 
 double ncephes_kn(int nn, double x) {
     double k, kf, nk1f, nkf, zn, t, s, z0, z;

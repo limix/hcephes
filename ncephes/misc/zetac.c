@@ -1,7 +1,7 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
 
-extern double NCEPHES_MAXNUM, NCEPHES_PI;
+extern double NCEPHES_MAXNUM;
 
 /* Riemann zeta(x) - 1
  * for integer arguments between 0 and 30.

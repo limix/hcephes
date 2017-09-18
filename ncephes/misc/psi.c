@@ -38,7 +38,7 @@ extern double floor(double);
 extern double log(double);
 extern double tan(double);
 
-extern double NCEPHES_PI, NCEPHES_MAXNUM;
+extern double NCEPHES_MAXNUM;
 
 double psi(double x) {
     double p, q, nz, s, w, y, z;
