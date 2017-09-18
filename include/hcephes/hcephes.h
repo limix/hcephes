@@ -37,23 +37,23 @@
 #define HCEPHES_TWOOPI 6.36619772367581343075535E-1 /* 2/pi */
 
 typedef struct {
-    double n; /* numerator */
-    double d; /* denominator */
+  double n; /* numerator */
+  double d; /* denominator */
 } fract;
 
 typedef struct {
-    long double r;
-    long double i;
+  long double r;
+  long double i;
 } cmplxl;
 
 typedef struct {
-    float r;
-    float i;
+  float r;
+  float i;
 } cmplxf;
 
 typedef struct {
-    double r;
-    double i;
+  double r;
+  double i;
 } cmplx;
 
 double hcephes_bdtr(int k, int n, double p);        // ok
