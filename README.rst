@@ -19,9 +19,9 @@ build it by yourself.
 On Linux or macOS systems it can be as simple as
 .. code:: bash
 
-    wget https://github.com/limix/ncephes/archive/0.1.14.tar.gz
-    tar xzf 0.1.14.tar.gz
-    cd ncephes-0.1.14
+    wget https://github.com/limix/ncephes/archive/0.1.0.tar.gz
+    tar xzf 0.1.0.tar.gz
+    cd ncephes-0.1.0
     mkdir build
     cd build
     cmake ..
