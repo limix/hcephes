@@ -1,7 +1,7 @@
 hcephes
 =======
 
-|Build-Status| |Win-Build-Status| |Codacy-Grade| |License-Badge|
+|Build-Status| |Win-Build-Status| |Codacy-Grade|
 
 Cephes library.
 
@@ -76,9 +76,6 @@ for details.
 
 .. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/83c5d8cd22cb46b3bc5eaa16fd18fa69
     :target: https://www.codacy.com/app/danilo.horta/hcephes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/hcephes&amp;utm_campaign=Badge_Grade
-
-.. |License-Badge| image:: https://img.shields.io/pypi/l/hcephes.svg
-    :target: https://raw.githubusercontent.com/limix/hcephes/master/LICENSE.txt
 
 .. _conda: http://conda.pydata.org/docs/index.html
 
