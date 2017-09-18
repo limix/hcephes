@@ -1,11 +1,10 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include "ncephes/ncephes.h"
 #include <math.h>
 
 static double ncephes_erfce(double x);
 
-extern double SQRTH;
+extern double NCEPHES_SQRTH;
 extern double MAXLOG;
 
 /* Define this macro to suppress error propagation in exp(x^2)
@@ -145,10 +144,10 @@ static unsigned short U[] = {0x4040, 0xc7e6, 0x3fef, 0xa6ba, 0x4080,
 double ncephes_ndtr(double a) {
     double x, y, z;
 
-    x = a * SQRTH;
+    x = a * NCEPHES_SQRTH;
     z = fabs(x);
 
-    /* if( z < SQRTH ) */
+    /* if( z < NCEPHES_SQRTH ) */
     if (z < 1.0)
         y = 0.5 + 0.5 * erf(x);
 

@@ -120,7 +120,7 @@ xit:
     return (sum);
 }
 
-extern double PI;
+extern double NCEPHES_PI;
 
 double ncephes_struve(double v, double x) {
     double y, ya, f, g, h, t;
@@ -152,7 +152,7 @@ double ncephes_struve(double v, double x) {
         ya = ncephes_threef0(1.0, 0.5, 0.5 - v, -1.0 / t, &threef0err);
     }
 
-    f = sqrt(PI);
+    f = sqrt(NCEPHES_PI);
     h = pow(0.5 * x, v - 1.0);
 
     if (onef2err <= threef0err) {
@@ -180,7 +180,7 @@ double ncephes_yv(double v, double x) {
         y = ncephes_yn(n, x);
         return (y);
     }
-    t = PI * v;
+    t = NCEPHES_PI * v;
     y = (cos(t) * ncephes_jv(v, x) - ncephes_jv(-v, x)) / sin(t);
     return (y);
 }

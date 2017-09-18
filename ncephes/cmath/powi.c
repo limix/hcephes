@@ -4,7 +4,8 @@ extern double log(double);
 extern double frexp(double, int *);
 extern int signbit(double);
 
-extern double NEGZERO, NCEPHES_INF, NCEPHES_MAXNUM, MAXLOG, MINLOG, LOGE2;
+extern double NCEPHES_NEGZERO, NCEPHES_INF, NCEPHES_MAXNUM, MAXLOG, MINLOG,
+    NCEPHES_LOGE2;
 
 double ncephes_powi(double x, int nn) {
     int n, e, sign, asign, lx;
@@ -55,9 +56,9 @@ double ncephes_powi(double x, int nn) {
     e = (lx - 1) * n;
     if ((e == 0) || (e > 64) || (e < -64)) {
         s = (s - 7.0710678118654752e-1) / (s + 7.0710678118654752e-1);
-        s = (2.9142135623730950 * s - 0.5 + lx) * nn * LOGE2;
+        s = (2.9142135623730950 * s - 0.5 + lx) * nn * NCEPHES_LOGE2;
     } else {
-        s = LOGE2 * e;
+        s = NCEPHES_LOGE2 * e;
     }
 
     if (s > MAXLOG) {
@@ -110,7 +111,7 @@ done:
     if (asign) {
         /* odd power of negative number */
         if (y == 0.0)
-            y = NEGZERO;
+            y = NCEPHES_NEGZERO;
         else
             y = -y;
     }

@@ -65,7 +65,7 @@ static double RQ[8] = {
     3.18121955943204943306E16, 1.71086294081043136091E18,
 };
 
-extern double TWOOPI, SQ2OPI, PIO4;
+extern double NCEPHES_TWOOPI, NCEPHES_SQ2OPI, NCEPHES_PIO4;
 
 double ncephes_j0(double x) {
     double w, z, p, q, xn;
@@ -87,9 +87,9 @@ double ncephes_j0(double x) {
     q = 25.0 / (x * x);
     p = ncephes_polevl(q, PP, 6) / ncephes_polevl(q, PQ, 6);
     q = ncephes_polevl(q, QP, 7) / ncephes_p1evl(q, QQ, 7);
-    xn = x - PIO4;
+    xn = x - NCEPHES_PIO4;
     p = p * cos(xn) - w * q * sin(xn);
-    return (p * SQ2OPI / sqrt(x));
+    return (p * NCEPHES_SQ2OPI / sqrt(x));
 }
 
 /*							y0() 2	*/
@@ -102,10 +102,10 @@ double ncephes_j0(double x) {
  */
 
 /*
-#define PIO4 .78539816339744830962
-#define SQ2OPI .79788456080286535588
+#define NCEPHES_PIO4 .78539816339744830962
+#define NCEPHES_SQ2OPI .79788456080286535588
 */
-extern double MAXNUM;
+extern double NCEPHES_MAXNUM;
 
 double ncephes_y0(double x) {
     double w, z, p, q, xn;
@@ -113,11 +113,11 @@ double ncephes_y0(double x) {
     if (x <= 5.0) {
         if (x <= 0.0) {
             ncephes_mtherr("y0", DOMAIN);
-            return (-MAXNUM);
+            return (-NCEPHES_MAXNUM);
         }
         z = x * x;
         w = ncephes_polevl(z, YP, 7) / ncephes_p1evl(z, YQ, 7);
-        w += TWOOPI * log(x) * j0(x);
+        w += NCEPHES_TWOOPI * log(x) * j0(x);
         return (w);
     }
 
@@ -125,7 +125,7 @@ double ncephes_y0(double x) {
     z = 25.0 / (x * x);
     p = ncephes_polevl(z, PP, 6) / ncephes_polevl(z, PQ, 6);
     q = ncephes_polevl(z, QP, 7) / ncephes_p1evl(z, QQ, 7);
-    xn = x - PIO4;
+    xn = x - NCEPHES_PIO4;
     p = p * sin(xn) + w * q * cos(xn);
-    return (p * SQ2OPI / sqrt(x));
+    return (p * NCEPHES_SQ2OPI / sqrt(x));
 }

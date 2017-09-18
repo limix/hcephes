@@ -59,7 +59,7 @@ static double YQ[8] = {
 static double Z1 = 1.46819706421238932572E1;
 static double Z2 = 4.92184563216946036703E1;
 
-extern double TWOOPI, THPIO4, SQ2OPI;
+extern double NCEPHES_TWOOPI, NCEPHES_THPIO4, NCEPHES_SQ2OPI;
 
 double ncephes_j1(double x) {
     double w, z, p, q, xn;
@@ -79,12 +79,12 @@ double ncephes_j1(double x) {
     z = w * w;
     p = ncephes_polevl(z, PP, 6) / ncephes_polevl(z, PQ, 6);
     q = ncephes_polevl(z, QP, 7) / ncephes_p1evl(z, QQ, 7);
-    xn = x - THPIO4;
+    xn = x - NCEPHES_THPIO4;
     p = p * cos(xn) - w * q * sin(xn);
-    return (p * SQ2OPI / sqrt(x));
+    return (p * NCEPHES_SQ2OPI / sqrt(x));
 }
 
-extern double MAXNUM;
+extern double NCEPHES_MAXNUM;
 
 double ncephes_y1(double x) {
     double w, z, p, q, xn;
@@ -92,11 +92,11 @@ double ncephes_y1(double x) {
     if (x <= 5.0) {
         if (x <= 0.0) {
             ncephes_mtherr("y1", DOMAIN);
-            return (-MAXNUM);
+            return (-NCEPHES_MAXNUM);
         }
         z = x * x;
         w = x * (ncephes_polevl(z, YP, 5) / ncephes_p1evl(z, YQ, 8));
-        w += TWOOPI * (j1(x) * log(x) - 1.0 / x);
+        w += NCEPHES_TWOOPI * (j1(x) * log(x) - 1.0 / x);
         return (w);
     }
 
@@ -104,7 +104,7 @@ double ncephes_y1(double x) {
     z = w * w;
     p = ncephes_polevl(z, PP, 6) / ncephes_polevl(z, PQ, 6);
     q = ncephes_polevl(z, QP, 7) / ncephes_p1evl(z, QQ, 7);
-    xn = x - THPIO4;
+    xn = x - NCEPHES_THPIO4;
     p = p * sin(xn) + w * q * cos(xn);
-    return (p * SQ2OPI / sqrt(x));
+    return (p * NCEPHES_SQ2OPI / sqrt(x));
 }

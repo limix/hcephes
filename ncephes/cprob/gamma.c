@@ -1,6 +1,5 @@
 #include "mconf.h"
 #include "ncephes/ncephes.h"
-#include "ncephes/ncephes.h"
 #include <math.h>
 
 #ifdef NCEPHES_UNK
@@ -135,6 +134,9 @@ static unsigned short SQT[4] = {
 #define SQTNCEPHES_PI *(double *)SQT
 #endif
 
+int sgngam = 0;
+extern int sgngam;
+
 extern double MAXLOG, NCEPHES_MAXNUM, NCEPHES_PI;
 
 #ifdef NCEPHES_INFINITIES
@@ -167,7 +169,7 @@ double ncephes_gamma(double x) {
     double p, q, z;
     int i;
 
-    int sgngam = 1;
+    sgngam = 1;
 #ifdef NCEPHES_NANS
     if (isnan(x))
         return (x);

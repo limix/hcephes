@@ -8,7 +8,7 @@
 #define MAXGAM 171.624376956302725
 #endif
 
-extern double MAXNUM, MACHEP, MINLOG, MAXLOG;
+extern double NCEPHES_MAXNUM, MACHEP, MINLOG, MAXLOG;
 #define BIG 1.44115188075855872E+17
 
 static double ncephes_hankel(double n, double x);
@@ -295,7 +295,7 @@ done:
  * AMS55 #9.1.10.
  */
 
-extern double PI;
+extern double NCEPHES_PI;
 extern int sgngam;
 
 static double ncephes_jvs(double n, double x) {
@@ -335,7 +335,7 @@ static double ncephes_jvs(double n, double x) {
         }
         if (t > MAXLOG) {
             ncephes_mtherr("Jv", OVERFLOW);
-            return (MAXNUM);
+            return (NCEPHES_MAXNUM);
         }
         y = sgngam * exp(t);
     }
@@ -391,8 +391,8 @@ static double ncephes_hankel(double n, double x) {
     }
 
 hank1:
-    u = x - (0.5 * n + 0.25) * PI;
-    t = sqrt(2.0 / (PI * x)) * (pp * cos(u) - qq * sin(u));
+    u = x - (0.5 * n + 0.25) * NCEPHES_PI;
+    t = sqrt(2.0 / (NCEPHES_PI * x)) * (pp * cos(u) - qq * sin(u));
 
     return (t);
 }
@@ -508,8 +508,8 @@ static double ncephes_jnx(double n, double x) {
     /* flags to stop when terms get larger */
     doa = 1;
     dob = 1;
-    akl = MAXNUM;
-    bkl = MAXNUM;
+    akl = NCEPHES_MAXNUM;
+    bkl = NCEPHES_MAXNUM;
 
     for (k = 0; k <= 3; k++) {
         tk = 2 * k;

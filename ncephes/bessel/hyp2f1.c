@@ -7,7 +7,7 @@
 
 #define ETHRESH 1.0e-12
 
-extern double MAXNUM, MACHEP;
+extern double NCEPHES_MAXNUM, MACHEP;
 
 static double ncephes_hyt2f1(double a, double b, double c, double x,
                              double *loss);
@@ -156,7 +156,7 @@ hypf:
 /* The alarm exit */
 hypdiv:
     ncephes_mtherr("hyp2f1", OVERFLOW);
-    return (MAXNUM);
+    return (NCEPHES_MAXNUM);
 }
 
 /* Apply transformations for |x| near 1
@@ -306,7 +306,7 @@ static double ncephes_hys2f1(double a, double b, double c, double x,
     do {
         if (fabs(h) < EPS) {
             *loss = 1.0;
-            return (MAXNUM);
+            return (NCEPHES_MAXNUM);
         }
         m = k + 1.0;
         u = u * ((f + k) * (g + k) * x / ((h + k) * m));

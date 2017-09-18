@@ -2,7 +2,7 @@
 #include "ncephes/ncephes.h"
 #include <math.h>
 
-extern double MAXNUM, MACHEP;
+extern double NCEPHES_MAXNUM, MACHEP;
 static double ncephes_hy1f1p(double a, double b, double x, double *err);
 static double ncephes_hy1f1a(double a, double b, double x, double *err);
 
@@ -55,7 +55,7 @@ static double ncephes_hy1f1p(double a, double b, double x, double *err) {
         if (bn == 0) /* check bn first since if both	*/
         {
             ncephes_mtherr("hyperg", SING);
-            return (MAXNUM); /* an and bn are zero it is	*/
+            return (NCEPHES_MAXNUM); /* an and bn are zero it is	*/
         }
         if (an == 0) /* a singularity		*/
             return (sum);
@@ -65,7 +65,7 @@ static double ncephes_hy1f1p(double a, double b, double x, double *err) {
 
         /* check for blowup */
         temp = fabs(u);
-        if ((temp > 1.0) && (maxt > (MAXNUM / temp))) {
+        if ((temp > 1.0) && (maxt > (NCEPHES_MAXNUM / temp))) {
             pcanc = 1.0; /* estimate 100% error */
             goto blowup;
         }
@@ -125,7 +125,7 @@ static double ncephes_hy1f1a(double a, double b, double x, double *err) {
 
     if (x == 0) {
         acanc = 1.0;
-        asum = MAXNUM;
+        asum = NCEPHES_MAXNUM;
         goto adone;
     }
     temp = log(fabs(x));
@@ -206,7 +206,7 @@ double ncephes_hyp2f0(double a, double b, double x, int type, double *err) {
 
         /* check for blowup */
         temp = fabs(u);
-        if ((temp > 1.0) && (maxt > (MAXNUM / temp)))
+        if ((temp > 1.0) && (maxt > (NCEPHES_MAXNUM / temp)))
             goto error;
 
         a0 *= u;
@@ -268,7 +268,7 @@ done:
 
 /* series blew up: */
 error:
-    *err = MAXNUM;
+    *err = NCEPHES_MAXNUM;
     ncephes_mtherr("hyperg", TLOSS);
     return (sum);
 }

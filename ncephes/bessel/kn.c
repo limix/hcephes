@@ -5,7 +5,7 @@
 #define EUL 5.772156649015328606065e-1
 #define MAXFAC 31
 
-extern double MACHEP, MAXNUM, MAXLOG, PI;
+extern double MACHEP, NCEPHES_MAXNUM, MAXLOG, NCEPHES_PI;
 
 double ncephes_kn(int nn, double x) {
     double k, kf, nk1f, nkf, zn, t, s, z0, z;
@@ -20,7 +20,7 @@ double ncephes_kn(int nn, double x) {
     if (n > MAXFAC) {
     overf:
         ncephes_mtherr("kn", OVERFLOW);
-        return (MAXNUM);
+        return (NCEPHES_MAXNUM);
     }
 
     if (x <= 0.0) {
@@ -28,7 +28,7 @@ double ncephes_kn(int nn, double x) {
             ncephes_mtherr("kn", DOMAIN);
         else
             ncephes_mtherr("kn", SING);
-        return (MAXNUM);
+        return (NCEPHES_MAXNUM);
     }
 
     if (x > 9.55)
@@ -67,17 +67,17 @@ double ncephes_kn(int nn, double x) {
                 zn *= z;
                 t = nk1f * zn / kf;
                 s += t;
-                if ((MAXNUM - fabs(t)) < fabs(s))
+                if ((NCEPHES_MAXNUM - fabs(t)) < fabs(s))
                     goto overf;
-                if ((tox > 1.0) && ((MAXNUM / tox) < zmn))
+                if ((tox > 1.0) && ((NCEPHES_MAXNUM / tox) < zmn))
                     goto overf;
                 zmn *= tox;
             }
             s *= 0.5;
             t = fabs(s);
-            if ((zmn > 1.0) && ((MAXNUM / zmn) < t))
+            if ((zmn > 1.0) && ((NCEPHES_MAXNUM / zmn) < t))
                 goto overf;
-            if ((t > 1.0) && ((MAXNUM / t) < zmn))
+            if ((t > 1.0) && ((NCEPHES_MAXNUM / t) < zmn))
                 goto overf;
             ans = s * zmn;
         }
@@ -125,7 +125,7 @@ asymp:
     fn = 1.0;
     t = 1.0;
     s = t;
-    nkf = MAXNUM;
+    nkf = NCEPHES_MAXNUM;
     i = 0;
     do {
         z = pn - pk * pk;
@@ -142,6 +142,6 @@ asymp:
     } while (fabs(t / s) > MACHEP);
 
 adone:
-    ans = exp(-x) * sqrt(PI / (2.0 * x)) * s;
+    ans = exp(-x) * sqrt(NCEPHES_PI / (2.0 * x)) * s;
     return (ans);
 }

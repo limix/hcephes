@@ -42,6 +42,10 @@
    else undefine.  This may automatically define INFINITIES in some files. */
 #define NCEPHES_NANS 1
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 int ncephes_mtherr(char *name, int code);
 
 #endif /* NCEPHES_MCONF_H */
