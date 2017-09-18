@@ -123,9 +123,15 @@ double ncephes_p1evl(double x, double coef[], int N);
 double ncephes_pdtr(int k, double m);  // ok
 double ncephes_pdtrc(int k, double m); // ok
 double ncephes_pdtri(int k, double y); // ok
+double ncephes_planckc(double w, double T);
+double ncephes_planckd(double w, double T);
+double ncephes_plancki(double w, double T);
+double ncephes_planckw(double T);
 double ncephes_polevl(double x, double coef[], int N);
+double ncephes_polylog(int n, double x);
 double ncephes_powi(double x, int nn);
 double ncephes_psi(double x);
+double ncephes_simpsn(double f[], double delta);
 double ncephes_smirnov(int n, double e);  // ok
 double ncephes_smirnovi(int n, double p); // ok
 double ncephes_spence(double x);
@@ -165,10 +171,5 @@ void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_revers(double y[], double x[], int n);
 void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_rsub(fract *f1, fract *f2, fract *f3);
-double ncephes_simpsn(double f[], double delta);
-double ncephes_planckc(double w, double T);
-double ncephes_plancki(double w, double T);
-double ncephes_planckd(double w, double T);
-double ncephes_planckw(double T);
 
 #endif
