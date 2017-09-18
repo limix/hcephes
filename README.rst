@@ -40,8 +40,7 @@ them, you can specify their location to ``cmake`` as
 
     cmake ..
 
-On Windows systems you might want to have a look at the
-[nmake](https://msdn.microsoft.com/en-us/library/dd9y37ha.aspx) command
+On Windows systems you might want to have a look at the nmake_ command
 as a replacement for ``make``.
 Assuming you are at folder ``C:\projects\ncephes`` and that you have installed
 zlib and Zstandard libraries into ``C:\projects\ncephes\deps``, you might want
@@ -81,6 +80,10 @@ for details.
 .. |License-Badge| image:: https://img.shields.io/pypi/l/ncephes.svg
     :target: https://raw.githubusercontent.com/limix/ncephes/develop/LICENSE.txt
 
+.. _conda: http://conda.pydata.org/docs/index.html
+
 .. _License file: https://raw.githubusercontent.com/limix/ncephes/develop/LICENSE.txt
 
 .. _Danilo Horta: https://github.com/horta
+
+.. _nmake: https://msdn.microsoft.com/en-us/library/dd9y37ha.aspx
