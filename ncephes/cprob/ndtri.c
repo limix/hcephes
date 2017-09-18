@@ -1,9 +1,6 @@
 
 #include "ncephes/ncephes.h"
 
-
-extern double HUGE_VAL;
-
 /* sqrt(2pi) */
 static double s2pi = 2.50662827463100050242E0;
 
