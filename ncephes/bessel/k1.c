@@ -1,6 +1,5 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 /* Chebyshev coefficients for x(K1(x) - log(x/2) I1(x))
  * in the interval [0,2].

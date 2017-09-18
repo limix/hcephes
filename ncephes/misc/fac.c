@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
 
 /* Factorials of integers from 0 through 33 */
@@ -38,11 +38,7 @@ double ncephes_fac(int i) {
 
     /* Get answer from table for small i. */
     if (i < 34) {
-#ifdef NCEPHES_UNK
         return (factbl[i]);
-#else
-        return (*(double *)(&factbl[4 * i]));
-#endif
     }
     /* Use ncephes_gamma function for large i. */
     if (i > 55) {
@@ -56,10 +52,6 @@ double ncephes_fac(int i) {
         n += 1.0;
         f *= n;
     }
-#ifdef NCEPHES_UNK
     f *= factbl[33];
-#else
-    f *= *(double *)(&factbl[4 * 33]);
-#endif
     return (f);
 }

@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
 
 extern double log(double);

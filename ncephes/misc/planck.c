@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 
 extern double ncephes_polylog(int, double);
 extern double exp(double);

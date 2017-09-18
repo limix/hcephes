@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 static double big = 4.503599627370496e15;
 static double biginv = 2.22044604925031308085e-16;

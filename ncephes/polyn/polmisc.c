@@ -3,9 +3,9 @@
  * See polyn.c for data structures and discussion.
  */
 
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 

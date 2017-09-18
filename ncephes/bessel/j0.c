@@ -1,9 +1,8 @@
 /* Note: all coefficients satisfy the relative error criterion
  * except YP, YQ which are designed for absolute error. */
 
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 static double PP[7] = {
     7.96936729297347051624E-4, 8.28352392107440799803E-2,
@@ -98,8 +97,6 @@ double ncephes_j0(double x) {
  * whose value at x = 0 is  2 * ( log(0.5) + EUL ) / PI
  * = 0.073804295108687225.
  */
-
-extern double HUGE_VAL;
 
 double ncephes_y0(double x) {
     double w, z, p, q, xn;

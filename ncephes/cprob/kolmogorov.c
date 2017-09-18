@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
 
 /* Exact Smirnov statistic, for one-sided test.  */

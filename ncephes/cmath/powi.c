@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
 
 double ncephes_powi(double x, int nn) {

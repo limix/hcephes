@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 /* Chebyshev coefficients for K0(x) + log(x/2) I0(x)
  * in the interval [0,2].  The odd order coefficients are all

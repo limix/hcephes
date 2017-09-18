@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 double ncephes_incbi(double aa, double bb, double yy0) {
     double a, b, y0, d, y, x, x0, x1, lgm, yp, di, dithresh, yl, yh, xt;

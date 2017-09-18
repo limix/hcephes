@@ -1,12 +1,8 @@
-#include "mconf.h"
-#include "ncephes/ncephes.h"
-#include <math.h>
 
-#ifdef DEC
-#define MAXGAM 34.84425627277176174
-#else
+#include "ncephes/ncephes.h"
+
+
 #define MAXGAM 171.624376956302725
-#endif
 
 #define BIG 1.44115188075855872E+17
 

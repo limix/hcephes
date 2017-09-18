@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 #ifdef DEC
 #define M 32.0

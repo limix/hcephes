@@ -12,6 +12,15 @@
 #endif
 #endif
 
+/* Constant definitions for math error conditions
+ */
+#define NCEPHES_DOMAIN 1    /* argument domain error */
+#define NCEPHES_OVERFLOW 3  /* overflow range error */
+#define NCEPHES_UNDERFLOW 4 /* underflow range error */
+#define NCEPHES_SING 2      /* argument singularity */
+#define NCEPHES_PLOSS 6     /* partial loss of precision */
+#define NCEPHES_ERANGE 34
+
 #define NCEPHES_LOGE2 6.93147180559945309417E-1   /* log(2) */
 #define NCEPHES_LOGSQ2 3.46573590279972654709E-1  /* log(2)/2 */
 #define NCEPHES_MACHEP 1.11022302462515654042E-16 /* 2**-53 */
@@ -47,7 +56,6 @@ typedef struct {
     double i;
 } cmplx;
 
-int ncephes_drand(double *a);
 double ncephes_bdtr(int k, int n, double p);        // ok
 double ncephes_bdtrc(int k, int n, double p);       // ok
 double ncephes_bdtri(int k, int n, double y);       // ok
@@ -59,6 +67,7 @@ double ncephes_chdtrc(double df, double x); // ok
 double ncephes_chdtri(double df, double y); // ok
 double ncephes_cosm1(double x);             // ok
 double ncephes_dawsn(double xx);
+double ncephes_ei(double x);
 double ncephes_ellie(double phi, double m);      // ok
 double ncephes_ellik(double phi, double m);      // ok
 double ncephes_ellpe(double x);                  // ok
@@ -128,8 +137,13 @@ double ncephes_yn(int n, double x);
 double ncephes_yv(double v, double x);
 double ncephes_zetac(double x);
 int ncephes_airy(double x, double *ai, double *aip, double *bi, double *bip);
+int ncephes_drand(double *a);
+int ncephes_fresnl(double xxa, double *ssa, double *cca);
+int ncephes_mtherr(char *name, int code);
 int ncephes_poldiv(double *, int, double *, int, double *);
 int ncephes_polrt(double xcof[], double cof[], int m, cmplx root[]);
+int ncephes_shichi(double x, double *si, double *ci);
+int ncephes_sici(double x, double *si, double *ci);
 void ncephes_poladd(double a[], int na, double b[], int nb, double c[]);
 void ncephes_polclr(double *, int);
 void ncephes_polmov(double *, int, double *);
@@ -141,9 +155,5 @@ void ncephes_rdiv(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_revers(double y[], double x[], int n);
 void ncephes_rmul(fract *ff1, fract *ff2, fract *ff3);
 void ncephes_rsub(fract *f1, fract *f2, fract *f3);
-double ncephes_ei(double x);
-int ncephes_shichi(double x, double *si, double *ci);
-int ncephes_fresnl(double xxa, double *ssa, double *cca);
-int ncephes_sici(double x, double *si, double *ci);
 
 #endif

@@ -1,6 +1,5 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 #define EPS 1.0e-13
 #define EPS2 1.0e-10

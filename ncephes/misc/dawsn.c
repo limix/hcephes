@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
 
 /* Dawson's integral, interval 0 to 3.25 */

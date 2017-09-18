@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 int ncephes_ellpj(double u, double m, double *sn, double *cn, double *dn,
                   double *ph) {

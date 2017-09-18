@@ -1,6 +1,5 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 #define EUL 5.772156649015328606065e-1
 #define MAXFAC 31

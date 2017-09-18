@@ -1,6 +1,5 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 /* Chebyshev coefficients for exp(-x) I1(x) / x
  * in the interval [0,8].

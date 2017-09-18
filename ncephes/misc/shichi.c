@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 /* x exp(-x) shi(x), inverted interval 8 to 18 */
 static double S1[] = {1.83889230173399459482E-17,  -9.55485532279655569575E-17,

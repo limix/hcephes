@@ -1,8 +1,7 @@
-#include "mconf.h"
-#include "ncephes/ncephes.h"
-#include <math.h>
 
-#ifdef NCEPHES_UNK
+#include "ncephes/ncephes.h"
+
+
 static double P[] = {1.37982864606273237150E-4, 2.28025724005875567385E-3,
                      7.97404013220415179367E-3, 9.85821379021226008714E-3,
                      6.87489687449949877925E-3, 6.18901033637687613229E-3,
@@ -17,7 +16,6 @@ static double Q[] = {2.94078955048598507511E-5, 9.14184723865917226571E-4,
                      7.03124996963957469739E-2, 1.24999999999870820058E-1,
                      4.99999999999999999821E-1};
 static double C1 = 1.3862943611198906188E0; /* log(4) */
-#endif
 
 double ncephes_ellpk(double x) {
     // line added by danilo

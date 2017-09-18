@@ -1,6 +1,5 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 static double c1 = 0.35502805388781723926;
 static double c2 = 0.258819403792806798405;

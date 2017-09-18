@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 double ncephes_stdtr(int k, double t) {
     double x, rk, z, f, tz, p, xsqk;

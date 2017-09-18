@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 double ncephes_igami(double a, double y0) {
     double x0, x1, x, yl, yh, y, d, lgm, dithresh;

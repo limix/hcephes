@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 double ncephes_jn(int n, double x) {
     double pkm2, pkm1, pk, xk, r, ans;
@@ -31,12 +31,7 @@ double ncephes_jn(int n, double x) {
     if (x < NCEPHES_MACHEP)
         return (0.0);
 
-/* continued fraction */
-#ifdef DEC
-    k = 56;
-#else
     k = 53;
-#endif
 
     pk = 2 * (n + k);
     ans = pk;

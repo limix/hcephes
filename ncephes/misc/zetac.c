@@ -1,4 +1,4 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
 
 /* Riemann zeta(x) - 1
@@ -104,11 +104,7 @@ double ncephes_zetac(double x) {
     if (w == x) {
         i = x;
         if (i < 31) {
-#ifdef NCEPHES_UNK
             return (azetac[i]);
-#else
-            return (*(double *)&azetac[4 * i]);
-#endif
         }
     }
 

@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 #define BIG (1.0 / NCEPHES_MACHEP)
 

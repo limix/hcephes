@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 extern double atan2(double, double);
 extern double frexp(double, int *);
@@ -194,7 +194,7 @@ double ncephes_cabs(register cmplx *z) {
 
     /* Check it for overflow and underflow. */
     if (ey > MAXEXP) {
-        ncephes_mtherr("ncephes_cabs", NCEPHES_OVERFLOW);
+        ncephes_mtherr("cabs", NCEPHES_OVERFLOW);
         return (HUGE_VAL);
     }
     if (ey < MINEXP)

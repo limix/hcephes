@@ -1,6 +1,5 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
 
 static double RP[4] = {
     -8.99971225705559398224E8,
@@ -81,8 +80,6 @@ double ncephes_j1(double x) {
     p = p * cos(xn) - w * q * sin(xn);
     return (p * NCEPHES_SQ2OPI / sqrt(x));
 }
-
-extern double HUGE_VAL;
 
 double ncephes_y1(double x) {
     double w, z, p, q, xn;

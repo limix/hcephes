@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 static double P[] = {1.60119522476751861407E-4, 1.19135147006586384913E-3,
                      1.04213797561761569935E-2, 4.76367800457137231464E-2,
@@ -163,7 +163,7 @@ double ncephes_lgam_sgn(double x, int *sign) {
         p = floor(q);
         if (p == q) {
         lgsing:
-            ncephes_mtherr("ncephes_lgam", NCEPHES_SING);
+            ncephes_mtherr("lgam", NCEPHES_SING);
             return (HUGE_VAL);
         }
         i = p;

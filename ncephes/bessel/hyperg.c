@@ -1,6 +1,6 @@
-#include "mconf.h"
+
 #include "ncephes/ncephes.h"
-#include <math.h>
+
 
 static double ncephes_hy1f1p(double a, double b, double x, double *err);
 static double ncephes_hy1f1a(double a, double b, double x, double *err);
