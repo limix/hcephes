@@ -5,6 +5,55 @@ ncephes
 
 Cephes library.
 
+Install
+-------
+
+The recommended way of installing it is via conda_
+
+.. code:: bash
+
+    conda install -c conda-forge ncephes
+
+A second installation option would be to download the latest source and to
+build it by yourself.
+On Linux or macOS systems it can be as simple as
+.. code:: bash
+
+    wget https://github.com/limix/ncephes/archive/0.1.14.tar.gz
+    tar xzf 0.1.14.tar.gz
+    cd ncephes-0.1.14
+    mkdir build
+    cd build
+    cmake ..
+    make
+    make test
+    sudo make install
+
+assuming that you have both zlib (often the case) and Zstandard (usually not
+the case) libraries installed and that ``cmake`` managed to find them without
+any hint.
+If you do have those libraries installed but ``cmake`` did not manage to find
+them, you can specify their location to ``cmake`` as
+
+.. code:: bash
+    cmake ..
+
+On Windows systems you might want to have a look at the
+[nmake](https://msdn.microsoft.com/en-us/library/dd9y37ha.aspx) command
+as a replacement for ``make``.
+Assuming you are at folder ``C:\projects\ncephes`` and that you have installed
+zlib and Zstandard libraries into ``C:\projects\ncephes\deps``, you might want
+to try
+.. code:: dos
+
+    mkdir build
+    cd build
+    cmake .. -G "NMake Makefiles" ^
+             -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE
+    nmake
+    nmake test
+    nmake install
+
 Authors
 -------
 
