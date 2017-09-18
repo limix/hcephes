@@ -17,7 +17,7 @@ This project is licensed under the MIT License - see the `License file`_ file
 for details.
 
 
-.. |Build-Status| image:: https://travis-ci.org/limix/ncephes.svg?branch=master
+.. |Build-Status| image:: https://travis-ci.org/limix/ncephes.svg?branch=develop
     :target: https://travis-ci.org/limix/ncephes
 
 .. |Win-Build-Status| image:: https://ci.appveyor.com/api/projects/status/xryjgvyt2vbq56qj/branch/develop?svg=true
@@ -27,4 +27,8 @@ for details.
     :target: https://www.codacy.com/app/danilo.horta/ncephes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/ncephes&amp;utm_campaign=Badge_Grade
 
 .. |License-Badge| image:: https://img.shields.io/pypi/l/ncephes.svg
-    :target: https://raw.githubusercontent.com/limix/ncephes/master/LICENSE.txt
+    :target: https://raw.githubusercontent.com/limix/ncephes/develop/LICENSE.txt
+
+.. _License file: https://raw.githubusercontent.com/limix/ncephes/develop/LICENSE.txt
+
+.. _Danilo Horta: https://github.com/horta
