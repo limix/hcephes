@@ -44,7 +44,7 @@ else
 fi
 
 echo -n "Installing..."
-if type "sudo" >/dev/null; then
+if loc="$(type -p "sudo")" || [ -z "$loc" ]; then
     sudo make install >/dev/null 2>&1
 else
     make install >/dev/null 2>&1
@@ -63,7 +63,7 @@ rm hcephes-$VERSION.tar.gz >/dev/null 2>&1 || true
 rm -rf hcephes-$VERSION >/dev/null 2>&1 || true
 
 if type "ldconfig" >/dev/null; then
-    if type "sudo" >/dev/null; then
+    if loc="$(type -p "sudo")" || [ -z "$loc" ]; then
         sudo ldconfig
     else
         ldconfig

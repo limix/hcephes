@@ -20,7 +20,7 @@ On Linux or macOS systems it can be as simple as
 
 .. code:: bash
 
-    source <(curl -s https://raw.githubusercontent.com/limix/hcephes/master/install)
+    bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
 
 On Windows systems you might want to have a look at the nmake_ command
 as a replacement for ``make``.
