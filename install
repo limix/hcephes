@@ -44,10 +44,10 @@ else
 fi
 
 echo -n "Installing..."
-if ! type "sudo" > /dev/null; then
-    make install >/dev/null 2>&1
-else
+if type "sudo" >/dev/null; then
     sudo make install >/dev/null 2>&1
+else
+    make install >/dev/null 2>&1
 fi
 if [[ "$?" == "0" ]]; then
     echo " done."
@@ -62,6 +62,11 @@ cd ..
 rm hcephes-$VERSION.tar.gz >/dev/null 2>&1 || true
 rm -rf hcephes-$VERSION >/dev/null 2>&1 || true
 
-if type "ldconfig" > /dev/null; then
-    ldconfig
+if type "ldconfig" >/dev/null; then
+    if type "sudo" >/dev/null; then
+        sudo ldconfig
+    else
+        ldconfig
+    fi
 fi
+
