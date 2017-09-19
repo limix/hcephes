@@ -61,3 +61,7 @@ cd ..
 
 rm hcephes-$VERSION.tar.gz >/dev/null 2>&1 || true
 rm -rf hcephes-$VERSION >/dev/null 2>&1 || true
+
+if type "ldconfig" > /dev/null; then
+    ldconfig
+fi
