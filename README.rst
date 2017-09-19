@@ -55,7 +55,7 @@ details.
 .. |Win-Build-Status| image:: https://ci.appveyor.com/api/projects/status/enlpm6cfltjy7h3m/branch/master?svg=true
     :target: https://ci.appveyor.com/project/Horta/hcephes/branch/master
 
-.. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/83c5d8cd22cb46b3bc5eaa16fd18fa69
+.. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/11201b1fc0d34d38bedeb218ad54dc6d
     :target: https://www.codacy.com/app/danilo.horta/hcephes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/hcephes&amp;utm_campaign=Badge_Grade
 
 .. _conda: http://conda.pydata.org/docs/index.html
