@@ -44,8 +44,9 @@ else
 fi
 
 echo -n "Installing..."
-make install >/dev/null 2>&1
-if [[ "$?" != "0" ]]; then
+if ! type "sudo" > /dev/null; then
+    make install >/dev/null 2>&1
+else
     sudo make install >/dev/null 2>&1
 fi
 if [[ "$?" == "0" ]]; then
