@@ -1,3 +1,4 @@
+
 hcephes
 =======
 
@@ -22,11 +23,9 @@ On Linux or macOS systems it can be as simple as
 
     bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
 
-On Windows systems you might want to have a look at the nmake_ command
-as a replacement for ``make``.
-Assuming you are at folder ``C:\projects\hcephes`` and that you have installed
-zlib and Zstandard libraries into ``C:\projects\hcephes\deps``, you might want
-to try
+On Windows systems you might want to have a look at the nmake_ command as a
+replacement for ``make``.
+Assuming you are at folder ``C:\projects\hcephes`` you might want to try
 
 .. code:: dos
 
@@ -46,8 +45,8 @@ Authors
 License
 -------
 
-This project is licensed under the MIT License - see the `License file`_ file
-for details.
+This project is licensed under the MIT License - see the `license file`_ for
+details.
 
 
 .. |Build-Status| image:: https://travis-ci.org/limix/hcephes.svg?branch=master
@@ -61,7 +60,7 @@ for details.
 
 .. _conda: http://conda.pydata.org/docs/index.html
 
-.. _License file: https://raw.githubusercontent.com/limix/hcephes/master/LICENSE.txt
+.. _license file: https://raw.githubusercontent.com/limix/hcephes/master/LICENSE.txt
 
 .. _Danilo Horta: https://github.com/horta
 
