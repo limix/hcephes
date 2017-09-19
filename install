@@ -54,6 +54,6 @@ cd .. && cd ..
 silent_trun rm hcephes-$VERSION.tar.gz
 silent_trun rm -rf hcephes-$VERSION
 
-if type "ldconfig" >/dev/null; then
+if type "ldconfig" >/dev/null 2>&1; then
     silent_run do_then_sudo ldconfig
 fi
