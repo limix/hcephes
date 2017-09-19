@@ -67,7 +67,7 @@ rm -rf hcephes-$VERSION >/dev/null 2>&1 || true
 
 if type "ldconfig" >/dev/null; then
     if loc="$(type -p "sudo")" || [ -z "$loc" ]; then
-        sudo ldconfig
+        sudo ldconfig >/dev/null 2>&1
         if [[ "$?" != "0" ]]; then
             ldconfig >/dev/null 2>&1
         fi
