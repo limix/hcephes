@@ -2,14 +2,20 @@
 
 VERSION=0.1.8
 
+echo "[_/_] Library(hcephes==$VERSION)"
+
+rm /tmp/hcephes.log >/dev/null 2>&1 || true
+logfile=$(mktemp /tmp/hcephes.log)
+exec 3>"$logfile"
+
 function silent_run
 {
-    eval "$@ >/dev/null 2>&1"
+    eval "$@ >&3 2>&1"
 }
 
 function silent_trun
 {
-    eval "$@ >/dev/null 2>&1 || true"
+    eval "$@ >&3 2>&1 || true"
 }
 
 function do_then_sudo
@@ -18,6 +24,14 @@ function do_then_sudo
     if [ $? != 0 ]; then
         eval "sudo $@"
     fi
+}
+
+function failed
+{
+    echo "FAILED."
+    echo "[_/_] LOG OUTPUT:"
+    cat $logfile
+    exit 1
 }
 
 FILE=hcephes-$VERSION.tar.gz
@@ -29,31 +43,33 @@ silent_trun rm -rf $DIR
 
 echo -n "[1/5] Downloading... "
 silent_run curl -o $FILE -L $URL
-[ $? == 0 ] && echo "done." || { echo "FAILED."; exit 1; }
+[ $? == 0 ] && echo "done." || failed
 
 tar xzf $FILE && cd $DIR
 mkdir build && cd build
 
 echo -n "[2/5] Configuring... "
 silent_run cmake ..
-[ $? == 0 ] && echo "done." || { echo "FAILED."; exit 1; }
+[ $? == 0 ] && echo "done." || failed
 
 echo -n "[3/5] Compiling... "
 silent_run make
-[ $? == 0 ] && echo "done." || { echo "FAILED."; exit 1; }
+[ $? == 0 ] && echo "done." || failed
 
 echo -n "[4/5] Testing... "
 silent_run make test
-[ $? == 0 ] && echo "done." || { echo "FAILED."; exit 1; }
+[ $? == 0 ] && echo "done." || failed
 
 echo -n "[5/5] Installing... "
 silent_run do_then_sudo make install
-[ $? == 0 ] && echo "done." || { echo "FAILED."; exit 1; }
+[ $? == 0 ] && echo "done." || failed
 
 cd .. && cd ..
 silent_trun rm hcephes-$VERSION.tar.gz
 silent_trun rm -rf hcephes-$VERSION
 
-if type "ldconfig" >/dev/null 2>&1; then
+if type "ldconfig" >&3 2>&1; then
     silent_run do_then_sudo ldconfig
 fi
+
+rm "$logfile" || true
