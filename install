@@ -4,8 +4,7 @@ VERSION=0.1.9
 
 echo "[_/_] Library(hcephes==$VERSION)"
 
-rm /tmp/hcephes.log >/dev/null 2>&1 || true
-logfile=$(mktemp /tmp/hcephes.log)
+logfile=$(mktemp /tmp/hcephes.XXXX.log)
 exec 3>"$logfile"
 
 function silent_run
