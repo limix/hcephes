@@ -69,10 +69,12 @@ double hcephes_chdtri(double df, double y); // ok
 double hcephes_cosm1(double x);             // ok
 double hcephes_dawsn(double xx);
 double hcephes_ei(double x);
-double hcephes_ellie(double phi, double m);      // ok
-double hcephes_ellik(double phi, double m);      // ok
-double hcephes_ellpe(double x);                  // ok
-double hcephes_ellpk(double x);                  // ok
+double hcephes_ellie(double phi, double m); // ok
+double hcephes_ellik(double phi, double m); // ok
+double hcephes_ellpe(double x);             // ok
+double hcephes_ellpk(double x);             // ok
+double hcephes_erf(double a);
+double hcephes_erfc(double a);
 double hcephes_euclid(double *num, double *den); // ok
 double hcephes_expm1(double x);                  // ok
 double hcephes_expn(int n, double x);
