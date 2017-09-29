@@ -68,7 +68,7 @@ double hcephes_expm1(double x) {
   if (x == -HUGE_VAL)
     return (-1.0);
   if ((x < -0.5) || (x > 0.5))
-    return expm1(x);
+    return hcephes_expm1(x);
   xx = x * x;
   r = x * hcephes_polevl(xx, EP, 2);
   r = r / (hcephes_polevl(xx, EQ, 3) - r);
