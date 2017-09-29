@@ -1,7 +1,5 @@
 #include "hcephes/hcephes.h"
 
-static double hcephes_erfce(double x);
-
 /* Define this macro to suppress error propagation in exp(x^2)
    by using the hcephes_expx2 function.  The tradeoff is that doing so
    generates two calls to the exponential function instead of one.  */
@@ -45,7 +43,7 @@ double hcephes_ndtr(double a) {
 
   /* if( z < HCEPHES_SQRTH ) */
   if (z < 1.0)
-    y = 0.5 + 0.5 * erf(x);
+    y = 0.5 + 0.5 * hcephes_erf(x);
 
   else {
 #ifdef USE_EXPXSQ
@@ -55,7 +53,7 @@ double hcephes_ndtr(double a) {
     z = hcephes_expx2(a, -1);
     y = y * sqrt(z);
 #else
-    y = 0.5 * erfc(z);
+    y = 0.5 * hcephes_erfc(z);
 #endif
     if (x > 0)
       y = 1.0 - y;

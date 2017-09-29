@@ -75,6 +75,7 @@ double hcephes_ellpe(double x);             // ok
 double hcephes_ellpk(double x);             // ok
 double hcephes_erf(double a);
 double hcephes_erfc(double a);
+double hcephes_erfce(double x);
 double hcephes_euclid(double *num, double *den); // ok
 double hcephes_expm1(double x);                  // ok
 double hcephes_expn(int n, double x);
