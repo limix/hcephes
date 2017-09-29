@@ -51,7 +51,7 @@ file(GLOB POLYN_SRC
 )
 
 file(GLOB CMATH_SRC
-    "hcephes/cmath/powi.c"
+    "hcephes/cmath/*.c"
 )
 
 add_library(hcephes
