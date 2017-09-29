@@ -66,7 +66,7 @@ double hcephes_ndtr(double a) {
    exp(x^2) erfc(x)
    valid for x > 1.
    Use with ndtr and hcephes_expx2.  */
-static double hcephes_erfce(double x) {
+double hcephes_erfce(double x) {
   double p, q;
 
   if (x < 8.0) {
