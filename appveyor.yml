@@ -1,19 +1,28 @@
 build: off
-platform: x64
-image: Visual Studio 2015
-environment:
-  PLATFORM: "x64"
-  CONFIGURATION: "Release"
+
+platform:
+    - x64
+    - x86
+
+image:
+    - Visual Studio 2013
+    - Visual Studio 2015
+    - Visual Studio 2017
+
+configuration: Release
 
 install:
-  - set PATH_ORIGINAL=%PATH%
-  - SET ADDITIONALPARAM=/p:LibraryPath="C:\Program Files\Microsoft SDKs\Windows\v7.1\lib\x64;c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio 10.0\;C:\Program Files (x86)\Microsoft Visual Studio 10.0\lib\amd64;"
+    - set PATH_ORIGINAL=%PATH%
+    - SET ADDITIONALPARAM=/p:LibraryPath="C:\Program Files\Microsoft SDKs\Windows\v7.1\lib\x64;c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio 10.0\;C:\Program Files (x86)\Microsoft Visual Studio 10.0\lib\amd64;"
 
 build_script:
-  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
-  - mkdir build
-  - cd build
-  - cmake .. -G "NMake Makefiles" -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE
-  - nmake
-  - nmake test
-  - nmake install
+    - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2013" ( call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" %PLATFORM% )
+    - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" ( call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /%PLATFORM% )
+    - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" ( call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %PLATFORM% )
+    - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" ( call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat" )
+    - mkdir build
+    - cd build
+    - cmake .. -G "NMake Makefiles" -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE
+    - nmake
+    - nmake test
+    - nmake install
