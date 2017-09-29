@@ -451,7 +451,7 @@ static double hcephes_jnx(double n, double x) {
   /* Test for x very close to n.
    * Use expansion for transition region if so.
    */
-  cbn = cbrt(n);
+  cbn = hcephes_cbrt(n);
   z = (x - n) / cbn;
   if (fabs(z) <= 0.7)
     return (hcephes_jnt(n, x));
@@ -464,19 +464,19 @@ static double hcephes_jnx(double n, double x) {
   if (zz > 0.0) {
     sz = sqrt(zz);
     t = 1.5 * (log((1.0 + sz) / z) - sz); /* zeta ** 3/2		*/
-    zeta = cbrt(t * t);
+    zeta = hcephes_cbrt(t * t);
     nflg = 1;
   } else {
     sz = sqrt(-zz);
     t = 1.5 * (sz - acos(1.0 / z));
-    zeta = -cbrt(t * t);
+    zeta = -hcephes_cbrt(t * t);
     nflg = -1;
   }
   z32i = fabs(1.0 / t);
-  sqz = cbrt(t);
+  sqz = hcephes_cbrt(t);
 
   /* Airy function */
-  n23 = cbrt(n * n);
+  n23 = hcephes_cbrt(n * n);
   t = n23 * zeta;
 
   hcephes_airy(t, &ai, &aip, &bi, &bip);
@@ -559,7 +559,7 @@ static double hcephes_jnx(double n, double x) {
   t = 4.0 * zeta / zz;
   t = sqrt(sqrt(t));
 
-  t *= ai * pp / cbrt(n) + aip * qq / (n23 * n);
+  t *= ai * pp / hcephes_cbrt(n) + aip * qq / (n23 * n);
   return (t);
 }
 
@@ -587,9 +587,9 @@ static double hcephes_jnt(double n, double x) {
   double F[5], G[4];
   int k;
 
-  cbn = cbrt(n);
+  cbn = hcephes_cbrt(n);
   z = (x - n) / cbn;
-  cbtwo = cbrt(2.0);
+  cbtwo = hcephes_cbrt(2.0);
 
   /* Airy function */
   zz = -cbtwo * z;
@@ -611,7 +611,7 @@ static double hcephes_jnt(double n, double x) {
   pp = 0.0;
   qq = 0.0;
   nk = 1.0;
-  n23 = cbrt(n * n);
+  n23 = hcephes_cbrt(n * n);
 
   for (k = 0; k <= 4; k++) {
     fk = F[k] * nk;
@@ -624,6 +624,6 @@ static double hcephes_jnt(double n, double x) {
     nk /= n23;
   }
 
-  fk = cbtwo * ai * pp / cbn + cbrt(4.0) * aip * qq / n;
+  fk = cbtwo * ai * pp / cbn + hcephes_cbrt(4.0) * aip * qq / n;
   return (fk);
 }
