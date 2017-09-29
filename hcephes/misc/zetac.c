@@ -75,74 +75,69 @@ static double S[5] = {
  */
 
 double hcephes_zetac(double x) {
-    int i;
-    double a, b, s, w;
+  int i;
+  double a, b, s, w;
 
-    if (x < 0.0) {
-#ifdef DEC
-        if (x < -30.8148)
-#else
-        if (x < -170.6243)
-#endif
-        {
-            hcephes_mtherr("zetac", HCEPHES_OVERFLOW);
-            return (0.0);
-        }
-        s = 1.0 - x;
-        w = hcephes_zetac(s);
-        b = sin(0.5 * HCEPHES_PI * x) * pow(2.0 * HCEPHES_PI, x) *
-            hcephes_gamma(s) * (1.0 + w) / HCEPHES_PI;
-        return (b - 1.0);
+  if (x < 0.0) {
+    if (x < -170.6243) {
+      hcephes_mtherr("zetac", HCEPHES_OVERFLOW);
+      return (0.0);
     }
+    s = 1.0 - x;
+    w = hcephes_zetac(s);
+    b = sin(0.5 * HCEPHES_PI * x) * pow(2.0 * HCEPHES_PI, x) *
+        hcephes_gamma(s) * (1.0 + w) / HCEPHES_PI;
+    return (b - 1.0);
+  }
 
-    if (x >= MAXL2)
-        return (0.0); /* because first term is 2**-x */
+  if (x >= MAXL2)
+    return (0.0); /* because first term is 2**-x */
 
-    /* Tabulated values for integer argument */
-    w = floor(x);
-    if (w == x) {
-        i = x;
-        if (i < 31) {
-            return (azetac[i]);
-        }
+  /* Tabulated values for integer argument */
+  w = floor(x);
+  if (w == x) {
+    i = x;
+    if (i < 31) {
+      return (azetac[i]);
     }
+  }
 
-    if (x < 1.0) {
-        w = 1.0 - x;
-        a = hcephes_polevl(x, R, 5) / (w * hcephes_p1evl(x, S, 5));
-        return (a);
-    }
+  if (x < 1.0) {
+    w = 1.0 - x;
+    a = hcephes_polevl(x, R, 5) / (w * hcephes_p1evl(x, S, 5));
+    return (a);
+  }
 
-    if (x == 1.0) {
-        hcephes_mtherr("zetac", HCEPHES_SING);
-        return (HUGE_VAL);
-    }
+  if (x == 1.0) {
+    hcephes_mtherr("zetac", HCEPHES_SING);
+    return (HUGE_VAL);
+  }
 
-    if (x <= 10.0) {
-        b = pow(2.0, x) * (x - 1.0);
-        w = 1.0 / x;
-        s = (x * hcephes_polevl(w, P, 8)) / (b * hcephes_p1evl(w, Q, 8));
-        return (s);
-    }
-
-    if (x <= 50.0) {
-        b = pow(2.0, -x);
-        w = hcephes_polevl(x, A, 10) / hcephes_p1evl(x, B, 10);
-        w = exp(w) + b;
-        return (w);
-    }
-
-    /* Basic sum of inverse powers */
-
-    s = 0.0;
-    a = 1.0;
-    do {
-        a += 2.0;
-        b = pow(a, -x);
-        s += b;
-    } while (b / s > HCEPHES_MACHEP);
-
-    b = pow(2.0, -x);
-    s = (s + b) / (1.0 - b);
+  if (x <= 10.0) {
+    b = pow(2.0, x) * (x - 1.0);
+    w = 1.0 / x;
+    s = (x * hcephes_polevl(w, P, 8)) / (b * hcephes_p1evl(w, Q, 8));
     return (s);
+  }
+
+  if (x <= 50.0) {
+    b = pow(2.0, -x);
+    w = hcephes_polevl(x, A, 10) / hcephes_p1evl(x, B, 10);
+    w = exp(w) + b;
+    return (w);
+  }
+
+  /* Basic sum of inverse powers */
+
+  s = 0.0;
+  a = 1.0;
+  do {
+    a += 2.0;
+    b = pow(a, -x);
+    s += b;
+  } while (b / s > HCEPHES_MACHEP);
+
+  b = pow(2.0, -x);
+  s = (s + b) / (1.0 - b);
+  return (s);
 }

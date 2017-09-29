@@ -62,6 +62,7 @@ double hcephes_bdtri(int k, int n, double y);       // ok
 double hcephes_beta(double a, double b);            // ok
 double hcephes_btdtr(double a, double b, double x); // ok
 double hcephes_cabs(cmplx *z);
+double hcephes_cbrt(double x);
 double hcephes_chbevl(double x, double array[], int n);
 double hcephes_chdtr(double df, double x);  // ok
 double hcephes_chdtrc(double df, double x); // ok
