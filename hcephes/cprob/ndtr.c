@@ -104,7 +104,7 @@ double hcephes_erfc(double a) {
 
   z = -a * a;
 
-  if (z < -MAXLOG) {
+  if (z < -HCEPHES_MAXLOG) {
   under:
     hcephes_mtherr("erfc", HCEPHES_UNDERFLOW);
     if (a < 0)
