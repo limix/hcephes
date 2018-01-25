@@ -3,11 +3,11 @@
 URL=https://raw.githubusercontent.com/limix/hcephes/master/VERSION
 VERSION=$(curl -s $URL)
 
-echo "[_/_] Library(athr==$VERSION)"
+echo "[_/_] Library(hcephes==$VERSION)"
 
-rm /tmp/athr.XXXX.log >/dev/null 2>&1 || true
+rm /tmp/hcephes.XXXX.log >/dev/null 2>&1 || true
 
-logfile=$(mktemp /tmp/athr.XXXX.log)
+logfile=$(mktemp /tmp/hcephes.XXXX.log)
 exec 3>"$logfile"
 
 function silent_run
@@ -36,7 +36,7 @@ function failed
     exit 1
 }
 
-FILE=athr-$VERSION.tar.gz
+FILE=hcephes-$VERSION.tar.gz
 DIR=hcephes-$VERSION
 URL=https://github.com/limix/hcephes/archive/$VERSION.tar.gz
 
