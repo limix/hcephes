@@ -20,18 +20,10 @@ On Linux or macOS systems it can be as simple as
 bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
 ```
 
-On Windows systems you might want to have a look at the nmake_ command as a
-replacement for ``make``.
-Assuming you are at folder ``C:\projects\hcephes`` you might want to try
+Similarly, on Windows enter
 
 ```dos
-mkdir build
-cd build
-cmake .. -G "NMake Makefiles" ^
-         -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE
-nmake
-nmake test
-nmake install
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/hcephes/master/install.bat', 'install.bat')" && install.bat
 ```
 
 ## Authors
