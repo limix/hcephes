@@ -3,11 +3,11 @@
 URL=https://raw.githubusercontent.com/limix/hcephes/master/VERSION
 VERSION=$(curl -s $URL)
 
-echo "[_/_] Library(hcephes==$VERSION)"
+echo "[_/_] Library(athr==$VERSION)"
 
-rm /tmp/hcephes.XXXX.log >/dev/null 2>&1 || true
+rm /tmp/athr.XXXX.log >/dev/null 2>&1 || true
 
-logfile=$(mktemp /tmp/hcephes.XXXX.log)
+logfile=$(mktemp /tmp/athr.XXXX.log)
 exec 3>"$logfile"
 
 function silent_run
@@ -36,7 +36,7 @@ function failed
     exit 1
 }
 
-FILE=hcephes-$VERSION.tar.gz
+FILE=athr-$VERSION.tar.gz
 DIR=hcephes-$VERSION
 URL=https://github.com/limix/hcephes/archive/$VERSION.tar.gz
 
@@ -51,7 +51,7 @@ tar xzf $FILE && cd $DIR
 mkdir build && cd build
 
 echo -n "[2/5] Configuring... "
-silent_run cmake ..
+silent_run cmake .. -DCMAKE_BUILD_TYPE=Release
 [ $? == 0 ] && echo "done." || failed
 
 echo -n "[3/5] Compiling... "
@@ -67,10 +67,10 @@ silent_run do_then_sudo make install
 [ $? == 0 ] && echo "done." || failed
 
 cd .. && cd ..
-silent_trun rm hcephes-$VERSION.tar.gz
-silent_trun rm -rf hcephes-$VERSION
+silent_trun rm $FILE
+silent_trun rm -rf $DIR
 
-if type "ldconfig" >&3 2>&1; then
+if type "ldconfig" >/dev/null 2>&1; then
     silent_run do_then_sudo ldconfig
 fi
 
