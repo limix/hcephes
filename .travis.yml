@@ -1,22 +1,35 @@
 language: c
+sudo: false
 compiler:
 - clang
 - gcc
-before_script:
-- mkdir build && pushd build && cmake .. && make && make test && popd
-- rm -rf build
 script:
-- mkdir dist && pushd dist && cmake .. && popd
+- mkdir build && pushd build
+- cmake .. -DCMAKE_INSTALL_PREFIX=$TRAVIS_BUILD_DIR -DCMAKE_BUILD_TYPE=Release
+- make && make test && make install
+- popd && rm -rf build
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -e $TRAVIS_BUILD_DIR/include/hcephes.h;
+  fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes.so;
+  fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes_static.a;
+  fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/include/hcephes.h;
+  fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes.dylib;
+  fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes_static.a;
+  fi
+after_success:
+- mkdir dist && pushd dist && cmake .. -DCMAKE_BUILD_TYPE=Release && popd
 - mv dist hcephes-`cat VERSION`
 - tar czf hcephes-`cat VERSION`.tar.gz hcephes-`cat VERSION`
 - rm -rf dist
-after_failure:
-- rm -rf * && cmake .. && make && make test ARGS="-V"
 notifications:
   email:
     recipients:
     - danilo.horta@gmail.com
-    on_success: change
+    on_success: never
     on_failure: always
 deploy:
   provider: releases
