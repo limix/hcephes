@@ -1,0 +1,72 @@
+function(define_sources BASE_DIR _SOURCES)
+
+    list(APPEND SOURCES mtherr.c ./misc/polylog.c
+        ./misc/rgamma.c
+        ./misc/ei.c
+        ./misc/fresnl.c
+        ./misc/sici.c
+        ./misc/zetac.c
+        ./misc/simpsn.c
+        ./misc/dawsn.c
+        ./misc/spence.c
+        ./misc/zeta.c
+        ./misc/fac.c
+        ./misc/beta.c
+        ./misc/expn.c
+        ./misc/shichi.c
+        ./misc/planck.c
+        ./misc/psi.c
+        ./misc/chbevl.c
+        ./misc/revers.c
+        ./polyn/euclid.c
+        ./polyn/polmisc.c
+        ./polyn/polyn.c
+        ./polyn/polrt.c
+        ./polyn/polevl.c
+        ./mtherr.c
+        ./cprob/gamma.c
+        ./cprob/incbi.c
+        ./cprob/expx2.c
+        ./cprob/pdtr.c
+        ./cprob/kolmogorov.c
+        ./cprob/ndtr.c
+        ./cprob/bdtr.c
+        ./cprob/nbdtr.c
+        ./cprob/btdtr.c
+        ./cprob/unity.c
+        ./cprob/ndtri.c
+        ./cprob/stdtr.c
+        ./cprob/chdtr.c
+        ./cprob/fdtr.c
+        ./cprob/incbet.c
+        ./cprob/igami.c
+        ./cprob/drand.c
+        ./cprob/gdtr.c
+        ./cprob/igam.c
+        ./bessel/k0.c
+        ./bessel/i1.c
+        ./bessel/jn.c
+        ./bessel/kn.c
+        ./bessel/jv.c
+        ./bessel/struve.c
+        ./bessel/j0.c
+        ./bessel/hyperg.c
+        ./bessel/airy.c
+        ./bessel/hyp2f1.c
+        ./bessel/yn.c
+        ./bessel/k1.c
+        ./bessel/iv.c
+        ./bessel/i0.c
+        ./bessel/j1.c
+        ./ellf/ellik.c
+        ./ellf/cmplx.c
+        ./ellf/ellie.c
+        ./ellf/ellpe.c
+        ./ellf/ellpk.c
+        ./ellf/ellpj.c
+        ./cmath/cbrt.c
+        ./cmath/powi.c)
+
+    limix_convert_rel_to_full(FULL_SOURCES ${BASE_DIR} "${SOURCES}")
+    set(${_SOURCES} ${FULL_SOURCES} PARENT_SCOPE)
+endfunction(define_sources)
