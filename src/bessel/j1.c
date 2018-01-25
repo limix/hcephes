@@ -58,47 +58,47 @@ static double Z1 = 1.46819706421238932572E1;
 static double Z2 = 4.92184563216946036703E1;
 
 double hcephes_j1(double x) {
-    double w, z, p, q, xn;
+  double w, z, p, q, xn;
 
-    w = x;
-    if (x < 0)
-        w = -x;
+  w = x;
+  if (x < 0)
+    w = -x;
 
-    if (w <= 5.0) {
-        z = x * x;
-        w = hcephes_polevl(z, RP, 3) / hcephes_p1evl(z, RQ, 8);
-        w = w * x * (z - Z1) * (z - Z2);
-        return (w);
-    }
+  if (w <= 5.0) {
+    z = x * x;
+    w = hcephes_polevl(z, RP, 3) / hcephes_p1evl(z, RQ, 8);
+    w = w * x * (z - Z1) * (z - Z2);
+    return (w);
+  }
 
-    w = 5.0 / x;
-    z = w * w;
-    p = hcephes_polevl(z, PP, 6) / hcephes_polevl(z, PQ, 6);
-    q = hcephes_polevl(z, QP, 7) / hcephes_p1evl(z, QQ, 7);
-    xn = x - HCEPHES_THPIO4;
-    p = p * cos(xn) - w * q * sin(xn);
-    return (p * HCEPHES_SQ2OPI / sqrt(x));
+  w = 5.0 / x;
+  z = w * w;
+  p = hcephes_polevl(z, PP, 6) / hcephes_polevl(z, PQ, 6);
+  q = hcephes_polevl(z, QP, 7) / hcephes_p1evl(z, QQ, 7);
+  xn = x - HCEPHES_THPIO4;
+  p = p * cos(xn) - w * q * sin(xn);
+  return (p * HCEPHES_SQ2OPI / sqrt(x));
 }
 
 double hcephes_y1(double x) {
-    double w, z, p, q, xn;
+  double w, z, p, q, xn;
 
-    if (x <= 5.0) {
-        if (x <= 0.0) {
-            hcephes_mtherr("y1", DOMAIN);
-            return (-HUGE_VAL);
-        }
-        z = x * x;
-        w = x * (hcephes_polevl(z, YP, 5) / hcephes_p1evl(z, YQ, 8));
-        w += HCEPHES_TWOOPI * (j1(x) * log(x) - 1.0 / x);
-        return (w);
+  if (x <= 5.0) {
+    if (x <= 0.0) {
+      hcephes_mtherr("y1", DOMAIN);
+      return (-HUGE_VAL);
     }
+    z = x * x;
+    w = x * (hcephes_polevl(z, YP, 5) / hcephes_p1evl(z, YQ, 8));
+    w += HCEPHES_TWOOPI * (hcephes_j1(x) * log(x) - 1.0 / x);
+    return (w);
+  }
 
-    w = 5.0 / x;
-    z = w * w;
-    p = hcephes_polevl(z, PP, 6) / hcephes_polevl(z, PQ, 6);
-    q = hcephes_polevl(z, QP, 7) / hcephes_p1evl(z, QQ, 7);
-    xn = x - HCEPHES_THPIO4;
-    p = p * sin(xn) + w * q * cos(xn);
-    return (p * HCEPHES_SQ2OPI / sqrt(x));
+  w = 5.0 / x;
+  z = w * w;
+  p = hcephes_polevl(z, PP, 6) / hcephes_polevl(z, PQ, 6);
+  q = hcephes_polevl(z, QP, 7) / hcephes_p1evl(z, QQ, 7);
+  xn = x - HCEPHES_THPIO4;
+  p = p * sin(xn) + w * q * cos(xn);
+  return (p * HCEPHES_SQ2OPI / sqrt(x));
 }
