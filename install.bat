@@ -6,7 +6,7 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('%VERSION_URL%', 'V
 set /p VERSION=<VERSION.tmp && del VERSION.tmp
 set FILE=hcephes-%VERSION%.zip
 set DIR=hcephes-%VERSION%
-set URL=https://github.com/limix/hcephes/archive/%VERSION%.zip
+set URL=http://github.com/limix/hcephes/archive/%VERSION%.zip
 IF "%ARCH%"=="" set ARCH=x64
 
 echo [0/4] Library(hcephes==%VERSION%)
