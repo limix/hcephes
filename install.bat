@@ -24,11 +24,7 @@ copy /y nul %LOG_FILE% >nul 2>&1
 echo|set /p="[1/4] Downloading... "
 echo Fetching %URL% >>%LOG_FILE% 2>&1
 :: powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL%', '%FILE%')" >>%LOG_FILE% 2>&1
-powershell -Command "using (WebClient client = new WebClient())
-{
-     System.Net.ServicePointManager.SecurityProtocol = 'Ssl3, Tls, Tls11, Tls12';
-     client.DownloadFile(%URL%, @\"%FILE%\");
-}" >>%LOG_FILE% 2>&1
+powershell -Command "using (WebClient client = new WebClient()) { System.Net.ServicePointManager.SecurityProtocol = 'Ssl3, Tls, Tls11, Tls12'; client.DownloadFile(%URL%, @\"%FILE%\"); }" >>%LOG_FILE% 2>&1
 if %ERRORLEVEL% NEQ 0 (echo FAILED. && type %LOG_FILE% && exit /B 1) else (echo done.)
 
 echo|set /p="[2/4] Extracting... "
