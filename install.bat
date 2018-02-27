@@ -6,7 +6,7 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('%VERSION_URL%', 'V
 set /p VERSION=<VERSION.tmp && del VERSION.tmp
 set FILE=hcephes-%VERSION%.zip
 set DIR=hcephes-%VERSION%
-set URL=http://github.com/limix/hcephes/archive/%VERSION%.zip
+set URL=https://github.com/limix/hcephes/archive/%VERSION%.zip
 IF "%ARCH%"=="" set ARCH=x64
 
 echo [0/4] Library(hcephes==%VERSION%)
@@ -23,7 +23,12 @@ copy /y nul %LOG_FILE% >nul 2>&1
 
 echo|set /p="[1/4] Downloading... "
 echo Fetching %URL% >>%LOG_FILE% 2>&1
-powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL%', '%FILE%')" >>%LOG_FILE% 2>&1
+:: powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL%', '%FILE%')" >>%LOG_FILE% 2>&1
+powershell -Command "using (WebClient client = new WebClient())
+{
+     System.Net.ServicePointManager.SecurityProtocol = 'Ssl3, Tls, Tls11, Tls12';
+     client.DownloadFile(%URL%, @\"%FILE%\");
+}" >>%LOG_FILE% 2>&1
 if %ERRORLEVEL% NEQ 0 (echo FAILED. && type %LOG_FILE% && exit /B 1) else (echo done.)
 
 echo|set /p="[2/4] Extracting... "
