@@ -20,6 +20,7 @@ script:
   fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes_static.a;
   fi
+- bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
 after_success:
 - mkdir dist && pushd dist && cmake .. -DCMAKE_BUILD_TYPE=Release && popd
 - mv dist hcephes-`cat VERSION`
