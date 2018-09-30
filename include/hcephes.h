@@ -1,6 +1,11 @@
 #ifndef HCEPHES_H
 #define HCEPHES_H
 
+#define HCEPHES_VERSION "0.3.2"
+#define HCEPHES_VERSION_MAJOR 0
+#define HCEPHES_VERSION_MINOR 3
+#define HCEPHES_VERSION_PATCH 2
+
 #include <float.h>
 #include <math.h>
 
@@ -15,10 +20,12 @@
 /* Constant definitions for math error conditions
  */
 #define HCEPHES_DOMAIN 1    /* argument domain error */
+#define HCEPHES_SING 2      /* argument singularity */
 #define HCEPHES_OVERFLOW 3  /* overflow range error */
 #define HCEPHES_UNDERFLOW 4 /* underflow range error */
-#define HCEPHES_SING 2      /* argument singularity */
+#define HCEPHES_TLOSS 5     /* total loss of precision */
 #define HCEPHES_PLOSS 6     /* partial loss of precision */
+#define HCEPHES_EDOM 33
 #define HCEPHES_ERANGE 34
 
 #define HCEPHES_LOGE2 6.93147180559945309417E-1   /* log(2) */
@@ -37,23 +44,23 @@
 #define HCEPHES_TWOOPI 6.36619772367581343075535E-1 /* 2/pi */
 
 typedef struct {
-  double n; /* numerator */
-  double d; /* denominator */
+    double n; /* numerator */
+    double d; /* denominator */
 } fract;
 
 typedef struct {
-  long double r;
-  long double i;
+    long double r;
+    long double i;
 } cmplxl;
 
 typedef struct {
-  float r;
-  float i;
+    float r;
+    float i;
 } cmplxf;
 
 typedef struct {
-  double r;
-  double i;
+    double r;
+    double i;
 } cmplx;
 
 double hcephes_bdtr(int k, int n, double p);        // ok

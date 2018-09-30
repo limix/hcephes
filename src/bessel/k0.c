@@ -37,7 +37,7 @@ double hcephes_k0(double x) {
     double y, z;
 
     if (x <= 0.0) {
-        hcephes_mtherr("k0", DOMAIN);
+        hcephes_mtherr("k0", HCEPHES_DOMAIN);
         return (HUGE_VAL);
     }
 
@@ -55,7 +55,7 @@ double hcephes_k0e(double x) {
     double y;
 
     if (x <= 0.0) {
-        hcephes_mtherr("k0e", DOMAIN);
+        hcephes_mtherr("k0e", HCEPHES_DOMAIN);
         return (HUGE_VAL);
     }
 

@@ -20,7 +20,7 @@ double hcephes_yn(int n, double x) {
 
     /* test for overflow */
     if (x <= 0.0) {
-        hcephes_mtherr("yn", SING);
+        hcephes_mtherr("yn", HCEPHES_SING);
         return (-HUGE_VAL);
     }
 
