@@ -27,6 +27,36 @@ Similarly, on Windows enter
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/hcephes/master/install.bat', 'install.bat')" && install.bat
 ```
 
+## Usage
+
+It requires you to provide the library name `hcephes` to your linker and the path
+inclusion of its `hcephes.h` header to your compiler.
+For example, suppose you on MacOS and you are using [gcc](https://www.gnu.org/software/gcc/).
+A C file like
+
+```c
+/* example.c */
+#include "hcephes.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    printf("%f\n", hcephes_bdtr(4, 5, 0.25));
+    return 0;
+}
+```
+
+might require the following command to create an executable file:
+
+```bash
+gcc example.c -lhcephes -I/usr/local/include -o example
+```
+
+For the complete list of the available functions, we refer the reader to
+[include/hcephes.h](include/hcephes.h) file itself and to the [cephes library](https://www.netlib.org/cephes/)
+documentation.
+
 ## Authors
 
 * [Danilo Horta](https://github.com/horta)

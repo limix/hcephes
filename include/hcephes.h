@@ -63,38 +63,38 @@ typedef struct {
     double i;
 } cmplx;
 
-double hcephes_bdtr(int k, int n, double p);        // ok
-double hcephes_bdtrc(int k, int n, double p);       // ok
-double hcephes_bdtri(int k, int n, double y);       // ok
-double hcephes_beta(double a, double b);            // ok
-double hcephes_btdtr(double a, double b, double x); // ok
+double hcephes_bdtr(int k, int n, double p);
+double hcephes_bdtrc(int k, int n, double p);
+double hcephes_bdtri(int k, int n, double y);
+double hcephes_beta(double a, double b);
+double hcephes_btdtr(double a, double b, double x);
 double hcephes_cabs(cmplx *z);
 double hcephes_cbrt(double x);
 double hcephes_chbevl(double x, double array[], int n);
-double hcephes_chdtr(double df, double x);  // ok
-double hcephes_chdtrc(double df, double x); // ok
-double hcephes_chdtri(double df, double y); // ok
-double hcephes_cosm1(double x);             // ok
+double hcephes_chdtr(double df, double x);
+double hcephes_chdtrc(double df, double x);
+double hcephes_chdtri(double df, double y);
+double hcephes_cosm1(double x);
 double hcephes_dawsn(double xx);
 double hcephes_ei(double x);
-double hcephes_ellie(double phi, double m); // ok
-double hcephes_ellik(double phi, double m); // ok
-double hcephes_ellpe(double x);             // ok
-double hcephes_ellpk(double x);             // ok
+double hcephes_ellie(double phi, double m);
+double hcephes_ellik(double phi, double m);
+double hcephes_ellpe(double x);
+double hcephes_ellpk(double x);
 double hcephes_erf(double a);
 double hcephes_erfc(double a);
 double hcephes_erfce(double x);
-double hcephes_euclid(double *num, double *den); // ok
-double hcephes_expm1(double x);                  // ok
+double hcephes_euclid(double *num, double *den);
+double hcephes_expm1(double x);
 double hcephes_expn(int n, double x);
-double hcephes_expx2(double x, int sign); // ok
+double hcephes_expx2(double x, int sign);
 double hcephes_fac(int i);
-double hcephes_fdtr(int ia, int ib, double x);      // ok
-double hcephes_fdtrc(int ia, int ib, double x);     // ok
-double hcephes_fdtri(int ia, int ib, double y);     // ok
-double hcephes_gamma(double x);                     // ok
-double hcephes_gdtr(double a, double b, double x);  // ok
-double hcephes_gdtrc(double a, double b, double x); // ok
+double hcephes_fdtr(int ia, int ib, double x);
+double hcephes_fdtrc(int ia, int ib, double x);
+double hcephes_fdtri(int ia, int ib, double y);
+double hcephes_gamma(double x);
+double hcephes_gdtr(double a, double b, double x);
+double hcephes_gdtrc(double a, double b, double x);
 double hcephes_hyp2f0(double a, double b, double x, int type, double *err);
 double hcephes_hyp2f1(double a, double b, double c, double x);
 double hcephes_hyperg(double a, double b, double x);
@@ -103,11 +103,11 @@ double hcephes_i0(double x);
 double hcephes_i0e(double x);
 double hcephes_i1(double x);
 double hcephes_i1e(double x);
-double hcephes_igam(double a, double x);                // ok
-double hcephes_igamc(double a, double x);               // ok
-double hcephes_igami(double a, double y0);              // ok
-double hcephes_incbet(double aa, double bb, double xx); // ok
-double hcephes_incbi(double aa, double bb, double yy0); // ok
+double hcephes_igam(double a, double x);
+double hcephes_igamc(double a, double x);
+double hcephes_igami(double a, double y0);
+double hcephes_incbet(double aa, double bb, double xx);
+double hcephes_incbi(double aa, double bb, double yy0);
 double hcephes_iv(double v, double x);
 double hcephes_j0(double x);
 double hcephes_j1(double x);
@@ -118,22 +118,22 @@ double hcephes_k0e(double x);
 double hcephes_k1(double x);
 double hcephes_k1e(double x);
 double hcephes_kn(int nn, double x);
-double hcephes_kolmogi(double p);              // ok
-double hcephes_kolmogorov(double y);           // ok
-double hcephes_lbeta(double a, double b);      // ok
-double hcephes_lgam_sgn(double x, int *sign);  // ok
-double hcephes_lgam(double x);                 // ok
-double hcephes_log1p(double x);                // ok
-double hcephes_nbdtr(int k, int n, double p);  // ok
-double hcephes_nbdtrc(int k, int n, double p); // ok
-double hcephes_nbdtri(int k, int n, double p); // ok
-double hcephes_ndtr(double a);                 // ok
-double hcephes_ndtri(double y0);               // ok
+double hcephes_kolmogi(double p);
+double hcephes_kolmogorov(double y);
+double hcephes_lbeta(double a, double b);
+double hcephes_lgam_sgn(double x, int *sign);
+double hcephes_lgam(double x);
+double hcephes_log1p(double x);
+double hcephes_nbdtr(int k, int n, double p);
+double hcephes_nbdtrc(int k, int n, double p);
+double hcephes_nbdtri(int k, int n, double p);
+double hcephes_ndtr(double a);
+double hcephes_ndtri(double y0);
 double hcephes_onef2(double a, double b, double c, double x, double *err);
 double hcephes_p1evl(double x, double coef[], int N);
-double hcephes_pdtr(int k, double m);  // ok
-double hcephes_pdtrc(int k, double m); // ok
-double hcephes_pdtri(int k, double y); // ok
+double hcephes_pdtr(int k, double m);
+double hcephes_pdtrc(int k, double m);
+double hcephes_pdtri(int k, double y);
 double hcephes_planckc(double w, double T);
 double hcephes_planckd(double w, double T);
 double hcephes_plancki(double w, double T);
@@ -143,11 +143,11 @@ double hcephes_polylog(int n, double x);
 double hcephes_powi(double x, int nn);
 double hcephes_psi(double x);
 double hcephes_simpsn(double f[], double delta);
-double hcephes_smirnov(int n, double e);  // ok
-double hcephes_smirnovi(int n, double p); // ok
+double hcephes_smirnov(int n, double e);
+double hcephes_smirnovi(int n, double p);
 double hcephes_spence(double x);
-double hcephes_stdtr(int k, double t);  // ok
-double hcephes_stdtri(int k, double p); // ok
+double hcephes_stdtr(int k, double t);
+double hcephes_stdtri(int k, double p);
 double hcephes_struve(double v, double x);
 double hcephes_threef0(double a, double b, double c, double x, double *err);
 double hcephes_y0(double x);
