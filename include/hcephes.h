@@ -205,7 +205,6 @@ HCEPHES_API int hcephes_poldiv(double *, int, double *, int, double *);
 HCEPHES_API int hcephes_polrt(double xcof[], double cof[], int m, cmplx root[]);
 HCEPHES_API int hcephes_shichi(double x, double *si, double *ci);
 HCEPHES_API int hcephes_sici(double x, double *si, double *ci);
-HCEPHES_API void hcephes_cadd(cmplx *, cmplx *, cmplx *);
 HCEPHES_API void hcephes_cadd(cmplx *a, cmplx *b, cmplx *c);
 HCEPHES_API void hcephes_cdiv(cmplx *, cmplx *, cmplx *);
 HCEPHES_API void hcephes_cmov(void *a, void *b);
