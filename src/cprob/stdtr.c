@@ -1,7 +1,5 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 HCEPHES_API double hcephes_stdtr(int k, double t) {

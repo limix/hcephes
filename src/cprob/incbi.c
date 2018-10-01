@@ -1,8 +1,6 @@
 #define HCEPHES_API_EXPORTS
 
-
 #include "hcephes.h"
-
 
 HCEPHES_API double hcephes_incbi(double aa, double bb, double yy0) {
     double a, b, y0, d, y, x, x0, x1, lgm, yp, di, dithresh, yl, yh, xt;
@@ -50,9 +48,8 @@ HCEPHES_API double hcephes_incbi(double aa, double bb, double yy0) {
 
     lgm = (yp * yp - 3.0) / 6.0;
     x = 2.0 / (1.0 / (2.0 * a - 1.0) + 1.0 / (2.0 * b - 1.0));
-    d = yp * sqrt(x + lgm) / x -
-        (1.0 / (2.0 * b - 1.0) - 1.0 / (2.0 * a - 1.0)) *
-            (lgm + 5.0 / 6.0 - 2.0 / (3.0 * x));
+    d = yp * sqrt(x + lgm) / x - (1.0 / (2.0 * b - 1.0) - 1.0 / (2.0 * a - 1.0)) *
+                                     (lgm + 5.0 / 6.0 - 2.0 / (3.0 * x));
     d = 2.0 * d;
     if (d < HCEPHES_MINLOG) {
         x = 1.0;

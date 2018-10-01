@@ -1,12 +1,6 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-
 #include "hcephes.h"
-
 
 HCEPHES_API double hcephes_bdtrc(int k, int n, double p) {
     double dk, dn;

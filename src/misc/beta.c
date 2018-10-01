@@ -1,7 +1,5 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 #define MAXGAM 34.84425627277176174

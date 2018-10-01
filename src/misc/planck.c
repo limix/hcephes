@@ -1,11 +1,5 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /*  NIST value (1999): 2 pi h c^2 = 3.741 7749(22) �� 10-16 W m2  */
@@ -58,8 +52,7 @@ HCEPHES_API double hcephes_planckc(double w, double T) {
     y = (y + 43867. / 107290978560589824000.) * p;
     y = ((y - 3617. / 202741834014720000.) * p + 1. / 1270312243200.) * p;
     y = ((y - 691. / 19615115520000.) * p + 1. / 622702080.) * p;
-    y = ((((y - 1. / 13305600.) * p + 1. / 272160.) * p - 1. / 5040.) * p +
-         1. / 60.) *
+    y = ((((y - 1. / 13305600.) * p + 1. / 272160.) * p - 1. / 5040.) * p + 1. / 60.) *
         p;
     y = y - 0.125 * u + 1. / 3.;
     y = y * planck_c1 * b / (w * w * w);
@@ -67,8 +60,7 @@ HCEPHES_API double hcephes_planckc(double w, double T) {
 }
 
 HCEPHES_API double hcephes_planckd(double w, double T) {
-    return (planck_c2 /
-            ((w * w * w * w * w) * (exp(planck_c2 / (w * T)) - 1.0)));
+    return (planck_c2 / ((w * w * w * w * w) * (exp(planck_c2 / (w * T)) - 1.0)));
 }
 
 /* Wavelength, w, of maximum radiation at given temperature T.

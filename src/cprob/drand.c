@@ -1,6 +1,5 @@
 #define HCEPHES_API_EXPORTS
 
-
 #include "hcephes.h"
 
 static int sx = 1;

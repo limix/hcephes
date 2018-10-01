@@ -1,10 +1,6 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
-
 #include "hcephes.h"
-
 
 static double big = 4.503599627370496e15;
 static double biginv = 2.22044604925031308085e-16;

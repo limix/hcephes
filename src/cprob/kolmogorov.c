@@ -1,12 +1,5 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-
 #include "hcephes.h"
 
 /* Exact Smirnov statistic, for one-sided test.  */
@@ -22,8 +15,7 @@ HCEPHES_API double hcephes_smirnov(int n, double e) {
         c = 1.0;
         for (v = 0; v <= nn; v++) {
             evn = e + ((double)v) / n;
-            p +=
-                c * pow(evn, (double)(v - 1)) * pow(1.0 - evn, (double)(n - v));
+            p += c * pow(evn, (double)(v - 1)) * pow(1.0 - evn, (double)(n - v));
             /* Next combinatorial term; worst case error = 4e-15.  */
             c *= ((double)(n - v)) / (v + 1);
         }
