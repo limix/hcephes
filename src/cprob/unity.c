@@ -1,3 +1,4 @@
+#define HCEPHES_API_EXPORTS
 
 #include "hcephes.h"
 
@@ -14,30 +15,28 @@
  * Theoretical peak relative error = 2.32e-20
  */
 static double LP[] = {
-    4.5270000862445199635215E-5, 4.9854102823193375972212E-1,
-    6.5787325942061044846969E0,  2.9911919328553073277375E1,
-    6.0949667980987787057556E1,  5.7112963590585538103336E1,
+    4.5270000862445199635215E-5, 4.9854102823193375972212E-1, 6.5787325942061044846969E0,
+    2.9911919328553073277375E1,  6.0949667980987787057556E1,  5.7112963590585538103336E1,
     2.0039553499201281259648E1,
 };
 static double LQ[] = {
     /* 1.0000000000000000000000E0,*/
-    1.5062909083469192043167E1, 8.3047565967967209469434E1,
-    2.2176239823732856465394E2, 3.0909872225312059774938E2,
-    2.1642788614495947685003E2, 6.0118660497603843919306E1,
+    1.5062909083469192043167E1, 8.3047565967967209469434E1, 2.2176239823732856465394E2,
+    3.0909872225312059774938E2, 2.1642788614495947685003E2, 6.0118660497603843919306E1,
 };
 
 #define SQRTH 0.70710678118654752440
 #define SQRT2 1.41421356237309504880
 
-double hcephes_log1p(double x) {
-  double z;
+HCEPHES_API double hcephes_log1p(double x) {
+    double z;
 
-  z = 1.0 + x;
-  if ((z < SQRTH) || (z > SQRT2))
-    return (log(z));
-  z = x * x;
-  z = -0.5 * z + x * (z * hcephes_polevl(x, LP, 6) / hcephes_p1evl(x, LQ, 6));
-  return (x + z);
+    z = 1.0 + x;
+    if ((z < SQRTH) || (z > SQRT2))
+        return (log(z));
+    z = x * x;
+    z = -0.5 * z + x * (z * hcephes_polevl(x, LP, 6) / hcephes_p1evl(x, LQ, 6));
+    return (x + z);
 }
 
 /* expm1(x) = exp(x) - 1  */
@@ -58,21 +57,21 @@ static double EQ[4] = {
     2.0000000000000000000897E0,
 };
 
-double hcephes_expm1(double x) {
-  double r, xx;
+HCEPHES_API double hcephes_expm1(double x) {
+    double r, xx;
 
-  if (isnan(x))
-    return (x);
-  if (x == HUGE_VAL)
-    return (HUGE_VAL);
-  if (x == -HUGE_VAL)
-    return (-1.0);
-  if ((x < -0.5) || (x > 0.5))
-    return hcephes_expm1(x);
-  xx = x * x;
-  r = x * hcephes_polevl(xx, EP, 2);
-  r = r / (hcephes_polevl(xx, EQ, 3) - r);
-  return (r + r);
+    if (isnan(x))
+        return (x);
+    if (x == HUGE_VAL)
+        return (HUGE_VAL);
+    if (x == -HUGE_VAL)
+        return (-1.0);
+    if ((x < -0.5) || (x > 0.5))
+        return hcephes_expm1(x);
+    xx = x * x;
+    r = x * hcephes_polevl(xx, EP, 2);
+    r = r / (hcephes_polevl(xx, EQ, 3) - r);
+    return (r + r);
 }
 
 /* cosm1(x) = cos(x) - 1  */
@@ -84,12 +83,12 @@ static double coscof[7] = {
     4.1666666666666666609054E-2,
 };
 
-double hcephes_cosm1(double x) {
-  double xx;
+HCEPHES_API double hcephes_cosm1(double x) {
+    double xx;
 
-  if ((x < -HCEPHES_PIO4) || (x > HCEPHES_PIO4))
-    return (cos(x) - 1.0);
-  xx = x * x;
-  xx = -0.5 * xx + xx * xx * hcephes_polevl(xx, coscof, 6);
-  return xx;
+    if ((x < -HCEPHES_PIO4) || (x > HCEPHES_PIO4))
+        return (cos(x) - 1.0);
+    xx = x * x;
+    xx = -0.5 * xx + xx * xx * hcephes_polevl(xx, coscof, 6);
+    return xx;
 }

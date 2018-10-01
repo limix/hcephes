@@ -1,3 +1,4 @@
+#define HCEPHES_API_EXPORTS
 
 #include "hcephes.h"
 
@@ -36,7 +37,7 @@ static int hcephes_ranwh(void) {
     return 0;
 }
 
-int hcephes_drand(double *a) {
+HCEPHES_API int hcephes_drand(double *a) {
     unsigned short r;
     double d;
 

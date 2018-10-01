@@ -1,8 +1,8 @@
+#define HCEPHES_API_EXPORTS
 
 #include "hcephes.h"
 
-
-double hcephes_pdtrc(int k, double m) {
+HCEPHES_API double hcephes_pdtrc(int k, double m) {
     double v;
 
     if ((k < 0) || (m <= 0.0)) {
@@ -13,7 +13,7 @@ double hcephes_pdtrc(int k, double m) {
     return (hcephes_igam(v, m));
 }
 
-double hcephes_pdtr(int k, double m) {
+HCEPHES_API double hcephes_pdtr(int k, double m) {
     double v;
 
     if ((k < 0) || (m <= 0.0)) {
@@ -24,7 +24,7 @@ double hcephes_pdtr(int k, double m) {
     return (hcephes_igamc(v, m));
 }
 
-double hcephes_pdtri(int k, double y) {
+HCEPHES_API double hcephes_pdtri(int k, double y) {
     double v;
 
     if ((k < 0) || (y < 0.0) || (y >= 1.0)) {

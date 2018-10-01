@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_iv(double v, double x) {
+HCEPHES_API double hcephes_iv(double v, double x) {
     int sign;
     double t, ax;
 
@@ -16,7 +18,7 @@ double hcephes_iv(double v, double x) {
     sign = 1;
     if (x < 0.0) {
         if (t != v) {
-            hcephes_mtherr("iv", DOMAIN);
+            hcephes_mtherr("iv", HCEPHES_DOMAIN);
             return (0.0);
         }
         if (v != 2.0 * floor(v / 2.0))
@@ -28,7 +30,7 @@ double hcephes_iv(double v, double x) {
         if (v == 0.0)
             return (1.0);
         if (v < 0.0) {
-            hcephes_mtherr("iv", OVERFLOW);
+            hcephes_mtherr("iv", HCEPHES_OVERFLOW);
             return (HUGE_VAL);
         } else
             return (0.0);

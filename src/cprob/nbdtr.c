@@ -1,8 +1,8 @@
+#define HCEPHES_API_EXPORTS
 
 #include "hcephes.h"
 
-
-double hcephes_nbdtrc(int k, int n, double p) {
+HCEPHES_API double hcephes_nbdtrc(int k, int n, double p) {
     double dk, dn;
 
     if ((p < 0.0) || (p > 1.0))
@@ -18,7 +18,7 @@ double hcephes_nbdtrc(int k, int n, double p) {
     return (hcephes_incbet(dk, dn, 1.0 - p));
 }
 
-double hcephes_nbdtr(int k, int n, double p) {
+HCEPHES_API double hcephes_nbdtr(int k, int n, double p) {
     double dk, dn;
 
     if ((p < 0.0) || (p > 1.0))
@@ -33,7 +33,7 @@ double hcephes_nbdtr(int k, int n, double p) {
     return (hcephes_incbet(dn, dk, p));
 }
 
-double hcephes_nbdtri(int k, int n, double p) {
+HCEPHES_API double hcephes_nbdtri(int k, int n, double p) {
     double dk, dn, w;
 
     if ((p < 0.0) || (p > 1.0))

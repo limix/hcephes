@@ -1,3 +1,7 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* Chebyshev coefficients for exp(-x) I1(x) / x
@@ -44,7 +48,7 @@ static double B[] = {7.51729631084210481353E-18,  4.41434832307170791151E-18,
                      -1.10588938762623716291E-4,  -9.76109749136146840777E-3,
                      7.78576235018280120474E-1};
 
-double hcephes_i1(double x) {
+HCEPHES_API double hcephes_i1(double x) {
     double y, z;
 
     z = fabs(x);
@@ -61,7 +65,7 @@ double hcephes_i1(double x) {
 
 /*							i1e()	*/
 
-double hcephes_i1e(double x) {
+HCEPHES_API double hcephes_i1e(double x) {
     double y, z;
 
     z = fabs(x);

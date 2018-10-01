@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* polylog(4, 1-x) = zeta(4) - x zeta(3) + x^2 A4(x)/B4(x)
@@ -22,7 +24,7 @@ static double B4[12] = {
     2.240041814626069927477E-20, 4.784036597230791011855E-25,
 };
 
-double hcephes_polylog(int n, double x) {
+HCEPHES_API double hcephes_polylog(int n, double x) {
     double h, k, p, s, t, u, xc, z;
     int i, j;
 

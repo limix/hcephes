@@ -1,9 +1,10 @@
+#define HCEPHES_API_EXPORTS
 
 #include "hcephes.h"
 
 static double stop = 1.37e-17;
 
-double hcephes_onef2(double a, double b, double c, double x, double *err) {
+HCEPHES_API double hcephes_onef2(double a, double b, double c, double x, double *err) {
     double n, a0, sum, t;
     double an, bn, cn, max, z;
 
@@ -54,7 +55,7 @@ xit:
     return (sum);
 }
 
-double hcephes_threef0(double a, double b, double c, double x, double *err) {
+HCEPHES_API double hcephes_threef0(double a, double b, double c, double x, double *err) {
     double n, a0, sum, t, conv, conv1;
     double an, bn, cn, max, z;
 
@@ -118,7 +119,7 @@ xit:
     return (sum);
 }
 
-double hcephes_struve(double v, double x) {
+HCEPHES_API double hcephes_struve(double v, double x) {
     double y, ya, f, g, h, t;
     double onef2err, threef0err;
 
@@ -166,7 +167,7 @@ double hcephes_struve(double v, double x) {
 /* Bessel function of noninteger order
  */
 
-double hcephes_yv(double v, double x) {
+HCEPHES_API double hcephes_yv(double v, double x) {
     double y, t;
     int n;
 

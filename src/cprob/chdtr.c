@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_chdtrc(double df, double x) {
+HCEPHES_API double hcephes_chdtrc(double df, double x) {
 
     if ((x < 0.0) || (df < 1.0)) {
         hcephes_mtherr("chdtrc", HCEPHES_DOMAIN);
@@ -9,7 +11,7 @@ double hcephes_chdtrc(double df, double x) {
     return (hcephes_igamc(df / 2.0, x / 2.0));
 }
 
-double hcephes_chdtr(double df, double x) {
+HCEPHES_API double hcephes_chdtr(double df, double x) {
 
     if ((x < 0.0) || (df < 1.0)) {
         hcephes_mtherr("chdtr", HCEPHES_DOMAIN);
@@ -18,7 +20,7 @@ double hcephes_chdtr(double df, double x) {
     return (hcephes_igam(df / 2.0, x / 2.0));
 }
 
-double hcephes_chdtri(double df, double y) {
+HCEPHES_API double hcephes_chdtri(double df, double y) {
     double x;
 
     if ((y < 0.0) || (y > 1.0) || (df < 1.0)) {

@@ -3,7 +3,7 @@
 URL=https://raw.githubusercontent.com/limix/hcephes/master/VERSION
 VERSION=$(curl -s $URL)
 
-echo "[_/_] Library(hcephes==$VERSION)"
+echo "[0/0] Library(hcephes==$VERSION)"
 
 rm /tmp/hcephes.XXXX.log >/dev/null 2>&1 || true
 

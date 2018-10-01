@@ -1,8 +1,10 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define MAXGAM 34.84425627277176174
 
-double hcephes_beta(double a, double b) {
+HCEPHES_API double hcephes_beta(double a, double b) {
     double y;
     int sign;
 
@@ -51,7 +53,7 @@ double hcephes_beta(double a, double b) {
 
 /* Natural log of |beta|.  Return the sign of beta in sgngam.  */
 
-double hcephes_lbeta(double a, double b) {
+HCEPHES_API double hcephes_lbeta(double a, double b) {
     double y;
     int sign;
 

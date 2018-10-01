@@ -1,10 +1,20 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define BIG (1.0 / HCEPHES_MACHEP)
 
 /* Add fractions. */
 
-void hcephes_radd(fract *f1, fract *f2, fract *f3) {
+HCEPHES_API void hcephes_radd(fract *f1, fract *f2, fract *f3) {
     double gcd, d1, d2, gcn, n1, n2;
 
     n1 = f1->n;
@@ -34,7 +44,7 @@ void hcephes_radd(fract *f1, fract *f2, fract *f3) {
 
 /* Subtract fractions. */
 
-void hcephes_rsub(fract *f1, fract *f2, fract *f3) {
+HCEPHES_API void hcephes_rsub(fract *f1, fract *f2, fract *f3) {
     double gcd, d1, d2, gcn, n1, n2;
 
     n1 = f1->n;
@@ -61,7 +71,7 @@ void hcephes_rsub(fract *f1, fract *f2, fract *f3) {
 
 /* Multiply fractions. */
 
-void hcephes_rmul(fract *ff1, fract *ff2, fract *ff3) {
+HCEPHES_API void hcephes_rmul(fract *ff1, fract *ff2, fract *ff3) {
     double d1, d2, n1, n2;
 
     n1 = ff1->n;
@@ -88,7 +98,7 @@ void hcephes_rmul(fract *ff1, fract *ff2, fract *ff3) {
 
 /* Divide fractions. */
 
-void hcephes_rdiv(fract *ff1, fract *ff2, fract *ff3) {
+HCEPHES_API void hcephes_rdiv(fract *ff1, fract *ff2, fract *ff3) {
     double d1, d2, n1, n2;
 
     n1 = ff1->d; /* Invert ff1, then multiply */
@@ -122,7 +132,7 @@ void hcephes_rdiv(fract *ff1, fract *ff2, fract *ff3) {
  *   returns greatest common divisor.
  */
 
-double hcephes_euclid(double *num, double *den) {
+HCEPHES_API double hcephes_euclid(double *num, double *den) {
     double n, d, q, r;
 
     n = *num; /* Numerator. */

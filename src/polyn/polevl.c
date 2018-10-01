@@ -1,6 +1,10 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_polevl(double x, double coef[], int N) {
+HCEPHES_API double hcephes_polevl(double x, double coef[], int N) {
     double ans;
     int i;
     double *p;
@@ -16,7 +20,7 @@ double hcephes_polevl(double x, double coef[], int N) {
     return ans;
 }
 
-double hcephes_p1evl(double x, double coef[], int N) {
+HCEPHES_API double hcephes_p1evl(double x, double coef[], int N) {
     double ans;
     double *p;
     int i;

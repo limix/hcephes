@@ -1,3 +1,7 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* Chebyshev coefficients for K0(x) + log(x/2) I0(x)
@@ -33,11 +37,11 @@ static double B[] = {5.30043377268626276149E-18, -1.64758043015242134646E-17,
                      1.56988388573005337491E-3,  -3.14481013119645005427E-2,
                      2.44030308206595545468E0};
 
-double hcephes_k0(double x) {
+HCEPHES_API double hcephes_k0(double x) {
     double y, z;
 
     if (x <= 0.0) {
-        hcephes_mtherr("k0", DOMAIN);
+        hcephes_mtherr("k0", HCEPHES_DOMAIN);
         return (HUGE_VAL);
     }
 
@@ -51,11 +55,11 @@ double hcephes_k0(double x) {
     return (y);
 }
 
-double hcephes_k0e(double x) {
+HCEPHES_API double hcephes_k0e(double x) {
     double y;
 
     if (x <= 0.0) {
-        hcephes_mtherr("k0e", DOMAIN);
+        hcephes_mtherr("k0e", HCEPHES_DOMAIN);
         return (HUGE_VAL);
     }
 

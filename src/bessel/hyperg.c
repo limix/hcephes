@@ -1,9 +1,13 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double hcephes_hy1f1p(double a, double b, double x, double *err);
 static double hcephes_hy1f1a(double a, double b, double x, double *err);
 
-double hcephes_hyperg(double a, double b, double x) {
+HCEPHES_API double hcephes_hyperg(double a, double b, double x) {
     double asum, psum, acanc, pcanc, temp;
 
     /* See if a Kummer transformation will help */
@@ -28,7 +32,7 @@ double hcephes_hyperg(double a, double b, double x) {
 
 done:
     if (pcanc > 1.0e-12)
-        hcephes_mtherr("hyperg", PLOSS);
+        hcephes_mtherr("hyperg", HCEPHES_PLOSS);
 
     return (psum);
 }
@@ -51,7 +55,7 @@ static double hcephes_hy1f1p(double a, double b, double x, double *err) {
     while (t > HCEPHES_MACHEP) {
         if (bn == 0) /* check bn first since if both	*/
         {
-            hcephes_mtherr("hyperg", SING);
+            hcephes_mtherr("hyperg", HCEPHES_SING);
             return (HUGE_VAL); /* an and bn are zero it is	*/
         }
         if (an == 0) /* a singularity		*/
@@ -179,7 +183,7 @@ adone:
 /*							hcephes_hyp2f0()
  */
 
-double hcephes_hyp2f0(double a, double b, double x, int type, double *err) {
+HCEPHES_API double hcephes_hyp2f0(double a, double b, double x, int type, double *err) {
     double a0, alast, t, tlast, maxt;
     double n, an, bn, u, sum, temp;
 
@@ -266,6 +270,6 @@ done:
 /* series blew up: */
 error:
     *err = HUGE_VAL;
-    hcephes_mtherr("hyperg", TLOSS);
+    hcephes_mtherr("hyperg", HCEPHES_TLOSS);
     return (sum);
 }

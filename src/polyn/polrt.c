@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-int hcephes_polrt(double xcof[], double cof[], int m, cmplx root[]) {
+HCEPHES_API int hcephes_polrt(double xcof[], double cof[], int m, cmplx root[]) {
     register double *p, *q;
     int i, j, nsav, n, n1, n2, nroot, iter, retry;
     int final;

@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_stdtr(int k, double t) {
+HCEPHES_API double hcephes_stdtr(int k, double t) {
     double x, rk, z, f, tz, p, xsqk;
     int j;
 
@@ -75,7 +77,7 @@ double hcephes_stdtr(int k, double t) {
     return (p);
 }
 
-double hcephes_stdtri(int k, double p) {
+HCEPHES_API double hcephes_stdtri(int k, double p) {
     double t, rk, z;
     int rflg;
 

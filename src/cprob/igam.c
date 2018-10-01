@@ -1,11 +1,11 @@
+#define HCEPHES_API_EXPORTS
 
 #include "hcephes.h"
-
 
 static double big = 4.503599627370496e15;
 static double biginv = 2.22044604925031308085e-16;
 
-double hcephes_igamc(double a, double x) {
+HCEPHES_API double hcephes_igamc(double a, double x) {
     double ans, ax, c, yc, r, t, y, z;
     double pk, pkm1, pkm2, qk, qkm1, qkm2;
 
@@ -70,7 +70,7 @@ double hcephes_igamc(double a, double x) {
  *
  */
 
-double hcephes_igam(double a, double x) {
+HCEPHES_API double hcephes_igam(double a, double x) {
     double ans, ax, c, r;
 
     if ((x <= 0) || (a <= 0))

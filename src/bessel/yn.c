@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_yn(int n, double x) {
+HCEPHES_API double hcephes_yn(int n, double x) {
     double an, anm1, anm2, r;
     int k, sign;
 
@@ -20,7 +22,7 @@ double hcephes_yn(int n, double x) {
 
     /* test for overflow */
     if (x <= 0.0) {
-        hcephes_mtherr("yn", SING);
+        hcephes_mtherr("yn", HCEPHES_SING);
         return (-HUGE_VAL);
     }
 
