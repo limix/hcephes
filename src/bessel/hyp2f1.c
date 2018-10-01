@@ -7,6 +7,8 @@
 
 #define ETHRESH 1.0e-12
 
+#define MAX_ITERATIONS 10000
+
 #ifdef _MSC_VER
 #if (_MSC_VER <= 1500)
 #define round(dbl)                                                                      \
@@ -17,83 +19,122 @@
 
 static double hcephes_hyt2f1(double a, double b, double c, double x, double *loss);
 static double hcephes_hys2f1(double a, double b, double c, double x, double *loss);
+static double hcephes_hyp2f1ra(double a, double b, double c, double x, double *loss);
+static double hcephes_hyp2f1_neg_c_equal_bc(double a, double b, double x);
 
 HCEPHES_API double hcephes_hyp2f1(double a, double b, double c, double x) {
     double d, d1, d2, e;
     double p, q, r, s, y, ax;
     double ia, ib, ic, id, err;
-    int flag, i, aid;
+    double t1;
+    int i, aid;
+    int neg_int_a = 0, neg_int_b = 0;
+    int neg_int_ca_or_cb = 0;
 
     err = 0.0;
     ax = fabs(x);
     s = 1.0 - x;
-    flag = 0;
     ia = round(a); /* nearest integer to a */
     ib = round(b);
 
-    if (a <= 0) {
-        if (fabs(a - ia) < EPS) /* a is a negative integer */
-            flag |= 1;
+    if (x == 0.0) {
+        return 1.0;
     }
 
-    if (b <= 0) {
-        if (fabs(b - ib) < EPS) /* b is a negative integer */
-            flag |= 2;
+    d = c - a - b;
+    id = round(d);
+
+    if ((a == 0 || b == 0) && c != 0) {
+        return 1.0;
     }
 
-    if (ax < 1.0) {
-        if (fabs(b - c) < EPS) /* b = c */
-        {
-            y = pow(s, -a); /* s to the -a power */
+    if (a <= 0 && fabs(a - ia) < EPS) { /* a is a negative integer */
+        neg_int_a = 1;
+    }
+
+    if (b <= 0 && fabs(b - ib) < EPS) { /* b is a negative integer */
+        neg_int_b = 1;
+    }
+
+    if (d <= -1 && !(fabs(d - id) > EPS && s < 0) && !(neg_int_a || neg_int_b)) {
+        return pow(s, d) * hcephes_hyp2f1(c - a, c - b, c, x);
+    }
+    if (d <= 0 && x == 1 && !(neg_int_a || neg_int_b))
+        goto hypdiv;
+
+    if (ax < 1.0 || x == -1.0) {
+        /* 2F1(a,b;b;x) = (1-x)**(-a) */
+        if (fabs(b - c) < EPS) { /* b = c */
+            if (neg_int_b) {
+                y = hcephes_hyp2f1_neg_c_equal_bc(a, b, x);
+            } else {
+                y = pow(s, -a); /* s to the -a power */
+            }
             goto hypdon;
         }
-        if (fabs(a - c) < EPS) /* a = c */
-        {
-            y = pow(s, -b); /* s to the -b power */
+        if (fabs(a - c) < EPS) { /* a = c */
+            y = pow(s, -b);      /* s to the -b power */
             goto hypdon;
         }
     }
 
     if (c <= 0.0) {
-        ic = round(c);          /* nearest integer to c */
-        if (fabs(c - ic) < EPS) /* c is a negative integer */
-        {
+        ic = round(c);            /* nearest integer to c */
+        if (fabs(c - ic) < EPS) { /* c is a negative integer */
             /* check if termination before explosion */
-            if ((flag & 1) && (ia > ic))
+            if (neg_int_a && (ia > ic))
                 goto hypok;
-            if ((flag & 2) && (ib > ic))
+            if (neg_int_b && (ib > ic))
                 goto hypok;
             goto hypdiv;
         }
     }
 
-    if (flag) /* function is a polynomial */
+    if (neg_int_a || neg_int_b) /* function is a polynomial */
         goto hypok;
 
-    if (ax > 1.0) /* series diverges	*/
+    t1 = fabs(b - a);
+    if (x < -2.0 && fabs(t1 - round(t1)) > EPS) {
+        /* This transform has a pole for b-a integer, and
+         * may produce large cancellation errors for |1/x| close 1
+         */
+        p = hcephes_hyp2f1(a, 1 - c + a, 1 - b + a, 1.0 / x);
+        q = hcephes_hyp2f1(b, 1 - c + b, 1 - a + b, 1.0 / x);
+        p *= pow(-x, -a);
+        q *= pow(-x, -b);
+        t1 = hcephes_gamma(c);
+        s = t1 * hcephes_gamma(b - a) / (hcephes_gamma(b) * hcephes_gamma(c - a));
+        y = t1 * hcephes_gamma(a - b) / (hcephes_gamma(a) * hcephes_gamma(c - b));
+        return s * p + y * q;
+    } else if (x < -1.0) {
+        if (fabs(a) < fabs(b)) {
+            return pow(s, -a) * hcephes_hyp2f1(a, c - b, c, x / (x - 1));
+        } else {
+            return pow(s, -b) * hcephes_hyp2f1(b, c - a, c, x / (x - 1));
+        }
+    }
+
+    if (ax > 1.0) /* series diverges  */
         goto hypdiv;
 
     p = c - a;
     ia = round(p);                           /* nearest integer to c-a */
     if ((ia <= 0.0) && (fabs(p - ia) < EPS)) /* negative int c - a */
-        flag |= 4;
+        neg_int_ca_or_cb = 1;
 
     r = c - b;
     ib = round(r);                           /* nearest integer to c-b */
     if ((ib <= 0.0) && (fabs(r - ib) < EPS)) /* negative int c - b */
-        flag |= 8;
+        neg_int_ca_or_cb = 1;
 
-    d = c - a - b;
     id = round(d); /* nearest integer to d */
     q = fabs(d - id);
 
     /* Thanks to Christian Burger <BURGER@DMRHRZ11.HRZ.Uni-Marburg.DE>
      * for reporting a bug here.  */
-    if (fabs(ax - 1.0) < EPS) /* |x| == 1.0	*/
-    {
+    if (fabs(ax - 1.0) < EPS) { /* |x| == 1.0   */
         if (x > 0.0) {
-            if (flag & 12) /* negative int c-a or c-b */
-            {
+            if (neg_int_ca_or_cb) {
                 if (d >= 0.0)
                     goto hypf;
                 else
@@ -105,7 +146,6 @@ HCEPHES_API double hcephes_hyp2f1(double a, double b, double c, double x) {
                 (hcephes_gamma(p) * hcephes_gamma(r));
             goto hypdon;
         }
-
         if (d <= -1.0)
             goto hypdiv;
     }
@@ -136,7 +176,7 @@ HCEPHES_API double hcephes_hyp2f1(double a, double b, double c, double x) {
         goto hypdon;
     }
 
-    if (flag & 12)
+    if (neg_int_ca_or_cb)
         goto hypf; /* negative integer c-a or c-b */
 
 hypok:
@@ -145,21 +185,21 @@ hypok:
 hypdon:
     if (err > ETHRESH) {
         hcephes_mtherr("hyp2f1", HCEPHES_PLOSS);
-        /*	printf( "Estimated err = %.2e\n", err ); */
+        /*      printf( "Estimated err = %.2e\n", err ); */
     }
     return (y);
 
-/* The transformation for c-a or c-b negative integer
- * AMS55 #15.3.3
- */
+    /* The transformation for c-a or c-b negative integer
+     * AMS55 #15.3.3
+     */
 hypf:
     y = pow(s, d) * hcephes_hys2f1(c - a, c - b, c, x, &err);
     goto hypdon;
 
-/* The alarm exit */
+    /* The alarm exit */
 hypdiv:
     hcephes_mtherr("hyp2f1", HCEPHES_OVERFLOW);
-    return (HUGE_VAL);
+    return INFINITY;
 }
 
 /* Apply transformations for |x| near 1
@@ -292,6 +332,32 @@ done:
 static double hcephes_hys2f1(double a, double b, double c, double x, double *loss) {
     double f, g, h, k, m, s, u, umax;
     int i;
+    int ib, intflag = 0;
+
+    if (fabs(b) > fabs(a)) {
+        /* Ensure that |a| > |b| ... */
+        f = b;
+        b = a;
+        a = f;
+    }
+
+    ib = round(b);
+
+    if (fabs(b - ib) < EPS && ib <= 0 && fabs(b) < fabs(a)) {
+        /* .. except when `b` is a smaller negative integer */
+        f = b;
+        b = a;
+        a = f;
+        intflag = 1;
+    }
+
+    if ((fabs(a) > fabs(c) + 1 || intflag) && fabs(c - a) > 2 && fabs(a) > 2) {
+        /* |a| >> |c| implies that large cancellation error is to be expected.
+         *
+         * We try to reduce it with the recurrence relations
+         */
+        return hcephes_hyp2f1ra(a, b, c, x, loss);
+    }
 
     i = 0;
     umax = 0.0;
@@ -304,7 +370,7 @@ static double hcephes_hys2f1(double a, double b, double c, double x, double *los
     do {
         if (fabs(h) < EPS) {
             *loss = 1.0;
-            return (HUGE_VAL);
+            return INFINITY;
         }
         m = k + 1.0;
         u = u * ((f + k) * (g + k) * x / ((h + k) * m));
@@ -313,15 +379,106 @@ static double hcephes_hys2f1(double a, double b, double c, double x, double *los
         if (k > umax)
             umax = k;
         k = m;
-        if (++i > 10000) /* should never happen */
-        {
+        if (++i > MAX_ITERATIONS) { /* should never happen */
             *loss = 1.0;
             return (s);
         }
-    } while (fabs(u / s) > HCEPHES_MACHEP);
+    } while (s == 0 || fabs(u / s) > HCEPHES_MACHEP);
 
     /* return estimated relative error */
     *loss = (HCEPHES_MACHEP * umax) / fabs(s) + (HCEPHES_MACHEP * i);
 
     return (s);
+}
+
+/*
+ * Evaluate hypergeometric function by two-term recurrence in `a`.
+ *
+ * This avoids some of the loss of precision in the strongly alternating
+ * hypergeometric series, and can be used to reduce the `a` and `b` parameters
+ * to smaller values.
+ *
+ * AMS55 #15.2.10
+ */
+static double hcephes_hyp2f1ra(double a, double b, double c, double x, double *loss) {
+    double f2, f1, f0;
+    int n;
+    double t, err, da;
+
+    /* Don't cross c or zero */
+    if ((c < 0 && a <= c) || (c >= 0 && a >= c)) {
+        da = round(a - c);
+    } else {
+        da = round(a);
+    }
+    t = a - da;
+
+    *loss = 0;
+
+    if (fabs(da) > MAX_ITERATIONS) {
+        /* Too expensive to compute this value, so give up */
+        hcephes_mtherr("hyp2f1", HCEPHES_TLOSS);
+        *loss = 1.0;
+        return NAN;
+    }
+
+    if (da < 0) {
+        /* Recurse down */
+        f2 = 0;
+        f1 = hcephes_hys2f1(t, b, c, x, &err);
+        *loss += err;
+        f0 = hcephes_hys2f1(t - 1, b, c, x, &err);
+        *loss += err;
+        t -= 1;
+        for (n = 1; n < -da; ++n) {
+            f2 = f1;
+            f1 = f0;
+            f0 =
+                -(2 * t - c - t * x + b * x) / (c - t) * f1 - t * (x - 1) / (c - t) * f2;
+            t -= 1;
+        }
+    } else {
+        /* Recurse up */
+        f2 = 0;
+        f1 = hcephes_hys2f1(t, b, c, x, &err);
+        *loss += err;
+        f0 = hcephes_hys2f1(t + 1, b, c, x, &err);
+        *loss += err;
+        t += 1;
+        for (n = 1; n < da; ++n) {
+            f2 = f1;
+            f1 = f0;
+            f0 = -((2 * t - c - t * x + b * x) * f1 + (c - t) * f2) / (t * (x - 1));
+            t += 1;
+        }
+    }
+
+    return f0;
+}
+
+/*
+    15.4.2 Abramowitz & Stegun.
+*/
+static double hcephes_hyp2f1_neg_c_equal_bc(double a, double b, double x) {
+    double k;
+    double err;
+    double collector = 1;
+    double sum = 1;
+    double collector_max = 1;
+
+    if (!(fabs(b) < 1e5)) {
+        return NAN;
+    }
+
+    for (k = 1; k <= -b; k++) {
+        collector *= (a + k - 1) * x / k;
+        collector_max = fmax(fabs(collector), collector_max);
+        sum += collector;
+    }
+
+    if (1e-16 * (1 + collector_max / fabs(sum)) > 1e-7) {
+        return NAN;
+    }
+
+    return sum;
 }

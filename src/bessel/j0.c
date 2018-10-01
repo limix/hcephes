@@ -1,7 +1,5 @@
 #define HCEPHES_API_EXPORTS
 
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 static double PP[7] = {
