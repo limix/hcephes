@@ -44,4 +44,4 @@ deploy:
     tags: true
     repo: limix/hcephes
     branch: master
-    python: 3.6
+    os: linux
