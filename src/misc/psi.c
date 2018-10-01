@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,
@@ -7,7 +9,7 @@ static double A[] = {8.33333333333333333333E-2, -2.10927960927960927961E-2,
 
 #define EUL 0.57721566490153286061
 
-double hcephes_psi(double x) {
+HCEPHES_API double hcephes_psi(double x) {
     double p, q, nz, s, w, y, z;
     int i, n, negative;
 

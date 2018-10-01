@@ -1,3 +1,7 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double PP[7] = {
@@ -53,7 +57,7 @@ static double RQ[8] = {
     3.18121955943204943306E16, 1.71086294081043136091E18,
 };
 
-double hcephes_j0(double x) {
+HCEPHES_API double hcephes_j0(double x) {
     double w, z, p, q, xn;
 
     if (x < 0)
@@ -87,7 +91,7 @@ double hcephes_j0(double x) {
  * = 0.073804295108687225.
  */
 
-double hcephes_y0(double x) {
+HCEPHES_API double hcephes_y0(double x) {
     double w, z, p, q, xn;
 
     if (x <= 5.0) {

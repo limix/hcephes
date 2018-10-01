@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define EPS 1.0e-13
@@ -16,7 +18,7 @@
 static double hcephes_hyt2f1(double a, double b, double c, double x, double *loss);
 static double hcephes_hys2f1(double a, double b, double c, double x, double *loss);
 
-double hcephes_hyp2f1(double a, double b, double c, double x) {
+HCEPHES_API double hcephes_hyp2f1(double a, double b, double c, double x) {
     double d, d1, d2, e;
     double p, q, r, s, y, ax;
     double ia, ib, ic, id, err;

@@ -1,10 +1,12 @@
+#define HCEPHES_API_EXPORTS
+
 
 #include "hcephes.h"
 
 #define M 128.0
 #define MINV .0078125
 
-double hcephes_expx2(double x, int sign) {
+HCEPHES_API double hcephes_expx2(double x, int sign) {
   double u, u1, m, f;
 
   x = fabs(x);

@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define EUL 5.772156649015328606065e-1
@@ -121,7 +123,7 @@ static double B7[5] = {
     -2.523137093603234562648E-5,
 };
 
-double hcephes_ei(double x) {
+HCEPHES_API double hcephes_ei(double x) {
     double f, w;
 
     if (x <= 0.0) {

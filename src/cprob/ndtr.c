@@ -1,3 +1,11 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* Define this macro to suppress error propagation in exp(x^2)
@@ -35,7 +43,7 @@ static double U[] = {
 
 #define UTHRESH 37.519379347
 
-double hcephes_ndtr(double a) {
+HCEPHES_API double hcephes_ndtr(double a) {
   double x, y, z;
 
   x = a * HCEPHES_SQRTH;
@@ -66,7 +74,7 @@ double hcephes_ndtr(double a) {
    exp(x^2) erfc(x)
    valid for x > 1.
    Use with ndtr and hcephes_expx2.  */
-double hcephes_erfce(double x) {
+HCEPHES_API double hcephes_erfce(double x) {
   double p, q;
 
   if (x < 8.0) {
@@ -79,7 +87,7 @@ double hcephes_erfce(double x) {
   return (p / q);
 }
 
-double hcephes_erf(double x) {
+HCEPHES_API double hcephes_erf(double x) {
   double y, z;
 
   if (fabs(x) > 1.0)
@@ -89,7 +97,7 @@ double hcephes_erf(double x) {
   return (y);
 }
 
-double hcephes_erfc(double a) {
+HCEPHES_API double hcephes_erfc(double a) {
   double p, q, x, y, z;
 
   if (a < 0.0)

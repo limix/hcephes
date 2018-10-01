@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_yn(int n, double x) {
+HCEPHES_API double hcephes_yn(int n, double x) {
     double an, anm1, anm2, r;
     int k, sign;
 

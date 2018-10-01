@@ -1,8 +1,16 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 
 #include "hcephes.h"
 
 /* Exact Smirnov statistic, for one-sided test.  */
-double hcephes_smirnov(int n, double e) {
+HCEPHES_API double hcephes_smirnov(int n, double e) {
     int v, nn;
     double evn, omevn, p, t, c, hcephes_lgamnp1;
 
@@ -41,7 +49,7 @@ double hcephes_smirnov(int n, double e) {
    or that max deviation > y/sqrt(n).
    The approximation is useful for the tail of the distribution
    when n is large.  */
-double hcephes_kolmogorov(double y) {
+HCEPHES_API double hcephes_kolmogorov(double y) {
     double p, t, r, sign, x;
 
     x = -2.0 * y * y;
@@ -61,7 +69,7 @@ double hcephes_kolmogorov(double y) {
 
 /* Functional inverse of Smirnov distribution
    finds e such that smirnov(n,e) = p.  */
-double hcephes_smirnovi(int n, double p) {
+HCEPHES_API double hcephes_smirnovi(int n, double p) {
     double e, t, dpde;
 
     if (p <= 0.0 || p > 1.0) {
@@ -93,7 +101,7 @@ double hcephes_smirnovi(int n, double p) {
    Finds y such that kolmogorov(y) = p.
    If e = hcephes_smirnovi (n,p), then hcephes_kolmogi(2 * p) / sqrt(n) should
    be close to e.  */
-double hcephes_kolmogi(double p) {
+HCEPHES_API double hcephes_kolmogi(double p) {
     double y, t, dpdy;
 
     if (p <= 0.0 || p > 1.0) {

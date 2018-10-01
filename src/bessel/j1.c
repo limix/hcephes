@@ -1,3 +1,7 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double RP[4] = {
@@ -50,7 +54,7 @@ static double YQ[8] = {
 static double Z1 = 1.46819706421238932572E1;
 static double Z2 = 4.92184563216946036703E1;
 
-double hcephes_j1(double x) {
+HCEPHES_API double hcephes_j1(double x) {
     double w, z, p, q, xn;
 
     w = x;
@@ -73,7 +77,7 @@ double hcephes_j1(double x) {
     return (p * HCEPHES_SQ2OPI / sqrt(x));
 }
 
-double hcephes_y1(double x) {
+HCEPHES_API double hcephes_y1(double x) {
     double w, z, p, q, xn;
 
     if (x <= 5.0) {

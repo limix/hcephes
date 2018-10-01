@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* x exp(-x) shi(x), inverted interval 8 to 18 */
@@ -58,7 +60,7 @@ static double C2[] = {8.06913408255155572081E-18,  -2.08074168180148170312E-17,
 
 #define EUL 0.57721566490153286061
 
-int hcephes_shichi(double x, double *si, double *ci) {
+HCEPHES_API int hcephes_shichi(double x, double *si, double *ci) {
     double k, z, c, s, a;
     short sign;
 

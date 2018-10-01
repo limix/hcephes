@@ -1,6 +1,12 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_fdtrc(int ia, int ib, double x) {
+HCEPHES_API double hcephes_fdtrc(int ia, int ib, double x) {
     double a, b, w;
 
     if ((ia < 1) || (ib < 1) || (x < 0.0)) {
@@ -13,7 +19,7 @@ double hcephes_fdtrc(int ia, int ib, double x) {
     return (hcephes_incbet(0.5 * b, 0.5 * a, w));
 }
 
-double hcephes_fdtr(int ia, int ib, double x) {
+HCEPHES_API double hcephes_fdtr(int ia, int ib, double x) {
     double a, b, w;
 
     if ((ia < 1) || (ib < 1) || (x < 0.0)) {
@@ -27,7 +33,7 @@ double hcephes_fdtr(int ia, int ib, double x) {
     return (hcephes_incbet(0.5 * a, 0.5 * b, w));
 }
 
-double hcephes_fdtri(int ia, int ib, double y) {
+HCEPHES_API double hcephes_fdtri(int ia, int ib, double y) {
     double a, b, w, x;
 
     // added by danilo

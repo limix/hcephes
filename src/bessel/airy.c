@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double c1 = 0.35502805388781723926;
@@ -123,7 +125,7 @@ static double APGD[11] = {
     1.37480673554219441465E-6, 5.79912514929147598821E-9,
 };
 
-int hcephes_airy(double x, double *ai, double *aip, double *bi, double *bip) {
+HCEPHES_API int hcephes_airy(double x, double *ai, double *aip, double *bi, double *bip) {
     double z, zz, t, f, g, uf, ug, k, zeta, theta;
     int domflg;
 

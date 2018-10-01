@@ -1,3 +1,21 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #ifdef _MSC_VER
@@ -13,7 +31,7 @@ extern cmplx cone;
 
 /*	c = b + a	*/
 
-void hcephes_cadd(register cmplx *a, register cmplx *b, cmplx *c) {
+HCEPHES_API void hcephes_cadd(register cmplx *a, register cmplx *b, cmplx *c) {
 
   c->r = b->r + a->r;
   c->i = b->i + a->i;
@@ -21,7 +39,7 @@ void hcephes_cadd(register cmplx *a, register cmplx *b, cmplx *c) {
 
 /*	c = b - a	*/
 
-void hcephes_csub(register cmplx *a, register cmplx *b, cmplx *c) {
+HCEPHES_API void hcephes_csub(register cmplx *a, register cmplx *b, cmplx *c) {
 
   c->r = b->r - a->r;
   c->i = b->i - a->i;
@@ -29,7 +47,7 @@ void hcephes_csub(register cmplx *a, register cmplx *b, cmplx *c) {
 
 /*	c = b * a */
 
-void hcephes_cmul(register cmplx *a, register cmplx *b, cmplx *c) {
+HCEPHES_API void hcephes_cmul(register cmplx *a, register cmplx *b, cmplx *c) {
   double y;
 
   y = b->r * a->r - b->i * a->i;
@@ -39,7 +57,7 @@ void hcephes_cmul(register cmplx *a, register cmplx *b, cmplx *c) {
 
 /*	c = b / a */
 
-void hcephes_cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
+HCEPHES_API void hcephes_cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
   double y, p, q, w;
 
   y = a->r * a->r + a->i * a->i;
@@ -62,7 +80,7 @@ void hcephes_cdiv(register cmplx *a, register cmplx *b, cmplx *c) {
 /*	b = a
    Caution, a `short' is assumed to be 16 bits wide.  */
 
-void hcephes_cmov(void *a, void *b) {
+HCEPHES_API void hcephes_cmov(void *a, void *b) {
   register short *pa, *pb;
   int i;
 
@@ -74,7 +92,7 @@ void hcephes_cmov(void *a, void *b) {
   while (--i);
 }
 
-void hcephes_cneg(register cmplx *a) {
+HCEPHES_API void hcephes_cneg(register cmplx *a) {
 
   a->r = -a->r;
   a->i = -a->i;
@@ -84,7 +102,7 @@ void hcephes_cneg(register cmplx *a) {
 #define MAXEXP 1024
 #define MINEXP -1077
 
-double hcephes_cabs(register cmplx *z) {
+HCEPHES_API double hcephes_cabs(register cmplx *z) {
   double x, y, b, re, im;
   int ex, ey, e;
 
@@ -144,7 +162,7 @@ double hcephes_cabs(register cmplx *z) {
   return (b);
 }
 
-void hcephes_csqrt(cmplx *z, cmplx *w) {
+HCEPHES_API void hcephes_csqrt(cmplx *z, cmplx *w) {
   cmplx q, s;
   double x, y, r, t;
 
@@ -194,7 +212,7 @@ void hcephes_csqrt(cmplx *z, cmplx *w) {
   w->i *= 0.5;
 }
 
-double hcephes_hypot(double x, double y) {
+HCEPHES_API double hcephes_hypot(double x, double y) {
   cmplx z;
 
   z.r = x;

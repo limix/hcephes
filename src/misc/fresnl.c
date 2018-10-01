@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* S(x) for small x */
@@ -62,7 +64,7 @@ static double gd[11] = {
     1.86958710162783236342E-22,
 };
 
-int hcephes_fresnl(double xxa, double *ssa, double *cca) {
+HCEPHES_API int hcephes_fresnl(double xxa, double *ssa, double *cca) {
     double f, g, cc, ss, c, s, t, u;
     double x, x2;
 

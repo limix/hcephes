@@ -1,3 +1,9 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 
 #include "hcephes.h"
 
@@ -29,7 +35,7 @@ static double LQ[] = {
 #define SQRTH 0.70710678118654752440
 #define SQRT2 1.41421356237309504880
 
-double hcephes_log1p(double x) {
+HCEPHES_API double hcephes_log1p(double x) {
   double z;
 
   z = 1.0 + x;
@@ -58,7 +64,7 @@ static double EQ[4] = {
     2.0000000000000000000897E0,
 };
 
-double hcephes_expm1(double x) {
+HCEPHES_API double hcephes_expm1(double x) {
   double r, xx;
 
   if (isnan(x))
@@ -84,7 +90,7 @@ static double coscof[7] = {
     4.1666666666666666609054E-2,
 };
 
-double hcephes_cosm1(double x) {
+HCEPHES_API double hcephes_cosm1(double x) {
   double xx;
 
   if ((x < -HCEPHES_PIO4) || (x > HCEPHES_PIO4))

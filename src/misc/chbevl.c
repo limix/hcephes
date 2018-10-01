@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_chbevl(double x, double array[], int n) {
+HCEPHES_API double hcephes_chbevl(double x, double array[], int n) {
     double b0, b1, b2, *p;
     int i;
 

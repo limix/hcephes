@@ -1,3 +1,17 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #include <stdio.h>
@@ -97,7 +111,7 @@ void hcephes_polprt(double a[], int na, int d) {
 
 /* Set a = 0.
  */
-void hcephes_polclr(register double *a, int n) {
+HCEPHES_API void hcephes_polclr(register double *a, int n) {
     int i;
 
     if (n > MAXPOL)
@@ -108,7 +122,7 @@ void hcephes_polclr(register double *a, int n) {
 
 /* Set b = a.
  */
-void hcephes_polmov(register double *a, int na, register double *b) {
+HCEPHES_API void hcephes_polmov(register double *a, int na, register double *b) {
     int i;
 
     if (na > MAXPOL)
@@ -121,7 +135,7 @@ void hcephes_polmov(register double *a, int na, register double *b) {
 
 /* c = b * a.
  */
-void hcephes_polmul(double a[], int na, double b[], int nb, double c[]) {
+HCEPHES_API void hcephes_polmul(double a[], int na, double b[], int nb, double c[]) {
     int i, j, k, nc;
     double x;
 
@@ -146,7 +160,7 @@ void hcephes_polmul(double a[], int na, double b[], int nb, double c[]) {
 
 /* c = b + a.
  */
-void hcephes_poladd(double a[], int na, double b[], int nb, double c[]) {
+HCEPHES_API void hcephes_poladd(double a[], int na, double b[], int nb, double c[]) {
     int i, n;
 
     if (na > nb)
@@ -169,7 +183,7 @@ void hcephes_poladd(double a[], int na, double b[], int nb, double c[]) {
 
 /* c = b - a.
  */
-void hcephes_polsub(double a[], int na, double b[], int nb, double c[]) {
+HCEPHES_API void hcephes_polsub(double a[], int na, double b[], int nb, double c[]) {
     int i, n;
 
     if (na > nb)
@@ -192,7 +206,7 @@ void hcephes_polsub(double a[], int na, double b[], int nb, double c[]) {
 
 /* c = b/a
  */
-int hcephes_poldiv(double a[], int na, double b[], int nb, double c[]) {
+HCEPHES_API int hcephes_poldiv(double a[], int na, double b[], int nb, double c[]) {
     double quot;
     double *ta, *tb, *tq;
     int i, j, k, sing;
@@ -278,7 +292,7 @@ done:
  * c(x) = b(x) = b(a(y)).
  */
 
-void hcephes_polsbt(double a[], int na, double b[], int nb, double c[]) {
+HCEPHES_API void hcephes_polsbt(double a[], int na, double b[], int nb, double c[]) {
     int i, j, k, n2;
     double x;
 

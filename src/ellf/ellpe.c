@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double P[] = {1.53552577301013293365E-4, 2.50888492163602060990E-3,
@@ -12,7 +14,7 @@ static double Q[] = {3.27954898576485872656E-5, 1.00962792679356715133E-3,
                      4.27180926518931511717E-2, 5.85936634471101055642E-2,
                      9.37499997197644278445E-2, 2.49999999999888314361E-1};
 
-double hcephes_ellpe(double x) {
+HCEPHES_API double hcephes_ellpe(double x) {
     // line added by danilo
     x = 1.0 - x;
     if ((x <= 0.0) || (x > 1.0)) {

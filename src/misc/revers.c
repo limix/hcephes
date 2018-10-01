@@ -1,9 +1,11 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 #include <stdlib.h>
 
 extern int MAXPOL; /* initialized by polini() */
 
-void hcephes_revers(double y[], double x[], int n) {
+HCEPHES_API void hcephes_revers(double y[], double x[], int n) {
     double *yn, *yp, *ysum;
     int j;
 

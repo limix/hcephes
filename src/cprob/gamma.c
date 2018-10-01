@@ -1,3 +1,9 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #ifdef _MSC_VER
@@ -49,7 +55,7 @@ static double hcephes_stirf(double x) {
   return (y);
 }
 
-double hcephes_gamma(double x) {
+HCEPHES_API double hcephes_gamma(double x) {
   double p, q, z;
   int i;
 
@@ -146,12 +152,12 @@ static double LS2HCEPHES_PI = 0.91893853320467274178;
 #define MAXLGM 2.556348e305
 
 /* Logarithm of gamma function */
-double hcephes_lgam(double x) {
+HCEPHES_API double hcephes_lgam(double x) {
   int sign;
   return hcephes_lgam_sgn(x, &sign);
 }
 
-double hcephes_lgam_sgn(double x, int *sign) {
+HCEPHES_API double hcephes_lgam_sgn(double x, int *sign) {
   double p, q, u, w, z;
   int i;
   *sign = 1;

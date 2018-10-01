@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* Riemann zeta(x) - 1
@@ -74,7 +76,7 @@ static double S[5] = {
  * Riemann zeta function, minus one
  */
 
-double hcephes_zetac(double x) {
+HCEPHES_API double hcephes_zetac(double x) {
   int i;
   double a, b, s, w;
 

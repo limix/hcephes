@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_ellie(double phi, double m) {
+HCEPHES_API double hcephes_ellie(double phi, double m) {
     double a, b, c, e, temp;
     double lphi, t, E;
     int d, mod, npio2, sign;

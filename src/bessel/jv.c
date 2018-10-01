@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define MAXGAM 171.624376956302725
@@ -10,7 +12,7 @@ static double hcephes_jnx(double n, double x);
 static double hcephes_jvs(double n, double x);
 static double hcephes_recur(double *n, double x, double *newn, int cancel);
 
-double hcephes_jv(double n, double x) {
+HCEPHES_API double hcephes_jv(double n, double x) {
     double k, q, t, y, an;
     int i, sign, nint;
 

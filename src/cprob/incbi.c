@@ -1,8 +1,10 @@
+#define HCEPHES_API_EXPORTS
+
 
 #include "hcephes.h"
 
 
-double hcephes_incbi(double aa, double bb, double yy0) {
+HCEPHES_API double hcephes_incbi(double aa, double bb, double yy0) {
     double a, b, y0, d, y, x, x0, x1, lgm, yp, di, dithresh, yl, yh, xt;
     int i, rflg, dir, nflg;
 

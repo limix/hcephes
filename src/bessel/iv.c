@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_iv(double v, double x) {
+HCEPHES_API double hcephes_iv(double v, double x) {
     int sign;
     double t, ax;
 

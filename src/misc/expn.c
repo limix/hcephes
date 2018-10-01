@@ -1,9 +1,11 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define EUL 0.57721566490153286060
 #define BIG 1.44115188075855872E+17
 
-double hcephes_expn(int n, double x) {
+HCEPHES_API double hcephes_expn(int n, double x) {
     double ans, r, t, yk, xk;
     double pk, pkm1, pkm2, qk, qkm1, qkm2;
     double psi, z;

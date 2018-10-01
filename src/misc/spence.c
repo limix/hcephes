@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double A[8] = {
@@ -13,7 +15,7 @@ static double B[8] = {
     3.54771340985225096217E0,  9.99999999999999998740E-1,
 };
 
-double hcephes_spence(double x) {
+HCEPHES_API double hcephes_spence(double x) {
     double w, y, z;
     int flag;
 

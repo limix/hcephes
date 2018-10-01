@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 
 #include "hcephes.h"
 
@@ -10,7 +12,7 @@ static double hcephes_pseries(double a, double b, double x);
 static double hcephes_incbcf(double a, double b, double x);
 static double hcephes_incbd(double a, double b, double x);
 
-double hcephes_incbet(double aa, double bb, double xx) {
+HCEPHES_API double hcephes_incbet(double aa, double bb, double xx) {
   double a, b, t, x, xc, w, y;
   int flag;
 

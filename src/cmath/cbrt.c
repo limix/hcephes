@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #ifdef _MSC_VER
@@ -12,7 +14,7 @@ static double CBRT4 = 1.5874010519681994747517;
 static double CBRT2I = 0.79370052598409973737585;
 static double CBRT4I = 0.62996052494743658238361;
 
-double hcephes_cbrt(double x) {
+HCEPHES_API double hcephes_cbrt(double x) {
   int e, rem, sign;
   double z;
 

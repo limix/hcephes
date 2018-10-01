@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* Factorials of integers from 0 through 33 */
@@ -21,7 +23,7 @@ static double factbl[] = {
     2.6313083693369353016721801216E35, 8.68331761881188649551819440128E36};
 #define MAXFAC 33
 
-double hcephes_fac(int i) {
+HCEPHES_API double hcephes_fac(int i) {
     double x, f, n;
     int j;
 

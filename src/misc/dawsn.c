@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /* Dawson's integral, interval 0 to 3.25 */
@@ -48,7 +50,7 @@ static double CD[5] = {
     -9.73655226040941223894E-4,
 };
 
-double hcephes_dawsn(double xx) {
+HCEPHES_API double hcephes_dawsn(double xx) {
     double x, y;
     int sign;
 

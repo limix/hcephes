@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 
 #include "hcephes.h"
 
@@ -54,7 +56,7 @@ static double Q2[8] = {
     2.89247864745380683936E-6, 6.79019408009981274425E-9,
 };
 
-double hcephes_ndtri(double y0) {
+HCEPHES_API double hcephes_ndtri(double y0) {
     double x, y, z, y2, x0, x1;
     int code;
 

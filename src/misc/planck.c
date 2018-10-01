@@ -1,3 +1,11 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 /*  NIST value (1999): 2 pi h c^2 = 3.741 7749(22) �� 10-16 W m2  */
@@ -5,7 +13,7 @@ double planck_c1 = 3.7417749e-16;
 /*  NIST value (1999):  h c / k  = 0.014 387 69 m K */
 double planck_c2 = 0.01438769;
 
-double hcephes_plancki(double w, double T) {
+HCEPHES_API double hcephes_plancki(double w, double T) {
     double b, h, y, bw;
 
     b = T / planck_c2;
@@ -32,7 +40,7 @@ double hcephes_plancki(double w, double T) {
     return y;
 }
 
-double hcephes_planckc(double w, double T) {
+HCEPHES_API double hcephes_planckc(double w, double T) {
     double b, d, p, u, y;
 
     b = T / planck_c2;
@@ -58,7 +66,7 @@ double hcephes_planckc(double w, double T) {
     return y;
 }
 
-double hcephes_planckd(double w, double T) {
+HCEPHES_API double hcephes_planckd(double w, double T) {
     return (planck_c2 /
             ((w * w * w * w * w) * (exp(planck_c2 / (w * T)) - 1.0)));
 }
@@ -67,6 +75,6 @@ double hcephes_planckd(double w, double T) {
    c2/wT = constant
    Wein displacement law.
   */
-double hcephes_planckw(double T) {
+HCEPHES_API double hcephes_planckw(double T) {
     return (planck_c2 / (4.96511423174427630 * T));
 }

@@ -1,6 +1,8 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_powi(double x, int nn) {
+HCEPHES_API double hcephes_powi(double x, int nn) {
     int n, e, sign, asign, lx;
     double w, y, s;
 

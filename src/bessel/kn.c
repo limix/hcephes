@@ -1,9 +1,11 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 #define EUL 5.772156649015328606065e-1
 #define MAXFAC 31
 
-double hcephes_kn(int nn, double x) {
+HCEPHES_API double hcephes_kn(int nn, double x) {
     double k, kf, nk1f, nkf, zn, t, s, z0, z;
     double ans, fn, pn, pk, zmn, tlg, tox;
     int i, n;

@@ -1,9 +1,13 @@
+#define HCEPHES_API_EXPORTS
+
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
 static double hcephes_hy1f1p(double a, double b, double x, double *err);
 static double hcephes_hy1f1a(double a, double b, double x, double *err);
 
-double hcephes_hyperg(double a, double b, double x) {
+HCEPHES_API double hcephes_hyperg(double a, double b, double x) {
     double asum, psum, acanc, pcanc, temp;
 
     /* See if a Kummer transformation will help */
@@ -179,7 +183,7 @@ adone:
 /*							hcephes_hyp2f0()
  */
 
-double hcephes_hyp2f0(double a, double b, double x, int type, double *err) {
+HCEPHES_API double hcephes_hyp2f0(double a, double b, double x, int type, double *err) {
     double a0, alast, t, tlast, maxt;
     double n, an, bn, u, sum, temp;
 

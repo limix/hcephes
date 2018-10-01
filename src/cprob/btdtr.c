@@ -1,5 +1,7 @@
+#define HCEPHES_API_EXPORTS
+
 #include "hcephes.h"
 
-double hcephes_btdtr(double a, double b, double x) {
+HCEPHES_API double hcephes_btdtr(double a, double b, double x) {
     return (hcephes_incbet(a, b, x));
 }

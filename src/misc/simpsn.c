@@ -1,3 +1,5 @@
+#define HCEPHES_API_EXPORTS
+
 #define NCOTE 8
 
 /* 8th order formula */
@@ -7,7 +9,7 @@ static double simcon[] = {
     -1.6014109347442680776E-1,
 };
 
-double hcephes_simpsn(double f[],  /* tabulated function */
+HCEPHES_API double hcephes_simpsn(double f[],  /* tabulated function */
                       double delta /* spacing of arguments */
 ) {
     extern double simcon[];
