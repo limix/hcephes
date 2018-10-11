@@ -32,7 +32,11 @@ echo|set /p="[2/4] Extracting... "
 powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::ExtractToDirectory('%FILE%', '.'); }"
 if %ERRORLEVEL% NEQ 0 (echo FAILED. && type %LOG_FILE% && exit /B 1) else (echo done.)
 
-cd %DIR% && mkdir build && cd build
+cd %DIR%
+if EXIST build (
+  rmdir /s /q build
+)
+mkdir build && cd build
 
 echo|set /p="[3/4] Configuring... "
 cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_GENERATOR_PLATFORM=%ARCH% -DCMAKE_INSTALL_PREFIX="%programfiles%\hcephes" >>%LOG_FILE% 2>&1
