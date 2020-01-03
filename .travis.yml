@@ -14,17 +14,6 @@ jobs:
       os: windows
       env: GENERATOR=Ninja
       before_install: choco install ninja --no-progress -y
-    # - name: Install on linux-default
-    #   os: linux
-    #   sudo: required
-    #   before_script: test -e /usr/bin/cmake || sudo ln -s $(which cmake) /usr/bin/cmake
-    #   script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes DO_CMD=sudo bash
-    # - name: Install on osx-default
-    #   os: osx
-    #   script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes DO_CMD=sudo bash
-    # - name: Install on windows
-    #   os: windows
-    #   script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes bash
 script:
   - mkdir prefix
   - mkdir build
@@ -50,4 +39,12 @@ notifications:
       - danilo.horta@pm.me
     on_success: never
     on_failure: always
-
+deploy:
+  provider: releases
+  api_key:
+    secure: luDHtR7NtRCxkLnF5Fyg1C3hdYBrI5hPpbnT9OI2VlSmZJUoXDP4K/fJGVQ+G0ut3wbkZjs/9e9Ur0oSpc3BF201dqnRgG2yepUslS4aF5i9J0NekuNmGj9BfSNhXnvkkItTibgaL0VdSop1rJQksttDHB03u6kIEQe5uHdBegTqgekH5KU6ODbNqYcg9aUF7geGeAD0l++Ywk8Y6sv2ZXpGx3fC2YyfvshlqSbBdU/22Wa1YOxTzzehG9XObv9a825P5VJiOkNDGXO2BpqBNmM/d6sA/sqtBnK3ApsnZZakj9J5OR8/IRnm0JI6v9kxvo9UrLrH3Y6ya5rhuw93ETzBKmf9Z5a6VpJ3EQ/3yePYZF7a2o0AZJDTLBP7TLxsVAvtmC6+VhzyKuSSasdVLk2/DtsjutQbiU2UJv7WybqzuWAlxI8eQ05GepVeekNqumt3DOO95/p2wptdl3cLAnqiGTgzsXSacI8KsiL+VeoS/An9bgrMVMYNnI2MEoAueGeWkKgLtg+J7EI15EduPGs8pV/DdVA2v74wtXjj7sPRXMJWQtqMcIhewO5UyMxt4al3KlvZj8lqDYrg6WI5jZHWBvNj9yeU90OdWlwX2PGzXkcDf+cI3TxLc/VQ6Shn7zR+AgeQtcZj8EQDYv9tCC1IOupwuKCjeguUH5jmwVc=
+  on:
+    tags: true
+    repo: limix/hcephes
+    branch: master
+    skip_existing: true

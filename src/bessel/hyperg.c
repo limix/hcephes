@@ -5,6 +5,8 @@ static double hcephes_hy1f1a(double a, double b, double x, double *err);
 
 HCEPHES_API double hcephes_hyperg(double a, double b, double x) {
     double asum, psum, acanc, pcanc, temp;
+    pcanc = 0.0;
+    acanc = 0.0;
 
     /* See if a Kummer transformation will help */
     temp = b - a;

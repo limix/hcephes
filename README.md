@@ -51,6 +51,16 @@ For the complete list of the available functions, we refer the reader to
 [include/hcephes.h](include/hcephes.h) file itself and to the [cephes library](https://www.netlib.org/cephes/)
 documentation.
 
+## CMake
+
+Add the following to your `CMakeLists.txt`:
+
+```
+find_package(hcephes REQUIRED)
+
+target_link_libraries(mylib PRIVATE HCEPHES::hcephes)
+```
+
 ## Authors
 
 * [Danilo Horta](https://github.com/horta)
