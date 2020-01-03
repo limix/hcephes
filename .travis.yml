@@ -14,6 +14,17 @@ jobs:
       os: windows
       env: GENERATOR=Ninja
       before_install: choco install ninja --no-progress -y
+    - name: Install on linux-default
+      os: linux
+      sudo: required
+      before_script: test -e /usr/bin/cmake || sudo ln -s $(which cmake) /usr/bin/cmake
+      script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes DO_CMD=sudo bash
+    - name: Install on osx-default
+      os: osx
+      script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes DO_CMD=sudo bash
+    - name: Install on windows
+      os: windows
+      script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes bash
 script:
   - mkdir prefix
   - mkdir build
