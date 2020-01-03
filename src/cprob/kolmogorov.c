@@ -7,7 +7,7 @@ HCEPHES_API double hcephes_smirnov(int n, double e) {
 
     if (n <= 0 || e < 0.0 || e > 1.0)
         return (-1.0);
-    nn = floor((double)n * (1.0 - e));
+    nn = (int)floor((double)n * (1.0 - e));
     p = 0.0;
     if (n < 1013) {
         c = 1.0;

@@ -41,7 +41,7 @@ HCEPHES_API double hcephes_psi(double x) {
     /* check for positive integer up to 10 */
     if ((x <= 10.0) && (x == floor(x))) {
         y = 0.0;
-        n = x;
+        n = (int)x;
         for (i = 1; i < n; i++) {
             w = i;
             y += 1.0 / w;

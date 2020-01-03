@@ -158,7 +158,7 @@ HCEPHES_API double hcephes_hyp2f1(double a, double b, double c, double x) {
             goto hypdon;
         /* Apply the recurrence if power series fails */
         err = 0.0;
-        aid = 2 - id;
+        aid = (int)(2 - id);
         e = c + aid;
         d2 = hcephes_hyp2f1(a, b, e, x);
         d1 = hcephes_hyp2f1(a, b, e + 1.0, x);
@@ -251,12 +251,12 @@ static double hcephes_hyt2f1(double a, double b, double c, double x, double *los
                 e = d;
                 d1 = d;
                 d2 = 0.0;
-                aid = id;
+                aid = (int)id;
             } else {
                 e = -d;
                 d1 = 0.0;
                 d2 = d;
-                aid = -id;
+                aid = (int)-id;
             }
 
             ax = log(s);
@@ -339,7 +339,7 @@ static double hcephes_hys2f1(double a, double b, double c, double x, double *los
         a = f;
     }
 
-    ib = round(b);
+    ib = (int)round(b);
 
     if (fabs(b - ib) < EPS && ib <= 0 && fabs(b) < fabs(a)) {
         /* .. except when `b` is a smaller negative integer */
@@ -459,7 +459,6 @@ static double hcephes_hyp2f1ra(double a, double b, double c, double x, double *l
 */
 static double hcephes_hyp2f1_neg_c_equal_bc(double a, double b, double x) {
     double k;
-    double err;
     double collector = 1;
     double sum = 1;
     double collector_max = 1;

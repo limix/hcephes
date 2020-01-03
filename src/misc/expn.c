@@ -78,7 +78,7 @@ HCEPHES_API double hcephes_expn(int n, double x) {
         else
             t = 1.0;
     } while (t > HCEPHES_MACHEP);
-    k = xk;
+    k = (int)xk;
     t = n;
     r = n - 1;
     ans = (pow(z, r) * psi / hcephes_gamma(t)) - ans;

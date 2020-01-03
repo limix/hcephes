@@ -20,7 +20,7 @@ HCEPHES_API double hcephes_jv(double n, double x) {
     y = floor(an);
     if (y == an) {
         nint = 1;
-        i = an - 16384.0 * floor(an / 16384.0);
+        i = (int)(an - 16384.0 * floor(an / 16384.0));
         if (n < 0.0) {
             if (i & 1)
                 sign = -sign;
@@ -309,7 +309,7 @@ static double hcephes_jvs(double n, double x) {
     }
 
     t = frexp(0.5 * x, &ex);
-    ex = ex * n;
+    ex = (int)(ex * n);
     if ((ex > -1023) && (ex < 1023) && (n > 0.0) && (n < (MAXGAM - 1.0))) {
         t = pow(0.5 * x, n) / hcephes_gamma(n + 1.0);
         y *= t;

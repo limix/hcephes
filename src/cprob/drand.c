@@ -44,7 +44,7 @@ HCEPHES_API int hcephes_drand(double *a) {
      */
     hcephes_ranwh();
     d = sx / 30269.0 + sy / 30307.0 + sz / 30323.0;
-    r = d;
+    r = (unsigned short)d;
     d -= r;
     d += 1.0;
     *a = d;

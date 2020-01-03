@@ -171,7 +171,7 @@ HCEPHES_API double hcephes_yv(double v, double x) {
 
     y = floor(v);
     if (y == v) {
-        n = v;
+        n = (int)v;
         y = hcephes_yn(n, x);
         return (y);
     }

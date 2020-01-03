@@ -83,7 +83,7 @@ HCEPHES_API double hcephes_zetac(double x) {
     /* Tabulated values for integer argument */
     w = floor(x);
     if (w == x) {
-        i = x;
+        i = (int)x;
         if (i < 31) {
             return (azetac[i]);
         }

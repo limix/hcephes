@@ -47,7 +47,7 @@ HCEPHES_API double hcephes_ellie(double phi, double m) {
     while (fabs(c / a) > HCEPHES_MACHEP) {
         temp = b / a;
         lphi = lphi + atan(t * temp) + mod * HCEPHES_PI;
-        mod = (lphi + HCEPHES_PIO2) / HCEPHES_PI;
+        mod = (int)((lphi + HCEPHES_PIO2) / HCEPHES_PI);
         t = t * (1.0 + temp) / (1.0 - temp * t * t);
         c = (a - b) / 2.0;
         temp = sqrt(a * b);

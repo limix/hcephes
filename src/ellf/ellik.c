@@ -14,7 +14,7 @@ HCEPHES_API double hcephes_ellik(double phi, double m) {
         }
         return (log(tan((HCEPHES_PIO2 + phi) / 2.0)));
     }
-    npio2 = floor(phi / HCEPHES_PIO2);
+    npio2 = (int)floor(phi / HCEPHES_PIO2);
     if (npio2 & 1)
         npio2 += 1;
     if (npio2) {
@@ -49,7 +49,7 @@ HCEPHES_API double hcephes_ellik(double phi, double m) {
     while (fabs(c / a) > HCEPHES_MACHEP) {
         temp = b / a;
         phi = phi + atan(t * temp) + mod * HCEPHES_PI;
-        mod = (phi + HCEPHES_PIO2) / HCEPHES_PI;
+        mod = (int)((phi + HCEPHES_PIO2) / HCEPHES_PI);
         t = t * (1.0 + temp) / (1.0 - temp * t * t);
         c = (a - b) / 2.0;
         temp = sqrt(a * b);
