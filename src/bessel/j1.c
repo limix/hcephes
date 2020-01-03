@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 static double RP[4] = {

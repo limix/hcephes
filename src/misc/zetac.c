@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /* Riemann zeta(x) - 1

@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 HCEPHES_API int hcephes_polrt(double xcof[], double cof[], int m, cmplx root[]) {

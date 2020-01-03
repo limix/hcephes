@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 #include <stdlib.h>
 

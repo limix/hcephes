@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /* Chebyshev coefficients for K0(x) + log(x/2) I0(x)

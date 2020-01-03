@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /* polylog(4, 1-x) = zeta(4) - x zeta(3) + x^2 A4(x)/B4(x)

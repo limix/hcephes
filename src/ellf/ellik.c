@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 HCEPHES_API double hcephes_ellik(double phi, double m) {

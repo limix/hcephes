@@ -1,17 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 #include <stdio.h>

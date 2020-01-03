@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 HCEPHES_API double hcephes_btdtr(double a, double b, double x) {

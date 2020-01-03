@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 HCEPHES_API double hcephes_igami(double a, double y0) {

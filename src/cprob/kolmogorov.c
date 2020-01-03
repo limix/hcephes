@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /* Exact Smirnov statistic, for one-sided test.  */

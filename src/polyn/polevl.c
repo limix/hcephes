@@ -1,7 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 HCEPHES_API double hcephes_polevl(double x, double coef[], int N) {

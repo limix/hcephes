@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /*  NIST value (1999): 2 pi h c^2 = 3.741 7749(22) �� 10-16 W m2  */

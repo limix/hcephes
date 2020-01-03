@@ -29,17 +29,17 @@
 #ifndef HCEPHES_H
 #define HCEPHES_H
 
-#define HCEPHES_VERSION "0.3.3"
+#define HCEPHES_VERSION "0.4.0"
 #define HCEPHES_VERSION_MAJOR 0
-#define HCEPHES_VERSION_MINOR 3
-#define HCEPHES_VERSION_PATCH 3
+#define HCEPHES_VERSION_MINOR 4
+#define HCEPHES_VERSION_PATCH 0
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #ifdef _WIN32
-#ifdef HCEPHES_API_EXPORTS
+#ifdef HCEPHES_EXPORTS
 #define HCEPHES_API __declspec(dllexport)
 #else
 #define HCEPHES_API __declspec(dllimport)

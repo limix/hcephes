@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /* x exp(-x) shi(x), inverted interval 8 to 18 */

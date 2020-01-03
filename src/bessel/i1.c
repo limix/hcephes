@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 /* Chebyshev coefficients for exp(-x) I1(x) / x

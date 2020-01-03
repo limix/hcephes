@@ -1,5 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 static double hcephes_hy1f1p(double a, double b, double x, double *err);

@@ -1,13 +1,3 @@
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
-#define HCEPHES_API_EXPORTS
-
 #include "hcephes.h"
 
 #define BIG (1.0 / HCEPHES_MACHEP)
