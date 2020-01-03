@@ -69,7 +69,7 @@ HCEPHES_API double hcephes_gamma(double x) {
                 hcephes_mtherr("gamma", HCEPHES_DOMAIN);
                 return (NAN);
             }
-            i = p;
+            i = (int)p;
             if ((i & 1) == 0)
                 sgngam = -1;
             z = q - p;
@@ -169,7 +169,7 @@ HCEPHES_API double hcephes_lgam_sgn(double x, int *sign) {
             hcephes_mtherr("lgam", HCEPHES_SING);
             return (HUGE_VAL);
         }
-        i = p;
+        i = (int)p;
         if ((i & 1) == 0)
             *sign = -1;
         else

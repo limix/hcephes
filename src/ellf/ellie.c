@@ -8,7 +8,7 @@ HCEPHES_API double hcephes_ellie(double phi, double m) {
     if (m == 0.0)
         return (phi);
     lphi = phi;
-    npio2 = floor(lphi / HCEPHES_PIO2);
+    npio2 = (int)floor(lphi / HCEPHES_PIO2);
     if (npio2 & 1)
         npio2 += 1;
     lphi = lphi - npio2 * HCEPHES_PIO2;
