@@ -1,6 +1,6 @@
 #include "hcephes.h"
 
-int hcephes_ellpj(double u, double m, double *sn, double *cn, double *dn, double *ph) {
+HCEPHES_API int hcephes_ellpj(double u, double m, double *sn, double *cn, double *dn, double *ph) {
     double ai, b, phi, t, twon;
     double a[9], c[9];
     int i;

@@ -10,10 +10,10 @@ HCEPHES_API void hcephes_revers(double y[], double x[], int n) {
     if (y[1] == 0.0)
         hcephes_mtherr("revers", HCEPHES_DOMAIN);
 
-    j = (MAXPOL + 1) * sizeof(double);
-    yn = (double *)malloc(j);
-    yp = (double *)malloc(j);
-    ysum = (double *)malloc(j);
+    j = (int)((unsigned long)(MAXPOL + 1) * sizeof(double));
+    yn = (double *)malloc((size_t)j);
+    yp = (double *)malloc((size_t)j);
+    ysum = (double *)malloc((size_t)j);
 
     hcephes_polmov(y, n, yn);
     hcephes_polclr(ysum, n);

@@ -14,7 +14,7 @@ static double R[] = {
 
 static char name[] = "rcephes_gamma";
 
-double rcephes_gamma(double x) {
+HCEPHES_API double rcephes_gamma(double x) {
     double w, y, z;
     int sign;
 

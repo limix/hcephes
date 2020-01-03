@@ -21,7 +21,7 @@ static double A[] = {
 };
 /* 30 Nov 86 -- error in third coefficient fixed */
 
-double hcephes_zeta(double x, double q) {
+HCEPHES_API double hcephes_zeta(double x, double q) {
     int i;
     double a, b, k, s, t, w;
 

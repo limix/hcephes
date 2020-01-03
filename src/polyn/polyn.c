@@ -26,10 +26,10 @@ static int psize = 0;
 /* Initialize max degree of polynomials
  * and allocate temporary storage.
  */
-void hcephes_polini(int maxdeg) {
+HCEPHES_API void hcephes_polini(int maxdeg) {
 
     MAXPOL = maxdeg;
-    psize = (maxdeg + 1) * sizeof(double);
+    psize = (int)(((unsigned long)maxdeg + 1) * sizeof(double));
 
     /* Release previously allocated memory, if any. */
     if (pt3)
@@ -40,9 +40,9 @@ void hcephes_polini(int maxdeg) {
         free(pt1);
 
     /* Allocate new arrays */
-    pt1 = (double *)malloc(psize); /* used by polsbt */
-    pt2 = (double *)malloc(psize); /* used by polsbt */
-    pt3 = (double *)malloc(psize); /* used by hcephes_polmul */
+    pt1 = (double *)malloc((size_t)psize); /* used by polsbt */
+    pt2 = (double *)malloc((size_t)psize); /* used by polsbt */
+    pt3 = (double *)malloc((size_t)psize); /* used by hcephes_polmul */
 
     /* Report if failure */
     if ((pt1 == NULL) || (pt2 == NULL) || (pt3 == NULL)) {
@@ -55,7 +55,7 @@ void hcephes_polini(int maxdeg) {
  */
 static char *form = "abcdefghijk";
 
-void hcephes_polprt(double a[], int na, int d) {
+HCEPHES_API void hcephes_polprt(double a[], int na, int d) {
     int i, j, d1;
     char *p;
 
@@ -203,15 +203,15 @@ HCEPHES_API int hcephes_poldiv(double a[], int na, double b[], int nb, double c[
      * if done automatically on the stack, but stack space
      * may be hard to obtain on a small computer.
      */
-    ta = (double *)malloc(psize);
+    ta = (double *)malloc((size_t)psize);
     hcephes_polclr(ta, MAXPOL);
     hcephes_polmov(a, na, ta);
 
-    tb = (double *)malloc(psize);
+    tb = (double *)malloc((size_t)psize);
     hcephes_polclr(tb, MAXPOL);
     hcephes_polmov(b, nb, tb);
 
-    tq = (double *)malloc(psize);
+    tq = (double *)malloc((size_t)psize);
     hcephes_polclr(tq, MAXPOL);
 
     /* What to do if leading (constant) coefficient
@@ -313,7 +313,7 @@ HCEPHES_API void hcephes_polsbt(double a[], int na, double b[], int nb, double c
 
 /* Evaluate polynomial a(t) at t = x.
  */
-double hcephes_poleva(double a[], int na, double x) {
+HCEPHES_API double hcephes_poleva(double a[], int na, double x) {
     double s;
     int i;
 

@@ -13,18 +13,12 @@ The easiest way of installing it is via [conda](https://conda.io/)
 conda install -c conda-forge hcephes
 ```
 
-A second installation option would be to download the latest source and to
-build it by yourself.
-On Linux or macOS systems it can be as simple as
+Alternatively, one can compile and install it.
+From Linux, MacOS, or Windows (bash terminal) systems, enter
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
-```
-
-Similarly, on Windows enter
-
-```dos
-powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/limix/hcephes/master/install.bat', 'install.bat')" && install.bat
+# DO_CMD=sudo
+curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes bash
 ```
 
 ## Usage

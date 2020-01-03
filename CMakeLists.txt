@@ -100,8 +100,7 @@ target_link_libraries(hcephes INTERFACE $<$<BOOL:${UNIX}>:m>)
 target_compile_options(hcephes PRIVATE
     $<$<STREQUAL:${CMAKE_C_COMPILER_ID},MSVC>:/W3 /WX>
     $<$<NOT:$<STREQUAL:${CMAKE_C_COMPILER_ID},MSVC>>:-Wall -Wextra -Wstrict-prototypes
-        -Wshadow -Wconversion -Wmissing-prototypes -Wno-unused-parameter
-        -Wno-empty-translation-unit>
+        -Wshadow -Wconversion -Wmissing-prototypes -Wno-unused-parameter>
 )
 
 install(TARGETS hcephes EXPORT hcephes-targets

@@ -74,7 +74,7 @@ double psqrt[N + 1] = {1.0,
 
 /* Arctangent of the ratio num/den of two polynomials.
  */
-void hcephes_polatn(double num[], double den[], double ans[], int nn) {
+HCEPHES_API void hcephes_polatn(double num[], double den[], double ans[], int nn) {
     double a, t;
     double *polq, *polu, *polt;
     int i;
@@ -91,9 +91,9 @@ void hcephes_polatn(double num[], double den[], double ans[], int nn) {
         a = den[1];
     }
     t = atan2(t, a); /* arctan(num/den), the ANSI argument order */
-    polq = (double *)malloc((MAXPOL + 1) * sizeof(double));
-    polu = (double *)malloc((MAXPOL + 1) * sizeof(double));
-    polt = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    polq = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
+    polu = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
+    polt = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
     hcephes_polclr(polq, MAXPOL);
     i = hcephes_poldiv(den, nn, num, nn, polq);
     a = polq[0];                    /* a */
@@ -119,7 +119,7 @@ void hcephes_polatn(double num[], double den[], double ans[], int nn) {
  * and of even degree.  An error message is given
  * if the Newton iteration does not converge.
  */
-void hcephes_polsqt(double pol[], double ans[], int nn) {
+HCEPHES_API void hcephes_polsqt(double pol[], double ans[], int nn) {
     double t;
     double *x, *y;
     int i, n;
@@ -128,8 +128,8 @@ void hcephes_polsqt(double pol[], double ans[], int nn) {
         hcephes_mtherr("polatn", HCEPHES_OVERFLOW);
         return;
     }
-    x = (double *)malloc((MAXPOL + 1) * sizeof(double));
-    y = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    x = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
+    y = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
     hcephes_polmov(pol, nn, x);
     hcephes_polclr(y, MAXPOL);
 
@@ -186,7 +186,7 @@ nzero:
  * Since sin(b) and cos(b) are computed by series expansions,
  * the value of b should be small.
  */
-void hcephes_polsin(double x[], double y[], int nn) {
+HCEPHES_API void hcephes_polsin(double x[], double y[], int nn) {
     double a, sc;
     double *w, *c;
     int i;
@@ -195,8 +195,8 @@ void hcephes_polsin(double x[], double y[], int nn) {
         hcephes_mtherr("polatn", HCEPHES_OVERFLOW);
         return;
     }
-    w = (double *)malloc((MAXPOL + 1) * sizeof(double));
-    c = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    w = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
+    c = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
     hcephes_polmov(x, nn, w);
     hcephes_polclr(c, MAXPOL);
     hcephes_polclr(y, nn);
@@ -228,18 +228,17 @@ void hcephes_polsin(double x[], double y[], int nn) {
  * Since sin(b) and cos(b) are computed by series expansions,
  * the value of b should be small.
  */
-void hcephes_polcos(double x[], double y[], int nn) {
+HCEPHES_API void hcephes_polcos(double x[], double y[], int nn) {
     double a, sc;
     double *w, *c;
     int i;
-    double sin(), cos();
 
     if (nn > N) {
         hcephes_mtherr("polatn", HCEPHES_OVERFLOW);
         return;
     }
-    w = (double *)malloc((MAXPOL + 1) * sizeof(double));
-    c = (double *)malloc((MAXPOL + 1) * sizeof(double));
+    w = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
+    c = (double *)malloc(((unsigned long)MAXPOL + 1) * sizeof(double));
     hcephes_polmov(x, nn, w);
     hcephes_polclr(c, MAXPOL);
     hcephes_polclr(y, nn);
