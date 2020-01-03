@@ -1,47 +1,53 @@
-os:
-- linux
-- osx
-dist: trusty
 language: c
-sudo: required
-compiler:
-- clang
-- gcc
+jobs:
+  include:
+    - name: Build on linux-default
+      os: linux
+      env: GENERATOR="Unix Makefiles"
+    - name: Build on osx-default
+      os: osx
+      env: GENERATOR="Unix Makefiles"
+    - name: Build on windows-vs15
+      os: windows
+      env: GENERATOR="Visual Studio 15 2017 Win64"
+    - name: Build on windows-ninja
+      os: windows
+      env: GENERATOR=Ninja
+      before_install: choco install ninja --no-progress -y
+    # - name: Install on linux-default
+    #   os: linux
+    #   sudo: required
+    #   before_script: test -e /usr/bin/cmake || sudo ln -s $(which cmake) /usr/bin/cmake
+    #   script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes DO_CMD=sudo bash
+    # - name: Install on osx-default
+    #   os: osx
+    #   script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes DO_CMD=sudo bash
+    # - name: Install on windows
+    #   os: windows
+    #   script: curl -fsSL https://git.io/JerYI | GITHUB_USER=limix GITHUB_PROJECT=hcephes bash
 script:
-- mkdir build && pushd build
-- cmake .. -DCMAKE_INSTALL_PREFIX=$TRAVIS_BUILD_DIR -DCMAKE_BUILD_TYPE=Release
-- make && make test && make install
-- popd && rm -rf build
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -e $TRAVIS_BUILD_DIR/include/hcephes.h;
-  fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes.so;
-  fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes_static.a;
-  fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/include/hcephes.h;
-  fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes.dylib;
-  fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then test -e $TRAVIS_BUILD_DIR/lib/libhcephes_static.a;
-  fi
-- bash <(curl -fsSL https://raw.githubusercontent.com/limix/hcephes/master/install)
-after_success:
-- mkdir dist && pushd dist && cmake .. -DCMAKE_BUILD_TYPE=Release && popd
-- mv dist hcephes-`cat VERSION`
-- tar czf hcephes-`cat VERSION`.tar.gz hcephes-`cat VERSION`
-- rm -rf dist
+  - mkdir prefix
+  - mkdir build
+  - cd build
+  - cmake -G"$GENERATOR" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$TRAVIS_BUILD_DIR/prefix
+    ..
+  - cmake --build . --config Release
+  - ctest --output-on-failure -C Release
+  - cmake --build . --config Release --target install
+  - test -e $TRAVIS_BUILD_DIR/prefix/include/hcephes.h
+  - test -e $TRAVIS_BUILD_DIR/prefix/lib/cmake/hcephes/hcephes-config.cmake
+  - test -e $TRAVIS_BUILD_DIR/prefix/lib/cmake/hcephes/hcephes-targets-release.cmake
+  - test -e $TRAVIS_BUILD_DIR/prefix/lib/cmake/hcephes/hcephes-targets.cmake
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then otool -l $TRAVIS_BUILD_DIR/prefix/lib/libhcephes.dylib
+    | grep -q LC_RPATH; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then test -e $TRAVIS_BUILD_DIR/prefix/lib/libhcephes.so;
+    fi
+  - cd $TRAVIS_BUILD_DIR
+  - git clean -xdf
 notifications:
   email:
     recipients:
-    - danilo.horta@gmail.com
+      - danilo.horta@pm.me
     on_success: never
     on_failure: always
-deploy:
-  provider: releases
-  api_key:
-    secure: UfQ3hvMJo/1ptYQZhlf6OY4m2dcfzOQGQ3FHdUr8k5XLn9Pzlbr5uVnZePUCAbzaZiJ/O2HYCD44p5r7fJVR5Q7iDy6PRT8aq1uwCtwesGIIv7I7xNO0yY1jpaPYaJ+/a80bZwA0cbPKP7xXm5tcGnKn+uz4iGfNryrBAXL5uM0yEta75xaDieW3gfuh17tjvIDOaSB7fHlSJTEmmuVFms9MxQEFJqL7gTH/PZQ1rH6T7+xhzxGOFwMy1ShILi3TuNmGIH7tTl5Ug9cxJTvIEqjnurEhyXRHhFXd8XGMxrBWf+klUqMeVG7nmY+9G+RRzBYQoezZKdn7n+fjIEyfcPFVwpJ2tMmAEkFHDvRz7WdbWcnyhw9OxlM4cBcvdwtwYoHvqFFPJ8XyreYLXo9Hp/iFNFm6XQTWhJ9GgL7QdQC+2ZelwRquVao1HdU8k1Sm5Kx07hRfuxp0eBbq6Ar8qL+CQM6zq+pCd1Ur3ydFEchkn/AVY1eEuAyLJZuncMGo003lFUrIFPpBPESkFVJEVDfMp2+22YPUGDZJtR7nhowLThUZbrZu70h8QKg0+nbSH6z1+aUKmQFFvEu2dkh/zdw5V1BVZ4hgb+ZTuHI/jgmFV1XSHsp1SlDLCf2oHyLkPFkN7pDHyP2lKUwrm7eWKrjSRKWf6HrgR3gfIObim6c=
-  on:
-    tags: true
-    repo: limix/hcephes
-    branch: master
-    os: linux
+
