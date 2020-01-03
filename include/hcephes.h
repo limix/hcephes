@@ -29,10 +29,10 @@
 #ifndef HCEPHES_H
 #define HCEPHES_H
 
-#define HCEPHES_VERSION "0.4.0"
+#define HCEPHES_VERSION "0.4.1"
 #define HCEPHES_VERSION_MAJOR 0
 #define HCEPHES_VERSION_MINOR 4
-#define HCEPHES_VERSION_PATCH 0
+#define HCEPHES_VERSION_PATCH 1
 
 #ifdef __cplusplus
 extern "C" {
